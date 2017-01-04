@@ -1,4 +1,5 @@
-The Garden Mod:
+# The Garden Mod:
+
 The garden mod adds:
 * A room called The Garden
   * An item pool called The Garden Pool
@@ -34,11 +35,11 @@ Broken Heart:  Consumable that cracks your topmost red HP, when that HP is hit, 
 
 Genesis challenge: Eve starts with Rebirth, Shame, and Betrayal and must beat the Lamb (on normal difficulty). There are no item rooms.
 
-The Web Mod:
+# The Web Mod:
 Challenge rooms have a small chance to become a web room.
 This is a wave defense room with only spider enemies that pays out in a special item (or 2 spider items). This enters the moment you begin.
 
-Misc Item Mods:
+# Misc Item Mods:
 Belly bean - belly gets real big and knocks enemies back. Only your belly
 Toy soldier - familiar that shoots plastic bullets
 Runny nose - random snot bubble shots (poison knock back)
