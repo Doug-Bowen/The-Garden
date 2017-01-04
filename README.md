@@ -32,6 +32,7 @@ Specialty:
 |The Fall of man|Original Sin|Devil deal items are now in all item pools. The Devil deal pool is now empty. Devil deal rooms will no longer be item rooms.|Skull and crossbones|Isaac looks very mad (Furrowed brow)|
 |Rebirth|From one, come two|The player becomes Eve. The player keeps items and health. The player gains a familiar that looks like your original character (fires tears at your current rate. Fire rate for familiar is locked.|A Rib|Miniature Isaac familiar|
 |Exiled|Disobedience|All dice and familiars removed from pools. Champion belt affect for remainder of the run|Closed iron gates|Ivy wrapped around Isaacs neck|
+|Miracle Grow|Roses are Red|This item is to be included in the Item ROom Pool. A Garden Room with Spawn on the next floor.|Recolored Eden's Blessing|Recolored Purity Effect|
 
 **Broken Heart:**  Consumable that cracks your topmost red HP, when that HP is hit, it becomes 3 blue hearts.
 
