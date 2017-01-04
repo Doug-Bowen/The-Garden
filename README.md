@@ -8,7 +8,7 @@ The garden mod adds:
 * 1 New heart type
  * Broken Heart
 
-Room: The Garden, a room that randomly replaces a library (13% chance)
+**Room:** The Garden, a room that randomly replaces a library (13% chance)
 Look and feel: The Garden has ivy key locks on the outside door. The music in this room is mainly crickets, jungle sounds, quietness, no music, just SFX.
 Effect: If entered, the floor becomes much harder. Specifically, if a player is playing normal, the floor becomes "hard" difficulty. If the player is playing hard, the floor gains the champion belt effect.
 Specialty: 
@@ -18,6 +18,8 @@ Specialty:
  * Exiled cannot be rerolled. 
 * Eternal hearts and broken hearts have a high chance to spawn in this room. (50%).
 * Discovering the garden unlocks the Genesis challenge.
+* If you enter this room with high evil, you must first fight The Serpent to see the item.
+ * The Serpent is planned to be a reskin of Pin that shoots apples (knockback).
 
 |Item Name|Subtitle|Effect|Look|Character Cosmetics|
 |---|---|---|---|---|
@@ -31,9 +33,9 @@ Specialty:
 |Rebirth|From one, come two|The player becomes Eve. The player keeps items and health. The player gains a familiar that looks like your original character (fires tears at your current rate. Fire rate for familiar is locked.|A Rib|Miniature Isaac familiar|
 |Exiled|Disobedience|All dice and familiars removed from pools. Champion belt affect for remainder of the run|Closed iron gates|Ivy wrapped around Isaacs neck|
 
-Broken Heart:  Consumable that cracks your topmost red HP, when that HP is hit, it becomes 3 blue hearts.
+**Broken Heart:**  Consumable that cracks your topmost red HP, when that HP is hit, it becomes 3 blue hearts.
 
-Genesis challenge: Eve starts with Rebirth, Shame, and Betrayal and must beat the Lamb (on normal difficulty). There are no item rooms.
+**Genesis challenge:** Eve starts with Rebirth, Shame, and Betrayal and must beat the Lamb (on normal difficulty). There are no item rooms.
 
 # The Web Mod:
 Challenge rooms have a small chance to become a web room.
