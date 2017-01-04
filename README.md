@@ -1,14 +1,23 @@
 # The Garden Mod:
 
-The garden mod adds:
-* A room called The Garden
-  * An item pool called The Garden Pool
-  * 9 items to The Garden Pool
-* A challenge called Genisis
-* 1 New heart type
- * Broken Heart
+Adds:
+* The Garden (New Room)
+  * The Garden Pool (New Item Pool)
+   * Shame (Item - Garden Room Pool)
+   * Betrayal (Item - Garden Room Pool)
+   * Deception (Item - Garden Room Pool)
+   * Creation (Item - Garden Room Pool)
+   * Granted Domain (Item - Garden Room Pool)
+   * The Will of Man (Item - Garden Room Pool)
+   * The Fall of Man (Item - Garden Room Pool)
+   * Rebirth (Item - Garden Room Pool)
+   * Exiled (Item - Garden Room Pool)
+* Miracle Grow (Item - Item Room Pool)
+* Genisis (New Challenge)
+* Broken Heart (New heart type)
+* The Serpent (Boss)
 
-**Room:** The Garden, a room that randomly replaces a library (13% chance)
+**The Garden Room:** A room that randomly replaces a library (30% chance)
 Look and feel: The Garden has ivy key locks on the outside door. The music in this room is mainly crickets, jungle sounds, quietness, no music, just SFX.
 Effect: If entered, the floor becomes much harder. Specifically, if a player is playing normal, the floor becomes "hard" difficulty. If the player is playing hard, the floor gains the champion belt effect.
 Specialty: 
@@ -20,6 +29,7 @@ Specialty:
 * Discovering the garden unlocks the Genesis challenge.
 * If you enter this room with a higher devil deal room chance than angel room chance, you must first fight The Serpent to receive an item.
  * The Serpent is planned to be a reskin of Pin that shoots apples (knockback).
+ * The music playued during this fight would be the normal Pin fight music.
 
 |Item Name|Subtitle|Effect|Look|Character Cosmetics|
 |---|---|---|---|---|
@@ -32,7 +42,7 @@ Specialty:
 |The Fall of man|Original Sin|Devil deal items are now in all item pools. The Devil deal pool is now empty. Devil deal rooms will no longer be item rooms.|Skull and crossbones|Isaac looks very mad (Furrowed brow)|
 |Rebirth|From one, come two|The player becomes Eve. The player keeps items and health. The player gains a familiar that looks like your original character (fires tears at your current rate. Fire rate for familiar is locked.|A Rib|Miniature Isaac familiar|
 |Exiled|Disobedience|All dice and familiars removed from pools. Champion belt affect for remainder of the run|Closed iron gates|Ivy wrapped around Isaacs neck|
-|Miracle Grow|Roses are Red|This item is to be included in the Item ROom Pool. A Garden Room with Spawn on the next floor.|Recolored Eden's Blessing|Recolored Purity Effect|
+|Miracle Grow|Roses are Red|[This item is to be included in the Item Room Pool]. A Garden Room with Spawn on the next floor.|Recolored Eden's Blessing|Recolored Purity Effect|
 
 **Broken Heart:**  Consumable that cracks your topmost red HP, when that HP is hit, it becomes 3 blue hearts.
 
