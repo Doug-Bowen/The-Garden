@@ -41,8 +41,13 @@ This is a wave defense room with only spider enemies that pays out in a special 
 
 # Misc Item Mods:
 Belly bean - belly gets real big and knocks enemies back. Only your belly
+
 Toy soldier - familiar that shoots plastic bullets
+
 Runny nose - random snot bubble shots (poison knock back)
+
 Toilet paper - ground liquids have no effect on you
+
 Jack in the box - jacks pop out from you in the direction you are shooting randomly. Instant kill.
+
 180 gram vinyl - you now shoot vinyl records and have a beanie, hipster glasses, and hipster beard
