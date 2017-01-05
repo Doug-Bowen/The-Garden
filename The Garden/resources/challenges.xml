@@ -65,4 +65,5 @@
 	<challenge name="Pokey mans" id="33" endstage="10" roomfilter="4" altpath="true" startingitems="200,382" achievements="34"/>
 	<challenge name="Ultra hard" id="34" endstage="12" megasatan="true" getcurse="102" achievements="155" startingitems="238,239" />
 	<challenge name="PONG" id="35" endstage="11" altpath="true" roomfilter="4" startingitems="48,221" maxdamage="true" minfirerate="150" bigrange="true" achievements="57"/>
+	<challenge name="Genisis" id="36" difficulty="0" playertype="5" endstage="16" startingitems="511,512,518" roomfilter="4"/>	
 </challenges>
