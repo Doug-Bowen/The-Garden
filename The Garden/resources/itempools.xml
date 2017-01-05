@@ -2490,6 +2490,8 @@
 		<Item Id="483" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="Garden">
+		<!--Shame-->
+		<Item Id="511" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<!--Forbidden Fruit-->
 		<Item Id="512" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<!--Deception-->
@@ -2505,6 +2507,6 @@
 		<!--Creation-->
 		<Item Id="514" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<!--Exiled-->
-		<Item Id="519" Weight="0.5" DecreaseBy="0.25" RemoveOn="0.1"/>
+		<Item Id="519" Weight="0.5" DecreaseBy="0.25" RemoveOn="0.1"/>		
 	</Pool>
 </ItemPools>
