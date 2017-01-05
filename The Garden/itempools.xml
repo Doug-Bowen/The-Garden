@@ -1,0 +1,48 @@
+<ItemPools>
+	<Pool Name="treasure"/>
+	<Pool Name="shop"/>
+	<Pool Name="boss"/>
+	<Pool Name="devil"/>
+	<Pool Name="angel"/>
+	<Pool Name="secret"/>
+	<Pool Name="library"/>
+	<Pool Name="challenge"/>
+	<Pool Name="goldenChest"/>
+	<Pool Name="redChest"/>
+	<Pool Name="beggar"/>
+	<Pool Name="demonBeggar"/>
+	<Pool Name="curse"/>
+	<Pool Name="keyMaster"/>
+	<Pool Name="bossrush"/>
+	<Pool Name="dungeon"/>
+	<Pool Name="greedTreasure"/>
+	<Pool Name="greedBoss"/>
+	<Pool Name="greedShop"/>
+	<Pool Name="greedCurse"/>
+	<Pool Name="greedDevil"/>
+	<Pool Name="greedAngel"/>
+	<Pool Name="greedLibrary"/>
+	<Pool Name="greedSecret"/>
+	<Pool Name="greedGoldenChest"/>
+	<Pool Name="bombBum"/>
+	<Pool Name="Garden">
+		<!--Shame-->
+		<Item Id="511" Weight="1" DecreaseBy="1" RemoveOn="0"/>
+		<!--Betrayal-->
+		<Item Id="391" Weight="1" DecreaseBy="1" RemoveOn="0"/>
+		<!--Deception-->
+		<Item Id="513" Weight="1" DecreaseBy="1" RemoveOn="0"/>
+		<!--Creation-->
+		<Item Id="514" Weight="1" DecreaseBy="1" RemoveOn="0"/>
+		<!--Granted Domain-->
+		<Item Id="515" Weight="1" DecreaseBy="1" RemoveOn="0"/>
+		<!--The Will of Man-->
+		<Item Id="516" Weight="1" DecreaseBy="1" RemoveOn="0"/>
+		<!--The Fall of Man-->
+		<Item Id="517" Weight="1" DecreaseBy="1" RemoveOn="0"/>
+		<!--Rebirth-->
+		<Item Id="518" Weight="1" DecreaseBy="1" RemoveOn="0"/>
+		<!--Exiled-->
+		<Item Id="519" Weight="10" DecreaseBy="0.1" RemoveOn="0"/>
+	</Pool>
+</ItemPools>
