@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['cacheflags',['CacheFlags',['../class_config_1_1_item.html#a5393eefa8b6c462eb3e38c0b697ee871',1,'Config::Item']]],
+  ['canshutdoors',['CanShutDoors',['../class_entity_n_p_c.html#a4f6207b5982b12aa707f1ee027195bea',1,'EntityNPC']]],
+  ['challenge',['Challenge',['../class_game.html#accfd7ca8f7a31ce97fe815b8773887ff',1,'Game']]],
+  ['changeflags',['ChangeFlags',['../class_projectile_params.html#a94280d115acf598bf9f751da3f815a8c',1,'ProjectileParams']]],
+  ['changetimeout',['ChangeTimeout',['../class_projectile_params.html#a6738cae72bddb5bbc087f215f7f08bd2',1,'ProjectileParams']]],
+  ['changevelocity',['ChangeVelocity',['../class_projectile_params.html#a8d480667cf7ba94ee10bbb9dcc008c6f',1,'ProjectileParams']]],
+  ['charge',['Charge',['../class_entity_pickup.html#a311a5258e4ebe78c61af271718527f06',1,'EntityPickup::Charge()'],['../class_entity_knife.html#a5f51d65bf454fee284f5f909073deb05',1,'EntityKnife::Charge()']]],
+  ['child',['Child',['../class_entity.html#abaf1937b3b90780d22d97c5f35a6647b',1,'Entity']]],
+  ['childnpc',['ChildNPC',['../class_entity_n_p_c.html#a606c83e16804aa59433566a59ae62e84',1,'EntityNPC']]],
+  ['circleangle',['CircleAngle',['../class_projectile_params.html#a2437dd4201892b6264f85a16629a0667',1,'ProjectileParams']]],
+  ['closeanimation',['CloseAnimation',['../class_grid_entity_door.html#a3d58a6a1db1c5c8885329c4b54da89cd',1,'GridEntityDoor']]],
+  ['coins',['Coins',['../class_entity_familiar.html#ad9a15d3845de1f1c419d0cc37082b5eb',1,'EntityFamiliar']]],
+  ['collisionclass',['CollisionClass',['../class_grid_entity.html#ae570a2584615dc2b36d4eda931645932',1,'GridEntity::CollisionClass()'],['../class_grid_entity.html#a6376be8fe47d7993957209e1734b7dd6',1,'GridEntity::CollisionClass()']]],
+  ['collisiondamage',['CollisionDamage',['../class_entity.html#adc59845247bb82e2b466d8ed122dab17',1,'Entity']]],
+  ['color',['Color',['../class_sprite.html#aa5dfccb47c9273c2e0822ef78cacbf45',1,'Sprite::Color()'],['../class_projectile_params.html#ad85973979bf3e5cb42d700e0ae338faf',1,'ProjectileParams::Color()'],['../class_entity.html#a9722983b17a0e08aa9325950287a7aeb',1,'Entity::Color()']]],
+  ['controlsenabled',['ControlsEnabled',['../class_entity_player.html#ad619ac182a1d805302ed756449c26664',1,'EntityPlayer']]],
+  ['cooldown',['Cooldown',['../class_temporary_effect.html#aba56ce61589b1e646d84b84b172ec92d',1,'TemporaryEffect']]],
+  ['costume',['Costume',['../class_config_1_1_item.html#a8f88603f6e095cfd6589982976776c4b',1,'Config::Item']]],
+  ['count',['Count',['../class_temporary_effect.html#a13fdcfda0ee6851fbaaa32d2d579acd6',1,'TemporaryEffect']]],
+  ['currentroomtype',['CurrentRoomType',['../class_grid_entity_door.html#ada68ccc12ec3fd1e69f2a6cb658779d9',1,'GridEntityDoor']]],
+  ['curvestrength',['CurveStrength',['../class_entity_laser.html#a1a69f6d786109fabdaf0ec80a5c385dc',1,'EntityLaser']]],
+  ['curvingstrength',['CurvingStrength',['../class_projectile_params.html#a0ade2372c12c07340fe3e5686baa7a46',1,'ProjectileParams']]]
+];
