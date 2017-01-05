@@ -2490,7 +2490,7 @@
 		<Item Id="483" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="Garden">
-		<!--Disobedience-->
+		<!--Forbidden Fruit-->
 		<Item Id="512" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<!--Deception-->
 		<Item Id="513" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
