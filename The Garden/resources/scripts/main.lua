@@ -15,11 +15,17 @@ local miracleGrowItem = Isaac.GetItemIdByName("MiracleGrow")
 local genesisChallengeId = Isaac.GetChallengeIdByName("Genesis");
 
 function useShameItem()
---Placeholder code
 	local player = Isaac.GetPlayer(0);	
-	local pos = Isaac.GetFreeNearPosition(player.Position, 1);
-	Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, debuggingItem, pos, pos, player);
-	Isaac.DebugString("[DEBUG FLAG] You used Shame")	
+	local playerPosition = Isaac.GetFreeNearPosition(player.Position, 1);
+	local entities = Isaac.GetRoomEntities()
+	for i = 1, #entities do
+		if entities[i]:IsVulnerableEnemy() then
+			if entities[i]:TargetPosition() == playerPosition then				
+				entities[i]:AddFear(EntityRef(player), 120)		
+			end
+		end
+	Isaac.DebugString("[DEBUG FLAG] You used Shame")		
+	end
 end
 
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, useShameItem, shameItem);
