@@ -18,6 +18,7 @@ function useShameItem()
 	local player = Isaac.GetPlayer(0);	
 	local pos = Isaac.GetFreeNearPosition(player.Position, 1);
 	Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, debuggingItem, pos, pos, player);
+	Isaac.DebugString("[DEBUG FLAG] You used Shame")	
 end
 
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, useShameItem, shameItem);
