@@ -1,0 +1,3 @@
+<items gfxroot="gfx/items/" version="1">
+	<trinket description="Raise shields!" gfx="Shield.png" name="Shields Up!" />
+</items>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <name>Tilt Shift</name>
+    <directory>tilt shift</directory>
+    <id>832212284</id>
+    <description>A shader that creates the illusion of a depth-of-field blur</description>
+    <version>1.1</version>
+    <visibility>Public</visibility>
+</metadata>
