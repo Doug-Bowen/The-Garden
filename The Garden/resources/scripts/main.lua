@@ -1,6 +1,17 @@
 require('mobdebug').start()
 
-local myMod = RegisterMod("The-Garden", 1)
+local debugFile = io.open("Log-TheGarden.txt", "w")
+
+local theGarden = RegisterMod("TheGarden", 1)
+local shame = Isaac.GetItemIdByName("Shame")
+local forbiddenFruit = Isaac.GetItemIdByName("Forbidden Fruit")
+local deception = Isaac.GetItemIdByName("Deception")
+local grantedDomain = Isaac.GetItemIdByName("Granted Domain")
+local theWillOfMan = Isaac.GetItemIdByName("The Will of Man")
+local theFallOfMan = Isaac.GetItemIdByName("The Fall of Man")
+local rebirth = Isaac.GetItemIdByName("Rebirth")
+local exiled = Isaac.GetItemIdByName("Exiled")
+local miracleGrow = Isaac.GetItemIdByName("MiracleGrow")
 
 function myMod:PlayerInit(aConstPlayer)
 end
