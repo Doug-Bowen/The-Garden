@@ -12,6 +12,7 @@ local theFallOfManItem = Isaac.GetItemIdByName("The Fall of Man")
 local rebirthItem = Isaac.GetItemIdByName("Rebirth")
 local exiledItem = Isaac.GetItemIdByName("Exiled")
 local miracleGrowItem = Isaac.GetItemIdByName("MiracleGrow")
+local genesisChallengeId = Isaac.GetChallengeIdByName("Genesis");
 
 function useShameItem()
 --Placeholder code
