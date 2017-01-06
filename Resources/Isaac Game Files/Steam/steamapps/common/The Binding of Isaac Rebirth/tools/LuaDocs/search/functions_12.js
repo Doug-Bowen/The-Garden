@@ -1,6 +1,7 @@
 var searchData=
 [
   ['savemoddata',['SaveModData',['../namespace_isaac.html#ab1300e3cd3c6df64d967ecb0076321e9',1,'Isaac']]],
+  ['screentoworlddistance',['ScreenToWorldDistance',['../group___functions.html#ga571e105c642fd8b74fbf1bbe077bae6d',1,'Isaac']]],
   ['screenwrapposition',['ScreenWrapPosition',['../class_room.html#a21795f04b7be39af33c92f521f89e601',1,'Room']]],
   ['setactivecharge',['SetActiveCharge',['../class_entity_player.html#afd422cbf0abe9b851816d7e48b05458c',1,'EntityPlayer']]],
   ['setactiverotation',['SetActiveRotation',['../class_entity_laser.html#a2afe16cbedc11bfd1979a392c41b9ed2',1,'EntityLaser']]],
@@ -67,7 +68,7 @@ var searchData=
   ['shoprestockpartial',['ShopRestockPartial',['../class_room.html#a58dc2f4c28539da5de09187211aea3c0',1,'Room']]],
   ['shouldaddcostumeonpickup',['ShouldAddCostumeOnPickup',['../class_config_1_1_config.html#a0819984cd3b2dcf5478ef00b7f70a0c1',1,'Config::Config']]],
   ['showfortune',['ShowFortune',['../class_game.html#a09c18715e7307c393e35bdecc67ae671',1,'Game']]],
-  ['showhallucination',['ShowHallucination',['../class_game.html#a69940d13278484ae506adc17242cb2d4',1,'Game']]],
+  ['showhallucination',['ShowHallucination',['../class_game.html#a098707b56700391b308c8d182dbb05e8',1,'Game']]],
   ['showmap',['ShowMap',['../class_level.html#aecf6561a2fa4f7f514f6e8e31d8bfb1c',1,'Level']]],
   ['showname',['ShowName',['../class_level.html#a80f832796783c95d744c31077e03e577',1,'Level']]],
   ['showrule',['ShowRule',['../class_game.html#a9196b82ad8cf78bf77a03fd3e2874ab2',1,'Game']]],

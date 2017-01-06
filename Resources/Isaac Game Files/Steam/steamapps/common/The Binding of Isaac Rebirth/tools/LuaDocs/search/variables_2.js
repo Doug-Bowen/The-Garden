@@ -1,6 +1,7 @@
 var searchData=
 [
   ['cacheflags',['CacheFlags',['../class_config_1_1_item.html#a5393eefa8b6c462eb3e38c0b697ee871',1,'Config::Item']]],
+  ['canfly',['CanFly',['../class_entity_player.html#a90b8f0fd5b85c8aa1e629ed1e901184d',1,'EntityPlayer']]],
   ['canshutdoors',['CanShutDoors',['../class_entity_n_p_c.html#a4f6207b5982b12aa707f1ee027195bea',1,'EntityNPC']]],
   ['challenge',['Challenge',['../class_game.html#accfd7ca8f7a31ce97fe815b8773887ff',1,'Game']]],
   ['changeflags',['ChangeFlags',['../class_projectile_params.html#a94280d115acf598bf9f751da3f815a8c',1,'ProjectileParams']]],

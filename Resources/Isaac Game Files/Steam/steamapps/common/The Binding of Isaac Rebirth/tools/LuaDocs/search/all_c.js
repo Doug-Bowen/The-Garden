@@ -10,6 +10,7 @@ var searchData=
   ['laser_5ftech2_5foffset',['LASER_TECH2_OFFSET',['../group___enumerations.html#ggae2f0dd5c4caa890ee08ce7adb82d008da329bb980384e381ab63be0d193fbe2ca',1,'Enums.h']]],
   ['laser_5ftech5_5foffset',['LASER_TECH5_OFFSET',['../group___enumerations.html#ggae2f0dd5c4caa890ee08ce7adb82d008da34ca6c062257fb61f7c3b4d0634669c5',1,'Enums.h']]],
   ['laser_5ftractor_5fbeam_5foffset',['LASER_TRACTOR_BEAM_OFFSET',['../group___enumerations.html#ggae2f0dd5c4caa890ee08ce7adb82d008da0007ea78156e5473f01497e62b526400',1,'Enums.h']]],
+  ['lasercolor',['LaserColor',['../class_entity_player.html#a78c1bc3497aa8c79e957a6d956bbb1bf',1,'EntityPlayer']]],
   ['laserlength',['LaserLength',['../class_entity_laser.html#ac2f7330ed19cf54287b17483543c9fef',1,'EntityLaser']]],
   ['laseroffset',['LaserOffset',['../group___enumerations.html#gae2f0dd5c4caa890ee08ce7adb82d008d',1,'Enums.h']]],
   ['lastangledegrees',['LastAngleDegrees',['../class_entity_laser.html#a7705e1a312707ad6cc935448cc6965e6',1,'EntityLaser']]],
@@ -47,5 +48,6 @@ var searchData=
   ['locust_5fof_5fpestilence',['LOCUST_OF_PESTILENCE',['../group___enumerations.html#ggad9b31a86785e32c18d5d5487a31a0e1fa8ca33554bedd7ec19acedf5a0781ec37',1,'Enums.h']]],
   ['locust_5fof_5fwrath',['LOCUST_OF_WRATH',['../group___enumerations.html#ggad9b31a86785e32c18d5d5487a31a0e1fa91c50eae2c1a779a5afbcd73c2d634eb',1,'Enums.h']]],
   ['locustsubtypes',['LocustSubtypes',['../group___enumerations.html#gad9b31a86785e32c18d5d5487a31a0e1f',1,'Enums.h']]],
-  ['lost_5ffly',['LOST_FLY',['../group___enumerations.html#gga98047d6add3110afcb410e3026264bbea03f9dab677947ea8f01d70b0e2e9193a',1,'Enums.h']]]
+  ['lost_5ffly',['LOST_FLY',['../group___enumerations.html#gga98047d6add3110afcb410e3026264bbea03f9dab677947ea8f01d70b0e2e9193a',1,'Enums.h']]],
+  ['luck',['Luck',['../class_entity_player.html#a3e8019f2af95ebe0725ce9a667c03d79',1,'EntityPlayer']]]
 ];

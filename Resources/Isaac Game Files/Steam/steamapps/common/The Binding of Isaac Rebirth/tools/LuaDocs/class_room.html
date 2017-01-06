@@ -106,6 +106,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a484f442e65c2c00fdc4e5e6f2b08914f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#a484f442e65c2c00fdc4e5e6f2b08914f">GetDoorSlotPosition</a> (<a class="el" href="group___enumerations.html#ga445b41ae2021fde99dff29df01f9ce38">DoorSlot</a> Slot)</td></tr>
 <tr class="separator:a484f442e65c2c00fdc4e5e6f2b08914f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6ba270af197376dcbc707f10a78df54"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#ad6ba270af197376dcbc707f10a78df54">IsDoorSlotAllowed</a> (<a class="el" href="group___enumerations.html#ga445b41ae2021fde99dff29df01f9ce38">DoorSlot</a> Slot)</td></tr>
+<tr class="memdesc:ad6ba270af197376dcbc707f10a78df54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether this room design may have a door at a given position, disregarding whether those doors exist.  <a href="#ad6ba270af197376dcbc707f10a78df54">More...</a><br /></td></tr>
 <tr class="separator:ad6ba270af197376dcbc707f10a78df54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad021474501a4c322121cbcdd6e8d63ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#ad021474501a4c322121cbcdd6e8d63ac">RemoveDoor</a> (<a class="el" href="group___enumerations.html#ga445b41ae2021fde99dff29df01f9ce38">DoorSlot</a> Slot)</td></tr>
 <tr class="separator:ad021474501a4c322121cbcdd6e8d63ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -122,6 +123,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aceb9fdf7b92370a114ebe3fac60bf07c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___enumerations.html#gade2a79908923e18471135bfe86d3b1f7">RoomShape</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#aceb9fdf7b92370a114ebe3fac60bf07c">GetRoomShape</a> ()</td></tr>
 <tr class="separator:aceb9fdf7b92370a114ebe3fac60bf07c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8eead35aa6d967b2c6d630c3ea21835"><td class="memItemLeft" align="right" valign="top">RoomConfig::Stage&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#aa8eead35aa6d967b2c6d630c3ea21835">GetRoomConfigStage</a> ()</td></tr>
+<tr class="memdesc:aa8eead35aa6d967b2c6d630c3ea21835"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the original stage the room was designed for (useful for The Void)  <a href="#aa8eead35aa6d967b2c6d630c3ea21835">More...</a><br /></td></tr>
 <tr class="separator:aa8eead35aa6d967b2c6d630c3ea21835"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1604ad6db471e7cc58179ba09ca13d31"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#a1604ad6db471e7cc58179ba09ca13d31">GetGridPath</a> (integer Index)</td></tr>
 <tr class="separator:a1604ad6db471e7cc58179ba09ca13d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,6 +152,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad30843a11c06dcc7e9c19ec9a37e0d03"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#ad30843a11c06dcc7e9c19ec9a37e0d03">IsClear</a> ()</td></tr>
 <tr class="separator:ad30843a11c06dcc7e9c19ec9a37e0d03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5fd61888c3f5faa85c93a26d47ea5f4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#ab5fd61888c3f5faa85c93a26d47ea5f4">SetClear</a> (boolean Clear)</td></tr>
+<tr class="memdesc:ab5fd61888c3f5faa85c93a26d47ea5f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Needed for angel room, so the clear flag can be set to false when the angel spawns.  <a href="#ab5fd61888c3f5faa85c93a26d47ea5f4">More...</a><br /></td></tr>
 <tr class="separator:ab5fd61888c3f5faa85c93a26d47ea5f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0352286862f293cb6a0008716405af9e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#a0352286862f293cb6a0008716405af9e">FindFreePickupSpawnPosition</a> (<a class="el" href="class_vector.html">Vector</a> Pos, float InitialStep, boolean AvoidActiveEntities)</td></tr>
 <tr class="separator:a0352286862f293cb6a0008716405af9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -236,6 +239,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac4f8ae5c9238061d6b9f882f6589fe3f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#ac4f8ae5c9238061d6b9f882f6589fe3f">SetBrokenWatchState</a> (integer State)</td></tr>
 <tr class="separator:ac4f8ae5c9238061d6b9f882f6589fe3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f70c039121c5633e8a8415544087f88"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#a8f70c039121c5633e8a8415544087f88">IsFirstVisit</a> ()</td></tr>
+<tr class="memdesc:a8f70c039121c5633e8a8415544087f88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Broken Watch <a class="el" href="class_room.html">Room</a> State - 0 = no watch effect, 1 = speed down, 2 = speed up.  <a href="#a8f70c039121c5633e8a8415544087f88">More...</a><br /></td></tr>
 <tr class="separator:a8f70c039121c5633e8a8415544087f88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af089058908a13e8a356c672ec7cd2d88"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#af089058908a13e8a356c672ec7cd2d88">HasWaterPits</a> ()</td></tr>
 <tr class="separator:af089058908a13e8a356c672ec7cd2d88"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -266,10 +270,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a57014c0b39d3506fa6900b5623a6a076"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#a57014c0b39d3506fa6900b5623a6a076">SetSlowDown</a> (integer Duration)</td></tr>
 <tr class="separator:a57014c0b39d3506fa6900b5623a6a076"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a902a33b009e27781f6dbd34b76f834f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#a902a33b009e27781f6dbd34b76f834f5">GetRandomPosition</a> (float Margin)</td></tr>
+<tr class="memdesc:a902a33b009e27781f6dbd34b76f834f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns random non tile aligned position  <a href="#a902a33b009e27781f6dbd34b76f834f5">More...</a><br /></td></tr>
 <tr class="separator:a902a33b009e27781f6dbd34b76f834f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98fe6d34841c03be7b1894cba4d6fefc"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#a98fe6d34841c03be7b1894cba4d6fefc">GetRandomTileIndex</a> (integer Seed)</td></tr>
 <tr class="separator:a98fe6d34841c03be7b1894cba4d6fefc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56420366b0fddddbe213252f051129c9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#a56420366b0fddddbe213252f051129c9">RespawnEnemies</a> ()</td></tr>
+<tr class="memdesc:a56420366b0fddddbe213252f051129c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">for D7 collectible  <a href="#a56420366b0fddddbe213252f051129c9">More...</a><br /></td></tr>
 <tr class="separator:a56420366b0fddddbe213252f051129c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57f55cc4973b8fa3d62655a39771271e"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_room.html#a57f55cc4973b8fa3d62655a39771271e">HasWater</a> ()</td></tr>
 <tr class="separator:a57f55cc4973b8fa3d62655a39771271e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -342,6 +348,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>returns true if there is a direct line of sight between Pos1 and Pos2 returns false if the line is obstructed </p>
 
 </div>
 </div>
@@ -370,6 +377,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Damage Grid Entities currently this concerns GridEntity_Poop and GridEntity_Fire returns true if damageable entity was found (and possibly damaged) return false if not used by tears, bombs, some NPCs, etc </p>
 
 </div>
 </div>
@@ -398,6 +406,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>calls DamageGrid internally to damage Poop/Fire removes rocks and opens secret doors returns true if something was destroyed returns false if not used for explosions mostly </p>
 
 </div>
 </div>
@@ -460,6 +469,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Starting from Pos, will try to find a free spawn position where a newly spawned pickup item will not collide with already spawned pickup items, or solid grid elements such as rocks, or pits The returned position will be aligned to the grid. If no free position is found, the original position (aligned to the grid) is returned. </p>
 
 </div>
 </div>
@@ -488,6 +498,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Finds the nearest free tile based on position Stops immediately if the tile sampled has a squared distance less than DistanceThresholdSQ </p>
 
 </div>
 </div>
@@ -590,6 +601,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>returns bottom right position inside of walls </p>
 
 </div>
 </div>
@@ -624,6 +636,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>returns the room center position </p>
 
 </div>
 </div>
@@ -642,6 +655,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>converts float position (x,y) to grid index (similar to ingrid) clamps the values if out of bounds </p>
 
 </div>
 </div>
@@ -670,6 +684,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>returns Pos clamped to room borders inside of walls </p>
 
 </div>
 </div>
@@ -915,6 +930,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>converts float position (x,y) to grid index returns -1 for invalid index </p>
 
 </div>
 </div>
@@ -969,6 +985,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>converts grid index to float (x,y) position undefined behaviour for invalid index </p>
 
 </div>
 </div>
@@ -1031,6 +1048,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>returns the hit position for a laser beam (Technology, Robo-Baby) usually, the first poop, fire, rock, TNT, or wall encountered on a straight line </p>
 
 </div>
 </div>
@@ -1118,6 +1136,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>returns random non tile aligned position </p>
+
 </div>
 </div>
 <a id="a98fe6d34841c03be7b1894cba4d6fefc"></a>
@@ -1169,6 +1189,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>returns the original stage the room was designed for (useful for The Void) </p>
 
 </div>
 </div>
@@ -1289,6 +1311,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>returns top left position inside of walls </p>
 
 </div>
 </div>
@@ -1461,6 +1484,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns whether this room design may have a door at a given position, disregarding whether those doors exist. </p>
+
 </div>
 </div>
 <a id="a6ba9610097653bd60825c6e160fe10a0"></a>
@@ -1494,6 +1519,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Broken Watch <a class="el" href="class_room.html">Room</a> State - 0 = no watch effect, 1 = speed down, 2 = speed up. </p>
 
 </div>
 </div>
@@ -1711,6 +1738,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>for D7 collectible </p>
+
 </div>
 </div>
 <a id="a21795f04b7be39af33c92f521f89e601"></a>
@@ -1738,6 +1767,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Returns Pos, screen-wrapped (if it is just outside the room on the right it will be moved to the left side of the room, etc)</p>
+<p>Note: This only wraps the point once, so if it has crossed multiple wrapping planes it will only wrap on the one it's closest to. For wrapping a position that has crossed two planes (outside a room in the top left for instance) call this function iteratively. </p>
 
 </div>
 </div>
@@ -1809,6 +1840,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Needed for angel room, so the clear flag can be set to false when the angel spawns. </p>
 
 </div>
 </div>

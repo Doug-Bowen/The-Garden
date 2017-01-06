@@ -89,11 +89,20 @@ $(document).ready(function(){initNavTree('group___functions.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:gab0914b8a441bd429bdd637e6b31dfd7c"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___functions.html#gab0914b8a441bd429bdd637e6b31dfd7c">Random</a> ()</td></tr>
+<tr class="memdesc:gab0914b8a441bd429bdd637e6b31dfd7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">random integer [0, 2^32)  <a href="#gab0914b8a441bd429bdd637e6b31dfd7c">More...</a><br /></td></tr>
 <tr class="separator:gab0914b8a441bd429bdd637e6b31dfd7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1c1c3aca8b6e9a035bae2c4604c999b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___functions.html#ga1c1c3aca8b6e9a035bae2c4604c999b2">RandomVector</a> ()</td></tr>
+<tr class="memdesc:ga1c1c3aca8b6e9a035bae2c4604c999b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">random vector with length 1  <a href="#ga1c1c3aca8b6e9a035bae2c4604c999b2">More...</a><br /></td></tr>
 <tr class="separator:ga1c1c3aca8b6e9a035bae2c4604c999b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae643f2600404d3a34d6236fec678aa7c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_game.html">Game</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___functions.html#gae643f2600404d3a34d6236fec678aa7c">Game</a> ()</td></tr>
 <tr class="separator:gae643f2600404d3a34d6236fec678aa7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabf44cc0c778d3fa2bba427fd21585d5a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___functions.html#gabf44cc0c778d3fa2bba427fd21585d5a">Isaac::WorldToScreenDistance</a> (<a class="el" href="class_vector.html">Vector</a> Distance)</td></tr>
+<tr class="separator:gabf44cc0c778d3fa2bba427fd21585d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga848d6cc84c7391642f1ac95748336e12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___functions.html#ga848d6cc84c7391642f1ac95748336e12">Isaac::WorldToScreenPosition</a> (<a class="el" href="class_vector.html">Vector</a> Position, boolean ToRound)</td></tr>
+<tr class="separator:ga848d6cc84c7391642f1ac95748336e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga571e105c642fd8b74fbf1bbe077bae6d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___functions.html#ga571e105c642fd8b74fbf1bbe077bae6d">Isaac::ScreenToWorldDistance</a> (<a class="el" href="class_vector.html">Vector</a> RenderDistance)</td></tr>
+<tr class="memdesc:ga571e105c642fd8b74fbf1bbe077bae6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">reverse operation, converts render distance to in-game distance  <a href="group___functions.html#ga571e105c642fd8b74fbf1bbe077bae6d">More...</a><br /></td></tr>
+<tr class="separator:ga571e105c642fd8b74fbf1bbe077bae6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>functions </p>
@@ -130,6 +139,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>random integer [0, 2^32) </p>
+
 </div>
 </div>
 <a id="ga1c1c3aca8b6e9a035bae2c4604c999b2"></a>
@@ -143,6 +154,74 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>random vector with length 1 </p>
+
+</div>
+</div>
+<a id="ga571e105c642fd8b74fbf1bbe077bae6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga571e105c642fd8b74fbf1bbe077bae6d">&#9670;&nbsp;</a></span>ScreenToWorldDistance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vector.html">Vector</a> Isaac::ScreenToWorldDistance </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vector.html">Vector</a>&#160;</td>
+          <td class="paramname"><em>RenderDistance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>reverse operation, converts render distance to in-game distance </p>
+
+</div>
+</div>
+<a id="gabf44cc0c778d3fa2bba427fd21585d5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabf44cc0c778d3fa2bba427fd21585d5a">&#9670;&nbsp;</a></span>WorldToScreenDistance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vector.html">Vector</a> Isaac::WorldToScreenDistance </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vector.html">Vector</a>&#160;</td>
+          <td class="paramname"><em>Distance</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga848d6cc84c7391642f1ac95748336e12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga848d6cc84c7391642f1ac95748336e12">&#9670;&nbsp;</a></span>WorldToScreenPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vector.html">Vector</a> Isaac::WorldToScreenPosition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vector.html">Vector</a>&#160;</td>
+          <td class="paramname"><em>Position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">boolean&#160;</td>
+          <td class="paramname"><em>ToRound</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">

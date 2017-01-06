@@ -1,16 +1,29 @@
 ModCallbacks = {
-	MC_NPC_UPDATE = 0,
-	MC_POST_UPDATE = 1,
-	MC_POST_RENDER = 2,
-	MC_USE_ITEM = 3,
-	MC_POST_PEFFECT_UPDATE = 4,
-	MC_USE_CARD = 5,
-	MC_FAMILIAR_UPDATE = 6,
-	MC_FAMILIAR_INIT = 7,
+	MC_NPC_UPDATE = 0,			-- Callback is a method that takes (EntityNPC). Called after an NPC is updated. When adding callback, specify an EntityType so it is only called for entities of that type.
+	MC_POST_UPDATE = 1,			-- Callback is a method with no arguments. Called after game update. 
+	MC_POST_RENDER = 2,			-- Callback is a method with no arguments. Called after game render.
+	MC_USE_ITEM = 3,			-- Callback is a method that takes (CollectibleType, RNG). Return true to show the "use item" animation, otherwise false. Called when a custom active item is used, after discharging it. When adding callback, specify a CollectibleType to only respond to one custom active. The item RNG allows for the item's random events to be seeded. 
+	MC_POST_PEFFECT_UPDATE = 4,	-- Callback is a method that takes (EntityPlayer). Called for each player, each frame, after the player evaluates the effects of items that must be constantly evaluated.
+	MC_USE_CARD = 5,			-- Callback is a method that takes (Card). Called when a custom card is used. When adding callback, specify a Card ID to only respond to one card type.
+	MC_FAMILIAR_UPDATE = 6,		-- Callback is a method that takes (Entity_Familiar). Called every frame for each custom familiar. When adding callback, specify a Variant to restrict calls to a specific familiar.
+	MC_FAMILIAR_INIT = 7,		-- Callback is a method that takes (Entity_Familiar). Called just after a custom familiar is initialized. When adding callback, specify a Variant to restrict calls to a specific familiar.
+	
+	-- Callback is a method that takes (EntityPlayer, CacheFlag). 
+	-- Called one or more times when a player's stats must be re-evaluated, such as after picking up an item, using certain pills, manually calling EvaluateItems on EntityPlayer. 
+	-- Use this to let custom items change the player's stats, familiars, flying, weapons, etc.
+	-- Items tell the game which stats they affect using cache values in items.xml. Then the callback should respond to the CacheFlag by setting the corresponding player stat.
+	-- Other items' stat modifiers, multipliers, etc are applied before this callback is called.
 	MC_EVALUATE_CACHE = 8,
-	MC_POST_PLAYER_INIT = 9,
-  MC_USE_PILL = 10,
-  MC_ENTITY_TAKE_DMG = 11
+	
+	MC_POST_PLAYER_INIT = 9,	-- Callback is a method that takes (EntityPlayer). Called after the player is initialized.
+	MC_USE_PILL = 10,			-- Callback is a method that takes (PillEffect). Called when a custom pill is used. When adding callback, specify a PillEffect ID to only respond to one pill effect.
+	
+	-- Callback is a method that takes (TookDamage : Entity, DamageAmount : number, DamageFlag : number (bit flags from DamageFlag enumeration), DamageSource : EntityRef, DamageCountdownFrames : number). 
+	-- Return true or nil if the entity or player should sustain the damage, otherwise false to ignore it. 
+	-- If the entity is an EntityPlayer, the DamageAmount is the integer number of half-hearts of damage that the player will take. Otherwise, DamageAmount is a number of hit points.
+	-- Called before new damage is applied. A DAMAGE_COUNTDOWN flag means the entity will ignore any other DAMAGE_COUNTDOWN hits for the duration specified.
+	-- When adding callback, specify an EntityType to respond to only damage taken by that entity type.
+	MC_ENTITY_TAKE_DMG = 11		
 }
 
 EntityType = {

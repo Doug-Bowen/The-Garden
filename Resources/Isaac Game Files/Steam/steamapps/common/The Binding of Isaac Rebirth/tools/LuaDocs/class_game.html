@@ -95,6 +95,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad852d0d632d63557e05beaeedb459c4c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#ad852d0d632d63557e05beaeedb459c4c">Render</a> ()</td></tr>
 <tr class="separator:ad852d0d632d63557e05beaeedb459c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ac4de1110a6a1180d82620b6e5e00c0"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a9ac4de1110a6a1180d82620b6e5e00c0">IsPaused</a> ()</td></tr>
+<tr class="memdesc:a9ac4de1110a6a1180d82620b6e5e00c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays the HUD elements that are moved to the gamepad.  <a href="#a9ac4de1110a6a1180d82620b6e5e00c0">More...</a><br /></td></tr>
 <tr class="separator:a9ac4de1110a6a1180d82620b6e5e00c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e89d68066acde06705fa43413d3c0fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_entity.html">Entity</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a3e89d68066acde06705fa43413d3c0fa">Spawn</a> (<a class="el" href="group___enumerations.html#gad79a57ed3105eb60d991a1aeb4a9dc44">EntityType</a> Type, integer Variant, <a class="el" href="class_vector.html">Vector</a> Position, <a class="el" href="class_vector.html">Vector</a> Velocity, <a class="el" href="class_entity.html">Entity</a> Spawner, integer SubType, integer Seed)</td></tr>
 <tr class="separator:a3e89d68066acde06705fa43413d3c0fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -103,8 +104,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a68ba4f8390d99eb2ebc64c7484fb341d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a68ba4f8390d99eb2ebc64c7484fb341d">BombDamage</a> (<a class="el" href="class_vector.html">Vector</a> Position, float Damage, float Radius, boolean LineCheck, <a class="el" href="class_entity.html">Entity</a> Source, integer TearFlags, integer DamageFlags, boolean DamageSource)</td></tr>
 <tr class="separator:a68ba4f8390d99eb2ebc64c7484fb341d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b4e4b79f623bf59e32b1d5342002d15"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a2b4e4b79f623bf59e32b1d5342002d15">BombExplosionEffects</a> (<a class="el" href="class_vector.html">Vector</a> Position, float Damage, integer TearFlags, <a class="el" href="class_color.html">Color</a> <a class="el" href="class_color.html">Color</a>, <a class="el" href="class_entity.html">Entity</a> Source, float RadiusMult, boolean LineCheck, boolean DamageSource)</td></tr>
+<tr class="memdesc:a2b4e4b79f623bf59e32b1d5342002d15"><td class="mdescLeft">&#160;</td><td class="mdescRight">The complete bomb explosion package: Do damage, spawn boomgraphics, and apply tearflag-based effects.  <a href="#a2b4e4b79f623bf59e32b1d5342002d15">More...</a><br /></td></tr>
 <tr class="separator:a2b4e4b79f623bf59e32b1d5342002d15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad809b288d39d863d0e54dcce8e48ea6d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#ad809b288d39d863d0e54dcce8e48ea6d">BombTearflagEffects</a> (KAGE::Math::Vector Position, float Radius, integer TearFlags, <a class="el" href="class_entity.html">Entity</a> Source)</td></tr>
+<tr class="memdesc:ad809b288d39d863d0e54dcce8e48ea6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does bomb-exclusive special effects.  <a href="#ad809b288d39d863d0e54dcce8e48ea6d">More...</a><br /></td></tr>
 <tr class="separator:ad809b288d39d863d0e54dcce8e48ea6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dbed82d4673610a5cddf8d512526437"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a7dbed82d4673610a5cddf8d512526437">Fart</a> (<a class="el" href="class_vector.html">Vector</a> Position, float Radius, <a class="el" href="class_entity.html">Entity</a> Source, float FartScale, integer FartSubType)</td></tr>
 <tr class="separator:a7dbed82d4673610a5cddf8d512526437"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -211,6 +214,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7ad302ac5622ede5db39d96adcfeb437"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___enumerations.html#ga94b82cf988747085e77be386560efc68">LevelStage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a7ad302ac5622ede5db39d96adcfeb437">GetLastLevelWithoutHalfHp</a> ()</td></tr>
 <tr class="separator:a7ad302ac5622ede5db39d96adcfeb437"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27644704ea138d1c04a0bd54a68840ec"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a27644704ea138d1c04a0bd54a68840ec">ShakeScreen</a> (integer Timeout)</td></tr>
+<tr class="memdesc:a27644704ea138d1c04a0bd54a68840ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">eBossId GetBossId(eEntityType Type, s32 Variant);  <a href="#a27644704ea138d1c04a0bd54a68840ec">More...</a><br /></td></tr>
 <tr class="separator:a27644704ea138d1c04a0bd54a68840ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f868c0c7cd9be6d4b7ed9e767a2161a"><td class="memItemLeft" align="right" valign="top">const integer &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a3f868c0c7cd9be6d4b7ed9e767a2161a">GetScreenShakeCountdown</a> ()</td></tr>
 <tr class="separator:a3f868c0c7cd9be6d4b7ed9e767a2161a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -234,8 +238,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa6f5b28b829018ca3eb798df6c4fea5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74158552c05d19f08fd215980046eb7a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a74158552c05d19f08fd215980046eb7a">AddPixelation</a> (integer Duration)</td></tr>
 <tr class="separator:a74158552c05d19f08fd215980046eb7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69940d13278484ae506adc17242cb2d4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a69940d13278484ae506adc17242cb2d4">ShowHallucination</a> ()</td></tr>
-<tr class="separator:a69940d13278484ae506adc17242cb2d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a098707b56700391b308c8d182dbb05e8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a098707b56700391b308c8d182dbb05e8">ShowHallucination</a> (integer FrameCount)</td></tr>
+<tr class="separator:a098707b56700391b308c8d182dbb05e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaae6707a95696a12e4de82788cbea0a6"><td class="memItemLeft" align="right" valign="top">integer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#aaae6707a95696a12e4de82788cbea0a6">HasHallucination</a> ()</td></tr>
 <tr class="separator:aaae6707a95696a12e4de82788cbea0a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf5b842a0a284f0e05f2ba6182fc8b4f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#abf5b842a0a284f0e05f2ba6182fc8b4f">UpdateStrangeAttractor</a> (<a class="el" href="class_vector.html">Vector</a> Position)</td></tr>
@@ -497,6 +501,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>The complete bomb explosion package: Do damage, spawn boomgraphics, and apply tearflag-based effects. </p>
+
 </div>
 </div>
 <a id="ad809b288d39d863d0e54dcce8e48ea6d"></a>
@@ -536,6 +542,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Does bomb-exclusive special effects. </p>
 
 </div>
 </div>
@@ -778,6 +786,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>remove entity from the update list (render only) void EnableEntity(Entity* e); add entity back to the update list (update + render) void DisableEntity(Entity* e); </p>
 
 </div>
 </div>
@@ -1474,6 +1483,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Displays the HUD elements that are moved to the gamepad. </p>
+
 </div>
 </div>
 <a id="ab01e756e8ffd4af7db99d3f163fd3595"></a>
@@ -1543,6 +1554,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>void LaserDamageAngle(const <a class="el" href="class_vector.html">Vector</a>&amp; Pos, float AngleDegrees, float Damage, Entity* Source = NULL); void AcidDamagePlayer(const <a class="el" href="class_vector.html">Vector</a>&amp; CenterPoint, s32 Damage, float Radius, Entity* Source = NULL); void LightDamage(const <a class="el" href="class_vector.html">Vector</a>&amp; Pos, float Radius, Entity* Source = NULL); void HolyWaterDamage(const <a class="el" href="class_vector.html">Vector</a>&amp; CenterPoint, float Damage, float Radius, Entity* Source = NULL); </p>
 
 </div>
 </div>
@@ -1679,6 +1691,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>eBossId GetBossId(eEntityType Type, s32 Variant); </p>
+
 </div>
 </div>
 <a id="a09c18715e7307c393e35bdecc67ae671"></a>
@@ -1698,8 +1712,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a69940d13278484ae506adc17242cb2d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a69940d13278484ae506adc17242cb2d4">&#9670;&nbsp;</a></span>ShowHallucination()</h2>
+<a id="a098707b56700391b308c8d182dbb05e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a098707b56700391b308c8d182dbb05e8">&#9670;&nbsp;</a></span>ShowHallucination()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1707,7 +1721,8 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">Game::ShowHallucination </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">integer&#160;</td>
+          <td class="paramname"><em>FrameCount</em></td><td>)</td>
           <td></td>
         </tr>
       </table>

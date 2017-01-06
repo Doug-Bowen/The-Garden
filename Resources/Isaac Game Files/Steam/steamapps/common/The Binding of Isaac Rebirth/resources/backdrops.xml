@@ -26,5 +26,5 @@
 	<backdrop id="25" gfx="0E_Arcade.png" walls="1" wallvariants="4" floors="1" floorvariants="6" />
 	<backdrop id="26" gfx="effect_error.anm2" walls="0" /> <!-- special handling -->
 	<backdrop id="27" gfx="17_Blue Secret.png" walls="1" wallvariants="6" floors="1" floorvariants="6" />
-	<backdrop id="28" gfx="0B_UltraGreedShop.png" walls="1" wallvariants="5" floors="1" floorvariants="6" />	
+	<backdrop id="28" gfx="0B_UltraGreedShop.png" walls="1" wallvariants="5" floors="1" floorvariants="6" />
 </backdrops>

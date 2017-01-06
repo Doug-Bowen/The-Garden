@@ -1,6 +1,7 @@
 var searchData=
 [
   ['daddy_5flonglegs',['DADDY_LONGLEGS',['../group___enumerations.html#gga98047d6add3110afcb410e3026264bbeaab13a59d8bca4fa57e1aedf2c7222132',1,'Enums.h']]],
+  ['damage',['Damage',['../class_entity_player.html#aec088e0dc34fdebbff613fae521a681c',1,'EntityPlayer']]],
   ['damage_5facid',['DAMAGE_ACID',['../group___enumerations.html#ggab084d3a6d6ddd144ea6df4af965f93fca0b27ddbbf4c1c2c5901215f00a54ef87',1,'Enums.h']]],
   ['damage_5fchest',['DAMAGE_CHEST',['../group___enumerations.html#ggab084d3a6d6ddd144ea6df4af965f93fca458d86d89f807062e25b1f1a07250d4f',1,'Enums.h']]],
   ['damage_5fclones',['DAMAGE_CLONES',['../group___enumerations.html#ggab084d3a6d6ddd144ea6df4af965f93fca773ccdd6be6a31a43a13d7c787413d4d',1,'Enums.h']]],

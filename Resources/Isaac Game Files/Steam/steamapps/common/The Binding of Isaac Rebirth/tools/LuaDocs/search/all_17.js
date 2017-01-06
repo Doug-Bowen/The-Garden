@@ -20,5 +20,7 @@ var searchData=
   ['wisp',['WISP',['../group___enumerations.html#gga76f2089184023be252ef251921626d99a0bc9e3f29939dbed0d1399b18b88b67d',1,'Enums.h']]],
   ['womb_5fteleport',['WOMB_TELEPORT',['../group___enumerations.html#gga76f2089184023be252ef251921626d99a8f81a4300536522222bf8256d2b2b560',1,'Enums.h']]],
   ['wood_5fparticle',['WOOD_PARTICLE',['../group___enumerations.html#gga76f2089184023be252ef251921626d99a50ea3e880251a2aba61aecee2062d3ae',1,'Enums.h']]],
+  ['worldtoscreendistance',['WorldToScreenDistance',['../group___functions.html#gabf44cc0c778d3fa2bba427fd21585d5a',1,'Isaac']]],
+  ['worldtoscreenposition',['WorldToScreenPosition',['../group___functions.html#ga848d6cc84c7391642f1ac95748336e12',1,'Isaac']]],
   ['worm',['WORM',['../group___enumerations.html#gga76f2089184023be252ef251921626d99a174680cf641bd8d009b17acec29dd1c6',1,'Enums.h']]]
 ];

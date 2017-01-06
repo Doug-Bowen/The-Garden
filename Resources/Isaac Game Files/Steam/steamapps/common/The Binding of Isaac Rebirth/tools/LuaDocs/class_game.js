@@ -69,7 +69,7 @@ var class_game =
     [ "SetStateFlag", "class_game.html#aecfbe9e74d67bd56760cf4e18e5af6f7", null ],
     [ "ShakeScreen", "class_game.html#a27644704ea138d1c04a0bd54a68840ec", null ],
     [ "ShowFortune", "class_game.html#a09c18715e7307c393e35bdecc67ae671", null ],
-    [ "ShowHallucination", "class_game.html#a69940d13278484ae506adc17242cb2d4", null ],
+    [ "ShowHallucination", "class_game.html#a098707b56700391b308c8d182dbb05e8", null ],
     [ "ShowRule", "class_game.html#a9196b82ad8cf78bf77a03fd3e2874ab2", null ],
     [ "Spawn", "class_game.html#a3e89d68066acde06705fa43413d3c0fa", null ],
     [ "SpawnEntityDesc", "class_game.html#ab7b7c5c0a4b8d0e7d62aff420271392e", null ],

@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['damage',['Damage',['../class_entity_player.html#aec088e0dc34fdebbff613fae521a681c',1,'EntityPlayer']]],
   ['damagesource',['DamageSource',['../class_entity_effect.html#af4d1634ae594f332c51b9286aa6c625c',1,'EntityEffect']]],
   ['depthoffset',['DepthOffset',['../class_projectile_params.html#a6cf2914b1d574232020bef71d2d3e79d',1,'ProjectileParams::DepthOffset()'],['../class_entity.html#a3318cf0702fc14e41bf5e89523e81aca',1,'Entity::DepthOffset()']]],
   ['desc',['Desc',['../class_grid_entity.html#a15555d82d8f375a5f55ca2121b8b27e4',1,'GridEntity']]],

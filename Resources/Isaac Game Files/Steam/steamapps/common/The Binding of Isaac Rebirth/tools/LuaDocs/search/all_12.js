@@ -10,7 +10,7 @@ var searchData=
   ['randomvector',['RandomVector',['../group___functions.html#ga1c1c3aca8b6e9a035bae2c4604c999b2',1,'Output.h']]],
   ['red_5fcandle_5fflame',['RED_CANDLE_FLAME',['../group___enumerations.html#gga76f2089184023be252ef251921626d99ac7cc6c24e6e44f662d8717fcb8979927',1,'Enums.h']]],
   ['ref',['Ref',['../class_entity_ptr.html#aefc0fd852a7bd6904630e1d2b7395e1f',1,'EntityPtr']]],
-  ['registermod',['RegisterMod',['../namespace_isaac.html#a3e2d4c22a16aac1d0c326592a006374e',1,'Isaac']]],
+  ['registermod',['RegisterMod',['../namespace_isaac.html#a340b626f61bc1eec35fd6559fa9c30fe',1,'Isaac']]],
   ['relic',['RELIC',['../group___enumerations.html#gga98047d6add3110afcb410e3026264bbead8f36fe083de2b295a968619ecb6d510',1,'Enums.h']]],
   ['reload',['Reload',['../class_sprite.html#a6116400c2e1f52f5a0b4e60b59709517',1,'Sprite']]],
   ['remove',['Remove',['../class_entity.html#ad620270601e36606eb9c8711ae96bf4a',1,'Entity']]],

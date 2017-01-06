@@ -20,6 +20,7 @@ var searchData=
   ['canaddcollectible',['CanAddCollectible',['../class_entity_player.html#a5b9020e18960757f4b155c9609af7b83',1,'EntityPlayer']]],
   ['canbedamagedfromvelocity',['CanBeDamagedFromVelocity',['../class_entity_n_p_c.html#a234254b0395d6cd4fc9490a97b901a1d',1,'EntityNPC']]],
   ['canblowopen',['CanBlowOpen',['../class_grid_entity_door.html#a893e09dc54a4c07ec11ed2c7b1932c4d',1,'GridEntityDoor']]],
+  ['canfly',['CanFly',['../class_entity_player.html#a90b8f0fd5b85c8aa1e629ed1e901184d',1,'EntityPlayer']]],
   ['canopenchallengeroom',['CanOpenChallengeRoom',['../class_level.html#a0e41a4bfdd3bc21f8213ffeca46acfc2',1,'Level']]],
   ['canpickblackhearts',['CanPickBlackHearts',['../class_entity_player.html#a07132fdd608756f5197e24bafd4ef026',1,'EntityPlayer']]],
   ['canpickgoldenhearts',['CanPickGoldenHearts',['../class_entity_player.html#a813492b4bda016b2630ff99058813813',1,'EntityPlayer']]],

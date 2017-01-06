@@ -5,6 +5,7 @@ var searchData=
   ['screenshakeoffset',['ScreenShakeOffset',['../class_game.html#a858e540a453194677e27447b008690c6',1,'Game']]],
   ['shootdirection',['ShootDirection',['../class_entity_familiar.html#ac8dbc4a9423ce248232b5cd35c50d135',1,'EntityFamiliar']]],
   ['shopitemid',['ShopItemId',['../class_entity_pickup.html#a190e958b51a5d220b880f0393f0da384',1,'EntityPickup']]],
+  ['shotspeed',['ShotSpeed',['../class_entity_player.html#aa251b5962fdc050ad450ea379ea20c06',1,'EntityPlayer']]],
   ['shrink',['Shrink',['../class_entity_laser.html#a8d471893eb7383f98aa229dec2d5bd0c',1,'EntityLaser']]],
   ['size',['Size',['../class_cpp_container_1_1_vector_1_1_vector_list.html#a25f44d4e386099775d5f5886fe928e8f',1,'CppContainer::Vector::VectorList::Size()'],['../class_cpp_container_1_1_vector_1_1_effect_list.html#ab28b47a53051be425d0a7730c30f3360',1,'CppContainer::Vector::EffectList::Size()'],['../class_cpp_container_1_1_entity_list.html#ad30ec5f5ef1ab58e9c05d7994fcb5423',1,'CppContainer::EntityList::Size()'],['../class_entity.html#aa4b18ad86ef478d01bd95c517cbaccb7',1,'Entity::Size()']]],
   ['sizemulti',['SizeMulti',['../class_entity.html#a8196d447e9c047fa4c92627ac4b030f4',1,'Entity']]],

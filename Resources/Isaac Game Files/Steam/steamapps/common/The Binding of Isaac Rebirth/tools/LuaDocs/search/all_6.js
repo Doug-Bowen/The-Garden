@@ -21,6 +21,7 @@ var searchData=
   ['firebossprojectiles',['FireBossProjectiles',['../class_entity_n_p_c.html#a23751cddf7f8611d59581d4c649aad67',1,'EntityNPC']]],
   ['firebrimstone',['FireBrimstone',['../class_entity_player.html#aa52ddf770ed82ca58b45ab02ada7c5c0',1,'EntityPlayer']]],
   ['firecooldown',['FireCooldown',['../class_entity_familiar.html#ac42675bd5f0e906e454cc3be190c4ecf',1,'EntityFamiliar']]],
+  ['firedelay',['FireDelay',['../class_entity_player.html#a994e4d64cb627e8c29da1f8b41d55116',1,'EntityPlayer']]],
   ['firedelayedbrimstone',['FireDelayedBrimstone',['../class_entity_player.html#af44b0e63624880641b838cc3507b42c7',1,'EntityPlayer']]],
   ['firedirectionlimit',['FireDirectionLimit',['../class_projectile_params.html#a1b0c28fed54fd39280de7e03d15c038f',1,'ProjectileParams']]],
   ['fireknife',['FireKnife',['../class_entity_player.html#a6e04e1aab958eecb2aac868310fd40b8',1,'EntityPlayer']]],
