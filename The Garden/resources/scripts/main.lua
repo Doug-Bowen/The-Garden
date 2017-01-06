@@ -1,6 +1,6 @@
 require('mobdebug').start()
 
-local myMod = RegisterMod("hello-mod", 1)
+local myMod = RegisterMod("The-Garden", 1)
 
 function myMod:PlayerInit(aConstPlayer)
 end
