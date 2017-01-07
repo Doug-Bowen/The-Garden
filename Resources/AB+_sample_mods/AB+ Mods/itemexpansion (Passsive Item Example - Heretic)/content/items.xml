@@ -1,0 +1,6 @@
+<items gfxroot="gfx/items/" version="1">
+  <passive cache="damage" maxhearts="1" description="Bleed for me!" devilprice="2" gfx="collectibles_demonheart.png" name="Demon Heart"/>
+    <passive cache="damage" description="Angels Fall!" devilprice="2" gfx="collectibles_heretic.png" name="Heretic"/>
+    <passive description="Judgement befalls you!" gfx="collectibles_reckoning.png" name="Reckoning" />
+    <passive cache="firedelay" description="BRRAP!" gfx="collectibles_screwdriver.png" name="Screwdriver" />
+</items>

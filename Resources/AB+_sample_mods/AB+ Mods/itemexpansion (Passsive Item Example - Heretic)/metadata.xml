@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <name>itemexpansion</name>
+    <directory>itemexpansion</directory>
+    <id>836655660</id>
+    <description>---Base Expansion---
+
+Item: &quot;Demon Heart&quot;
+Description: &quot;Bleed for me!&quot;
+Effects: HP+1 DMG+1.5
+
+Item: &quot;Heretic&quot;
+Description: &quot;Angels Fall!&quot;
+Effects: DMG+1 Makes Mega Satan path viable with devil precident. Adds Angel statues to devil deal rooms.
+
+Item: &quot;Reckoning&quot;
+Description: &quot;Divine judgement befalls on you!&quot;
+Effects: Gives you 2 medium tier or 1 good tier devil/angel item depending on your precedent.
+
+Item: &quot;Screwdriver&quot;
+Description: &quot;brraap!&quot;
+Effects: +FireRate has 1/8 chance to shoot 2 tears at the same time. if player has screw shoots 4 tears with 1/4 chance</description>
+    <version>1.1</version>
+    <visibility>Public</visibility>
+    <tag id="Items"/>
+    <tag id="Pickups"/>
+    <tag id="Tweaks"/>
+    <tag id="Graphics"/>
+</metadata>
