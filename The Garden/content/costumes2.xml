@@ -1,0 +1,3 @@
+<costumes anm2root="gfx/characters/">
+	<costume anm2path="511_shame.anm2" id ="511" type="passive" />
+</costumes>
