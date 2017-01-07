@@ -33,7 +33,7 @@ Specialty:
 
 |Item Name|Subtitle|Effect|Look|Character Cosmetics|
 |---|---|---|---|---|
-|Shame|Awareness of oneself|Enemies that would normally Aggro towards Isaac now spawn with a fear affect on them.|Green Canadian Leaf|A leaf between Isaacs legs|
+|Shame|Awareness of oneself|Enemies that move too close to Isaac have a short fear effect applied to them.|Green Canadian Leaf|A leaf between Isaacs legs|
 |Forbidden Fruit|Don't believe his lies|Tears become apples and have varying amounts of knock back.|Red juicy apple|Tears are apples, Isaacs head becomes shiny.|
 |Deception|The Serpent Lies|Shuffle pull colors, Shuffle consumable numbers, Shuffle stats|Snake|Isaac has a snake wrapped around his neck.|
 |Creation|In the beginning|All stats up, Game timer reset to 00:00|Earth|Isaac's head becomes the Earth|
