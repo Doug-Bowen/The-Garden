@@ -31,22 +31,26 @@ Specialty:
  * The Serpent is planned to be a reskin of Pin that shoots apples (knockback).
  * The music playued during this fight would be the normal Pin fight music.
 
-|Item Name|Subtitle|Effect|Look|Character Cosmetics|
+|Item Name|Description|Effect|Item Sprite|Character Costume|
 |---|---|---|---|---|
-|Shame|Awareness of oneself|Enemies that move too close to Isaac have a short fear effect applied to them.|Green Canadian Leaf|A leaf between Isaacs legs|
-|Forbidden Fruit|Don't believe his lies|Tears become apples and have varying amounts of knock back.|Red juicy apple|Tears are apples, Isaacs head becomes shiny.|
-|Deception|The Serpent Lies|Shuffle pull colors, Shuffle consumable numbers, Shuffle stats|Snake|Isaac has a snake wrapped around his neck.|
-|Creation|In the beginning|All stats up, Game timer reset to 00:00|Earth|Isaac's head becomes the Earth|
-|Granted Domain|All authority is yours|Enemies stop moving (not firing) when Isaac stops moving|Crown|Isaac wears a crown|
-|The Will of Man|Know good, know evil.|The player is shown Bosses (on the wall next to the boss door) and Items (on the wall next to the item room door)|A tree (strong trunk, cartoony)|Isaac has branches for arms|
-|The Fall of man|Original Sin|Devil deal items are now in all item pools. The Devil deal pool is now empty. Devil deal rooms will no longer be item rooms.|Skull and crossbones|Isaac looks very mad (Furrowed brow)|
+|Shame|Awareness of oneself|Enemies that move too close to Isaac have a short fear effect applied to them.|Reversed, 'Filled in' Gnawed Leaf|A leaf between Isaacs legs|
+|Forbidden Fruit|Don't believe his lies|Tears become apples and have varying amounts of knock back.|Red juicy apple (Borrow sprite from the item 'Apple!')|Tears are apples, Isaacs head becomes shiny.|
+|Deception|The Serpent Lies|Shuffle pull colors, Shuffle consumable numbers, Shuffle stats|Snake (Coiled up), google the 'Come And Take It Flag'|Isaac has a snake wrapped around his neck.|
+|Creation|In the beginning|All stats up, Game timer reset to 00:00|Earth (Reskin Tiny Planet)|Isaac's head becomes the Earth|
+|Granted Domain|All authority is yours|Enemies stop moving (not firing) when Isaac stops moving|Crown (Reskin 'Corwn of light' to be bright yellow)|Isaac wears a crown|
+|The Will of Man|Know good, know evil.|The player is shown Bosses (on the wall next to the boss door) and Items (on the wall next to the item room door)|A tree (strong trunk, cartoony)|Isaac has leaves behind one of his ears --possibly animated to fall out|
+|The Fall of man|Original Sin|Devil deal items are now in all item pools. The Devil deal pool is now empty. Devil deal rooms will no longer be item rooms.|Crossed Scythes (Borrow from Death's Touch)|Isaac's body turns A shade of black|
 |Rebirth|From one, come two|The player becomes Eve. The player keeps items and health. The player gains a familiar that looks like your original character (fires tears at your current rate. Fire rate for familiar is locked.|A Rib|Miniature Isaac familiar|
-|Exiled|Deliberate Disobedience|All dice and familiars removed from pools. Champion belt affect for remainder of the run|Closed iron gates|Ivy wrapped around Isaacs neck|
-|Miracle Grow|Roses are Red|[This item is to be included in the Item Room Pool]. A Garden Room with Spawn on the next floor.|Recolored Eden's Blessing|Recolored Purity Effect|
+|Exiled|Deliberate Disobedience|All dice and familiars removed from pools. Champion belt affect for remainder of the run|Closed iron gates (Cartoony)|Ivy wrapped around Isaacs neck|
+|Miracle Grow|Roses are Red|[This item is to be included in the Item Room Pool]. A Garden Room with Spawn on the next floor.|Recolored Eden's Blessing (to be rose red)|Recolored Purity Effect|
 
 **Broken Heart:**  Consumable that cracks your topmost red HP, when that HP is hit, it becomes 3 blue hearts.
 
 **Genesis challenge:** Eve starts with Rebirth, Shame, and Forbidden Fruit and must beat the Lamb (on normal difficulty). There are no item rooms.
+
+
+_____________________
+
 
 # The Web Mod:
 Challenge rooms have a small chance to become a web room.
