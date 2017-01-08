@@ -1,12 +1,12 @@
 <items gfxroot="gfx/items/" version="1">
-	<passive description="Awareness of oneself" gfx="Collectibles_511_Shame.png" id="511" name="Shame" />
-	<passive description="Don't believe his lies!" gfx="Collectibles_512_ForbiddenFruit.png" id="512" name="Forbidden Fruit" />
-	<passive description="The Serpent lies..." gfx="Collectibles_513_Deception.png" id="513" name="Deception" />
-	<passive description="In the beginning..." gfx="Collectibles_514_Creation.png" id="514" name="Creation" />
-	<passive description="All authority is yours" gfx="Collectibles_515_GrantedDomain.png" id="515" name="Granted Domain" />
-	<passive description="Know good, know evil." gfx="Collectibles_516_TheWillOfMan.png" id="516" name="The Will of Man" />
-	<passive description="Original sin" gfx="Collectibles_517_TheFallOfMan.png" id="517" name="The Fall of Man" />
-	<passive description="From one, come two." gfx="Collectibles_518_Rebirth.png" id="518" name="Rebirth" />
-	<passive description="Deliberate disobedience" gfx="Collectibles_519_Exiled.png" id="519" name="Exiled" />
-	<passive description="Roses are red..." gfx="Collectibles_520_MiracleGrow.png" id="520" name="MiracleGrow" />
+	<passive description="Awareness of oneself" gfx="Collectibles_Shame.png" name="Shame" />
+	<passive description="Don't believe his lies!" gfx="Collectibles_ForbiddenFruit.png" name="Forbidden Fruit" />
+	<passive description="The Serpent lies..." gfx="Collectibles_Deception.png" name="Deception" />
+	<passive description="In the beginning..." gfx="Collectibles_Creation.png" name="Creation" />
+	<passive description="All authority is yours" gfx="Collectibles_GrantedDomain.png" name="Granted Domain" />
+	<passive description="Know good, know evil." gfx="Collectibles_TheWillOfMan.png" name="The Will of Man" />
+	<passive description="Original sin" gfx="Collectibles_TheFallOfMan.png" name="The Fall of Man" />
+	<passive description="From one, come two." gfx="Collectibles_Rebirth.png" name="Rebirth" />
+	<passive description="Deliberate disobedience" gfx="Collectibles_Exiled.png" name="Exiled" />
+	<passive description="Roses are red..." gfx="Collectibles_MiracleGrow.png" name="MiracleGrow" />
 </items>
