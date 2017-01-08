@@ -1,21 +1,21 @@
 # The Garden Mod:
 
 Adds:
-* The Garden (New Room)
-  * The Garden Pool (New Item Pool)
-   * Shame (Item - Garden Room Pool)
-   * Forbidden Fruit (Item - Garden Room Pool)
-   * Deception (Item - Garden Room Pool)
-   * Creation (Item - Garden Room Pool)
-   * Granted Domain (Item - Garden Room Pool)
-   * The Will of Man (Item - Garden Room Pool)
-   * The Fall of Man (Item - Garden Room Pool)
-   * Rebirth (Item - Garden Room Pool)
-   * Exiled (Item - Garden Room Pool)
-* Miracle Grow (Item - Item Room Pool)
-* Genisis (New Challenge)
-* Broken Heart (New heart type)
-* The Serpent (Boss)
+* The Garden (New Room) :clock3:
+  * The Garden Pool (New Item Pool) :white_check_mark:
+   * Shame (Item - Garden Room Pool) :white_check_mark:
+   * Forbidden Fruit (Item - Garden Room Pool) :clock3:
+   * Deception (Item - Garden Room Pool) :clock3:
+   * Creation (Item - Garden Room Pool) :clock3:
+   * Granted Domain (Item - Garden Room Pool) :clock3:
+   * The Will of Man (Item - Garden Room Pool) :clock3:
+   * The Fall of Man (Item - Garden Room Pool) :clock3:
+   * Rebirth (Item - Garden Room Pool) :clock3:
+   * Exiled (Item - Garden Room Pool) :clock3:
+* Miracle Grow (Item - Item Room Pool) :clock3:
+* Genisis (New Challenge) :white_check_mark:
+* Broken Heart (New heart type) :clock3:
+* The Serpent (Boss) :clock3:
 
 **The Garden Room:** A room that randomly replaces a library (30% chance)
 Look and feel: The Garden has ivy key locks on the outside door. The music in this room is mainly crickets, jungle sounds, quietness, no music, just SFX.
