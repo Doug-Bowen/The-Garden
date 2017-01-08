@@ -1,3 +1,4 @@
 <music root="music/">
-	<track id="104" name="The Garden" path="The Garden.ogg" loop="true" />
+	<track id="990" name="The_Garden_Ambience" path="Garden_Ambience.wav" loop="true" />
+	<track id="991" name="The_Garden_Drone" path="Garden_Drone.wav" loop="true" />
 </music>
