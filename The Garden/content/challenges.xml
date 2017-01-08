@@ -1,3 +1,3 @@
 <challenges version="1">
-	<challenge name="Genesis" id="36" difficulty="0" playertype="5" endstage="16" startingitems="511,512,518" roomfilter="4" />	
+	<challenge name="Genesis" id="36" endstage="16" roomfilter="4" difficulty="0" playertype="5" startingitems="511,512,518" />
 </challenges>
