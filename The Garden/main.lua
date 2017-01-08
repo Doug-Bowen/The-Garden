@@ -18,7 +18,7 @@ function garden:shameEffect()
 		for i = 1, #entities do
 			local singleEntity = entities[i]
 			if singleEntity:IsVulnerableEnemy() then
-				--Isaac.RenderText("Testing Shame", 50, 15, 255, 255, 255, 255)
+				
 				local playerPosition = player.Position
 				local entityPosition = singleEntity.Position
 				local positionalDifference = Vector(playerPosition.X-entityPosition.X, playerPosition.Y-entityPosition.Y)
@@ -33,5 +33,16 @@ end
 function garden:forbiddenFruitEffect()
 end
 
+function garden:gardenRoom()
+	local currentRoom = Game():GetRoom()
+	local roomType = currentRoom:GetType()
+	if(roomType == 12) then --is the room a library
+		Isaac.RenderText("WELCOME TO THE LIBRARY", 50, 15, 255, 255, 255, 255)	
+		--local doorState = currentRoom.DoorState
+		
+	end
+end
+
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.shameEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.forbiddenFruitEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoom)
