@@ -27,9 +27,9 @@ Specialty:
  * Exiled cannot be rerolled. 
 * Eternal hearts and broken hearts have a high chance to spawn in this room. (50%).
 * Discovering the garden unlocks the Genesis challenge.
-* If you enter this room with a higher devil deal room chance than angel room chance, you must first fight The Serpent to receive an item.
+* This room's item,  if picked up, will trigger a fight with The Serpent.
  * The Serpent is planned to be a reskin of Pin that shoots apples (knockback).
- * The music playued during this fight would be the normal Pin fight music.
+ * The music played before, during, and after the Serpent fight should be different and follow the theme.
 
 |Item Name|Description|Effect|Item Sprite|Character Costume|
 |---|---|---|---|---|
