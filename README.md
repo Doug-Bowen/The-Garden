@@ -27,7 +27,7 @@ Specialty:
  * Exiled cannot be rerolled. 
 * Eternal hearts and broken hearts have a high chance to spawn in this room. (50%).
 * Discovering the garden unlocks the Genesis challenge.
-* This room's item,  if picked up, will trigger a fight with The Serpent.
+* This room's item, if picked up, will trigger a fight with The Serpent. (Consider this not being the item, but rather a tree with the forbidden fruit on it)
  * The Serpent is planned to be a reskin of Pin that shoots apples (knockback).
  * The music played before, during, and after the Serpent fight should be different and follow the theme.
 
