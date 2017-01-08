@@ -30,4 +30,8 @@ function garden:shameEffect()
 	end
 end
 
-garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.shameEffect) --This callback is for checking per frame
+function garden:forbiddenFruitEffect()
+end
+
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.shameEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.forbiddenFruitEffect)
