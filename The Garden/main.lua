@@ -93,7 +93,18 @@ function garden:gardenRoomUpdate()
 			end				
 		end
 
-		--local doorState = currentRoom.DoorState		
+		--If the player has beaten The Serpent
+		if currentRoom:isClear() then 
+			--play sfx here (meaty deaths 3.wav) --might not need this, pin ming play his own death sound
+			--play sfx here (holy!.wav)
+			--change music here (Garden_Holy.wav)
+			local pickupPosition = currentRoom:FindFreePickupSpawnPosition()
+			local velocity = Vector(0,0)
+			local spawnOwner = nil
+			local randomItem = 0
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner) 
+			--might need to open the doors, but pin might do that for us automatically though
+		end
 	end
 end
 
