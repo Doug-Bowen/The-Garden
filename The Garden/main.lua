@@ -22,7 +22,7 @@ garden.HAS_EXILED = false
 garden.HAS_THE_FIRST_DAY = false
 garden.HAS_MIRACLE_GROW = false
 
-garden.COSTUME_ID_SHAME = Isaac.GetCostumeIdByPath("gfx/characters/temp_shame.anm2")
+garden.COSTUME_ID_SHAME = Isaac.GetCostumeIdByPath("gfx/characters/shame.anm2")
 --garden.COSTUME_ID_FORBIDDEN_FRUIT = Isaac.GetCostumeIdByPath("gfx/characters/forbidden_fruit.anm2")
 --garden.COSTUME_ID_DECEPTION = Isaac.GetCostumeIdByPath("gfx/characters/deception.anm2")
 --garden.COSTUME_ID_GRANTED_DOMAIN = Isaac.GetCostumeIdByPath("gfx/characters/granted_domain.anm2")
@@ -36,12 +36,7 @@ function garden:shameEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_SHAME) then		
 		if not garden.HAS_SHAME then
-			--local shameObject = Config:Config:GetCollectible(garden.COLLECTIBLE_SHAME)	
-			--Game():GetPlayer(0):AddCostume(shameObject, 0)
-			--Game():GetPlayer(0):AddCostume(shameObject, false) --OR TRY THIS
-			
-			Isaac.RenderText(garden.COSTUME_ID_SHAME, 50, 15, 255, 255, 255, 255)
-			player:AddNullCostume(garden.COSTUME_ID_SHAME)
+			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_SHAME)
 			garden.HAS_SHAME = true
 		end
 		local entities = Isaac.GetRoomEntities()
