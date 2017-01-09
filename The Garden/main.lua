@@ -74,15 +74,22 @@ function garden:gardenRoomUpdate()
 				end
 			end
 		end			
+
+		--Check if player is activating The Serpent fight
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position
 		local roomCenter = currentRoom:GetCenterPos()
 		local positionalDifference = Vector(playerPosition.X-roomCenter.X, playerPosition.Y-roomCenter.Y)
 		if math.abs(positionalDifference.X) < 20 and math.abs(positionalDifference.Y) < 20 then
 			--Isaac.RenderText("YOU ARE IN THE CENTER", 50, 25, 255, 255, 255, 255)
-			if(pinHasSpawned == false) then
-				Isaac.Spawn(EntityType.ENTITY_PIN, 1, 1, Vector(roomCenter.X, roomCenter.Y+100), Vector(0,0), Isaac.GetPlayer(0));	
-				pinHasSpawned = true
+			if(serpentCanSpawn == true and serpentHasSpawned == false) then
+				--change music here (Garden_Serpent.wav)
+				local serpentSpawnPosition = Vector(roomCenter.X, roomCenter.Y+100)
+				local velocity = Vector(0,0)
+				local spawnOwner = Isaac.GetPlayer(0)				
+				Isaac.Spawn(EntityType.ENTITY_PIN, 1, 1, serpentSpawnPosition, velocity, spawnOwner)	
+				serpentCanSpawn = false
+				serpentHasSpawned = true
 			end				
 		end
 
