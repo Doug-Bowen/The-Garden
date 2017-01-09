@@ -38,6 +38,25 @@ function garden:gardenRoomUpdate()
 	--local roomType = currentRoom:GetType()	
 	local currentRoomIndex = Level:GetCurrentRoomIndex()
 	Isaac.RenderText(currentRoomIndex, 300, 15, 255, 255, 255, 255)		
+	if currentRoomIndex == 99 then -- Player is in The Garden
+		if currentRoom:isInitialized() then --Enable The Serpent fight, generate possible hearts
+			--spawn a tree sprite in the middle of the room
+			local serpentCanSpawn = true			
+			local serpentHasSpawned = false			
+			--play sfx here (Garden_Difficulty.wav)
+			--play music here (Garden_Drone.wav)
+			--play quieter music here (Garden_Ambience.wav)  
+			local randomNum = math.random(1,4)
+			if randomNum == 4 then --Spawn Eternal Hearts
+				local roomCenter = currentRoom:GetCenterPos()
+				local leftHeartPosition = Vector(roomCenter.X-100, roomCenter.Y)
+				local rightHeartPosition = Vector(roomCenter.X+100, roomCenter.Y)
+				local velocity = Vector(0,0)
+				local spawnOwner = Isaac.GetPlayer(0)				
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, leftHeartPosition, velocity, spawnOwner) 	
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, rightHeartPosition, velocity, spawnOwner) 	
+			end
+		end		
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position
 		local roomCenter = currentRoom:GetCenterPos()
