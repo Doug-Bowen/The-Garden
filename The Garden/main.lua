@@ -57,6 +57,23 @@ function garden:gardenRoomUpdate()
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, rightHeartPosition, velocity, spawnOwner) 	
 			end
 		end		
+
+		--Reroll any item pedestals in the room (just once though)
+		local entities = Isaac.GetRoomEntities() 
+		for i = 1, #entities do
+			local singleEntity = entities[i]
+			if singleEntity:IsCollectible() then
+				local itemPedestal = singleEntity
+				if itemPedestal:CanReroll() then --If the item in the room can be rerolled
+					local randomItem = 0
+					local keepPrice = true
+					itemPedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, keepPrice) -- this should reroll
+					itemPedestal.CanReroll = false --not sure if this works
+				elseif not itemPedestal:CanReroll() then --else, force the item to be Exiled
+					itemPedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.gardenPool.COLLECTIBLE_EXILED, keepPrice) -- this should reroll
+				end
+			end
+		end			
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position
 		local roomCenter = currentRoom:GetCenterPos()
