@@ -1,6 +1,6 @@
 <music root="music/">
-	<track id="30" name="Garden Ambience" intro="The_Garden_Ambience.ogg" path="The_Garden_Ambience.ogg" loop="true" />
-	<track id="31" name="Garden Drone Room" intro="The_Garden_Drone.ogg" path="The_Garden_Drone.ogg" loop="true" />	
-	<track id="32" name="Garden Holy" intro="Garden_Holy.ogg" path="Garden_Holy.ogg" loop="true" />
-	<track id="33" name="Garden Serpent" intro="Garden_Serpent.ogg" path="Garden_Serpent.ogg" loop="true" />	
+	<track id="30" name="Garden Ambience" intro="The_Garden_Ambience.ogg" path="before_fight/The_Garden_Ambience.ogg" loop="true" />
+	<track id="31" name="Garden Drone Room" intro="The_Garden_Drone.ogg" path="before_fight/The_Garden_Drone.ogg" loop="true" />	
+	<track id="32" name="Garden Holy" intro="Garden_Holy.ogg" path="after_fight/Garden_Holy.ogg" loop="true" />
+	<track id="33" name="Garden Serpent" intro="Garden_Serpent.ogg" path="after_fight/Garden_Serpent.ogg" loop="true" />	
 </music>
