@@ -11,21 +11,39 @@ garden.COLLECTIBLE_EXILED = Isaac.GetItemIdByName("Exiled")
 garden.COLLECTIBLE_THE_FIRST_DAY = Isaac.GetItemIdByName("The First Day")
 garden.COLLECTIBLE_MIRACLE_GROW = Isaac.GetItemIdByName("MiracleGrow")
 
---garden.CHALLENGE_GENESIS = Isaac.GetChallengeIdByName("Genesis")
+garden.HAS_FORBIDDEN_FRUIT = false
+garden.HAS_SHAME = false
+garden.HAS_DECEPTION = false
+garden.HAS_GRANTED_DOMAIN = false
+garden.HAS_THE_WILL_OF_MAN = false
+garden.HAS_THE_FALL_OF_MAN = false
+garden.HAS_REBIRTH = false
+garden.HAS_EXILED = false
+garden.HAS_THE_FIRST_DAY = false
+garden.HAS_MIRACLE_GROW = false
 
+garden.COSTUME_ID_SHAME = Isaac.GetCostumeIdByPath("gfx/characters/temp_shame.anm2")
+--garden.COSTUME_ID_FORBIDDEN_FRUIT = Isaac.GetCostumeIdByPath("gfx/characters/forbidden_fruit.anm2")
+--garden.COSTUME_ID_DECEPTION = Isaac.GetCostumeIdByPath("gfx/characters/deception.anm2")
+--garden.COSTUME_ID_GRANTED_DOMAIN = Isaac.GetCostumeIdByPath("gfx/characters/granted_domain.anm2")
+--garden.COSTUME_ID_THE_WILL_OF_MAN = Isaac.GetCostumeIdByPath("gfx/characters/the_will_of_man.anm2")
+--garden.COSTUME_ID_REBIRTH = Isaac.GetCostumeIdByPath("gfx/characters/rebirth.anm2")
+--garden.COSTUME_ID_EXILED = Isaac.GetCostumeIdByPath("gfx/characters/exiled.anm2")
+--garden.COSTUME_ID_THE_FIRST_DAY = Isaac.GetCostumeIdByPath("gfx/characters/the_first_day.anm2")
+--garden.COSTUME_ID_MIRACLE_GROW = Isaac.GetCostumeIdByPath("gfx/characters/miracle_grow.anm2")
 
 function garden:shameEffect()
-	local hasShame = false
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_SHAME) then		
-		--if hasShame == false then
+		if not garden.HAS_SHAME then
 			--local shameObject = Config:Config:GetCollectible(garden.COLLECTIBLE_SHAME)	
 			--Game():GetPlayer(0):AddCostume(shameObject, 0)
-			--local shameCostumeID = Isaac.GetCostumeIdByPath("gfx/characters/costume_shame.anm2")
-			--Isaac.RenderText(shameCostumeID, 50, 15, 255, 255, 255, 255)
-			--player:AddNullCostume(shameCostumeID)
-			--hasShame = true
-		--end
+			--Game():GetPlayer(0):AddCostume(shameObject, false) --OR TRY THIS
+			
+			Isaac.RenderText(garden.COSTUME_ID_SHAME, 50, 15, 255, 255, 255, 255)
+			player:AddNullCostume(garden.COSTUME_ID_SHAME)
+			garden.HAS_SHAME = true
+		end
 		local entities = Isaac.GetRoomEntities()
 		for i = 1, #entities do
 			local singleEntity = entities[i]
@@ -83,7 +101,7 @@ function garden:gardenRoomUpdate()
 			--play sfx here (Garden_Difficulty.wav)
 			--play music here (Garden_Drone.wav)
 			--play quieter music here (Garden_Ambience.wav)  
-			local randomNum = math.random(1,4)
+			local randomNum = math.random(4)
 			if randomNum == 4 then --Spawn Eternal Hearts
 				local roomCenter = currentRoom:GetCenterPos()
 				local leftHeartPosition = Vector(roomCenter.X-100, roomCenter.Y)
