@@ -1,26 +1,28 @@
 <ItemPools>
 	<Pool Name="treasure">
 		<!--Miracle Grow-->
-		<Item Id="520" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Id="766" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="Garden">
 		<!--Shame-->
-		<Item Id="511" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Id="756" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<!--Forbidden Fruit-->
-		<Item Id="512" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Id="757" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<!--Deception-->
-		<Item Id="513" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Id="758" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<!--The Will of Man-->
-		<Item Id="516" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Id="759" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<!--The Fall of Man-->
-		<Item Id="517" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Id="760" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<!--Rebirth-->
-		<Item Id="518" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Id="761" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<!--Granted Domain-->
-		<Item Id="515" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Id="762" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<!--Creation-->
-		<Item Id="514" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
+		<Item Id="763" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<!--Exiled-->
-		<Item Id="519" Weight="0.5" DecreaseBy="0.25" RemoveOn="0.1"/>		
+		<Item Id="764" Weight="0.5" DecreaseBy="0.25" RemoveOn="0.1"/>		
+		<!--The First Day-->
+		<Item Id="765" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
 </ItemPools>

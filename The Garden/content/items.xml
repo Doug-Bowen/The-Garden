@@ -8,5 +8,6 @@
 	<passive description="Original sin" gfx="Collectibles_TheFallOfMan.png" name="The Fall of Man" />
 	<passive description="From one, come two." gfx="Collectibles_Rebirth.png" name="Rebirth" />
 	<passive description="Deliberate disobedience" gfx="Collectibles_Exiled.png" name="Exiled" />
-	<passive description="Roses are red..." gfx="Collectibles_MiracleGrow.png" name="MiracleGrow" />
+	<passive description="Roses are red..." gfx="Collectibles_MiracleGrow.png" name="Miracle Grow" />
+	<passive description="Let there be light!" gfx="Collectibles_The_First_Day.png" name="The First Day" />
 </items>
