@@ -97,13 +97,13 @@ function garden:gardenRoomUpdate()
 		if currentRoom:IsInitialized() then --Enable The Serpent fight, generate possible hearts
 			
 			--First, spawn a tree sprite in the middle of the room
-			local treeSprite = Sprite() 
-			treeSprite:Load("treeSprite.anm2",true);
-			treeSprite:Play("Still",true);			
-			local roomCenter = currentRoom:GetCenterPos()
-			local topLeftClamp = roomCenter
-			local bottomRightClamp = roomCenter
-			voidEffect:Render(roomCenter,topLeftClamp,bottomRightClamp)
+			--local treeSprite = Sprite() 
+			--treeSprite:Load("treeSprite.png",true);
+			--treeSprite:Play("Still",true);			
+			--local roomCenter = currentRoom:GetCenterPos()
+			--local topLeftClamp = roomCenter
+			--local bottomRightClamp = roomCenter
+			--voidEffect:Render(roomCenter,topLeftClamp,bottomRightClamp)
 
 			--Second, Handle the music for the room
 			--play sfx here (Garden_Difficulty.wav)
