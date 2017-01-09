@@ -15,7 +15,7 @@ local gardenPool = {
 
 function garden:shameEffect()
 	local player = Isaac.GetPlayer(0)
-	if player:HasCollectible(garden.COLLECTIBLE_SHAME) then
+	if player:HasCollectible(garden.gardenPool.COLLECTIBLE_SHAME) then
 		--shameItem = Config:Item:Name("Shame")
 		--Game():GetPlayer(0):AddCostume(shameItem)
 		local entities = Isaac.GetRoomEntities()
