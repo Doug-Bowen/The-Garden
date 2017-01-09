@@ -11,6 +11,7 @@ Adds:
    * The Will of Man (Item - Garden Room Pool) :clock3:
    * The Fall of Man (Item - Garden Room Pool) :clock3:
    * Rebirth (Item - Garden Room Pool) :clock3:
+   * The First Day (Item - Garden Room Pool) :clock3:
    * Exiled (Item - Garden Room Pool) :clock3:
 * Miracle Grow (Item - Item Room Pool) :clock3:
 * Genisis (New Challenge) :white_check_mark:
@@ -41,6 +42,7 @@ Specialty:
 |The Will of Man|Know good, know evil.|The player is shown Bosses (on the wall next to the boss door) and Items (on the wall next to the item room door)|A tree (strong trunk, cartoony)|Isaac has leaves behind one of his ears --possibly animated to fall out|
 |The Fall of man|Original Sin|Devil deal items are now in all item pools. The Devil deal pool is now empty. Devil deal rooms will no longer be item rooms.|Crossed Scythes (Borrow from Death's Touch)|Isaac's body turns A shade of black|
 |Rebirth|From one, come two|The player becomes Eve. The player keeps items and health. The player gains a familiar that looks like your original character (fires tears at your current rate. Fire rate for familiar is locked.|A Rib|Miniature Isaac familiar|
+|The First Day|Let there be light!|100% Angel room stat (locked)|A sun (Cartoony)|Isaac's head shines|
 |Exiled|Deliberate Disobedience|All dice and familiars removed from pools. Champion belt affect for remainder of the run|Closed iron gates (Cartoony)|Ivy wrapped around Isaacs neck|
 |Miracle Grow|Roses are Red|[This item is to be included in the Item Room Pool]. A Garden Room with Spawn on the next floor.|Recolored Eden's Blessing (to be rose red)|Recolored Purity Effect|
 
