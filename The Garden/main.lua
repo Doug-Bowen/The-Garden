@@ -9,9 +9,11 @@ local gardenPool = {
 	garden.COLLECTIBLE_THE_FALL_OF_MAN = Isaac.GetItemIdByName("The Fall of Man")
 	garden.COLLECTIBLE_REBIRTH = Isaac.GetItemIdByName("Rebirth")
 	garden.COLLECTIBLE_EXILED = Isaac.GetItemIdByName("Exiled")
+	garden.COLLECTIBLE_THE_FIRST_DAY = Isaac.GetItemIdByName("The First Day")
 	garden.COLLECTIBLE_MIRACLE_GROW = Isaac.GetItemIdByName("MiracleGrow")
-	garden.CHALLENGE_GENISIS = Isaac.GetChallengeIdByName("Genesis")
 }
+
+--garden.CHALLENGE_GENISIS = Isaac.GetChallengeIdByName("Genesis")
 
 function garden:shameEffect()
 	local player = Isaac.GetPlayer(0)
@@ -32,6 +34,36 @@ function garden:shameEffect()
 			end
 		end
 	end
+end
+
+function garden:shameEffect()
+end
+
+function garden:forbiddenFruitEffect()
+end
+
+function garden:deceptionEffect()
+end
+
+function garden:grantedDomainEffect()
+end
+
+function garden:theWillOfManEffect()
+end
+
+function garden:theFallOfManEffect()
+end
+
+function garden:rebirthEffect()
+end
+
+function garden:exiledEffect()
+end
+
+function garden:theFirstDayEffect()
+end
+
+function garden:miracleGrowEffect()
 end
 
 function garden:gardenRoomUpdate()
@@ -110,4 +142,13 @@ function garden:gardenRoomUpdate()
 end
 
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.shameEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.forbiddenFruitEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.deceptionEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.grantedDomainEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theWillOfManEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theFallOfManEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.rebirthEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.exiledEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theFirstDayEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.miracleGrowEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoomUpdate)
