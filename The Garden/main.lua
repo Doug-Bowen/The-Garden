@@ -89,12 +89,12 @@ function garden:miracleGrowEffect()
 end
 
 function garden:gardenRoomUpdate()
-	local currentRoom = Game():GetRoom()
 	local currentLevel = Game():GetLevel()	
 	local currentRoomIndex = currentLevel:GetCurrentRoomIndex()
+	local currentRoom = Game():GetRoom()
 	--Isaac.RenderText(currentRoomIndex, 50, 15, 255, 255, 255, 255)		
 	if currentRoomIndex == -3 then -- Player is in The Garden
-		if currentRoom:isInitialized() then --Enable The Serpent fight, generate possible hearts
+		if currentRoom:IsInitialized() then --Enable The Serpent fight, generate possible hearts
 			--spawn a tree sprite in the middle of the room
 			local serpentCanSpawn = true			
 			local serpentHasSpawned = false			
@@ -102,7 +102,7 @@ function garden:gardenRoomUpdate()
 			--play music here (Garden_Drone.wav)
 			--play quieter music here (Garden_Ambience.wav)  
 			local randomNum = math.random(4)
-			if randomNum == 4 then --Spawn Eternal Hearts
+			if randomNum == 4 then --Spawn Eternal Hearts (25% chance)
 				local roomCenter = currentRoom:GetCenterPos()
 				local leftHeartPosition = Vector(roomCenter.X-100, roomCenter.Y)
 				local rightHeartPosition = Vector(roomCenter.X+100, roomCenter.Y)
