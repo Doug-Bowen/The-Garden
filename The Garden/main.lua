@@ -35,10 +35,9 @@ end
 
 function garden:gardenRoomUpdate()
 	local currentRoom = Game():GetRoom()
-	local roomType = currentRoom:GetType()
-	--Isaac.RenderText(roomType, 300, 15, 255, 255, 255, 255)	
-	if(roomType == 0) then --is the garden room
-		--pinHasSpawned = false should be set with this room initializes
+	--local roomType = currentRoom:GetType()	
+	local currentRoomIndex = Level:GetCurrentRoomIndex()
+	Isaac.RenderText(currentRoomIndex, 300, 15, 255, 255, 255, 255)		
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position
 		local roomCenter = currentRoom:GetCenterPos()
