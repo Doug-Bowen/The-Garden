@@ -1,26 +1,31 @@
 local garden = RegisterMod("TheGarden", 1) --'1' denotes API v1.0
 
-local gardenPool = {
-	garden.COLLECTIBLE_SHAME = Isaac.GetItemIdByName("Shame")
-	garden.COLLECTIBLE_FORBIDDEN_FRUIT = Isaac.GetItemIdByName("Forbidden Fruit")
-	garden.COLLECTIBLE_DECEPTION = Isaac.GetItemIdByName("Deception")
-	garden.COLLECTIBLE_GRANTED_DOMAIN = Isaac.GetItemIdByName("Granted Domain")
-	garden.COLLECTIBLE_THE_WILL_OF_MAN = Isaac.GetItemIdByName("The Will of Man")
-	garden.COLLECTIBLE_THE_FALL_OF_MAN = Isaac.GetItemIdByName("The Fall of Man")
-	garden.COLLECTIBLE_REBIRTH = Isaac.GetItemIdByName("Rebirth")
-	garden.COLLECTIBLE_EXILED = Isaac.GetItemIdByName("Exiled")
-	garden.COLLECTIBLE_THE_FIRST_DAY = Isaac.GetItemIdByName("The First Day")
-	garden.COLLECTIBLE_MIRACLE_GROW = Isaac.GetItemIdByName("MiracleGrow")
-}
+garden.COLLECTIBLE_SHAME = Isaac.GetItemIdByName("Shame")
+garden.COLLECTIBLE_FORBIDDEN_FRUIT = Isaac.GetItemIdByName("Forbidden Fruit")
+garden.COLLECTIBLE_DECEPTION = Isaac.GetItemIdByName("Deception")
+garden.COLLECTIBLE_GRANTED_DOMAIN = Isaac.GetItemIdByName("Granted Domain")
+garden.COLLECTIBLE_THE_WILL_OF_MAN = Isaac.GetItemIdByName("The Will of Man")
+garden.COLLECTIBLE_THE_FALL_OF_MAN = Isaac.GetItemIdByName("The Fall of Man")
+garden.COLLECTIBLE_REBIRTH = Isaac.GetItemIdByName("Rebirth")
+garden.COLLECTIBLE_EXILED = Isaac.GetItemIdByName("Exiled")
+garden.COLLECTIBLE_THE_FIRST_DAY = Isaac.GetItemIdByName("The First Day")
+garden.COLLECTIBLE_MIRACLE_GROW = Isaac.GetItemIdByName("MiracleGrow")
 
---garden.CHALLENGE_GENISIS = Isaac.GetChallengeIdByName("Genesis")
+--garden.CHALLENGE_GENESIS = Isaac.GetChallengeIdByName("Genesis")
+
 
 function garden:shameEffect()
+	local hasShame = false
 	local player = Isaac.GetPlayer(0)
-	if player:HasCollectible(garden.gardenPool.COLLECTIBLE_SHAME) then		
-		local shameCostume = Isaac.GetCostumeIdByPath("gfx/characters/costume_shame.anm2")
-		Game():GetPlayer(0):AddNullCostume(shameCostume, -1)
-		--Game():GetPlayer(0):AddCostume(shameCostume, true) --try this if the NullCostume doesnt work
+	if player:HasCollectible(garden.COLLECTIBLE_SHAME) then		
+		--if hasShame == false then
+			--local shameObject = Config:Config:GetCollectible(garden.COLLECTIBLE_SHAME)	
+			--Game():GetPlayer(0):AddCostume(shameObject, 0)
+			--local shameCostumeID = Isaac.GetCostumeIdByPath("gfx/characters/costume_shame.anm2")
+			--Isaac.RenderText(shameCostumeID, 50, 15, 255, 255, 255, 255)
+			--player:AddNullCostume(shameCostumeID)
+			--hasShame = true
+		--end
 		local entities = Isaac.GetRoomEntities()
 		for i = 1, #entities do
 			local singleEntity = entities[i]
@@ -34,9 +39,6 @@ function garden:shameEffect()
 			end
 		end
 	end
-end
-
-function garden:shameEffect()
 end
 
 function garden:forbiddenFruitEffect()
@@ -68,10 +70,10 @@ end
 
 function garden:gardenRoomUpdate()
 	local currentRoom = Game():GetRoom()
-	--local roomType = currentRoom:GetType()	
-	local currentRoomIndex = Level:GetCurrentRoomIndex()
-	Isaac.RenderText(currentRoomIndex, 300, 15, 255, 255, 255, 255)		
-	if currentRoomIndex == 99 then -- Player is in The Garden
+	local currentLevel = Game():GetLevel()	
+	local currentRoomIndex = currentLevel:GetCurrentRoomIndex()
+	--Isaac.RenderText(currentRoomIndex, 50, 15, 255, 255, 255, 255)		
+	if currentRoomIndex == -3 then -- Player is in The Garden
 		if currentRoom:isInitialized() then --Enable The Serpent fight, generate possible hearts
 			--spawn a tree sprite in the middle of the room
 			local serpentCanSpawn = true			
@@ -103,7 +105,7 @@ function garden:gardenRoomUpdate()
 					itemPedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, keepPrice) -- this should reroll
 					itemPedestal.CanReroll = false --not sure if this works
 				elseif not itemPedestal:CanReroll() then --else, force the item to be Exiled
-					itemPedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.gardenPool.COLLECTIBLE_EXILED, keepPrice) -- this should reroll
+					itemPedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_EXILED, keepPrice) -- this should reroll
 				end
 			end
 		end			
