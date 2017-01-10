@@ -92,7 +92,8 @@ function garden:theWillOfManEffect()
 end
 
 function garden:theFallOfManEffect()
-	--use GridEntityDoor:TargetRoomType to possibly see the item in the item room (not sure if this is possible)
+	--use GridEntityDoor:TargetRoomType to possibly see the item/boss in the next room (not sure if this is possible) --or try searching the surrounding rooms looking for items or bosses and post that info on the wall
+	--use entity:AddEntityFlags(FLAG_RENDER_WALL) to attempt to apply that item/boss to a wall
 end
 
 function garden:rebirthEffect()
