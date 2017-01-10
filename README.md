@@ -1,7 +1,7 @@
 # The Garden Mod:
 
 Adds:
-* The Garden (New Room) :clock3:
+* The Garden (New Room) :white_check_mark:
   * The Garden Pool (New Item Pool) :white_check_mark:
    * Shame (Item - Garden Room Pool) :white_check_mark:
    * Forbidden Fruit (Item - Garden Room Pool) :clock3:
@@ -16,7 +16,7 @@ Adds:
 * Miracle Grow (Item - Item Room Pool) :clock3:
 * Genisis (New Challenge) :white_check_mark:
 * Broken Heart (New heart type) :clock3:
-* The Serpent (Boss) :clock3:
+* The Serpent (Boss) :white_check_mark:
 
 **The Garden Room:** A room that randomly replaces a library (30% chance)
 Look and feel: The Garden has ivy key locks on the outside door. The music in this room is mainly crickets, jungle sounds, quietness, no music, just SFX.
