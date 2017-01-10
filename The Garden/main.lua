@@ -59,7 +59,7 @@ function garden:shameEffect()
 			local priority = 99
 			local fadeOut = false
 			local share = true --spread coloring to others	
-			player:SetColor(shameColor,durationInFrames,priority,fadeOut,share)
+			player:SetColor(shameColor, durationInFrames, priority, fadeOut, share)
 			garden.HAS_SHAME = true
 		end
 		local entities = Isaac.GetRoomEntities()
