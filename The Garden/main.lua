@@ -1,5 +1,7 @@
 local garden = RegisterMod("TheGarden", 1) --'1' denotes API v1.0
 
+Isaac.DebugString(RNG:GetSeed()) --Should output the seed to the log
+
 garden.COLLECTIBLE_SHAME = Isaac.GetItemIdByName("Shame")
 garden.COLLECTIBLE_FORBIDDEN_FRUIT = Isaac.GetItemIdByName("Forbidden Fruit")
 garden.COLLECTIBLE_DECEPTION = Isaac.GetItemIdByName("Deception")
@@ -100,6 +102,7 @@ function garden:exiledEffect()
 end
 
 function garden:theFirstDayEffect()
+	--might be Level:AddAngelRoomChance
 end
 
 function garden:miracleGrowEffect()
@@ -247,7 +250,7 @@ function garden:gardenRoomUpdate()
 		if previousRoomIndex~= nil and previousRoomIndex == gardenRoomIndex then 
 			if garden.ROOM_WILL_REROLL == false then --This flag should only be false after 2 visits to a Garden
 				local previousRoom = currentLevel:GetRoomByIdx(previousRoomIndex)
-				local doors = previousRoom:GetDoor() --Might need a for() loop to close all doors
+				local doors = previousRoom:GetDoor() --Might need a for() loop to close all doors -- might need GridEntityType.GRID_DOOR
 				if not doors:IsOpen() then
 					local forceClose = true
 					doors:Close(forceClose)
