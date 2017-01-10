@@ -29,8 +29,8 @@ Specialty:
 * Eternal hearts and broken hearts have a high chance to spawn in this room. (50%).
 * Discovering the garden unlocks the Genesis challenge.
 * This room's item, if picked up, will trigger a fight with The Serpent. (Consider this not being the item, but rather a tree with the forbidden fruit on it)
- * The Serpent is planned to be a reskin of Pin that shoots apples (knockback).
- * The music played before, during, and after the Serpent fight should be different and follow the theme.
+ * The Serpent is planned to be a reskin of Pin that shoots apples (knockback). :clock3:
+ * The music played before, during, and after the Serpent fight should be different and follow the theme. :white_check_mark:
 
 |Item Name|Description|Effect|Item Sprite|Character Costume|
 |---|---|---|---|---|
@@ -50,6 +50,14 @@ Specialty:
 
 **Genesis challenge:** Eve starts with Rebirth, Shame, and Forbidden Fruit and must beat the Lamb (on normal difficulty). There are no item rooms.
 
+Sprites needed:
+* Pin reskin sprites
+* Item sprites
+ * Item costume sprites
+* Tree sprite
+ * Possible fruit sprite (hangs from tree)
+**Many of these sprites can be used more than once, shrinking down the tree and fruit sprites for items is likely**
+**All sprites and costumes listed are only placeholders**
 
 _____________________
 
