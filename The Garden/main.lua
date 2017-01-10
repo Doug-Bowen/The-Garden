@@ -95,12 +95,12 @@ function garden:gardenRoomUpdate()
 		if currentRoom:IsInitialized() then --Enable The Serpent fight, generate possible hearts
 			--First, spawn a tree sprite in the middle of the room
 			--local treeSprite = Sprite() 
-			--treeSprite:Load("treeSprite.png",true);
+			--treeSprite:Load("gfx/effects/treeSprite.png",true)
 			--treeSprite:Play("Still",true);			
 			--local roomCenter = currentRoom:GetCenterPos()
 			--local topLeftClamp = roomCenter
 			--local bottomRightClamp = roomCenter
-			--voidEffect:Render(roomCenter,topLeftClamp,bottomRightClamp)
+			--treeSprite:Render(roomCenter,topLeftClamp,bottomRightClamp)
 
 			--Second, Handle the music for the room
 			--play sfx here (Garden_Difficulty.wav)
@@ -131,7 +131,7 @@ function garden:gardenRoomUpdate()
 		local entities = Isaac.GetRoomEntities() 
 		for i = 1, #entities do
 			local singleEntity = entities[i]
-			if singleEntity:IsCollectible() then
+ 			if singleEntity.SubType == PickupVariant.PICKUP_COLLECTIBLE then
 				local itemPedestal = singleEntity
 				if itemPedestal:CanReroll() then --If the item in the room can be rerolled
 					local randomItem = 0
@@ -140,6 +140,7 @@ function garden:gardenRoomUpdate()
 					itemPedestal.CanReroll = false --not sure if this works
 				elseif not itemPedestal:CanReroll() then --else, force the item to be Exiled
 					itemPedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_EXILED, keepPrice) -- this should reroll
+					
 				end
 			end
 		end			
@@ -150,7 +151,7 @@ function garden:gardenRoomUpdate()
 		local roomCenter = currentRoom:GetCenterPos()
 		local positionalDifference = Vector(playerPosition.X-roomCenter.X, playerPosition.Y-roomCenter.Y)
 		if math.abs(positionalDifference.X) < 20 and math.abs(positionalDifference.Y) < 20 then
-			--Isaac.RenderText("YOU ARE IN THE CENTER", 50, 25, 255, 255, 255, 255)
+			Isaac.RenderText("YOU ARE IN THE CENTER", 50, 25, 255, 255, 255, 255)
 			if(serpentCanSpawn == true and serpentHasSpawned == false) then
 				--change music here (Garden_Serpent.wav)
 				local serpentSpawnPosition = Vector(roomCenter.X, roomCenter.Y+100)
