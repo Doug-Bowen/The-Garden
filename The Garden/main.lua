@@ -32,6 +32,17 @@ garden.COSTUME_ID_SHAME = Isaac.GetCostumeIdByPath("gfx/characters/shame.anm2")
 --garden.COSTUME_ID_THE_FIRST_DAY = Isaac.GetCostumeIdByPath("gfx/characters/the_first_day.anm2")
 --garden.COSTUME_ID_MIRACLE_GROW = Isaac.GetCostumeIdByPath("gfx/characters/miracle_grow.anm2")
 
+function garden:getShameColoring()
+	local redTint = 0.7
+	local greenTint = 0.0
+	local blueTint = 0.0
+	local alphaOpacity = 1.0
+	local redOffset = 0.0
+	local greenOffset = 0.0
+	local blueOffset = 0.0
+	return Color(redTint, greenTint, blueTint, alphaOpacity, redOffset, greenOffset, blueOffset))
+end
+
 garden.HEARTS_CAN_SPAWN = true
 garden.SERPENT_CAN_SPAWN = true
 garden.SERPENT_HAS_SPAWNED = true
@@ -43,6 +54,12 @@ function garden:shameEffect()
 	if player:HasCollectible(garden.COLLECTIBLE_SHAME) then		
 		if not garden.HAS_SHAME then
 			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_SHAME)
+			local shameColor = garden.getShameColoring()
+			local durationInFrames = 0 --means forever
+			local priority = 99
+			local fadeOut = false
+			local share = true --spread coloring to others	
+			player:SetColor(shameColor,durationInFrames,priority,fadeOut,share)
 			garden.HAS_SHAME = true
 		end
 		local entities = Isaac.GetRoomEntities()
@@ -94,9 +111,16 @@ function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
 	local currentRoomIndex = currentLevel:GetCurrentRoomIndex()
 	local currentRoom = Game():GetRoom()
+	local gardenRoomIndex = -3
 	--Isaac.RenderText(currentRoomIndex, 50, 15, 255, 255, 255, 255)		
-	if currentRoomIndex == -3 then -- Player is in a Garden
+	if currentRoomIndex~= nil and currentRoomIndex == gardenRoomIndex then -- Player is in a Garden
 		if currentRoom:GetFrameCount() == 1 then --Player just walked into a Garden
+			--Force items to be exiled on 3rd visit
+			if not garden.ROOM_WILL_REROLL then
+				local keepPrice = true
+				itemPedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_EXILED, keepPrice) -- this should reroll (might need to destry and respawn)			
+			end
+
 			if garden.VISIT_NUMBER == 0 --Player has never been in this Garden			
 				garden.ROOM_WILL_REROLL = true
 				local SERPENT_CAN_SPAWN = true			
@@ -132,12 +156,6 @@ function garden:gardenRoomUpdate()
 			--play sfx here (Garden_Difficulty.wav)
 			--play music here (Garden_Drone.ogg)
 			--play quieter music here (Garden_Ambience.ogg)  
-
-			--Force items to be exiled on 3rd visit
-			if not garden.ROOM_WILL_REROLL then
-				local keepPrice = true
-				itemPedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_EXILED, keepPrice) -- this should reroll (might need to destry and respawn)			
-			end
 
 			--Reroll item pedestals in the room right when you walk in (visit 1 and 2)
 			if garden.ROOM_WILL_REROLL and garden.VISIT_NUMBER <=2 then
@@ -189,14 +207,11 @@ function garden:gardenRoomUpdate()
 		end
 	end
 
-	--The player just left a Garden
-	if currentRoomIndex ~= -3 and currentRoom:GetFrameCount() == 1 then
-		local previousRoomIndex = currentLevel:GetPreviousRoomIndex() --THis might return nil
-		if previousRoomIndex == -3 then 
+	--The player has left a Garden
+	if currentRoomIndex ~= gardenRoomIndex and currentRoom:GetFrameCount() == 1 then
+		local previousRoomIndex = currentLevel:GetPreviousRoomIndex()
+		if previousRoomIndex~= nil and previousRoomIndex == gardenRoomIndex then 
 			if garden.ROOM_WILL_REROLL == false then --This flag should only be false after 2 visits to a Garden
-				garden.SERPENT_CAN_SPAWN = true
-				garden.SERPENT_HAS_SPAWNED = false
-				garden.HEARTS_CAN_SPAWN = true 
 				local previousRoom = currentLevel:GetRoomByIdx(previousRoomIndex)
 				local doors = previousRoom:GetDoor() --Might need a for() loop to close all doors
 				if not doors:IsOpen() then
@@ -210,7 +225,12 @@ function garden:gardenRoomUpdate()
 					doors:LockedAnimation()
 					doors:Bar() --Not sure what this does
 				end				
-				garden.VISIT_NUMBER = 0 --Reset this for future gardens
+				
+				--Reset flags for future Garden Rooms
+				garden.SERPENT_CAN_SPAWN = true
+				garden.SERPENT_HAS_SPAWNED = false
+				garden.HEARTS_CAN_SPAWN = true 
+				garden.VISIT_NUMBER = 0 
 			end
 		end
 	end	
