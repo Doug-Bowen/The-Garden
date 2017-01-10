@@ -51,13 +51,19 @@ Specialty:
 **Genesis challenge:** Eve starts with Rebirth, Shame, and Forbidden Fruit and must beat the Lamb (on normal difficulty). There are no item rooms.
 
 Sprites needed:
+**Many of these sprites can be used more than once, shrinking down the tree and fruit sprites for items is likely.**
+
+**All sprites and costumes listed are only placeholders.**
+
 * Pin reskin sprites
 * Item sprites
- * Item costume sprites
+ * Item costumes
 * Tree sprite
  * Possible fruit sprite (hangs from tree)
-**Many of these sprites can be used more than once, shrinking down the tree and fruit sprites for items is likely**
-**All sprites and costumes listed are only placeholders**
+* Broken Heart (Pickup)
+ * Broken Heart (UI)
+
+
 
 _____________________
 
