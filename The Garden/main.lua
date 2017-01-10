@@ -33,7 +33,10 @@ garden.COSTUME_ID_SHAME = Isaac.GetCostumeIdByPath("gfx/characters/shame.anm2")
 --garden.COSTUME_ID_MIRACLE_GROW = Isaac.GetCostumeIdByPath("gfx/characters/miracle_grow.anm2")
 
 garden.HEARTS_CAN_SPAWN = true
-garden.ROOM_INITIALIZED = false
+garden.SERPENT_CAN_SPAWN = true
+garden.SERPENT_HAS_SPAWNED = true
+garden.VISIT_NUMBER = 0
+garden.ROOM_WILL_REROLL = true
 
 function garden:shameEffect()
 	local player = Isaac.GetPlayer(0)
@@ -91,59 +94,67 @@ function garden:gardenRoomUpdate()
 	local currentRoomIndex = currentLevel:GetCurrentRoomIndex()
 	local currentRoom = Game():GetRoom()
 	--Isaac.RenderText(currentRoomIndex, 50, 15, 255, 255, 255, 255)		
-	if currentRoomIndex == -3 then -- Player is in The Garden
-		if currentRoom:IsInitialized() then --Enable The Serpent fight, generate possible hearts
-			--First, spawn a tree sprite in the middle of the room
+	if currentRoomIndex == -3 then -- Player is in a Garden
+		if currentRoom:GetFrameCount() == 1 then --Player just walked into a Garden
+			if garden.VISIT_NUMBER == 0 --Player has never been in this Garden			
+				garden.ROOM_WILL_REROLL = true
+				local SERPENT_CAN_SPAWN = true			
+				local SERPENT_HAS_SPAWNED = false
+
+				--Handle Eternal Heart Spawning
+				if garden.HEARTS_CAN_SPAWN then
+					local randomNum = math.random(4)
+					garden.HEARTS_CAN_SPAWN = false
+					if randomNum == 1 then --Spawn Eternal Hearts (25% chance)
+						local roomCenter = currentRoom:GetCenterPos()
+						local leftHeartPosition = Vector(roomCenter.X-100, roomCenter.Y)
+						local rightHeartPosition = Vector(roomCenter.X+100, roomCenter.Y)
+						local velocity = Vector(0,0)
+						local spawnOwner = Isaac.GetPlayer(0)				
+						Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, leftHeartPosition, velocity, spawnOwner) 	
+						Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, rightHeartPosition, velocity, spawnOwner) 	
+					end
+				end						
+			end
+
+			garden.VISIT_NUMBER++
+			--Spawn a tree sprite in the middle of the room
 			--local treeSprite = Sprite() 
 			--treeSprite:Load("gfx/effects/treeSprite.png",true)
-			--treeSprite:Play("Still",true);			
+			--treeSprite:Play("Still",true)		
 			--local roomCenter = currentRoom:GetCenterPos()
 			--local topLeftClamp = roomCenter
 			--local bottomRightClamp = roomCenter
-			--treeSprite:Render(roomCenter,topLeftClamp,bottomRightClamp)
+			--treeSprite:Render(roomCenter, topLeftClamp, bottomRightClamp)
 
-			--Second, Handle the music for the room
+			--Handle the music for the room
 			--play sfx here (Garden_Difficulty.wav)
-			--play music here (Garden_Drone.wav)
-			--play quieter music here (Garden_Ambience.wav)  
+			--play music here (Garden_Drone.ogg)
+			--play quieter music here (Garden_Ambience.ogg)  
 
-			--Third, Deal with the serpent
-			local serpentCanSpawn = true			
-			local serpentHasSpawned = false						
-			
-			--Fourth, Handle Eternal Heart Spawning
-			if garden.HEARTS_CAN_SPAWN then
-				local randomNum = math.random(4)
-				garden.HEARTS_CAN_SPAWN = false
-				if randomNum == 1 then --Spawn Eternal Hearts (25% chance)
-					local roomCenter = currentRoom:GetCenterPos()
-					local leftHeartPosition = Vector(roomCenter.X-100, roomCenter.Y)
-					local rightHeartPosition = Vector(roomCenter.X+100, roomCenter.Y)
-					local velocity = Vector(0,0)
-					local spawnOwner = Isaac.GetPlayer(0)				
-					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, leftHeartPosition, velocity, spawnOwner) 	
-					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, rightHeartPosition, velocity, spawnOwner) 	
-				end
+			--Force items to be exiled on 3rd visit
+			if not garden.ROOM_WILL_REROLL then
+				local keepPrice = true
+				itemPedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_EXILED, keepPrice) -- this should reroll (might need to destry and respawn)			
 			end
+
+			--Reroll item pedestals in the room right when you walk in (visit 1 and 2)
+			if garden.ROOM_WILL_REROLL and garden.VISIT_NUMBER <=2 then
+				local entities = Isaac.GetRoomEntities() 
+				for i = 1, #entities do
+					local singleEntity = entities[i]
+		 			if singleEntity.SubType == PickupVariant.PICKUP_COLLECTIBLE then
+						local itemPedestal = singleEntity
+						local randomItem = 0
+						local keepPrice = true
+						itemPedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, keepPrice) -- this should reroll (might need to destry and respawn)
+						if garden.VISIT_NUMBER == 2 then
+							garden.ROOM_WILL_REROLL = false 
+						end					
+					end
+				end
+			end				
 		end		
-
-		--Reroll any item pedestals in the room (just once though)
-		local entities = Isaac.GetRoomEntities() 
-		for i = 1, #entities do
-			local singleEntity = entities[i]
- 			if singleEntity.SubType == PickupVariant.PICKUP_COLLECTIBLE then
-				local itemPedestal = singleEntity
-				if itemPedestal:CanReroll() then --If the item in the room can be rerolled
-					local randomItem = 0
-					local keepPrice = true
-					itemPedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, keepPrice) -- this should reroll
-					itemPedestal.CanReroll = false --not sure if this works
-				elseif not itemPedestal:CanReroll() then --else, force the item to be Exiled
-					itemPedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_EXILED, keepPrice) -- this should reroll
-					
-				end
-			end
-		end			
 
 		--Check if player is activating The Serpent fight
 		local player = Isaac.GetPlayer(0)
@@ -151,32 +162,46 @@ function garden:gardenRoomUpdate()
 		local roomCenter = currentRoom:GetCenterPos()
 		local positionalDifference = Vector(playerPosition.X-roomCenter.X, playerPosition.Y-roomCenter.Y)
 		if math.abs(positionalDifference.X) < 20 and math.abs(positionalDifference.Y) < 20 then
-			Isaac.RenderText("YOU ARE IN THE CENTER", 50, 25, 255, 255, 255, 255)
+			Isaac.RenderText("SERPENT SPAWNED!", 50, 25, 255, 255, 255, 255)
 			if(serpentCanSpawn == true and serpentHasSpawned == false) then
-				--change music here (Garden_Serpent.wav)
+				--change music here (Garden_Serpent.ogg)
 				local serpentSpawnPosition = Vector(roomCenter.X, roomCenter.Y+100)
 				local velocity = Vector(0,0)
 				local spawnOwner = Isaac.GetPlayer(0)				
 				Isaac.Spawn(EntityType.ENTITY_PIN, 1, 1, serpentSpawnPosition, velocity, spawnOwner)	
-				serpentCanSpawn = false
-				serpentHasSpawned = true
+				garden.SERPENT_CAN_SPAWN = false
+				garden.SERPENT_HAS_SPAWNED = true
 			end				
 		end
 
 		--If the player has beaten The Serpent
-		if currentRoom:isClear() and not serpentCanSpawn then 
+		if currentRoom:isClear() and not garden.SERPENT_CAN_SPAWN then 
 			--play sfx here (meaty deaths 3.wav) --might not need this, pin ming play his own death sound
 			--play sfx here (holy!.wav)
-			--change music here (Garden_Holy.wav)
+			--change music here (Garden_Holy.ogg)
 			local pickupPosition = currentRoom:FindFreePickupSpawnPosition()
 			local velocity = Vector(0,0)
 			local spawnOwner = nil
 			local randomItem = 0
 			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)
-			--might need to open the doors, but pin might do that for us automatically though
-			garden.HEARTS_CAN_SPAWN = true 
+			--might need to open the doors, but the serpent fight might do that for us automatically though
 		end
 	end
+
+	--The player just left a Garden
+	if currentRoomIndex ~= -3 and currentRoom:GetFrameCount() == 1 then
+		local previousRoomIndex = currentLevel:GetPreviousRoomIndex() --THis might return nil
+		if previousRoomIndex == -3 then 
+			if garden.ROOM_WILL_REROLL == false then --This flag should only be false after 2 visits to a Garden
+				garden.SERPENT_CAN_SPAWN = true
+				garden.SERPENT_HAS_SPAWNED = false
+				garden.HEARTS_CAN_SPAWN = true 
+				-- Get the doors in the previous room
+				-- Lock the doors in the previous room
+				garden.VISIT_NUMBER = 0 --Reset this for future gardens
+			end
+		end
+	end	
 end
 
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.shameEffect)
