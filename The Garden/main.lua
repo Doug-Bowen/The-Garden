@@ -53,13 +53,13 @@ function garden:shameEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_SHAME) then		
 		if not garden.HAS_SHAME then
-			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_SHAME)
 			local shameColor = garden.getShameColoring()
 			local durationInFrames = 0 --means forever
 			local priority = 99
 			local fadeOut = false
 			local share = true --spread coloring to others	
-			player:SetColor(shameColor, durationInFrames, priority, fadeOut, share)
+			Game():GetPlayer(0):SetColor(shameColor, durationInFrames, priority, fadeOut, share)
+			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_SHAME)
 			garden.HAS_SHAME = true
 		end
 		local entities = Isaac.GetRoomEntities()
