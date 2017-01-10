@@ -67,6 +67,7 @@ Sprites needed:
 
 _____________________
 
+**IGNORE BELOW THIS LINE**
 
 # The Web Mod:
 Challenge rooms have a small chance to become a web room.
