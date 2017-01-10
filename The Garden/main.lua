@@ -75,6 +75,7 @@ function garden:theWillOfManEffect()
 end
 
 function garden:theFallOfManEffect()
+	--use GridEntityDoor:TargetRoomType to possibly see the item in the item room (not sure if this is possible)
 end
 
 function garden:rebirthEffect()
@@ -196,8 +197,19 @@ function garden:gardenRoomUpdate()
 				garden.SERPENT_CAN_SPAWN = true
 				garden.SERPENT_HAS_SPAWNED = false
 				garden.HEARTS_CAN_SPAWN = true 
-				-- Get the doors in the previous room
-				-- Lock the doors in the previous room
+				local previousRoom = currentLevel:GetRoomByIdx(previousRoomIndex)
+				local doors = previousRoom:GetDoor() --Might need a for() loop to close all doors
+				if not doors:IsOpen() then
+					local forceClose = true
+					doors:Close(forceClose)
+					doors:CloseAnimation()					
+				end				
+				if not doors:IsLocked() then
+					local locked = true
+					doors:SetLocked(locked)
+					doors:LockedAnimation()
+					doors:Bar() --Not sure what this does
+				end				
 				garden.VISIT_NUMBER = 0 --Reset this for future gardens
 			end
 		end
