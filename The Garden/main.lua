@@ -32,6 +32,9 @@ garden.COSTUME_ID_SHAME = Isaac.GetCostumeIdByPath("gfx/characters/shame.anm2")
 --garden.COSTUME_ID_THE_FIRST_DAY = Isaac.GetCostumeIdByPath("gfx/characters/the_first_day.anm2")
 --garden.COSTUME_ID_MIRACLE_GROW = Isaac.GetCostumeIdByPath("gfx/characters/miracle_grow.anm2")
 
+garden.HEARTS_CAN_SPAWN = true
+garden.ROOM_INITIALIZED = false
+
 function garden:shameEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_SHAME) then		
@@ -90,7 +93,6 @@ function garden:gardenRoomUpdate()
 	--Isaac.RenderText(currentRoomIndex, 50, 15, 255, 255, 255, 255)		
 	if currentRoomIndex == -3 then -- Player is in The Garden
 		if currentRoom:IsInitialized() then --Enable The Serpent fight, generate possible hearts
-			
 			--First, spawn a tree sprite in the middle of the room
 			--local treeSprite = Sprite() 
 			--treeSprite:Load("treeSprite.png",true);
@@ -109,16 +111,19 @@ function garden:gardenRoomUpdate()
 			local serpentCanSpawn = true			
 			local serpentHasSpawned = false						
 			
-			--Fourth, Handl Eternal Heart Spawning
-			local randomNum = math.random(4)
-			if randomNum == 1 then --Spawn Eternal Hearts (25% chance)
-				local roomCenter = currentRoom:GetCenterPos()
-				local leftHeartPosition = Vector(roomCenter.X-100, roomCenter.Y)
-				local rightHeartPosition = Vector(roomCenter.X+100, roomCenter.Y)
-				local velocity = Vector(0,0)
-				local spawnOwner = Isaac.GetPlayer(0)				
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, leftHeartPosition, velocity, spawnOwner) 	
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, rightHeartPosition, velocity, spawnOwner) 	
+			--Fourth, Handle Eternal Heart Spawning
+			if garden.HEARTS_CAN_SPAWN then
+				local randomNum = math.random(4)
+				garden.HEARTS_CAN_SPAWN = false
+				if randomNum == 1 then --Spawn Eternal Hearts (25% chance)
+					local roomCenter = currentRoom:GetCenterPos()
+					local leftHeartPosition = Vector(roomCenter.X-100, roomCenter.Y)
+					local rightHeartPosition = Vector(roomCenter.X+100, roomCenter.Y)
+					local velocity = Vector(0,0)
+					local spawnOwner = Isaac.GetPlayer(0)				
+					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, leftHeartPosition, velocity, spawnOwner) 	
+					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, rightHeartPosition, velocity, spawnOwner) 	
+				end
 			end
 		end		
 
@@ -158,7 +163,7 @@ function garden:gardenRoomUpdate()
 		end
 
 		--If the player has beaten The Serpent
-		if currentRoom:isClear() then 
+		if currentRoom:isClear() and not serpentCanSpawn then 
 			--play sfx here (meaty deaths 3.wav) --might not need this, pin ming play his own death sound
 			--play sfx here (holy!.wav)
 			--change music here (Garden_Holy.wav)
@@ -166,8 +171,9 @@ function garden:gardenRoomUpdate()
 			local velocity = Vector(0,0)
 			local spawnOwner = nil
 			local randomItem = 0
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner) 
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)
 			--might need to open the doors, but pin might do that for us automatically though
+			garden.HEARTS_CAN_SPAWN = true 
 		end
 	end
 end
