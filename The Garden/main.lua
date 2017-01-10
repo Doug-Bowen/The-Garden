@@ -69,9 +69,9 @@ function garden:shameEffect()
 				local playerPosition = player.Position
 				local entityPosition = singleEntity.Position
 				local positionalDifference = Vector(playerPosition.X-entityPosition.X, playerPosition.Y-entityPosition.Y)
-				if math.abs(positionalDifference.X) < 60 and math.abs(positionalDifference.Y) < 60 then
+				if math.abs(positionalDifference.X) < 80 and math.abs(positionalDifference.Y) < 80 then
 					local fearWho = EntityRef(player)
-					local fearDuration = 4
+					local fearDuration = 5
 					singleEntity:AddFear(fearWho, fearDuration)						
 				end
 			end
