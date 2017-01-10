@@ -18,9 +18,11 @@ Adds:
 * Broken Heart (New heart type) :clock3:
 * The Serpent (Boss) :white_check_mark:
 
-**The Garden Room:** A room that randomly replaces a library (30% chance)
+**The Garden Room:** A room that randomly replaces a library (40% chance)
+
 Look and feel: The Garden has ivy key locks on the outside door. The music in this room is mainly crickets, jungle sounds, quietness, no music, just SFX.
 Effect: If entered, the floor becomes much harder. Specifically, if a player is playing normal, the floor becomes "hard" difficulty. If the player is playing hard, the floor gains the champion belt effect.
+
 Specialty: 
 * Has its own item pool
 * Item pedestals in this room will reroll their items 1 time just by entering and exiting. 
