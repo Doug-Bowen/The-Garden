@@ -50,17 +50,12 @@ garden.SERPENT_HAS_DIED = false
 garden.VISIT_NUMBER = 0
 garden.ROOM_WILL_REROLL = true
 garden.ITEM_REWARDED = false
+garden.PLAYER_COLOR
 
 function garden:shameEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_SHAME) then		
-		if not garden.HAS_SHAME then
-			local shameColor = garden.getShameColoring()
-			local durationInFrames = 0 --means forever
-			local priority = 1
-			local fadeOut = false
-			local share = true --spread coloring to others (not working)
-			Game():GetPlayer(0):SetColor(shameColor, durationInFrames, priority, fadeOut, share)
+		if not garden.HAS_SHAME then			
 			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_SHAME)
 			garden.HAS_SHAME = true
 		end
@@ -190,6 +185,15 @@ function garden:gardenRoomUpdate()
 				local velocity = Vector(0,0)
 				local spawnOwner = Isaac.GetPlayer(0)				
 				Isaac.Spawn(EntityType.ENTITY_PIN, 0, 0, serpentSpawnPosition, velocity, spawnOwner)	
+				
+				garden.PLAYER_COLOR = Game():GetPlayer(0):GetColor()
+				local shameColor = garden.getShameColoring()
+				local durationInFrames = 0 --means forever
+				local priority = 1
+				local fadeOut = false
+				local share = false --spread coloring to others (not working)
+				
+				Game():GetPlayer(0):SetColor(shameColor, durationInFrames, priority, fadeOut, share)
 				garden.SERPENT_CAN_SPAWN = false
 				garden.SERPENT_HAS_SPAWNED = true
 			end				
@@ -212,6 +216,13 @@ function garden:gardenRoomUpdate()
 			--play sfx here (meaty deaths 3.wav) --might not need this, pin ming play his own death sound
 			--play sfx here (holy!.wav)
 			--change music here (Garden_Holy.ogg)
+			
+			local durationInFrames = 0 --means forever
+			local priority = 1
+			local fadeOut = false
+			local share = false --spread coloring to others (not working)
+			Game():GetPlayer(0):SetColor(garden.PLAYER_COLOR, durationInFrames, priority, fadeOut, share)
+			
 			local pickupPosition = currentRoom:GetCenterPos()
 			local velocity = Vector(0,0)
 			local spawnOwner = nil
