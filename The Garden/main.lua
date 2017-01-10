@@ -33,21 +33,23 @@ garden.COSTUME_ID_SHAME = Isaac.GetCostumeIdByPath("gfx/characters/shame.anm2")
 --garden.COSTUME_ID_MIRACLE_GROW = Isaac.GetCostumeIdByPath("gfx/characters/miracle_grow.anm2")
 
 function garden:getShameColoring()
-	local redTint = 0.7
-	local greenTint = 0.0
-	local blueTint = 0.0
+	local redTint = 1.0
+	local greenTint = 0.8
+	local blueTint = 0.8
 	local alphaOpacity = 1.0
-	local redOffset = 0.0
-	local greenOffset = 0.0
-	local blueOffset = 0.0
-	return Color(redTint, greenTint, blueTint, alphaOpacity, redOffset, greenOffset, blueOffset))
+	local redOffset = 0
+	local greenOffset = 0
+	local blueOffset = 0
+	return Color(redTint, greenTint, blueTint, alphaOpacity, redOffset, greenOffset, blueOffset)
 end
 
 garden.HEARTS_CAN_SPAWN = true
 garden.SERPENT_CAN_SPAWN = true
-garden.SERPENT_HAS_SPAWNED = true
+garden.SERPENT_HAS_SPAWNED = false
+garden.SERPENT_HAS_DIED = false
 garden.VISIT_NUMBER = 0
 garden.ROOM_WILL_REROLL = true
+garden.ITEM_REWARDED = false
 
 function garden:shameEffect()
 	local player = Isaac.GetPlayer(0)
@@ -55,9 +57,9 @@ function garden:shameEffect()
 		if not garden.HAS_SHAME then
 			local shameColor = garden.getShameColoring()
 			local durationInFrames = 0 --means forever
-			local priority = 99
+			local priority = 1
 			local fadeOut = false
-			local share = true --spread coloring to others	
+			local share = true --spread coloring to others (not working)
 			Game():GetPlayer(0):SetColor(shameColor, durationInFrames, priority, fadeOut, share)
 			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_SHAME)
 			garden.HAS_SHAME = true
@@ -113,7 +115,7 @@ function garden:gardenRoomUpdate()
 	local currentRoomIndex = currentLevel:GetCurrentRoomIndex()
 	local currentRoom = Game():GetRoom()
 	local gardenRoomIndex = -3
-	--Isaac.RenderText(currentRoomIndex, 50, 15, 255, 255, 255, 255)		
+	--Isaac.RenderText(garden.VISIT_NUMBER, 50, 15, 255, 255, 255, 255)		
 	if currentRoomIndex~= nil and currentRoomIndex == gardenRoomIndex then -- Player is in a Garden
 		if currentRoom:GetFrameCount() == 1 then --Player just walked into a Garden
 			--Force items to be exiled on 3rd visit
@@ -122,7 +124,7 @@ function garden:gardenRoomUpdate()
 				itemPedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_EXILED, keepPrice) -- this should reroll (might need to destry and respawn)			
 			end
 
-			if garden.VISIT_NUMBER == 0 --Player has never been in this Garden			
+			if garden.VISIT_NUMBER == 0 then --Player has never been in this Garden			
 				garden.ROOM_WILL_REROLL = true
 				local SERPENT_CAN_SPAWN = true			
 				local SERPENT_HAS_SPAWNED = false
@@ -143,7 +145,7 @@ function garden:gardenRoomUpdate()
 				end						
 			end
 
-			garden.VISIT_NUMBER++
+			garden.VISIT_NUMBER = garden.VISIT_NUMBER + 1
 			--Spawn a tree sprite in the middle of the room
 			--local treeSprite = Sprite() 
 			--treeSprite:Load("gfx/effects/treeSprite.png",true)
@@ -182,30 +184,50 @@ function garden:gardenRoomUpdate()
 		local roomCenter = currentRoom:GetCenterPos()
 		local positionalDifference = Vector(playerPosition.X-roomCenter.X, playerPosition.Y-roomCenter.Y)
 		if math.abs(positionalDifference.X) < 20 and math.abs(positionalDifference.Y) < 20 then
-			Isaac.RenderText("SERPENT SPAWNED!", 50, 25, 255, 255, 255, 255)
-			if(serpentCanSpawn == true and serpentHasSpawned == false) then
+			if garden.SERPENT_CAN_SPAWN and not garden.SERPENT_HAS_SPAWNED then
 				--change music here (Garden_Serpent.ogg)
 				local serpentSpawnPosition = Vector(roomCenter.X, roomCenter.Y+100)
 				local velocity = Vector(0,0)
 				local spawnOwner = Isaac.GetPlayer(0)				
-				Isaac.Spawn(EntityType.ENTITY_PIN, 1, 1, serpentSpawnPosition, velocity, spawnOwner)	
+				Isaac.Spawn(EntityType.ENTITY_PIN, 0, 0, serpentSpawnPosition, velocity, spawnOwner)	
 				garden.SERPENT_CAN_SPAWN = false
 				garden.SERPENT_HAS_SPAWNED = true
 			end				
 		end
 
+		if garden.SERPENT_HAS_SPAWNED then
+			local entities = Isaac.GetRoomEntities()
+			for i = 1, #entities do
+				local singleEntity = entities[i]
+				if singleEntity:IsBoss() then
+					if singleEntity:IsDead() then
+						garden.SERPENT_HAS_DIED = true
+					end
+				end
+			end
+		end
+
 		--If the player has beaten The Serpent
-		if currentRoom:isClear() and not garden.SERPENT_CAN_SPAWN then 
+		if garden.SERPENT_HAS_DIED and not garden.ITEM_REWARDED then
 			--play sfx here (meaty deaths 3.wav) --might not need this, pin ming play his own death sound
 			--play sfx here (holy!.wav)
 			--change music here (Garden_Holy.ogg)
-			local pickupPosition = currentRoom:FindFreePickupSpawnPosition()
+			local pickupPosition = currentRoom:GetCenterPos()
 			local velocity = Vector(0,0)
 			local spawnOwner = nil
 			local randomItem = 0
 			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)
+			garden.ITEM_REWARDED = true
 			--might need to open the doors, but the serpent fight might do that for us automatically though
 		end
+	end
+
+	if not garden.ROOM_WILL_REROLL then
+		Isaac.RenderText("Will not reroll", 15, 25, 255, 255, 255, 255)
+	end
+
+	if garden.ROOM_WILL_REROLL then
+		Isaac.RenderText("Will reroll", 15, 25, 255, 255, 255, 255)
 	end
 
 	--The player has left a Garden
