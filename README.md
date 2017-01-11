@@ -70,6 +70,7 @@ Art Style:
 ![](The Garden/resources/gfx/items/collectibles/collectibles_creation.png)
 ![](The Garden/resources/gfx/items/collectibles/collectibles_shame.png)
 ![](The Garden/resources/gfx/items/collectibles/collectibles_forbidden_fruit.png)
+
 ![](The Garden/resources/gfx/effects/tree_sprite.png) 
 
 **IGNORE BELOW THIS LINE**
