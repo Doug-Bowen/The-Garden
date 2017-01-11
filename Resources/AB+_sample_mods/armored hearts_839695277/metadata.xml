@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <name>Armored Hearts</name>
+    <directory>armored hearts</directory>
+    <id>839695277</id>
+    <description>Small heart mod I made, still a couple of issues but I feel it's ready for the community.
+
+HUD OFFSET MUST BE 0 FOR THIS MOD TO WORK!
+
+Armored Hearts are a new type of heart which, when picked up, gives a player protection over their current hearts.  These hearts are seperate from normal hearts and can potentially add another 12 hearts to your max health.  The amount of hearts you can carry is equal to the amount of hp you have, however.  Hearts have a 1/100 chance of dropping every time you enter a new room.
+
+Because of api limitations, a bunch of this stuff is probably inefficient and will be fixed later.
+
+Known Issues:
+Slow
+Player doesn't flash when invulnerable
+Hearts are only aligned on HUD offset 0
+Spawn and pickup sounds don't work</description>
+    <version>1.1</version>
+    <visibility>Public</visibility>
+    <tag id="Lua"/>
+    <tag id="Pickups"/>
+    <tag id="Graphics"/>
+</metadata>
