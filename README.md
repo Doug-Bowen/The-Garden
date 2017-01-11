@@ -73,9 +73,7 @@ Art Style:
 
 ![](The Garden/resources/gfx/effects/tree_sprite.png) 
 
-Music Samples:
-
-![](https://soundcloud.com/wertandrew2/binding-of-isaac-boss-fight-serpent)
+[Music Sample](https://soundcloud.com/wertandrew2/binding-of-isaac-boss-fight-serpent)
 
 **IGNORE BELOW THIS LINE**
 
