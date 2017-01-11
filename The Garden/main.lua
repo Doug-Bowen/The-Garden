@@ -1,6 +1,6 @@
 local garden = RegisterMod("TheGarden", 1) --'1' denotes API v1.0
 
-Isaac.DebugString(RNG:GetSeed()) --Should output the seed to the log
+--Isaac.DebugString(RNG:GetSeed()) --Should output the seed to the log
 
 garden.COLLECTIBLE_SHAME = Isaac.GetItemIdByName("Shame")
 garden.COLLECTIBLE_FORBIDDEN_FRUIT = Isaac.GetItemIdByName("Forbidden Fruit")
@@ -27,7 +27,7 @@ garden.HAS_MIRACLE_GROW = false
 garden.COSTUME_ID_SHAME = Isaac.GetCostumeIdByPath("gfx/characters/shame.anm2")
 garden.COSTUME_ID_FORBIDDEN_FRUIT = Isaac.GetCostumeIdByPath("gfx/characters/forbidden_fruit.anm2")
 garden.COSTUME_ID_DECEPTION = Isaac.GetCostumeIdByPath("gfx/characters/deception.anm2")
-arden.COSTUME_ID_GRANTED_DOMAIN = Isaac.GetCostumeIdByPath("gfx/characters/granted_domain.anm2")
+garden.COSTUME_ID_GRANTED_DOMAIN = Isaac.GetCostumeIdByPath("gfx/characters/granted_domain.anm2")
 garden.COSTUME_ID_THE_WILL_OF_MAN = Isaac.GetCostumeIdByPath("gfx/characters/the_will_of_man.anm2")
 garden.COSTUME_ID_REBIRTH = Isaac.GetCostumeIdByPath("gfx/characters/rebirth.anm2")
 garden.COSTUME_ID_EXILED = Isaac.GetCostumeIdByPath("gfx/characters/exiled.anm2")
@@ -52,7 +52,7 @@ garden.SERPENT_HAS_DIED = false
 garden.VISIT_NUMBER = 0
 garden.ROOM_WILL_REROLL = true
 garden.ITEM_REWARDED = false
-garden.PLAYER_COLOR
+garden.PLAYER_COLOR = nil
 
 function garden:shameEffect()
 	local player = Isaac.GetPlayer(0)
@@ -219,13 +219,6 @@ function garden:gardenRoomUpdate()
 			--play sfx here (meaty deaths 3.wav) --might not need this, pin ming play his own death sound
 			--play sfx here (holy!.wav)
 			--change music here (Garden_Holy.ogg)
-			
-			local durationInFrames = 0 --means forever
-			local priority = 1
-			local fadeOut = false
-			local share = false --spread coloring to others (not working)
-			Game():GetPlayer(0):SetColor(garden.PLAYER_COLOR, durationInFrames, priority, fadeOut, share)
-			
 			local pickupPosition = currentRoom:GetCenterPos()
 			local velocity = Vector(0,0)
 			local spawnOwner = nil
