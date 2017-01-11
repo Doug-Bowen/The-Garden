@@ -146,14 +146,13 @@ function garden:gardenRoomUpdate()
 			end
 
 			garden.VISIT_NUMBER = garden.VISIT_NUMBER + 1
-			--Spawn a tree sprite in the middle of the room
-			--local treeSprite = Sprite() 
-			--treeSprite:Load("gfx/effects/treeSprite.png",true)
-			--treeSprite:Play("Still",true)		
-			--local roomCenter = currentRoom:GetCenterPos()
-			--local topLeftClamp = roomCenter
-			--local bottomRightClamp = roomCenter
-			--treeSprite:Render(roomCenter, topLeftClamp, bottomRightClamp)
+			--Rander the Tree
+			local treeSprite = Sprite() 
+			treeSprite:Load("gfx/effects/tree_Sprite.png", true)			
+			local roomCenter = currentRoom:GetCenterPos()
+			local topLeftClamp = Vector(roomCenter.X-100,roomCenter.Y-100)
+			local bottomRightClamp = Vector(roomCenter.X+100,roomCenter.Y+100)			
+			treeSprite:Render(roomCenter, topLeftClamp, bottomRightClamp)
 
 			--Handle the music for the room
 			--play sfx here (Garden_Difficulty.wav)
