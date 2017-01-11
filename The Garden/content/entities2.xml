@@ -1,0 +1,5 @@
+<entities anm2root="gfx/" version="5">
+    <entity anm2path="tree_sprite.anm2" baseHP="10" boss="0" champion="0" collisionDamage="0" collisionMass="5" collisionRadius="10" friction="1" id="1" name="Tree" numGridCollisionPoints="40" shadowSize="16" stageHP="0" variant="0">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>  
+</entities>

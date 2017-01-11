@@ -2,7 +2,7 @@
 	<Info CreatedBy="Adrian" CreatedOn="03.05.2014 03:26:45" Version="7" Fps="30"/>
 	<Content>
 		<Spritesheets>
-			<Spritesheet Path="tears_forbidden_fruit.png" Id="0"/>
+			<Spritesheet Path="tree_sprite.png" Id="0"/>
 		</Spritesheets>
 		<Layers>
 			<Layer Name="Main" Id="0" SpritesheetId="0"/>
