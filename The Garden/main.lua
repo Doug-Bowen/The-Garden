@@ -67,9 +67,20 @@ function garden:shameEffect()
 end
 
 function garden:forbiddenFruitEffect()
-	
-	local knockBackAmount = math.random(1)
-	--EntityTear:KnockbackMultiplier = knockBackAmount
+	local player = Isaac.GetPlayer(0)
+	if player:HasCollectible(garden.COLLECTIBLE_FORBIDDEN_FRUIT) then		
+		if not garden.HAS_FORBIDDEN_FRUIT then			
+			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_FORBIDDEN_FRUIT)
+			garden.HAS_FORBIDDEN_FRUIT = true
+		end
+		local entities = Isaac.GetRoomEntities()
+		for i = 1, #entities do
+			local singleEntity = entities[i]
+			--local entityTear = get entity tear here
+			local knockBackAmount = math.random(1)
+			--singleEntity:entityTear:SetKnockbackMultiplier(knockBackAmount)
+		end		
+	end	
 end
 
 function garden:deceptionEffect()
