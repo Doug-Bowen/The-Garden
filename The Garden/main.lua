@@ -131,8 +131,8 @@ function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
 	local currentRoomIndex = currentLevel:GetCurrentRoomIndex()
 	local currentRoom = Game():GetRoom()
-	local gardenRoomIndex = -3
-	--Isaac.RenderText(garden.VISIT_NUMBER, 50, 15, 255, 255, 255, 255)		
+	local gardenRoomIndex = -3	
+	Isaac.RenderText(garden.VISIT_NUMBER, 100, 100, 255, 0, 0, 255)
 	if currentRoomIndex~= nil and currentRoomIndex == gardenRoomIndex then -- Player is in a Garden
 		if currentRoom:GetFrameCount() == 1 then --Player just walked into a Garden
 			--Force items to be exiled on 3rd visit
@@ -183,7 +183,7 @@ function garden:gardenRoomUpdate()
 					local singleEntity = entities[i]
 		 			if singleEntity.SubType == PickupVariant.PICKUP_COLLECTIBLE then
 						local itemPedestal = singleEntity
-						local randomItem = 0
+						local randomItem = 0 --This techincally should then check if the randomItem chosen is unlocked and if not, randomize it again
 						local keepPrice = true
 						itemPedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, keepPrice) -- this should reroll (might need to destry and respawn)
 						if garden.VISIT_NUMBER == 2 then
@@ -243,11 +243,11 @@ function garden:gardenRoomUpdate()
 	end
 
 	if not garden.ROOM_WILL_REROLL then
-		Isaac.RenderText("Will not reroll", 15, 25, 255, 255, 255, 255)
+		Isaac.RenderText("Garden will not reroll", 100, 100, 255, 0, 0, 255)
 	end
 
 	if garden.ROOM_WILL_REROLL then
-		Isaac.RenderText("Will reroll", 15, 25, 255, 255, 255, 255)
+		Isaac.RenderText("Garden will reroll", 100, 100, 255, 0, 0, 255)
 	end
 
 	--The player has left a Garden
