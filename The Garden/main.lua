@@ -203,9 +203,11 @@ function garden:gardenRoomUpdate()
 			if garden.SERPENT_CAN_SPAWN and not garden.SERPENT_HAS_SPAWNED then
 				--change music here (Garden_Serpent.ogg)
 				local serpentSpawnPosition = Vector(roomCenter.X, roomCenter.Y+100)
+				local entityVariant = 0  --should manipulate these values to spawn a different boss
+				local entitySubtype = 0  --should manipulate these values to spawn a different bosss
 				local velocity = Vector(0,0)
 				local spawnOwner = Isaac.GetPlayer(0)				
-				Isaac.Spawn(EntityType.ENTITY_PIN, 0, 0, serpentSpawnPosition, velocity, spawnOwner)	
+				Isaac.Spawn(EntityType.ENTITY_PIN, entityVariant, entitySubtype, serpentSpawnPosition, velocity, spawnOwner)	
 				garden.SERPENT_CAN_SPAWN = false
 				garden.SERPENT_HAS_SPAWNED = true
 				garden.closeCurrentRoomDoors()
