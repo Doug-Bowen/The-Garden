@@ -179,7 +179,7 @@ function garden:gardenRoomUpdate()
 				garden.SERPENT_CAN_SPAWN = false
 				garden.SERPENT_HAS_SPAWNED = true
 				garden.closeCurrentRoomDoors()
-				garden.lockCurrentRoomDoors()
+				garden.barCurrentRoomDoors()
 			end				
 		end
 
@@ -267,12 +267,12 @@ function garden:closeCurrentRoomDoors()
 	end
 end
 
-function garden:lockCurrentRoomDoors()
+function garden:barCurrentRoomDoors()
 	local currentRoom = Game():GetRoom()
 	for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
 	local door = currentRoom:GetDoor(i)
 		if door ~= nil then
-	    	door:SetLocked(true) 
+	    	door:Bar() 
 		end
 	end
 end
