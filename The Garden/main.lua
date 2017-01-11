@@ -34,17 +34,6 @@ garden.COSTUME_ID_EXILED = Isaac.GetCostumeIdByPath("gfx/characters/exiled.anm2"
 garden.COSTUME_ID_THE_FIRST_DAY = Isaac.GetCostumeIdByPath("gfx/characters/the_first_day.anm2")
 garden.COSTUME_ID_MIRACLE_GROW = Isaac.GetCostumeIdByPath("gfx/characters/miracle_grow.anm2")
 
-function garden:getShameColoring()
-	local redTint = 1.0
-	local greenTint = 0.8
-	local blueTint = 0.8
-	local alphaOpacity = 1.0
-	local redOffset = 0
-	local greenOffset = 0
-	local blueOffset = 0
-	return Color(redTint, greenTint, blueTint, alphaOpacity, redOffset, greenOffset, blueOffset)
-end
-
 garden.HEARTS_CAN_SPAWN = true
 garden.SERPENT_CAN_SPAWN = true
 garden.SERPENT_HAS_SPAWNED = false
@@ -52,7 +41,6 @@ garden.SERPENT_HAS_DIED = false
 garden.VISIT_NUMBER = 0
 garden.ROOM_WILL_REROLL = true
 garden.ITEM_REWARDED = false
-garden.PLAYER_COLOR = nil
 
 function garden:shameEffect()
 	local player = Isaac.GetPlayer(0)
@@ -188,17 +176,9 @@ function garden:gardenRoomUpdate()
 				local velocity = Vector(0,0)
 				local spawnOwner = Isaac.GetPlayer(0)				
 				Isaac.Spawn(EntityType.ENTITY_PIN, 0, 0, serpentSpawnPosition, velocity, spawnOwner)	
-				
-				garden.PLAYER_COLOR = Game():GetPlayer(0):GetColor()
-				local shameColor = garden.getShameColoring()
-				local durationInFrames = 0 --means forever
-				local priority = 1
-				local fadeOut = false
-				local share = false --spread coloring to others (not working)
-				
-				Game():GetPlayer(0):SetColor(shameColor, durationInFrames, priority, fadeOut, share)
 				garden.SERPENT_CAN_SPAWN = false
 				garden.SERPENT_HAS_SPAWNED = true
+				garden.closeCurrentRoomDoors()
 			end				
 		end
 
@@ -209,6 +189,7 @@ function garden:gardenRoomUpdate()
 				if singleEntity:IsBoss() then
 					if singleEntity:IsDead() then
 						garden.SERPENT_HAS_DIED = true
+						garden.openCurrentRoomDoors()
 					end
 				end
 			end
@@ -225,7 +206,6 @@ function garden:gardenRoomUpdate()
 			local randomItem = 0
 			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)
 			garden.ITEM_REWARDED = true
-			--might need to open the doors, but the serpent fight might do that for us automatically though
 		end
 	end
 
@@ -264,6 +244,26 @@ function garden:gardenRoomUpdate()
 			end
 		end
 	end	
+end
+
+function garden:openCurrentRoomDoors()
+	local currentRoom = Game():GetRoom()
+	for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
+	local door = currentRoom:GetDoor(i)
+		if door ~= nil then
+	    	door:Open() 
+		end
+	end
+end
+
+function garden:closeCurrentRoomDoors()
+	local currentRoom = Game():GetRoom()
+	for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
+	local door = currentRoom:GetDoor(i)
+		if door ~= nil then
+	    	door:Close() 
+		end
+	end
 end
 
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.shameEffect)
