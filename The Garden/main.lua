@@ -39,7 +39,6 @@ garden.SERPENT_CAN_SPAWN = true
 garden.SERPENT_HAS_SPAWNED = false
 garden.SERPENT_HAS_DIED = false
 garden.VISIT_NUMBER = 0
-garden.ROOM_WILL_REROLL = true
 garden.ITEM_REWARDED = false
 
 function garden:shameEffect()
@@ -77,18 +76,18 @@ function garden:forbiddenFruitEffect()
 		for i = 1, #entities do
 			local singleEntity = entities[i]
 			if singleEntity.EntityType == EntityType.ENTITY_TEAR then			
-				local knockBackAmount = math.random(1)				
+				local knockBackAmount = math.random(5)				
 				singleEntity:SetKnockbackMultiplier(knockBackAmount) --Grant random amount of knockback
 
 				local appleSprite = Sprite() --Render a sprite over the tear (this may be a hack, not sure)
 				local randomAppleNum = math.random(4)				 
 				if randomAppleNum == 1 then 
 					appleSprite:Load("gfx/effects/apple_one.png", true)			
-				elseif randomAppleNum == 2
+				elseif randomAppleNum == 2 then
 					appleSprite:Load("gfx/effects/apple_two.png", true)			
-				elseif randomAppleNum == 2
+				elseif randomAppleNum == 3 then
 					appleSprite:Load("gfx/effects/apple_three.png", true)			
-				elseif randomAppleNum == 2
+				elseif randomAppleNum == 4 then
 					appleSprite:Load("gfx/effects/apple_four.png", true)							
 				end 
 				local tearPosition = singleEntity.Position 
@@ -135,14 +134,7 @@ function garden:gardenRoomUpdate()
 	--Isaac.RenderText(garden.VISIT_NUMBER, 50, 15, 255, 255, 255, 255)		
 	if currentRoomIndex~= nil and currentRoomIndex == gardenRoomIndex then -- Player is in a Garden
 		if currentRoom:GetFrameCount() == 1 then --Player just walked into a Garden
-			--Force items to be exiled on 3rd visit
-			if not garden.ROOM_WILL_REROLL then
-				local keepPrice = true
-				itemPedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_EXILED, keepPrice) -- this should reroll (might need to destry and respawn)			
-			end
-
 			if garden.VISIT_NUMBER == 0 then --Player has never been in this Garden			
-				garden.ROOM_WILL_REROLL = true
 				local SERPENT_CAN_SPAWN = true			
 				local SERPENT_HAS_SPAWNED = false
 
@@ -164,34 +156,17 @@ function garden:gardenRoomUpdate()
 
 			garden.VISIT_NUMBER = garden.VISIT_NUMBER + 1
 			--Rander the Tree
-			local treeSprite = Sprite() 
-			treeSprite:Load("gfx/effects/tree_Sprite.png", true)			
-			local roomCenter = currentRoom:GetCenterPos()
-			local topLeftClamp = Vector(roomCenter.X-100,roomCenter.Y-100)
-			local bottomRightClamp = Vector(roomCenter.X+100,roomCenter.Y+100)			
-			treeSprite:Render(roomCenter, topLeftClamp, bottomRightClamp)
+			--local treeSprite = Sprite() 
+			--treeSprite:Load("gfx/effects/tree_Sprite.png", true)			
+			--local roomCenter = currentRoom:GetCenterPos()
+			--local topLeftClamp = Vector(roomCenter.X-100,roomCenter.Y-100)
+			--local bottomRightClamp = Vector(roomCenter.X+100,roomCenter.Y+100)			
+			--treeSprite:Render(roomCenter, topLeftClamp, bottomRightClamp)
 
 			--Handle the music for the room
 			--play sfx here (Garden_Difficulty.wav)
 			--play music here (Garden_Drone.ogg)
 			--play quieter music here (Garden_Ambience.ogg)  
-
-			--Reroll item pedestals in the room right when you walk in (visit 1 and 2)
-			if garden.ROOM_WILL_REROLL and garden.VISIT_NUMBER <=2 then
-				local entities = Isaac.GetRoomEntities() 
-				for i = 1, #entities do
-					local singleEntity = entities[i]
-		 			if singleEntity.SubType == PickupVariant.PICKUP_COLLECTIBLE then
-						local itemPedestal = singleEntity
-						local randomItem = 0
-						local keepPrice = true
-						itemPedestal:Morph(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, keepPrice) -- this should reroll (might need to destry and respawn)
-						if garden.VISIT_NUMBER == 2 then
-							garden.ROOM_WILL_REROLL = false 
-						end					
-					end
-				end
-			end				
 		end		
 
 		--Check if player is activating The Serpent fight
@@ -242,32 +217,23 @@ function garden:gardenRoomUpdate()
 		end
 	end
 
-	if not garden.ROOM_WILL_REROLL then
-		Isaac.RenderText("Will not reroll", 15, 25, 255, 255, 255, 255)
-	end
-
-	if garden.ROOM_WILL_REROLL then
-		Isaac.RenderText("Will reroll", 15, 25, 255, 255, 255, 255)
-	end
-
 	--The player has left a Garden
 	if currentRoomIndex ~= gardenRoomIndex and currentRoom:GetFrameCount() == 1 then
 		local previousRoomIndex = currentLevel:GetPreviousRoomIndex()
 		if previousRoomIndex~= nil and previousRoomIndex == gardenRoomIndex then 
-			if garden.ROOM_WILL_REROLL == false then --This flag should only be false after 2 visits to a Garden
-				local previousRoom = currentLevel:GetRoomByIdx(previousRoomIndex) --Lock previous room doors
-				for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
-					local door = previousRoom:GetDoor(i)
-					if door ~= nil and door:IsOpen() then
-				    	door:Bar() 
-					end
-				end				
-				--Reset flags for future Garden Rooms
-				garden.SERPENT_CAN_SPAWN = true
-				garden.SERPENT_HAS_SPAWNED = false
-				garden.HEARTS_CAN_SPAWN = true 
-				garden.VISIT_NUMBER = 0 
-			end
+			local previousRoom = currentLevel:GetRoomByIdx(previousRoomIndex) --Lock previous room doors
+			for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
+				local door = previousRoom:GetDoor(i)
+				if door ~= nil and door:IsOpen() then
+			    	--if door target == this room?
+			    	door:Bar()
+			    	garden.VISIT_NUMBER = 0 
+				end
+			end				
+			--Reset flags for future Garden Rooms
+			garden.SERPENT_CAN_SPAWN = true
+			garden.SERPENT_HAS_SPAWNED = false
+			garden.HEARTS_CAN_SPAWN = true  
 		end
 	end	
 end
