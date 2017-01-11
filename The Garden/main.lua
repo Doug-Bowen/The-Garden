@@ -223,20 +223,13 @@ function garden:gardenRoomUpdate()
 		local previousRoomIndex = currentLevel:GetPreviousRoomIndex()
 		if previousRoomIndex~= nil and previousRoomIndex == gardenRoomIndex then 
 			if garden.ROOM_WILL_REROLL == false then --This flag should only be false after 2 visits to a Garden
-				local previousRoom = currentLevel:GetRoomByIdx(previousRoomIndex)
-				local doors = previousRoom:GetDoor() --Might need a for() loop to close all doors -- might need GridEntityType.GRID_DOOR
-				if not doors:IsOpen() then
-					local forceClose = true
-					doors:Close(forceClose)
-					doors:CloseAnimation()					
+				local previousRoom = currentLevel:GetRoomByIdx(previousRoomIndex) --Lock previous room doors
+				for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
+					local door = previousRoom:GetDoor(i)
+					if door ~= nil and door:IsOpen() then
+				    	door:Bar() 
+					end
 				end				
-				if not doors:IsLocked() then
-					local locked = true
-					doors:SetLocked(locked)
-					doors:LockedAnimation()
-					doors:Bar() --Not sure what this does
-				end				
-				
 				--Reset flags for future Garden Rooms
 				garden.SERPENT_CAN_SPAWN = true
 				garden.SERPENT_HAS_SPAWNED = false
