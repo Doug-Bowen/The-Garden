@@ -65,8 +65,12 @@ Sprites needed:
 * Broken Heart (Pickup)
  * Broken Heart (UI)
 
+Art Style:
 
-
+![]("\The Garden\resources\gfx\items\collectibles\collectibles_creation.png")
+![]("\The Garden\resources\gfx\items\collectibles\collectibles_shame.png")
+![]("\The Garden\resources\gfx\items\collectibles\collectibles_forbidden_fruit.png")
+![]("\The Garden\resources\gfx\effects\tree_sprite.png") 
 _____________________
 
 **IGNORE BELOW THIS LINE**
