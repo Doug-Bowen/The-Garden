@@ -71,14 +71,31 @@ function garden:forbiddenFruitEffect()
 	if player:HasCollectible(garden.COLLECTIBLE_FORBIDDEN_FRUIT) then		
 		if not garden.HAS_FORBIDDEN_FRUIT then			
 			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_FORBIDDEN_FRUIT)
-			garden.HAS_FORBIDDEN_FRUIT = true
+			garden.HAS_FORBIDDEN_FRUIT = true  
 		end
 		local entities = Isaac.GetRoomEntities()
 		for i = 1, #entities do
 			local singleEntity = entities[i]
-			--local entityTear = get entity tear here
-			local knockBackAmount = math.random(1)
-			--singleEntity:entityTear:SetKnockbackMultiplier(knockBackAmount)
+			if singleEntity.EntityType == EntityType.ENTITY_TEAR then			
+				local knockBackAmount = math.random(1)				
+				singleEntity:SetKnockbackMultiplier(knockBackAmount) --Grant random amount of knockback
+
+				local appleSprite = Sprite() --Render a sprite over the tear (this may be a hack, not sure)
+				local randomAppleNum = math.random(4)				 
+				if randomAppleNum == 1 then 
+					appleSprite:Load("gfx/effects/apple_one.png", true)			
+				elseif randomAppleNum == 2
+					appleSprite:Load("gfx/effects/apple_two.png", true)			
+				elseif randomAppleNum == 2
+					appleSprite:Load("gfx/effects/apple_three.png", true)			
+				elseif randomAppleNum == 2
+					appleSprite:Load("gfx/effects/apple_four.png", true)							
+				end 
+				local tearPosition = singleEntity.Position 
+				local topLeftClamp = Vector(tearPosition.X-10,tearPosition.Y-10)      --I'm not currently sure what clamps do (might want to manipulate these values)
+				local bottomRightClamp = Vector(tearPosition.X+10,tearPosition.Y+10)  --I'm not currently sure what clamps do (might want to manipulate these values)
+				appleSprite:Render(tearPosition, topLeftClamp, bottomRightClamp)				
+			end
 		end		
 	end	
 end
