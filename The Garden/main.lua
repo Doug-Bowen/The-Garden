@@ -67,6 +67,8 @@ function garden:shameEffect()
 end
 
 function garden:forbiddenFruitEffect()
+	local knockBackAmount = math.random(1)
+	--EntityTear:KnockbackMultiplier = knockBackAmount
 end
 
 function garden:deceptionEffect()
