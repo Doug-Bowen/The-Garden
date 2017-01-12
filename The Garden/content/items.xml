@@ -1,6 +1,6 @@
 <items gfxroot="gfx/items/" version="1">
 	<passive description="Awareness of oneself" gfx="Collectibles_Shame.png" name="Shame" />
-	<passive description="Don't believe his lies!" gfx="Collectibles_ForbiddenFruit.png" name="Forbidden Fruit" />
+	<passive description="Don't believe his lies!" gfx="Collectibles_Forbidden_Fruit.png" name="Forbidden Fruit" />
 	<passive description="The Serpent lies..." gfx="Collectibles_Deception.png" name="Deception" />
 	<passive description="In the beginning..." gfx="Collectibles_Creation.png" name="Creation" />
 	<passive description="All authority is yours" gfx="Collectibles_GrantedDomain.png" name="Granted Domain" />

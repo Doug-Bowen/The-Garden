@@ -1,3 +1,4 @@
 <costumes anm2root="gfx/characters/">
   <costume anm2path="shame.anm2" priority="99" type="none" />
+  <costume anm2path="forbidden_fruit.anm2" priority="99" type="none" />
 </costumes>
