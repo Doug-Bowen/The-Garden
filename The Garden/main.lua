@@ -34,7 +34,7 @@ garden.COSTUME_ID_EXILED = Isaac.GetCostumeIdByPath("gfx/characters/exiled.anm2"
 garden.COSTUME_ID_THE_FIRST_DAY = Isaac.GetCostumeIdByPath("gfx/characters/the_first_day.anm2")
 garden.COSTUME_ID_MIRACLE_GROW = Isaac.GetCostumeIdByPath("gfx/characters/miracle_grow.anm2")
 
-garden.HEARTS_CAN_SPAWN = true
+garden.GARDEN_HEARTS_CAN_SPAWN = true
 garden.SERPENT_CAN_SPAWN = true
 garden.SERPENT_HAS_SPAWNED = false
 garden.SERPENT_HAS_DIED = false
@@ -79,7 +79,7 @@ function garden:forbiddenFruitEffect()
 		for i = 1, #entities do
 			local singleEntity = entities[i]
 			if singleEntity.EntityType == EntityType.ENTITY_TEAR then			
-				local knockBackAmount = math.random(5)				
+				local knockBackAmount = math.random(15)				
 				singleEntity:SetKnockbackMultiplier(knockBackAmount) --Grant random amount of knockback
 
 				local appleSprite = Sprite() --Render a sprite over the tear (this may be a hack, not sure)
@@ -93,6 +93,7 @@ function garden:forbiddenFruitEffect()
 				elseif randomAppleNum == 4 then
 					appleSprite:Load("gfx/effects/apple_four.png", true)							
 				end 
+				
 				--local tearPosition = singleEntity.Position 
 				--local topLeftClamp = Vector(tearPosition.X-10,tearPosition.Y-10)      --I'm not currently sure what clamps do (might want to manipulate these values)
 				--local bottomRightClamp = Vector(tearPosition.X+10,tearPosition.Y+10)  --I'm not currently sure what clamps do (might want to manipulate these values)
@@ -143,10 +144,10 @@ function garden:gardenRoomUpdate()
 				local SERPENT_HAS_SPAWNED = false
 
 				--Handle Eternal Heart Spawning
-				if garden.HEARTS_CAN_SPAWN then
+				if garden.GARDEN_HEARTS_CAN_SPAWN then
 					local randomNum = math.random(4)
-					garden.HEARTS_CAN_SPAWN = false
-					if randomNum == 1 then --Spawn Eternal Hearts (25% chance)
+					garden.GARDEN_HEARTS_CAN_SPAWN = false
+					if randomNum == 1 then  --Spawn Eternal Hearts (25% chance)
 						local roomCenter = currentRoom:GetCenterPos()
 						local leftHeartPosition = Vector(roomCenter.X-100, roomCenter.Y)
 						local rightHeartPosition = Vector(roomCenter.X+100, roomCenter.Y)
@@ -226,19 +227,18 @@ function garden:gardenRoomUpdate()
 	if currentRoomIndex ~= gardenRoomIndex and currentRoom:GetFrameCount() == 1 then
 		local previousRoomIndex = currentLevel:GetPreviousRoomIndex()
 		if previousRoomIndex~= nil and previousRoomIndex == gardenRoomIndex then 
-			local previousRoom = currentLevel:GetRoomByIdx(previousRoomIndex) --Lock previous room doors
-			for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
-				local door = previousRoom:GetDoor(i)
-				if door ~= nil and door:IsOpen() then
-			    	--if door target == this room?
-			    	door:Bar()
+			local currentRoom = Game():GetRoom()
+			for i = 1, DoorSlot.NUM_DOOR_SLOTS do
+			local door = currentRoom:GetDoor(i) 
+				if door ~= nil and door:IsOpen() and door.TargetRoomIndex == -3 then --This is the door that leads to the Garden
+			    	door:Bar()	 
 			    	garden.VISIT_NUMBER = 0 
 				end
-			end				
+			end
 			--Reset flags for future Garden Rooms
 			garden.SERPENT_CAN_SPAWN = true
 			garden.SERPENT_HAS_SPAWNED = false
-			garden.HEARTS_CAN_SPAWN = true  
+			garden.GARDEN_HEARTS_CAN_SPAWN = true  
 		end
 	end	
 end
@@ -268,10 +268,9 @@ function garden:mortalityCurseEffect()
 	end
 end
 
-
 function garden:openCurrentRoomDoors()
 	local currentRoom = Game():GetRoom()
-	for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
+	for i = 1, DoorSlot.NUM_DOOR_SLOTS do
 	local door = currentRoom:GetDoor(i)
 		if door ~= nil then
 	    	door:Open() 
@@ -281,7 +280,7 @@ end
 
 function garden:closeCurrentRoomDoors()
 	local currentRoom = Game():GetRoom()
-	for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
+	for i = 1, DoorSlot.NUM_DOOR_SLOTS do
 	local door = currentRoom:GetDoor(i)
 		if door ~= nil then
 	    	door:Close() 
@@ -291,7 +290,7 @@ end
 
 function garden:barCurrentRoomDoors()
 	local currentRoom = Game():GetRoom()
-	for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
+	for i = 1, DoorSlot.NUM_DOOR_SLOTS do
 	local door = currentRoom:GetDoor(i)
 		if door ~= nil then
 	    	door:Bar() 
