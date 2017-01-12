@@ -4,7 +4,7 @@ Adds:
 * The Garden (New Room) :white_check_mark:
   * The Garden Pool (New Item Pool) :white_check_mark:
    * Shame (Item - Garden Room Pool) :white_check_mark:
-   * Forbidden Fruit (Item - Garden Room Pool) :clock3:
+   * Forbidden Fruit (Item - Garden Room Pool) :white_check_mark:
    * Deception (Item - Garden Room Pool) :clock3:
    * Creation (Item - Garden Room Pool) :clock3:
    * Granted Domain (Item - Garden Room Pool) :clock3:
@@ -20,19 +20,20 @@ Adds:
 
 **The Garden Room:** A room that randomly replaces a library (40% chance)
 
-Look and feel: The Garden has ivy key locks on the outside door. The music in this room is mainly crickets, jungle sounds, quietness, no music, just SFX.
-Effect: If entered, the floor becomes much harder. Specifically, if a player is playing normal, the floor becomes "hard" difficulty. If the player is playing hard, the floor gains the champion belt effect.
+Look and feel: ~~The Garden has ivy key locks on the outside door~~. On entry, the music in this room is a drone with jungle sounds.
+~~Effect: If entered, the floor becomes much harder. Specifically, if a player is playing normal, the floor becomes "hard" difficulty. If the player is playing hard, the floor gains the champion belt effect.~~ 
 
 Specialty: 
 * Has its own item pool
-* Item pedestals in this room will reroll their items 1 time just by entering and exiting. 
- * The third time you enter the room, all items will become Exiled and will not change from that item. 
- * Exiled cannot be rerolled. 
-* Eternal hearts and broken hearts have a high chance to spawn in this room. (50%).
+~~* Item pedestals in this room will reroll their items 1 time just by entering and exiting. ~~
+~~ * The third time you enter the room, all items will become Exiled and will not change from that item. ~~
+~~ * Exiled cannot be rerolled. ~~
+* Eternal hearts and broken hearts have a chance to spawn in this room. (25%).
 * Discovering the garden unlocks the Genesis challenge.
-* This room's item, if picked up, will trigger a fight with The Serpent. (Consider this not being the item, but rather a tree with the forbidden fruit on it)
- * The Serpent is planned to be a reskin of Pin that shoots apples (knockback). :clock3:
+* Touching the tree in the center of the room will trigger a fight with The Serpent and give the player the Curse of Mortality
+ * The Serpent is a reskin of Pin (not a replacement) that shoots apples (knockback). :clock3:
  * The music played before, during, and after the Serpent fight should be different and follow the theme. :white_check_mark:
+ * Curse of Mortality = Hearts no longer spawn for the remainder of the floor. :clock3:
 
 |Item Name|Description|Effect|Item Sprite|Character Costume|
 |---|---|---|---|---|
@@ -71,7 +72,7 @@ Art Style:
 ![](The Garden/resources/gfx/items/collectibles/collectibles_shame.png)
 ![](The Garden/resources/gfx/items/collectibles/collectibles_forbidden_fruit.png)
 
-![](The Garden/resources/gfx/effects/tree_sprite.png) 
+![](The Garden/resources/gfx/effects/treeIdle.png) 
 
 [Music Sample](https://soundcloud.com/wertandrew2/binding-of-isaac-boss-fight-serpent)
 
