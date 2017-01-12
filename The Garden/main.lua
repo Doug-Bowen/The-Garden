@@ -93,10 +93,10 @@ function garden:forbiddenFruitEffect()
 				elseif randomAppleNum == 4 then
 					appleSprite:Load("gfx/effects/apple_four.png", true)							
 				end 
-				local tearPosition = singleEntity.Position 
-				local topLeftClamp = Vector(tearPosition.X-10,tearPosition.Y-10)      --I'm not currently sure what clamps do (might want to manipulate these values)
-				local bottomRightClamp = Vector(tearPosition.X+10,tearPosition.Y+10)  --I'm not currently sure what clamps do (might want to manipulate these values)
-				appleSprite:Render(tearPosition, topLeftClamp, bottomRightClamp)				
+				--local tearPosition = singleEntity.Position 
+				--local topLeftClamp = Vector(tearPosition.X-10,tearPosition.Y-10)      --I'm not currently sure what clamps do (might want to manipulate these values)
+				--local bottomRightClamp = Vector(tearPosition.X+10,tearPosition.Y+10)  --I'm not currently sure what clamps do (might want to manipulate these values)
+				--appleSprite:Render(tearPosition, topLeftClamp, bottomRightClamp)				
 			end
 		end		
 	end	
@@ -161,7 +161,7 @@ function garden:gardenRoomUpdate()
 			garden.VISIT_NUMBER = garden.VISIT_NUMBER + 1
 			--Rander the Tree
 			--local treeSprite = Sprite() 
-			--treeSprite:Load("gfx/effects/tree_Sprite.png", true)			
+			--treeSprite:Load("gfx/effects/treeIdle.png", true)			
 			--local roomCenter = currentRoom:GetCenterPos()
 			--local topLeftClamp = Vector(roomCenter.X-100,roomCenter.Y-100)
 			--local bottomRightClamp = Vector(roomCenter.X+100,roomCenter.Y+100)			
