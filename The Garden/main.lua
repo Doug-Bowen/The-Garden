@@ -41,6 +41,9 @@ garden.SERPENT_HAS_DIED = false
 garden.VISIT_NUMBER = 0
 garden.ITEM_REWARDED = false
 
+garden.CURSE_MORTALITY = Isaac.GetCurseIdByName("Mortality") 
+garden.HAS_MORTALITY_CURSE = false
+
 function garden:shameEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_SHAME) then		
@@ -133,6 +136,7 @@ function garden:gardenRoomUpdate()
 	local gardenRoomIndex = -3	
 	Isaac.RenderText(garden.VISIT_NUMBER, 100, 100, 255, 0, 0, 255)
 	if currentRoomIndex~= nil and currentRoomIndex == gardenRoomIndex then -- Player is in a Garden
+		garden.openCurrentRoomDoors() --This ensures teleportation into this room doesnt lock you in
 		if currentRoom:GetFrameCount() == 1 then --Player just walked into a Garden
 			if garden.VISIT_NUMBER == 0 then --Player has never been in this Garden			
 				local SERPENT_CAN_SPAWN = true			
@@ -184,12 +188,12 @@ function garden:gardenRoomUpdate()
 				local spawnOwner = Isaac.GetPlayer(0)				
 				Isaac.Spawn(EntityType.ENTITY_PIN, entityVariant, entitySubtype, serpentSpawnPosition, velocity, spawnOwner)	
 				garden.SERPENT_CAN_SPAWN = false
-				garden.SERPENT_HAS_SPAWNED = true
-				garden.closeCurrentRoomDoors()
-				garden.barCurrentRoomDoors()
+				garden.SERPENT_HAS_SPAWNED = true				
+				garden.barCurrentRoomDoors()				
 			end				
 		end
 
+		--Check if player has killed The Serpent
 		if garden.SERPENT_HAS_SPAWNED then
 			local entities = Isaac.GetRoomEntities()
 			for i = 1, #entities do
@@ -198,6 +202,7 @@ function garden:gardenRoomUpdate()
 					if singleEntity:IsDead() then
 						garden.SERPENT_HAS_DIED = true
 						garden.openCurrentRoomDoors()
+						garden.giveMortalityCurse()
 					end
 				end
 			end
@@ -237,6 +242,32 @@ function garden:gardenRoomUpdate()
 		end
 	end	
 end
+
+function garden:giveMortalityCurse()
+	local currentLevel = Game():GetLevel()	
+	local showCurseName = true
+	currentLevel:AddCurse(garden.CURSE_MORTALITY, showCurseName)
+	garden.HAS_MORTALITY_CURSE = true
+end
+
+function garden:removeMortalityCurse()
+	local currentLevel = Game():GetLevel()		
+	currentLevel:RemoveCurse(garden.CURSE_MORTALITY)
+	garden.HAS_MORTALITY_CURSE = false
+end
+
+function garden:mortalityCurseEffect()
+	if garden.HAS_MORTALITY_CURSE then
+		local entities = Isaac.GetRoomEntities()
+		for i = 1, #entities do
+			local singleEntity = entities[i]
+			if singleEntity.EntityType == EntityType.ENTITY_PICKUP and singleEntity.PickupVariant == PickupVariant.PICKUP_HEART then				
+				singleEntity:Remove()					
+			end
+		end
+	end
+end
+
 
 function garden:openCurrentRoomDoors()
 	local currentRoom = Game():GetRoom()
@@ -278,4 +309,6 @@ garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.rebirthEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.exiledEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theFirstDayEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.miracleGrowEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoomUpdate)
+garden:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, garden.removeMortalityCurse)
