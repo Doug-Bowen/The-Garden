@@ -221,11 +221,12 @@ function garden:gardenRoomUpdate()
 					end
 				end
 			end
-		end
+		end 
 
 		--If the player has beaten The Serpent
 		if garden.SERPENT_HAS_DIED and not garden.ITEM_REWARDED then
-			--play sfx here (meaty deaths 3.wav) --might not need this, pin ming play his own death sound
+			--currentRoom:PlayMusic() doesnt seem to do anything
+			--play sfx here (meaty deaths 3.wav) --might not need this, pin might play his own death sound
 			--play sfx here (holy!.wav)
 			--change music here (Garden_Holy.ogg)
 			local pickupPosition = currentRoom:GetCenterPos()
