@@ -1,6 +1,7 @@
 local garden = RegisterMod("TheGarden", 1) --'1' denotes API v1.0
 
---Isaac.DebugString(RNG:GetSeed()) --Should output the seed to the log, just crashes though
+--Debug Flag
+garden.DEBUG_MODE = true
 
 --Items
 garden.COLLECTIBLE_SHAME = Isaac.GetItemIdByName("Shame")
@@ -51,6 +52,26 @@ garden.HAS_MORTALITY_CURSE = false
 
 --Sprites
 garden.treeSprite = Isaac.GetEntityTypeByName("The Tree")
+
+function garden:debugMode()
+	if garden.DEBUG_MODE then
+		Isaac.RenderText("Debud Mode", 15, 50, 255, 0, 255, 0)		
+		--Isaac.DebugString(RNG:GetSeed()) --Should output the seed to the log, just crashes though
+		if Game():GetFrameCount() == 1 then
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_SHAME, Vector(320,300), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_FORBIDDEN_FRUIT, Vector(320,300), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_DECEPTION, Vector(320,300), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_GRANTED_DOMAIN, Vector(320,300), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_THE_WILL_OF_MAN, Vector(320,300), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_THE_FALL_OF_MAN, Vector(320,300), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_REBIRTH, Vector(320,300), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_EXILED, Vector(320,300), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_THE_FIRST_DAY, Vector(320,300), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_MIRACLE_GROW, Vector(320,300), Vector(0,0), nil)
+		end		
+	end
+end
+
 
 function garden:shameEffect()
 	local player = Isaac.GetPlayer(0)
@@ -313,6 +334,7 @@ function garden:barCurrentRoomDoors()
 	end
 end
 
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.debugMode)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.shameEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.forbiddenFruitEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.deceptionEffect)
