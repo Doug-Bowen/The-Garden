@@ -253,7 +253,7 @@ function garden:gardenRoomUpdate()
 			local pickupPosition = currentRoom:GetCenterPos()
 			local velocity = Vector(0,0)
 			local spawnOwner = nil
-			local randomItem = 0
+			local randomItem = 0 -- technically we should use Game():GetItemPool() to return an item pool, however this does not work yet.
 			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)
 			garden.ITEM_REWARDED = true
 		end
