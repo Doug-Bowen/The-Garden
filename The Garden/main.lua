@@ -2,6 +2,7 @@ local garden = RegisterMod("TheGarden", 1) --'1' denotes API v1.0
 
 --Isaac.DebugString(RNG:GetSeed()) --Should output the seed to the log, just crashes though
 
+--Items
 garden.COLLECTIBLE_SHAME = Isaac.GetItemIdByName("Shame")
 garden.COLLECTIBLE_FORBIDDEN_FRUIT = Isaac.GetItemIdByName("Forbidden Fruit")
 garden.COLLECTIBLE_DECEPTION = Isaac.GetItemIdByName("Deception")
@@ -13,6 +14,7 @@ garden.COLLECTIBLE_EXILED = Isaac.GetItemIdByName("Exiled")
 garden.COLLECTIBLE_THE_FIRST_DAY = Isaac.GetItemIdByName("The First Day")
 garden.COLLECTIBLE_MIRACLE_GROW = Isaac.GetItemIdByName("MiracleGrow")
 
+--Item Flags
 garden.HAS_FORBIDDEN_FRUIT = false
 garden.HAS_SHAME = false
 garden.HAS_DECEPTION = false
@@ -24,6 +26,7 @@ garden.HAS_EXILED = false
 garden.HAS_THE_FIRST_DAY = false
 garden.HAS_MIRACLE_GROW = false
 
+--Costumes
 garden.COSTUME_ID_SHAME = Isaac.GetCostumeIdByPath("gfx/characters/shame.anm2")
 garden.COSTUME_ID_FORBIDDEN_FRUIT = Isaac.GetCostumeIdByPath("gfx/characters/forbidden_fruit.anm2")
 garden.COSTUME_ID_DECEPTION = Isaac.GetCostumeIdByPath("gfx/characters/deception.anm2")
@@ -34,6 +37,7 @@ garden.COSTUME_ID_EXILED = Isaac.GetCostumeIdByPath("gfx/characters/exiled.anm2"
 garden.COSTUME_ID_THE_FIRST_DAY = Isaac.GetCostumeIdByPath("gfx/characters/the_first_day.anm2")
 garden.COSTUME_ID_MIRACLE_GROW = Isaac.GetCostumeIdByPath("gfx/characters/miracle_grow.anm2")
 
+--Room Flags
 garden.GARDEN_HEARTS_CAN_SPAWN = true
 garden.SERPENT_CAN_SPAWN = true
 garden.SERPENT_HAS_SPAWNED = false
@@ -41,8 +45,12 @@ garden.SERPENT_HAS_DIED = false
 garden.VISIT_NUMBER = 0
 garden.ITEM_REWARDED = false
 
+--Curses
 garden.CURSE_MORTALITY = Isaac.GetCurseIdByName("Curse of Motality") 
 garden.HAS_MORTALITY_CURSE = false
+
+--Sprites
+garden.treeSprite = Isaac.GetEntityTypeByName("The Tree")
 
 function garden:shameEffect()
 	local player = Isaac.GetPlayer(0)
@@ -160,13 +168,19 @@ function garden:gardenRoomUpdate()
 			end
 
 			garden.VISIT_NUMBER = garden.VISIT_NUMBER + 1
-			--Rander the Tree
-			--local treeSprite = Sprite() 
-			--treeSprite:Load("gfx/effects/treeIdle.png", true)			
-			--local roomCenter = currentRoom:GetCenterPos()
-			--local topLeftClamp = Vector(roomCenter.X-100,roomCenter.Y-100)
-			--local bottomRightClamp = Vector(roomCenter.X+100,roomCenter.Y+100)			
-			--treeSprite:Render(roomCenter, topLeftClamp, bottomRightClamp)
+			--Build Tree Sprite
+			local tree = treeSprite:GetSprite() 
+			local animationName = "treeIdle"
+			if not tree:IsPlaying(animationName) then
+				local forcePlay = true
+				tree:Play(animationName, forcePlay)
+			end
+			local entityVariant = 0
+			local entitySubtype = 0
+			local roomCenter = currentRoom:GetCenterPos()
+			local velocity = Vector(0,0)
+			local spawnOwner = Isaac.GetPlayer(0)				
+			Isaac.Spawn(garden.treeSprite, entityVariant, entitySubtype, roomCenter, velocity, spawnOwner)
 
 			--Handle the music for the room
 			--play sfx here (Garden_Difficulty.wav)
@@ -184,10 +198,10 @@ function garden:gardenRoomUpdate()
 				--change music here (Garden_Serpent.ogg)
 				local serpentSpawnPosition = Vector(roomCenter.X, roomCenter.Y+100)
 				local entityVariant = 0  --should manipulate these values to spawn a different boss
-				local entitySubtype = 0  --should manipulate these values to spawn a different bosss
+				local entitySubtype = 0  --should manipulate these values to spawn a different boss
 				local velocity = Vector(0,0)
 				local spawnOwner = Isaac.GetPlayer(0)				
-				Isaac.Spawn(EntityType.ENTITY_PIN, entityVariant, entitySubtype, serpentSpawnPosition, velocity, spawnOwner)	
+				Isaac.Spawn(EntityType.ENTITY_PIN, entityVariant, entitySubtype, serpentSpawnPosition, velocity, spawnOwner) --Try a different spawnOwner and maybe the visual glitch wont happen?
 				garden.SERPENT_CAN_SPAWN = false
 				garden.SERPENT_HAS_SPAWNED = true				
 				garden.barCurrentRoomDoors()				
