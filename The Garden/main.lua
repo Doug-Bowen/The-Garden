@@ -130,8 +130,8 @@ function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
 	local currentRoomIndex = currentLevel:GetCurrentRoomIndex()
 	local currentRoom = Game():GetRoom()
-	local gardenRoomIndex = -3
-	--Isaac.RenderText(garden.VISIT_NUMBER, 50, 15, 255, 255, 255, 255)		
+	local gardenRoomIndex = -3	
+	Isaac.RenderText(garden.VISIT_NUMBER, 100, 100, 255, 0, 0, 255)
 	if currentRoomIndex~= nil and currentRoomIndex == gardenRoomIndex then -- Player is in a Garden
 		if currentRoom:GetFrameCount() == 1 then --Player just walked into a Garden
 			if garden.VISIT_NUMBER == 0 then --Player has never been in this Garden			
