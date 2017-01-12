@@ -7,18 +7,20 @@ garden.DEBUG_MODE = true
 garden.COLLECTIBLE_SHAME = Isaac.GetItemIdByName("Shame")
 garden.COLLECTIBLE_FORBIDDEN_FRUIT = Isaac.GetItemIdByName("Forbidden Fruit")
 garden.COLLECTIBLE_DECEPTION = Isaac.GetItemIdByName("Deception")
+garden.COLLECTIBLE_CREATION = Isaac.GetItemIdByName("Creation")
 garden.COLLECTIBLE_GRANTED_DOMAIN = Isaac.GetItemIdByName("Granted Domain")
 garden.COLLECTIBLE_THE_WILL_OF_MAN = Isaac.GetItemIdByName("The Will of Man")
 garden.COLLECTIBLE_THE_FALL_OF_MAN = Isaac.GetItemIdByName("The Fall of Man")
 garden.COLLECTIBLE_REBIRTH = Isaac.GetItemIdByName("Rebirth")
 garden.COLLECTIBLE_EXILED = Isaac.GetItemIdByName("Exiled")
 garden.COLLECTIBLE_THE_FIRST_DAY = Isaac.GetItemIdByName("The First Day")
-garden.COLLECTIBLE_MIRACLE_GROW = Isaac.GetItemIdByName("MiracleGrow")
+garden.COLLECTIBLE_MIRACLE_GROW = Isaac.GetItemIdByName("Miracle Grow")
 
 --Item Flags
-garden.HAS_FORBIDDEN_FRUIT = false
 garden.HAS_SHAME = false
+garden.HAS_FORBIDDEN_FRUIT = false
 garden.HAS_DECEPTION = false
+garden.HAS_CREATION = false
 garden.HAS_GRANTED_DOMAIN = false
 garden.HAS_THE_WILL_OF_MAN = false
 garden.HAS_THE_FALL_OF_MAN = false
@@ -31,11 +33,13 @@ garden.HAS_MIRACLE_GROW = false
 garden.COSTUME_ID_SHAME = Isaac.GetCostumeIdByPath("gfx/characters/shame.anm2")
 garden.COSTUME_ID_FORBIDDEN_FRUIT = Isaac.GetCostumeIdByPath("gfx/characters/forbidden_fruit.anm2")
 garden.COSTUME_ID_DECEPTION = Isaac.GetCostumeIdByPath("gfx/characters/deception.anm2")
+garden.COSTUME_ID_CREATION = Isaac.GetCostumeIdByPath("gfx/characters/creation.anm2")
 garden.COSTUME_ID_GRANTED_DOMAIN = Isaac.GetCostumeIdByPath("gfx/characters/granted_domain.anm2")
 garden.COSTUME_ID_THE_WILL_OF_MAN = Isaac.GetCostumeIdByPath("gfx/characters/the_will_of_man.anm2")
+garden.COSTUME_ID_THE_FALL_OF_MAN = Isaac.GetCostumeIdByPath("gfx/characters/the_falll_of_man.anm2")
 garden.COSTUME_ID_REBIRTH = Isaac.GetCostumeIdByPath("gfx/characters/rebirth.anm2")
 garden.COSTUME_ID_EXILED = Isaac.GetCostumeIdByPath("gfx/characters/exiled.anm2")
-garden.COSTUME_ID_THE_FIRST_DAY = Isaac.GetCostumeIdByPath("gfx/characters/the_first_day.anm2")
+garden.COSTUME_ID_Fcreation_DAY = Isaac.GetCostumeIdByPath("gfx/characters/the_first_day.anm2")
 garden.COSTUME_ID_MIRACLE_GROW = Isaac.GetCostumeIdByPath("gfx/characters/miracle_grow.anm2")
 
 --Room Flags
@@ -47,7 +51,7 @@ garden.VISIT_NUMBER = 0
 garden.ITEM_REWARDED = false
 
 --Curses
-garden.CURSE_MORTALITY = Isaac.GetCurseIdByName("Curse of Motality") 
+garden.CURSE_MORTALITY = Isaac.GetCurseIdByName("Curse of Mortality") 
 garden.HAS_MORTALITY_CURSE = false
 
 --Sprites
@@ -58,16 +62,19 @@ function garden:debugMode()
 		Isaac.RenderText("Debud Mode", 15, 50, 255, 0, 255, 0)		
 		--Isaac.DebugString(RNG:GetSeed()) --Should output the seed to the log, just crashes though
 		if Game():GetFrameCount() == 1 then
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_SHAME, Vector(320,300), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_FORBIDDEN_FRUIT, Vector(320,300), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_DECEPTION, Vector(320,300), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_GRANTED_DOMAIN, Vector(320,300), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_THE_WILL_OF_MAN, Vector(320,300), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_THE_FALL_OF_MAN, Vector(320,300), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_REBIRTH, Vector(320,300), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_EXILED, Vector(320,300), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_THE_FIRST_DAY, Vector(320,300), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_MIRACLE_GROW, Vector(320,300), Vector(0,0), nil)
+			local currentRoom = Game():GetRoom()
+			local roomCenter = currentRoom:GetCenterPos()
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_SHAME, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_FORBIDDEN_FRUIT, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_DECEPTION, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_CREATION, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_GRANTED_DOMAIN, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_THE_WILL_OF_MAN, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_THE_FALL_OF_MAN, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_REBIRTH, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_EXILED, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_THE_FIRST_DAY, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_MIRACLE_GROW, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
 		end		
 	end
 end
@@ -166,7 +173,7 @@ function garden:gardenRoomUpdate()
 	local gardenRoomIndex = -3	
 	Isaac.RenderText(garden.VISIT_NUMBER, 100, 100, 255, 0, 0, 255)
 	if currentRoomIndex~= nil and currentRoomIndex == gardenRoomIndex then -- Player is in a Garden
-		garden.openCurrentRoomDoors() --This ensures teleportation into this room doesnt lock you in
+		--garden.openCurrentRoomDoors() --This ensures teleportation into this room doesnt lock you in
 		if currentRoom:GetFrameCount() == 1 then --Player just walked into a Garden
 			if garden.VISIT_NUMBER == 0 then --Player has never been in this Garden			
 				local SERPENT_CAN_SPAWN = true			
@@ -190,18 +197,18 @@ function garden:gardenRoomUpdate()
 
 			garden.VISIT_NUMBER = garden.VISIT_NUMBER + 1
 			--Build Tree Sprite
-			local tree = treeSprite:GetSprite() 
-			local animationName = "treeIdle"
-			if not tree:IsPlaying(animationName) then
-				local forcePlay = true
-				tree:Play(animationName, forcePlay)
-			end
-			local entityVariant = 0
-			local entitySubtype = 0
-			local roomCenter = currentRoom:GetCenterPos()
-			local velocity = Vector(0,0)
-			local spawnOwner = Isaac.GetPlayer(0)				
-			Isaac.Spawn(garden.treeSprite, entityVariant, entitySubtype, roomCenter, velocity, spawnOwner)
+			--local tree = treeSprite:GetSprite() 
+			--local animationName = "treeIdle"
+			--if not tree:IsPlaying(animationName) then
+			--	local forcePlay = true
+			--	tree:Play(animationName, forcePlay)
+			--end
+			--local entityVariant = 0
+			--local entitySubtype = 0
+			--local roomCenter = currentRoom:GetCenterPos()
+			--local velocity = Vector(0,0)
+			--local spawnOwner = Isaac.GetPlayer(0)				
+			--Isaac.Spawn(garden.treeSprite, entityVariant, entitySubtype, roomCenter, velocity, spawnOwner)
 
 			--Handle the music for the room
 			--play sfx here (Garden_Difficulty.wav)
@@ -222,9 +229,10 @@ function garden:gardenRoomUpdate()
 				local entitySubtype = 0  --should manipulate these values to spawn a different boss
 				local velocity = Vector(0,0)
 				local spawnOwner = Isaac.GetPlayer(0)				
-				Isaac.Spawn(EntityType.ENTITY_PIN, entityVariant, entitySubtype, serpentSpawnPosition, velocity, spawnOwner) --Try a different spawnOwner and maybe the visual glitch wont happen?
+				Isaac.Spawn(EntityType.ENTITY_PIN, entityVariant, entitySubtype, serpentSpawnPosition, velocity, nil) --Try a different spawnOwner and maybe the visual glitch wont happen?
 				garden.SERPENT_CAN_SPAWN = false
-				garden.SERPENT_HAS_SPAWNED = true				
+				garden.SERPENT_HAS_SPAWNED = true
+				garden.closeCurrentRoomDoors()				
 				garden.barCurrentRoomDoors()				
 			end				
 		end
@@ -262,11 +270,12 @@ function garden:gardenRoomUpdate()
 	--The player has left a Garden
 	if currentRoomIndex ~= gardenRoomIndex and currentRoom:GetFrameCount() == 1 then
 		local previousRoomIndex = currentLevel:GetPreviousRoomIndex()
-		if previousRoomIndex~= nil and previousRoomIndex == gardenRoomIndex then 
-			local currentRoom = Game():GetRoom()
-			for i = 1, DoorSlot.NUM_DOOR_SLOTS do
+		if previousRoomIndex ~= nil and previousRoomIndex == gardenRoomIndex then 
+			local currentRoom = Game():GetRoom() --Get the new room
+			for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
 			local door = currentRoom:GetDoor(i) 
 				if door ~= nil and door:IsOpen() and door.TargetRoomIndex == -3 then --This is the door that leads to the Garden
+			    	door:Close()
 			    	door:Bar()	 
 			    	garden.VISIT_NUMBER = 0 
 				end
@@ -306,9 +315,9 @@ end
 
 function garden:openCurrentRoomDoors()
 	local currentRoom = Game():GetRoom()
-	for i = 1, DoorSlot.NUM_DOOR_SLOTS do
+	for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
 	local door = currentRoom:GetDoor(i)
-		if door ~= nil then
+		if door ~= nil and not door:IsOpen() then
 	    	door:Open() 
 		end
 	end
@@ -316,9 +325,9 @@ end
 
 function garden:closeCurrentRoomDoors()
 	local currentRoom = Game():GetRoom()
-	for i = 1, DoorSlot.NUM_DOOR_SLOTS do
+	for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
 	local door = currentRoom:GetDoor(i)
-		if door ~= nil then
+		if door ~= nil and door:IsOpen() then
 	    	door:Close() 
 		end
 	end
@@ -326,9 +335,9 @@ end
 
 function garden:barCurrentRoomDoors()
 	local currentRoom = Game():GetRoom()
-	for i = 1, DoorSlot.NUM_DOOR_SLOTS do
+	for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
 	local door = currentRoom:GetDoor(i)
-		if door ~= nil then
+		if door ~= nil and not door:IsOpen() then
 	    	door:Bar() 
 		end
 	end
