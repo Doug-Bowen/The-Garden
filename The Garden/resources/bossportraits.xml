@@ -1,6 +1,0 @@
-<bosses root="gfx/ui/boss/" anm2="versusscreen.anm2">
-	<boss id="71" name="The Serpent"
-		nameimage="BossName_TheSerpent.png"
-		portrait="Portrait_TheSerpent.png"
-		pivotX="96" pivotY="132" />		
-</bosses>
