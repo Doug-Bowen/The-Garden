@@ -22,7 +22,6 @@ Adds:
 * 1 New SFX :white_check_mark:
 
 **The Garden Room:** A room that randomly replaces a library (40% chance)
-
 * Has its own item pool
 * Eternal hearts and broken hearts have a chance to spawn in this room. (25%).
 * Discovering the garden unlocks the Genesis challenge.
@@ -30,12 +29,7 @@ Adds:
  * The Serpent is a reskin of Pin (not a replacement) that shoots apples (knockback).
  * The music played before, during, and after the Serpent fight should be different and follow the theme.
  
-
-~~Item pedestals in this room will reroll their items 1 time just by entering and exiting. The third time you enter the room, all items will become Exiled and will not change from that item. Exiled cannot be rerolled.~~
-
-~~The Garden has ivy key locks on the outside door.~~ 
-
-~~If entered, the floor becomes much harder. Specifically, if a player is playing normal, the floor becomes "hard" difficulty. If the player is playing hard, the floor gains the champion belt effect.~~ 
+~~Item pedestals in this room will reroll their items 1 time just by entering and exiting. The third time you enter the room, all items will become Exiled and will not change from that item. Exiled cannot be rerolled. The Garden has ivy key locks on the outside door. If entered, the floor becomes much harder. Specifically, if a player is playing normal, the floor becomes "hard" difficulty. If the player is playing hard, the floor gains the champion belt effect.~~ 
 
 **Curse of Mortality:** Hearts no longer spawn for the remainder of the floor.
 
@@ -44,7 +38,6 @@ Adds:
 **Genesis challenge:** Eve starts with Rebirth, Shame, and Forbidden Fruit and must beat the Lamb (on normal difficulty). There are no item rooms.
 
 **GFX Info (Sprites):**
-
 * Pin reskin sprites :clock3:
 * Item sprites :clock3:
  * Item costumes :clock3:
@@ -54,7 +47,7 @@ Adds:
  * Broken Heart (UI)
 
 Art Style:
-* Check the folders: 
+* Check the following folders for what has already been done: 
   * The Garden/resources/gfx/effects/
   * The Garden/resources/gfx/items/collectibles/
   * The Garden/resources/gfx/characters/costumes/
