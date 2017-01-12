@@ -238,7 +238,7 @@ function garden:gardenRoomUpdate()
 					if singleEntity:IsDead() then
 						garden.SERPENT_HAS_DIED = true
 						garden.openCurrentRoomDoors()
-						garden.giveMortalityCurse()
+						garden.applyMortalityCurse()
 					end
 				end
 			end
@@ -279,7 +279,7 @@ function garden:gardenRoomUpdate()
 	end	
 end
 
-function garden:giveMortalityCurse()
+function garden:applyMortalityCurse()
 	local currentLevel = Game():GetLevel()	
 	local showCurseName = true
 	currentLevel:AddCurse(garden.CURSE_MORTALITY, showCurseName)
