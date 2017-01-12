@@ -1,80 +1,82 @@
 # The Garden Mod:
 
 Adds:
-* The Garden (New Room) :white_check_mark:
-  * The Garden Pool (New Item Pool) :white_check_mark:
-   * Shame (Item - Garden Room Pool) :white_check_mark:
-   * Forbidden Fruit (Item - Garden Room Pool) :white_check_mark:
-   * Deception (Item - Garden Room Pool) :clock3:
-   * Creation (Item - Garden Room Pool) :clock3:
-   * Granted Domain (Item - Garden Room Pool) :clock3:
-   * The Will of Man (Item - Garden Room Pool) :clock3:
-   * The Fall of Man (Item - Garden Room Pool) :clock3:
-   * Rebirth (Item - Garden Room Pool) :clock3:
-   * The First Day (Item - Garden Room Pool) :clock3:
-   * Exiled (Item - Garden Room Pool) :clock3:
-* Miracle Grow (Item - Item Room Pool) :clock3:
-* Genisis (New Challenge) :white_check_mark:
+* The Garden (New Room) :white_check_mark: (Room Created)
+  * The Garden Pool (New Item Pool) :white_check_mark: (Pool Created)
+   * Shame (Item) 
+   * Forbidden Fruit (Item) 
+   * Deception (Item) 
+   * Creation (Item) 
+   * Granted Domain (Item)
+   * The Will of Man (Item)
+   * The Fall of Man (Item)
+   * Rebirth (Item)
+   * The First Day (Item)
+   * Exiled (Item)
+* Miracle Grow (Item - Treasure Room Pool)
+* Genisis (New Challenge) :white_check_mark: (Challenge Created)
 * Broken Heart (New heart type) :clock3:
-* The Serpent (Boss) :white_check_mark:
+* Curse of Mortality (New Curse) :white_check_mark: 
+* The Serpent (Boss) :white_check_mark: (Foundational Code Done)
+* 4 New Music Tracks :white_check_mark:
+* 1 New SFX :white_check_mark:
 
 **The Garden Room:** A room that randomly replaces a library (40% chance)
 
-Look and feel: ~~The Garden has ivy key locks on the outside door~~. On entry, the music in this room is a drone with jungle sounds.
+Look and feel: 
+
+~~The Garden has ivy key locks on the outside door.~~ 
+
 ~~Effect: If entered, the floor becomes much harder. Specifically, if a player is playing normal, the floor becomes "hard" difficulty. If the player is playing hard, the floor gains the champion belt effect.~~ 
 
-Specialty: 
 * Has its own item pool
-~~* Item pedestals in this room will reroll their items 1 time just by entering and exiting. ~~
-~~ * The third time you enter the room, all items will become Exiled and will not change from that item. ~~
-~~ * Exiled cannot be rerolled. ~~
 * Eternal hearts and broken hearts have a chance to spawn in this room. (25%).
 * Discovering the garden unlocks the Genesis challenge.
 * Touching the tree in the center of the room will trigger a fight with The Serpent and give the player the Curse of Mortality
- * The Serpent is a reskin of Pin (not a replacement) that shoots apples (knockback). :clock3:
- * The music played before, during, and after the Serpent fight should be different and follow the theme. :white_check_mark:
- * Curse of Mortality = Hearts no longer spawn for the remainder of the floor. :clock3:
+ * The Serpent is a reskin of Pin (not a replacement) that shoots apples (knockback).
+ * The music played before, during, and after the Serpent fight should be different and follow the theme.
+ * Curse of Mortality = Hearts no longer spawn for the remainder of the floor.
 
-|Item Name|Description|Effect|Item Sprite|Character Costume|
-|---|---|---|---|---|
-|Shame|Awareness of oneself|Enemies that move too close to Isaac have a short fear effect applied to them.|Reversed, 'Filled in' Gnawed Leaf|A leaf between Isaacs legs|
-|Forbidden Fruit|Don't believe his lies|Tears become apples and have varying amounts of knock back.|Red juicy apple (Borrow sprite from the item 'Apple!')|Tears are apples, Isaacs head becomes shiny.|
-|Deception|The Serpent Lies|Shuffle pull colors, Shuffle consumable numbers, Shuffle stats|Snake (Coiled up), google the 'Come And Take It Flag'|Isaac has a snake wrapped around his neck.|
-|Creation|In the beginning|All stats up, Game timer reset to 00:00|Earth (Reskin Tiny Planet)|Isaac's head becomes the Earth|
-|Granted Domain|All authority is yours|Enemies stop moving (not firing) when Isaac stops moving|Crown (Reskin 'Corwn of light' to be bright yellow)|Isaac wears a crown|
-|The Will of Man|Know good, know evil.|The player is shown Bosses (on the wall next to the boss door) and Items (on the wall next to the item room door)|A tree (strong trunk, cartoony)|Isaac has leaves behind one of his ears --possibly animated to fall out|
-|The Fall of man|Original Sin|Devil deal items are now in all item pools. The Devil deal pool is now empty. Devil deal rooms will no longer be item rooms.|Crossed Scythes (Borrow from Death's Touch)|Isaac's body turns A shade of black|
-|Rebirth|From one, come two|The player becomes Eve. The player keeps items and health. The player gains a familiar that looks like your original character (fires tears at your current rate. Fire rate for familiar is locked.|A Rib|Miniature Isaac familiar|
-|The First Day|Let there be light!|100% Angel room stat (locked)|A sun (Cartoony)|Isaac's head shines|
-|Exiled|Deliberate Disobedience|All dice and familiars removed from pools. Champion belt affect for remainder of the run|Closed iron gates (Cartoony)|Ivy wrapped around Isaacs neck|
-|Miracle Grow|Roses are Red|[This item is to be included in the Item Room Pool]. A Garden Room with Spawn on the next floor.|Recolored Eden's Blessing (to be rose red)|Recolored Purity Effect|
+~~Item pedestals in this room will reroll their items 1 time just by entering and exiting. The third time you enter the room, all items will become Exiled and will not change from that item. Exiled cannot be rerolled.~~
 
 **Broken Heart:**  Consumable that cracks your topmost red HP, when that HP is hit, it becomes 3 blue hearts.
 
 **Genesis challenge:** Eve starts with Rebirth, Shame, and Forbidden Fruit and must beat the Lamb (on normal difficulty). There are no item rooms.
 
-Sprites needed:
-**Many of these sprites can be used more than once, shrinking down the tree and fruit sprites for items is likely.**
+**GFX Info (Sprites):**
 
-**All sprites and costumes listed are only placeholders.**
-
-* Pin reskin sprites
-* Item sprites
- * Item costumes
-* Tree sprite
- * Possible fruit sprite (hangs from tree)
+* Pin reskin sprites :clock3:
+* Item sprites :clock3:
+ * Item costumes :clock3:
+* Tree sprite :white_check_mark:
+ * Possible fruit sprite :white_check_mark:
 * Broken Heart (Pickup)
  * Broken Heart (UI)
 
 Art Style:
+* Check the folders: 
+  * The Garden/resources/gfx/effects/
+  * The Garden/resources/gfx/items/collectibles/
+  * The Garden/resources/gfx/characters/costumes/
 
-![](The Garden/resources/gfx/items/collectibles/collectibles_creation.png)
-![](The Garden/resources/gfx/items/collectibles/collectibles_shame.png)
-![](The Garden/resources/gfx/items/collectibles/collectibles_forbidden_fruit.png)
+[Music Sampling](https://soundcloud.com/wertandrew2/binding-of-isaac-boss-fight-serpent)
 
-![](The Garden/resources/gfx/effects/treeIdle.png) 
 
-[Music Sample](https://soundcloud.com/wertandrew2/binding-of-isaac-boss-fight-serpent)
+|Item Name|Description|Effect|Item Sprite Suggestion|Character Costume Suggestion|Item Sprite Created|Costume Spirtes Created|Functionality Done|
+|---|---|---|---|---|---|---|---|
+|Shame|Awareness of oneself|Enemies that move too close to Isaac have a short fear effect applied to them.|Reversed, 'Filled in' Gnawed Leaf|A leaf between Isaacs legs|:white_check_mark:|:clock3:|:white_check_mark:|
+|Forbidden Fruit|Don't believe his lies|Tears become apples and have varying amounts of knock back.|Red juicy apple (Borrow sprite from the item 'Apple!')|Tears are apples, Isaacs head becomes shiny.|:white_check_mark:|:clock3:|:clock3:|
+|Deception|The Serpent Lies|Shuffle pull colors, Shuffle consumable numbers, Shuffle stats|Snake (Coiled up), google the 'Come And Take It Flag'|Isaac has a snake wrapped around his neck.|:clock3:|:clock3:|:clock3:|
+|Creation|In the beginning|All stats up, Game timer reset to 00:00|Earth (Reskin Tiny Planet)|Isaac's head becomes the Earth|:white_check_mark:|:clock3:|:clock3:|
+|Granted Domain|All authority is yours|Enemies stop moving (not firing) when Isaac stops moving|Crown (Reskin 'Corwn of light' to be bright yellow)|Isaac wears a crown|
+|The Will of Man|Know good, know evil.|The player is shown Bosses (on the wall next to the boss door) and Items (on the wall next to the item room door)|A tree (strong trunk, cartoony)|Isaac has leaves behind one of his ears|:clock3:|:clock3:|:clock3:|
+|The Fall of man|Original Sin|Devil deal items are now in all item pools. The Devil deal pool is now empty. Devil deal rooms will no longer be item rooms.|Crossed Scythes (Borrow from Death's Touch)|Isaac's body turns A shade of black|:white_check_mark:|:clock3:|:clock3:|
+|Rebirth|From one, come two|The player becomes Eve. The player keeps items and health. The player gains a familiar that looks like your original character (fires tears at your current rate. Fire rate for familiar is locked.|A Rib|Miniature Isaac familiar|:clock3:|:clock3:|:clock3:|
+|The First Day|Let there be light!|100% Angel room stat (locked)|A sun (Cartoony)|Isaac's head shines|:white_check_mark:|:clock3:|:clock3:|
+|Exiled|Deliberate Disobedience|All dice and familiars removed from pools. Champion belt affect for remainder of the run|Closed iron gates (Cartoony)|Ivy wrapped around Isaacs neck|:clock3:|:clock3:|:clock3:|
+|Miracle Grow|Roses are Red|[This item is to be included in the Item Room Pool]. A Garden Room with Spawn on the next floor.|Recolored Eden's Blessing (to be rose red)|Recolored Purity Effect|:clock3:|:clock3:|:clock3:|
+
+
 
 **IGNORE BELOW THIS LINE**
 
