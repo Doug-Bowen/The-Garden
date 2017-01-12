@@ -23,21 +23,21 @@ Adds:
 
 **The Garden Room:** A room that randomly replaces a library (40% chance)
 
-Look and feel: 
-
-~~The Garden has ivy key locks on the outside door.~~ 
-
-~~Effect: If entered, the floor becomes much harder. Specifically, if a player is playing normal, the floor becomes "hard" difficulty. If the player is playing hard, the floor gains the champion belt effect.~~ 
-
 * Has its own item pool
 * Eternal hearts and broken hearts have a chance to spawn in this room. (25%).
 * Discovering the garden unlocks the Genesis challenge.
 * Touching the tree in the center of the room will trigger a fight with The Serpent and give the player the Curse of Mortality
  * The Serpent is a reskin of Pin (not a replacement) that shoots apples (knockback).
  * The music played before, during, and after the Serpent fight should be different and follow the theme.
- * Curse of Mortality = Hearts no longer spawn for the remainder of the floor.
+ 
 
 ~~Item pedestals in this room will reroll their items 1 time just by entering and exiting. The third time you enter the room, all items will become Exiled and will not change from that item. Exiled cannot be rerolled.~~
+
+~~The Garden has ivy key locks on the outside door.~~ 
+
+~~If entered, the floor becomes much harder. Specifically, if a player is playing normal, the floor becomes "hard" difficulty. If the player is playing hard, the floor gains the champion belt effect.~~ 
+
+**Curse of Mortality:** Hearts no longer spawn for the remainder of the floor.
 
 **Broken Heart:**  Consumable that cracks your topmost red HP, when that HP is hit, it becomes 3 blue hearts.
 
