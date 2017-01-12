@@ -1,6 +1,6 @@
 local garden = RegisterMod("TheGarden", 1) --'1' denotes API v1.0
 
---Isaac.DebugString(RNG:GetSeed()) --Should output the seed to the log
+--Isaac.DebugString(RNG:GetSeed()) --Should output the seed to the log, just crashes though
 
 garden.COLLECTIBLE_SHAME = Isaac.GetItemIdByName("Shame")
 garden.COLLECTIBLE_FORBIDDEN_FRUIT = Isaac.GetItemIdByName("Forbidden Fruit")
@@ -93,7 +93,7 @@ function garden:forbiddenFruitEffect()
 				elseif randomAppleNum == 4 then
 					appleSprite:Load("gfx/effects/apple_four.png", true)							
 				end 
-				
+
 				--local tearPosition = singleEntity.Position 
 				--local topLeftClamp = Vector(tearPosition.X-10,tearPosition.Y-10)      --I'm not currently sure what clamps do (might want to manipulate these values)
 				--local bottomRightClamp = Vector(tearPosition.X+10,tearPosition.Y+10)  --I'm not currently sure what clamps do (might want to manipulate these values)

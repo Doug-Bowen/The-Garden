@@ -1,5 +1,10 @@
 # The Garden Mod:
 
+This mod is currently awaiting the following API functionality:
+* Adding Custom Music
+* Adding Custom SFX (Not using the entity hacked method)
+* Access to the Run Timer
+
 Adds:
 * The Garden (New Room) :white_check_mark: (Room Created)
 * The Garden Pool (New Item Pool) :white_check_mark: (Pool Created)
