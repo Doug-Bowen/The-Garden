@@ -21,7 +21,7 @@
 		<!--Creation-->
 		<Item Id="518" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 		<!--Exiled-->
-		<Item Id="519" Weight="0.5" DecreaseBy="0.25" RemoveOn="0.1"/>		
+		<Item Id="519" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>		
 		<!--The First Day-->
 		<Item Id="520" Weight="1" DecreaseBy="0.5" RemoveOn="0.1"/>
 	</Pool>
