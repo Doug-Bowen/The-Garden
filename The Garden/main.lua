@@ -229,7 +229,7 @@ function garden:gardenRoomUpdate()
 				local entitySubtype = 0  --should manipulate these values to spawn a different boss
 				local velocity = Vector(0,0)
 				local spawnOwner = Isaac.GetPlayer(0)				
-				Isaac.Spawn(EntityType.ENTITY_PIN, entityVariant, entitySubtype, serpentSpawnPosition, velocity, nil) --Try a different spawnOwner and maybe the visual glitch wont happen?
+				Isaac.Spawn(EntityType.ENTITY_PIN, entityVariant, entitySubtype, serpentSpawnPosition, velocity, spawnOwner) --Try a different spawnOwner and maybe the visual glitch wont happen?
 				garden.SERPENT_CAN_SPAWN = false
 				garden.SERPENT_HAS_SPAWNED = true
 				garden.closeCurrentRoomDoors()				
