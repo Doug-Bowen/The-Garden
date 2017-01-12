@@ -41,7 +41,7 @@ garden.SERPENT_HAS_DIED = false
 garden.VISIT_NUMBER = 0
 garden.ITEM_REWARDED = false
 
-garden.CURSE_MORTALITY = Isaac.GetCurseIdByName("Mortality") 
+garden.CURSE_MORTALITY = Isaac.GetCurseIdByName("Curse of Motality") 
 garden.HAS_MORTALITY_CURSE = false
 
 function garden:shameEffect()
@@ -309,6 +309,6 @@ garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.rebirthEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.exiledEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theFirstDayEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.miracleGrowEffect)
-garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoomUpdate)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect)
 garden:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, garden.removeMortalityCurse)
