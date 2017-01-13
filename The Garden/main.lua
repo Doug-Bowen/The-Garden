@@ -59,7 +59,8 @@ garden.treeSprite = Isaac.GetEntityTypeByName("The Tree")
 
 function garden:debugMode()
 	if garden.DEBUG_MODE then
-		Isaac.RenderText("Debug Mode", 15, 50, 255, 0, 255, 0)		
+		Isaac.RenderText("Debug Mode, VISIT NUMBER = ", 15, 50, 255, 0, 255, 0)		
+		Isaac.RenderText(garden.VISIT_NUMBER, 50, 50, 255, 0, 255, 0)
 		--Isaac.DebugString(RNG:GetSeed()) --Should output the seed to the log, just crashes though
 		if Game():GetFrameCount() == 1 then
 			local currentRoom = Game():GetRoom()
@@ -170,8 +171,7 @@ function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
 	local currentRoomIndex = currentLevel:GetCurrentRoomIndex()
 	local currentRoom = Game():GetRoom()
-	local gardenRoomIndex = -3	
-	Isaac.RenderText(garden.VISIT_NUMBER, 100, 100, 255, 0, 0, 255)
+	local gardenRoomIndex = -3		
 	if currentRoomIndex~= nil and currentRoomIndex == gardenRoomIndex then -- Player is in a Garden
 		garden.openCurrentRoomDoors() --This ensures teleportation into this room doesnt lock you in
 		if currentRoom:GetFrameCount() == 1 then --Player just walked into a Garden
@@ -231,8 +231,8 @@ function garden:gardenRoomUpdate()
 			if garden.SERPENT_CAN_SPAWN and not garden.SERPENT_HAS_SPAWNED then
 				--change music here (Garden_Serpent.ogg)
 				local serpentSpawnPosition = Vector(roomCenter.X, roomCenter.Y+100)
-				local entityVariant = 0  --should manipulate these values to spawn a different boss
-				local entitySubtype = 0  --should manipulate these values to spawn a different boss
+				local entityVariant = 0  --Can manipulate these values to spawn a different boss
+				local entitySubtype = 0  --Can manipulate these values to spawn a different boss
 				local velocity = Vector(0,0)
 				local spawnOwner = Isaac.GetPlayer(0)				
 				Isaac.Spawn(EntityType.ENTITY_PIN, entityVariant, entitySubtype, serpentSpawnPosition, velocity, spawnOwner) --Try a different spawnOwner and maybe the visual glitch wont happen?
@@ -277,22 +277,23 @@ function garden:gardenRoomUpdate()
 	end
 
 	--The player has left a Garden
-	if currentRoomIndex ~= gardenRoomIndex and currentRoom:GetFrameCount() == 1 then
+	if currentRoomIndex ~= gardenRoomIndex and currentRoom:GetFrameCount() == 1 then --If the Player is not in the Garden 
 		local previousRoomIndex = currentLevel:GetPreviousRoomIndex()
-		if previousRoomIndex ~= nil and previousRoomIndex == gardenRoomIndex then 
-			local currentRoom = Game():GetRoom() --Get the new room
+		if previousRoomIndex ~= nil and previousRoomIndex == gardenRoomIndex then --Player just stepped out of the Garden
+			local currentRoom = Game():GetRoom() --Get the current room
 			for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
 				local door = currentRoom:GetDoor(i) 
 				if door ~= nil and door:IsOpen() and door.TargetRoomIndex == gardenRoomIndex then --This is the door that leads to the Garden
 			    	door:Close()
 			    	door:Bar()	 
+			    	
+			    	--Reset flags for future Garden Rooms
 			    	garden.VISIT_NUMBER = 0 
+			    	garden.SERPENT_CAN_SPAWN = true
+					garden.SERPENT_HAS_SPAWNED = false
+					garden.GARDEN_HEARTS_CAN_SPAWN = true  
 				end
-			end
-			--Reset flags for future Garden Rooms
-			garden.SERPENT_CAN_SPAWN = true
-			garden.SERPENT_HAS_SPAWNED = false
-			garden.GARDEN_HEARTS_CAN_SPAWN = true  
+			end			
 		end
 	end	
 end
