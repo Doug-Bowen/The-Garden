@@ -170,17 +170,17 @@ function garden:gardenRoomUpdate()
 	local currentRoomIndex = currentLevel:GetCurrentRoomIndex()
 	local currentRoom = Game():GetRoom()
 	local gardenRoomIndex = -3		
-	if currentRoomIndex~= nil and currentRoomIndex == gardenRoomIndex then -- Player is in a Garden
-		if currentRoom:GetFrameCount() == 1 then --Player just walked into a Garden
-			if garden.VISIT_NUMBER == 0 then --Player has never been in this Garden			
-				local SERPENT_CAN_SPAWN = true			
-				local SERPENT_HAS_SPAWNED = false
+	if currentRoomIndex~= nil and currentRoomIndex == gardenRoomIndex then --Player is in a Garden
+		if currentRoom:GetFrameCount() == 1 then                           --Player just walked into a Garden
+			if garden.VISIT_NUMBER == 0 then                               --Player has never been in this Garden			
+				garden.SERPENT_CAN_SPAWN = true			
+				garden.SERPENT_HAS_SPAWNED = false
+				garden.GARDEN_HEARTS_CAN_SPAWN = true
 
 				--Handle Heart Spawning
 				if garden.GARDEN_HEARTS_CAN_SPAWN then
-					local randomNumber = math.random(4)
 					garden.GARDEN_HEARTS_CAN_SPAWN = false
-					if randomNumber == 1 then  --Spawn Hearts (25% chance)
+					if math.random(4) == 1 then  --Spawn Hearts (25% chance)
 						local roomCenter = currentRoom:GetCenterPos()
 						local leftHeartPosition = Vector(roomCenter.X-100, roomCenter.Y)
 						local rightHeartPosition = Vector(roomCenter.X+100, roomCenter.Y)
@@ -278,12 +278,7 @@ function garden:removeMortalityCurse()
 	local currentLevel = Game():GetLevel()		
 	currentLevel:RemoveCurse(garden.CURSE_MORTALITY)
 	garden.HAS_MORTALITY_CURSE = false
-
-	--Reset Gardens for this floor
-	garden.VISIT_NUMBER = 0 
-	garden.SERPENT_CAN_SPAWN = true
-	garden.SERPENT_HAS_SPAWNED = false
-	garden.GARDEN_HEARTS_CAN_SPAWN = true  
+	garden.VISIT_NUMBER = 0	--Reset Gardens for this floor
 end
 
 function garden:mortalityCurseEffect()
