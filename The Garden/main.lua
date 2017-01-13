@@ -39,7 +39,7 @@ garden.COSTUME_ID_THE_WILL_OF_MAN = Isaac.GetCostumeIdByPath("gfx/characters/the
 garden.COSTUME_ID_THE_FALL_OF_MAN = Isaac.GetCostumeIdByPath("gfx/characters/the_falll_of_man.anm2")
 garden.COSTUME_ID_REBIRTH = Isaac.GetCostumeIdByPath("gfx/characters/rebirth.anm2")
 garden.COSTUME_ID_EXILED = Isaac.GetCostumeIdByPath("gfx/characters/exiled.anm2")
-garden.COSTUME_ID_Fcreation_DAY = Isaac.GetCostumeIdByPath("gfx/characters/the_first_day.anm2")
+garden.COSTUME_ID_THE_FIRST_DAY = Isaac.GetCostumeIdByPath("gfx/characters/the_first_day.anm2")
 garden.COSTUME_ID_MIRACLE_GROW = Isaac.GetCostumeIdByPath("gfx/characters/miracle_grow.anm2")
 
 --Room Flags
@@ -355,5 +355,5 @@ garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.exiledEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theFirstDayEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.miracleGrowEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoomUpdate)
-garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect) --maybe use a post render callback here?
 garden:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, garden.removeMortalityCurse)
