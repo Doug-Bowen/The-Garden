@@ -179,18 +179,25 @@ function garden:gardenRoomUpdate()
 				local SERPENT_CAN_SPAWN = true			
 				local SERPENT_HAS_SPAWNED = false
 
-				--Handle Eternal Heart Spawning
+				--Handle Heart Spawning
 				if garden.GARDEN_HEARTS_CAN_SPAWN then
-					local randomNum = math.random(4)
+					local canSpawn = math.random(4)
 					garden.GARDEN_HEARTS_CAN_SPAWN = false
-					if randomNum == 1 then  --Spawn Eternal Hearts (25% chance)
+					if canSpawn == 1 then  --Spawn Hearts (25% chance)
 						local roomCenter = currentRoom:GetCenterPos()
 						local leftHeartPosition = Vector(roomCenter.X-100, roomCenter.Y)
 						local rightHeartPosition = Vector(roomCenter.X+100, roomCenter.Y)
 						local velocity = Vector(0,0)
-						local spawnOwner = Isaac.GetPlayer(0)				
-						Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, leftHeartPosition, velocity, spawnOwner) 	
-						Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, rightHeartPosition, velocity, spawnOwner) 	
+						local spawnOwner = Isaac.GetPlayer(0)
+						local heartType = math.random(2)
+						if heartType == 1 then 
+							Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, leftHeartPosition, velocity, spawnOwner) 	
+							Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, rightHeartPosition, velocity, spawnOwner) 	
+						end
+						if heartType == 2 then 
+							Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_GOLDEN, leftHeartPosition, velocity, spawnOwner) 	
+							Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_GOLDEN, rightHeartPosition, velocity, spawnOwner) 	
+						end
 					end
 				end						
 			end
@@ -210,8 +217,7 @@ function garden:gardenRoomUpdate()
 			--local spawnOwner = Isaac.GetPlayer(0)				
 			--Isaac.Spawn(garden.treeSprite, entityVariant, entitySubtype, roomCenter, velocity, spawnOwner)
 
-			--Handle the music for the room
-			--play sfx here (Garden_Difficulty.wav)
+			--Handle the music for the room			
 			--play music here (Garden_Drone.ogg)
 			--play quieter music here (Garden_Ambience.ogg)  
 		end		
@@ -276,8 +282,8 @@ function garden:gardenRoomUpdate()
 		if previousRoomIndex ~= nil and previousRoomIndex == gardenRoomIndex then 
 			local currentRoom = Game():GetRoom() --Get the new room
 			for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
-			local door = currentRoom:GetDoor(i) 
-				if door ~= nil and door:IsOpen() and door.TargetRoomIndex == -3 then --This is the door that leads to the Garden
+				local door = currentRoom:GetDoor(i) 
+				if door ~= nil and door:IsOpen() and door.TargetRoomIndex == gardenRoomIndex then --This is the door that leads to the Garden
 			    	door:Close()
 			    	door:Bar()	 
 			    	garden.VISIT_NUMBER = 0 
@@ -294,6 +300,7 @@ end
 function garden:applyMortalityCurse()
 	local currentLevel = Game():GetLevel()	
 	local showCurseName = true
+	--play sfx here (Curse_of_Mortality.wav)
 	currentLevel:AddCurse(garden.CURSE_MORTALITY, showCurseName)
 	garden.HAS_MORTALITY_CURSE = true
 end
