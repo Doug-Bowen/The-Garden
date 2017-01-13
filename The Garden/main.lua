@@ -116,20 +116,23 @@ function garden:forbiddenFruitEffect()
 		local entities = Isaac.GetRoomEntities()
 		for i = 1, #entities do
 			local singleEntity = entities[i]
-			if singleEntity.EntityType == EntityType.ENTITY_TEAR then			
-				local knockBackAmount = math.random(15)				
-				singleEntity:SetKnockbackMultiplier(knockBackAmount) --Grant random amount of knockback
+			if singleEntity.Type == EntityType.ENTITY_TEAR then			
+				--local knockBackAmount = math.random(1.0)				
+				--singleEntity:SetKnockbackMultiplier(knockBackAmount) --Grant random amount of knockback
 
 				local singleTearSprite = singleEntity:GetSprite() 
 				local randomAppleNum = math.random(4)				 
 				if randomAppleNum == 1 then 
-					singleTearSprite:Load("gfx/effects/apple_one.png", true)			
-				elseif randomAppleNum == 2 then
-					singleTearSprite:Load("gfx/effects/apple_two.png", true)			
-				elseif randomAppleNum == 3 then
-					singleTearSprite:Load("gfx/effects/apple_three.png", true)			
-				elseif randomAppleNum == 4 then
-					singleTearSprite:Load("gfx/effects/apple_four.png", true)							
+					singleTearSprite:Load("gfx/effects/apple_one.anm2", true)			
+				end
+				if randomAppleNum == 2 then
+					singleTearSprite:Load("gfx/effects/apple_two.anm2", true)			
+				end
+				if randomAppleNum == 3 then
+					singleTearSprite:Load("gfx/effects/apple_three.anm2", true)			
+				end
+				if randomAppleNum == 4 then
+					singleTearSprite:Load("gfx/effects/apple_four.anm2", true)							
 				end 
 			end
 		end		
@@ -180,7 +183,7 @@ function garden:gardenRoomUpdate()
 				--Handle Heart Spawning
 				if garden.GARDEN_HEARTS_CAN_SPAWN then
 					garden.GARDEN_HEARTS_CAN_SPAWN = false
-					if math.random(4)	 == 1 then  --Spawn Hearts (25% chance)
+					if math.random(4) == 1 then  --Spawn Hearts (25% chance)
 						local roomCenter = currentRoom:GetCenterPos()
 						local leftHeartPosition = Vector(roomCenter.X-100, roomCenter.Y)
 						local rightHeartPosition = Vector(roomCenter.X+100, roomCenter.Y)
@@ -259,7 +262,7 @@ function garden:gardenRoomUpdate()
 			local pickupPosition = currentRoom:FindFreePickupSpawnPosition(roomCenter, initialStep, avoidActiveEnemies)
 			local velocity = Vector(0,0)
 			local spawnOwner = nil
-			local randomItem = 0 -- technically we should use Game():GetItemPool() to return an item pool, however this does not work yet.
+			local randomItem = -1 -- technically we should use Game():GetItemPool() to return an item pool, however this does not work yet.
 			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)
 			garden.ITEM_REWARDED = true
 		end
@@ -287,6 +290,7 @@ function garden:mortalityCurseEffect()
 		for i = 1, #entities do
 			local singleEntity = entities[i]
 			if singleEntity.Variant == PickupVariant.PICKUP_HEART then				
+				--make a 'poof'?
 				singleEntity:Remove()					
 			end
 		end
