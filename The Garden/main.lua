@@ -173,7 +173,7 @@ function garden:gardenRoomUpdate()
 	local gardenRoomIndex = -3	
 	Isaac.RenderText(garden.VISIT_NUMBER, 100, 100, 255, 0, 0, 255)
 	if currentRoomIndex~= nil and currentRoomIndex == gardenRoomIndex then -- Player is in a Garden
-		--garden.openCurrentRoomDoors() --This ensures teleportation into this room doesnt lock you in
+		garden.openCurrentRoomDoors() --This ensures teleportation into this room doesnt lock you in
 		if currentRoom:GetFrameCount() == 1 then --Player just walked into a Garden
 			if garden.VISIT_NUMBER == 0 then --Player has never been in this Garden			
 				local SERPENT_CAN_SPAWN = true			
