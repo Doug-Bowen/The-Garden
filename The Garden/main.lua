@@ -119,22 +119,17 @@ function garden:forbiddenFruitEffect()
 				local knockBackAmount = math.random(15)				
 				singleEntity:SetKnockbackMultiplier(knockBackAmount) --Grant random amount of knockback
 
-				--local appleSprite = Sprite() --Render a sprite over the tear (this may be a hack, not sure)
-				--local randomAppleNum = math.random(4)				 
-				--if randomAppleNum == 1 then 
-				--	appleSprite:Load("gfx/effects/apple_one.png", true)			
-				--elseif randomAppleNum == 2 then
-				--	appleSprite:Load("gfx/effects/apple_two.png", true)			
-				--elseif randomAppleNum == 3 then
-				--	appleSprite:Load("gfx/effects/apple_three.png", true)			
-				--elseif randomAppleNum == 4 then
-				--	appleSprite:Load("gfx/effects/apple_four.png", true)							
-				--end 
-
-				--local tearPosition = singleEntity.Position 
-				--local topLeftClamp = Vector(tearPosition.X-10,tearPosition.Y-10)      --I'm not currently sure what clamps do (might want to manipulate these values)
-				--local bottomRightClamp = Vector(tearPosition.X+10,tearPosition.Y+10)  --I'm not currently sure what clamps do (might want to manipulate these values)
-				--appleSprite:Render(tearPosition, topLeftClamp, bottomRightClamp)				
+				local singleTearSprite = singleEntity:GetSprite() 
+				local randomAppleNum = math.random(4)				 
+				if randomAppleNum == 1 then 
+					singleTearSprite:Load("gfx/effects/apple_one.png", true)			
+				elseif randomAppleNum == 2 then
+					singleTearSprite:Load("gfx/effects/apple_two.png", true)			
+				elseif randomAppleNum == 3 then
+					singleTearSprite:Load("gfx/effects/apple_three.png", true)			
+				elseif randomAppleNum == 4 then
+					singleTearSprite:Load("gfx/effects/apple_four.png", true)							
+				end 
 			end
 		end		
 	end	
