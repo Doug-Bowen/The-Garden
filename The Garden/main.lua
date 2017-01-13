@@ -258,7 +258,10 @@ function garden:gardenRoomUpdate()
 			--play sfx here (meaty deaths 3.wav) --might not need this, pin might play his own death sound
 			--play sfx here (holy!.wav)
 			--change music here (Garden_Holy.ogg)
-			local pickupPosition = currentRoom:GetCenterPos()
+			local roomCenter = currentRoom:GetCenterPos()
+			local initialStep = 0 --Not sure what this does
+			local avoidActiveEnemies = true
+			local pickupPosition = currentRoom:FindFreePickupSpawnPosition(roomCenter, initialStep, avoidActiveEnemies)
 			local velocity = Vector(0,0)
 			local spawnOwner = nil
 			local randomItem = 0 -- technically we should use Game():GetItemPool() to return an item pool, however this does not work yet.
