@@ -49,6 +49,7 @@ garden.SERPENT_HAS_SPAWNED = false
 garden.SERPENT_HAS_DIED = false
 garden.VISIT_NUMBER = 0
 garden.ITEM_REWARDED = false
+garden.GARDEN_ROOM_INDEX = -3	
 
 --Curses
 garden.CURSE_MORTALITY = Isaac.GetCurseIdByName("Curse of Mortality") 
@@ -168,11 +169,10 @@ end
 function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
 	local currentRoomIndex = currentLevel:GetCurrentRoomIndex()
-	local currentRoom = Game():GetRoom()
-	local gardenRoomIndex = -3		
-	if currentRoomIndex~= nil and currentRoomIndex == gardenRoomIndex then --Player is in a Garden
-		if currentRoom:GetFrameCount() == 1 then                           --Player just walked into a Garden
-			if garden.VISIT_NUMBER == 0 then                               --Player has never been in this Garden			
+	local currentRoom = Game():GetRoom()		
+	if currentRoomIndex~= nil and currentRoomIndex == garden.GARDEN_ROOM_INDEX then --Player is in a Garden
+		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden
+			if garden.VISIT_NUMBER == 0 then --Player has never been in this Garden			
 				garden.SERPENT_CAN_SPAWN = true			
 				garden.SERPENT_HAS_SPAWNED = false
 				garden.GARDEN_HEARTS_CAN_SPAWN = true
@@ -180,7 +180,7 @@ function garden:gardenRoomUpdate()
 				--Handle Heart Spawning
 				if garden.GARDEN_HEARTS_CAN_SPAWN then
 					garden.GARDEN_HEARTS_CAN_SPAWN = false
-					if math.random(4) == 1 then  --Spawn Hearts (25% chance)
+					if math.random(4)	 == 1 then  --Spawn Hearts (25% chance)
 						local roomCenter = currentRoom:GetCenterPos()
 						local leftHeartPosition = Vector(roomCenter.X-100, roomCenter.Y)
 						local rightHeartPosition = Vector(roomCenter.X+100, roomCenter.Y)
