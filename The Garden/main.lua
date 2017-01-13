@@ -284,8 +284,8 @@ function garden:mortalityCurseEffect()
 		local entities = Isaac.GetRoomEntities()
 		for i = 1, #entities do
 			local singleEntity = entities[i]
-			if singleEntity.PickupVariant == PICKUP_HEART then				
-				--singleEntity:Remove()					
+			if singleEntity.Variant == PickupVariant.PICKUP_HEART then				
+				singleEntity:Remove()					
 			end
 		end
 	end
