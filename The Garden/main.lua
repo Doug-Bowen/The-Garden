@@ -48,6 +48,7 @@ garden.SERPENT_CAN_SPAWN = true
 garden.SERPENT_HAS_SPAWNED = false
 garden.SERPENT_HAS_DIED = false
 garden.VISIT_NUMBER = 0
+garden.ITEM_REWARDED = false
 garden.GARDEN_ROOM_INDEX = -3	
 
 --Curses
@@ -247,7 +248,7 @@ function garden:gardenRoomUpdate()
 		end 
 
 		--If the player has beaten The Serpent
-		if garden.SERPENT_HAS_DIED then
+		if garden.SERPENT_HAS_DIED and not garden.ITEM_REWARDED then
 			--currentRoom:PlayMusic() doesnt seem to do anything
 			--play sfx here (meaty deaths 3.wav) --might not need this, pin might play his own death sound
 			--play sfx here (holy!.wav)
@@ -259,7 +260,8 @@ function garden:gardenRoomUpdate()
 			local velocity = Vector(0,0)
 			local spawnOwner = nil
 			local randomItem = 0 -- technically we should use Game():GetItemPool() to return an item pool, however this does not work yet.
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)			
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)
+			garden.ITEM_REWARDED = true
 		end
 	end
 end
