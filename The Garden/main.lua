@@ -59,7 +59,7 @@ garden.treeSprite = Isaac.GetEntityTypeByName("The Tree")
 
 function garden:debugMode()
 	if garden.DEBUG_MODE then
-		Isaac.RenderText("Debud Mode", 15, 50, 255, 0, 255, 0)		
+		Isaac.RenderText("Debug Mode", 15, 50, 255, 0, 255, 0)		
 		--Isaac.DebugString(RNG:GetSeed()) --Should output the seed to the log, just crashes though
 		if Game():GetFrameCount() == 1 then
 			local currentRoom = Game():GetRoom()
