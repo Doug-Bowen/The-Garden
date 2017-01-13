@@ -119,17 +119,17 @@ function garden:forbiddenFruitEffect()
 				local knockBackAmount = math.random(15)				
 				singleEntity:SetKnockbackMultiplier(knockBackAmount) --Grant random amount of knockback
 
-				local appleSprite = Sprite() --Render a sprite over the tear (this may be a hack, not sure)
-				local randomAppleNum = math.random(4)				 
-				if randomAppleNum == 1 then 
-					appleSprite:Load("gfx/effects/apple_one.png", true)			
-				elseif randomAppleNum == 2 then
-					appleSprite:Load("gfx/effects/apple_two.png", true)			
-				elseif randomAppleNum == 3 then
-					appleSprite:Load("gfx/effects/apple_three.png", true)			
-				elseif randomAppleNum == 4 then
-					appleSprite:Load("gfx/effects/apple_four.png", true)							
-				end 
+				--local appleSprite = Sprite() --Render a sprite over the tear (this may be a hack, not sure)
+				--local randomAppleNum = math.random(4)				 
+				--if randomAppleNum == 1 then 
+				--	appleSprite:Load("gfx/effects/apple_one.png", true)			
+				--elseif randomAppleNum == 2 then
+				--	appleSprite:Load("gfx/effects/apple_two.png", true)			
+				--elseif randomAppleNum == 3 then
+				--	appleSprite:Load("gfx/effects/apple_three.png", true)			
+				--elseif randomAppleNum == 4 then
+				--	appleSprite:Load("gfx/effects/apple_four.png", true)							
+				--end 
 
 				--local tearPosition = singleEntity.Position 
 				--local topLeftClamp = Vector(tearPosition.X-10,tearPosition.Y-10)      --I'm not currently sure what clamps do (might want to manipulate these values)
@@ -138,6 +138,9 @@ function garden:forbiddenFruitEffect()
 			end
 		end		
 	end	
+end
+
+function garden:creationEffect()
 end
 
 function garden:deceptionEffect()
@@ -173,7 +176,6 @@ function garden:gardenRoomUpdate()
 	local currentRoom = Game():GetRoom()
 	local gardenRoomIndex = -3		
 	if currentRoomIndex~= nil and currentRoomIndex == gardenRoomIndex then -- Player is in a Garden
-		garden.openCurrentRoomDoors() --This ensures teleportation into this room doesnt lock you in
 		if currentRoom:GetFrameCount() == 1 then --Player just walked into a Garden
 			if garden.VISIT_NUMBER == 0 then --Player has never been in this Garden			
 				local SERPENT_CAN_SPAWN = true			
@@ -181,23 +183,16 @@ function garden:gardenRoomUpdate()
 
 				--Handle Heart Spawning
 				if garden.GARDEN_HEARTS_CAN_SPAWN then
-					local canSpawn = math.random(4)
+					local randomNumber = math.random(4)
 					garden.GARDEN_HEARTS_CAN_SPAWN = false
-					if canSpawn == 1 then  --Spawn Hearts (25% chance)
+					if randomNumber == 1 then  --Spawn Hearts (25% chance)
 						local roomCenter = currentRoom:GetCenterPos()
 						local leftHeartPosition = Vector(roomCenter.X-100, roomCenter.Y)
 						local rightHeartPosition = Vector(roomCenter.X+100, roomCenter.Y)
 						local velocity = Vector(0,0)
 						local spawnOwner = Isaac.GetPlayer(0)
-						local heartType = math.random(2)
-						if heartType == 1 then 
-							Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, leftHeartPosition, velocity, spawnOwner) 	
-							Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, rightHeartPosition, velocity, spawnOwner) 	
-						end
-						if heartType == 2 then 
-							Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_GOLDEN, leftHeartPosition, velocity, spawnOwner) 	
-							Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_GOLDEN, rightHeartPosition, velocity, spawnOwner) 	
-						end
+						Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, leftHeartPosition, velocity, spawnOwner) 	
+						Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, rightHeartPosition, velocity, spawnOwner) 
 					end
 				end						
 			end
@@ -237,8 +232,7 @@ function garden:gardenRoomUpdate()
 				local spawnOwner = Isaac.GetPlayer(0)				
 				Isaac.Spawn(EntityType.ENTITY_PIN, entityVariant, entitySubtype, serpentSpawnPosition, velocity, spawnOwner) --Try a different spawnOwner and maybe the visual glitch wont happen?
 				garden.SERPENT_CAN_SPAWN = false
-				garden.SERPENT_HAS_SPAWNED = true
-				garden.closeCurrentRoomDoors()				
+				garden.SERPENT_HAS_SPAWNED = true			
 				garden.barCurrentRoomDoors()				
 			end				
 		end
@@ -275,27 +269,6 @@ function garden:gardenRoomUpdate()
 			garden.ITEM_REWARDED = true
 		end
 	end
-
-	--The player has left a Garden
-	if currentRoomIndex ~= gardenRoomIndex and currentRoom:GetFrameCount() == 1 then --If the Player is not in the Garden 
-		local previousRoomIndex = currentLevel:GetPreviousRoomIndex()
-		if previousRoomIndex ~= nil and previousRoomIndex == gardenRoomIndex then --Player just stepped out of the Garden
-			local currentRoom = Game():GetRoom() --Get the current room
-			for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
-				local door = currentRoom:GetDoor(i) 
-				if door ~= nil and door:IsOpen() and door.TargetRoomIndex == gardenRoomIndex then --This is the door that leads to the Garden
-			    	door:Close()
-			    	door:Bar()	 
-			    	
-			    	--Reset flags for future Garden Rooms
-			    	garden.VISIT_NUMBER = 0 
-			    	garden.SERPENT_CAN_SPAWN = true
-					garden.SERPENT_HAS_SPAWNED = false
-					garden.GARDEN_HEARTS_CAN_SPAWN = true  
-				end
-			end			
-		end
-	end	
 end
 
 function garden:applyMortalityCurse()
@@ -310,6 +283,12 @@ function garden:removeMortalityCurse()
 	local currentLevel = Game():GetLevel()		
 	currentLevel:RemoveCurse(garden.CURSE_MORTALITY)
 	garden.HAS_MORTALITY_CURSE = false
+
+	--Reset Gardens for this floor
+	garden.VISIT_NUMBER = 0 
+	garden.SERPENT_CAN_SPAWN = true
+	garden.SERPENT_HAS_SPAWNED = false
+	garden.GARDEN_HEARTS_CAN_SPAWN = true  
 end
 
 function garden:mortalityCurseEffect()
@@ -317,8 +296,8 @@ function garden:mortalityCurseEffect()
 		local entities = Isaac.GetRoomEntities()
 		for i = 1, #entities do
 			local singleEntity = entities[i]
-			if singleEntity.EntityType == EntityType.ENTITY_PICKUP and singleEntity.PickupVariant == PickupVariant.PICKUP_HEART then				
-				singleEntity:Remove()					
+			if singleEntity.PickupVariant == PICKUP_HEART then				
+				--singleEntity:Remove()					
 			end
 		end
 	end
@@ -328,18 +307,8 @@ function garden:openCurrentRoomDoors()
 	local currentRoom = Game():GetRoom()
 	for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
 	local door = currentRoom:GetDoor(i)
-		if door ~= nil and not door:IsOpen() then
+		if door ~= nil then
 	    	door:Open() 
-		end
-	end
-end
-
-function garden:closeCurrentRoomDoors()
-	local currentRoom = Game():GetRoom()
-	for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
-	local door = currentRoom:GetDoor(i)
-		if door ~= nil and door:IsOpen() then
-	    	door:Close() 
 		end
 	end
 end
@@ -348,7 +317,7 @@ function garden:barCurrentRoomDoors()
 	local currentRoom = Game():GetRoom()
 	for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
 	local door = currentRoom:GetDoor(i)
-		if door ~= nil and not door:IsOpen() then
+		if door ~= nil then
 	    	door:Bar() 
 		end
 	end
@@ -357,6 +326,7 @@ end
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.debugMode)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.shameEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.forbiddenFruitEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.creationEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.deceptionEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.grantedDomainEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theWillOfManEffect)
