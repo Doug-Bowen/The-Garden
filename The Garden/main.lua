@@ -55,9 +55,6 @@ garden.GARDEN_ROOM_INDEX = -3
 garden.CURSE_MORTALITY = Isaac.GetCurseIdByName("Curse of Mortality") 
 garden.HAS_MORTALITY_CURSE = false
 
---Sprites
---garden.TREE = Isaac.GetEntityTypeByName("The Tree")
-
 function garden:debugMode()
 	if garden.DEBUG_MODE then
 		Isaac.RenderText("Debug Mode, VISIT NUMBER = ", 15, 50, 255, 0, 255, 0)		
@@ -119,12 +116,12 @@ function garden:forbiddenFruitEffect()
 				local currentSprite = singleEntity:GetSprite():GetFilename() 
 				if currentSprite ~= "gfx/apple_one.anm2" and currentSprite ~= "gfx/apple_two.anm2" and currentSprite ~= "gfx/apple_three.anm2" and currentSprite ~= "gfx/apple_four.anm2" then
 					
-					singleEntity:Remove() --Remove old tear to replace it
+					--singleEntity:Remove() --Remove old tear to replace it
 					--I DONT HTINK I SHOULD BE DOING THIS -- local newTear = Game():GetPlayer(0):FireTear(singleEntity.Position, singleEntity.Velocity, true, true, true)
 					--Add effect here
 					--newTear.Target:AddConfusion(EntityRef(player),100,false)
 
-					local newTearSprite = newTear:GetSprite() 
+					local newTearSprite = singleEntity:GetSprite() 
 					local randomAppleNum = math.random(4)				 
 					if randomAppleNum == 1 then 
 						newTearSprite:Load("gfx/apple_one.anm2", true)	
@@ -203,18 +200,18 @@ function garden:gardenRoomUpdate()
 
 			garden.VISIT_NUMBER = garden.VISIT_NUMBER + 1
 			--Build Tree Sprite
-			--local tree = treeSprite:GetSprite() 
-			--local animationName = "treeIdle"
-			--if not tree:IsPlaying(animationName) then
-			--	local forcePlay = true
-			--	tree:Play(animationName, forcePlay)
-			--end
-			--local entityVariant = 0
-			--local entitySubtype = 0
-			--local roomCenter = currentRoom:GetCenterPos()
-			--local velocity = Vector(0,0)
-			--local spawnOwner = Isaac.GetPlayer(0)				
-			--Isaac.Spawn(garden.treeSprite, entityVariant, entitySubtype, roomCenter, velocity, spawnOwner)
+			Isaac.RenderText(player.Position.X, 50, 50, 255, 255, 255, 255)
+			Isaac.RenderText(player.Position.Y, 100, 50, 255, 255, 255, 255)
+			local roomCenter = currentRoom:GetCenterPos()
+			Isaac.GridSpawn(GridEntityType.GRID_ROCK, 0, roomCenter, true)
+			local treeLocation = Vector(roomCenter.X, roomCenter.Y-50)
+			local velocity = Vector(0,0)
+			local spawnOwner = nil
+			local nullSpawn = Isaac.Spawn(EntityType.ENTITY_EFFECT, 0, 0, treeLocation, velocity, spawnOwner)
+			local treeSprite = nullSpawn:GetSprite()
+			treeSprite:Load("gfx/tree.anm2",true)
+			treeSprite:Play("Idle", true)		
+
 
 			--Handle the music for the room			
 			--play music here (Garden_Drone.ogg)
