@@ -118,12 +118,19 @@ function garden:forbiddenFruitEffect()
 			if singleEntity.Type == EntityType.ENTITY_TEAR then			
 				--local knockBackAmount = math.random(1.0)				
 				--singleEntity:SetKnockbackMultiplier(knockBackAmount) --Grant random amount of knockback
+				
+				local tearPosition = singleEntity.Position
+				local tearVelocity = singleEntity.Velocity
+				
+				local customTear = player:FireTear(player.Position,tearVelocity,true,true,true)
 
-				local singleTearSprite = singleEntity:GetSprite() 
+
+
+				local singleTearSprite = customTear:GetSprite() 
 				--local randomAppleNum = math.random(4)				 
 				--if randomAppleNum == 1 then 
-					local tearAnimation = singleTearSprite:Load("gfx/apple_one.anm2", true)
-					singleTearSprite:Play(tearAnimation, true)			
+					singleTearSprite:Load("gfx/apple_one.anm2", true)
+					singleTearSprite:Play("Idle", true)			
 				--end
 				--if randomAppleNum == 2 then
 				--	singleTearSprite:Load("gfx/apple_two.anm2", true)			
