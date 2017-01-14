@@ -81,7 +81,6 @@ function garden:debugMode()
 	end
 end
 
-
 function garden:shameEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_SHAME) then		
@@ -263,7 +262,7 @@ function garden:gardenRoomUpdate()
 			local pickupPosition = currentRoom:FindFreePickupSpawnPosition(roomCenter, initialStep, avoidActiveEnemies)
 			local velocity = Vector(0,0)
 			local spawnOwner = nil
-			local randomItem = -1 -- technically we should use Game():GetItemPool() to return an item pool, however this does not work yet.
+			local randomItem = 0 -- technically we should use Game():GetItemPool() to return an item pool, however this does not work yet.
 			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)
 			garden.ITEM_REWARDED = true
 		end
@@ -331,5 +330,5 @@ garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.exiledEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theFirstDayEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.miracleGrowEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoomUpdate)
-garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect) --maybe use a post render callback here?
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect)
 garden:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, garden.removeMortalityCurse)
