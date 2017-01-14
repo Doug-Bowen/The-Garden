@@ -118,24 +118,27 @@ function garden:forbiddenFruitEffect()
 			if singleEntity.Type == EntityType.ENTITY_TEAR then			
 				local currentSprite = singleEntity:GetSprite():GetFilename() 
 				if currentSprite ~= "gfx/apple_one.anm2" and currentSprite ~= "gfx/apple_two.anm2" and currentSprite ~= "gfx/apple_three.anm2" and currentSprite ~= "gfx/apple_four.anm2" then
-					--local knockBackAmount = math.random(1.0)				
-					--singleEntity:SetKnockbackMultiplier(knockBackAmount) --Grant random amount of knockback
 					
-					local singleTearSprite = singleEntity:GetSprite() 
+					singleEntity:Remove() --Remove old tear to replace it
+					local newTear = Game():GetPlayer(0):FireTear(singleEntity.Position, singleEntity.Velocity, true, true, true)
+					--Add effect here
+					--newTear.Target:AddConfusion(EntityRef(player),100,false)
+
+					local newTearSprite = newTear:GetSprite() 
 					local randomAppleNum = math.random(4)				 
 					if randomAppleNum == 1 then 
-						singleTearSprite:Load("gfx/apple_one.anm2", true)	
+						newTearSprite:Load("gfx/apple_one.anm2", true)	
 					end
 					if randomAppleNum == 2 then
-						singleTearSprite:Load("gfx/apple_two.anm2", true)				
+						newTearSprite:Load("gfx/apple_two.anm2", true)				
 					end
 					if randomAppleNum == 3 then
-						singleTearSprite:Load("gfx/apple_three.anm2", true)			
+						newTearSprite:Load("gfx/apple_three.anm2", true)			
 					end
 					if randomAppleNum == 4 then
-						singleTearSprite:Load("gfx/apple_four.anm2", true)							
+						newTearSprite:Load("gfx/apple_four.anm2", true)							
 					end 
-					singleTearSprite:Play("Idle", true)
+					newTearSprite:Play("Idle", true) --This is the name of the actual animation WITHIN the anm2 file!
 				end		
 			end
 		end		
