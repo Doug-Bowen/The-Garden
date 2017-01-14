@@ -116,31 +116,27 @@ function garden:forbiddenFruitEffect()
 		for i = 1, #entities do
 			local singleEntity = entities[i]
 			if singleEntity.Type == EntityType.ENTITY_TEAR then			
-				--local knockBackAmount = math.random(1.0)				
-				--singleEntity:SetKnockbackMultiplier(knockBackAmount) --Grant random amount of knockback
-				
-				local tearPosition = singleEntity.Position
-				local tearVelocity = singleEntity.Velocity
-				
-				local customTear = player:FireTear(player.Position,tearVelocity,true,true,true)
-
-
-
-				local singleTearSprite = customTear:GetSprite() 
-				--local randomAppleNum = math.random(4)				 
-				--if randomAppleNum == 1 then 
-					singleTearSprite:Load("gfx/apple_one.anm2", true)
-					singleTearSprite:Play("Idle", true)			
-				--end
-				--if randomAppleNum == 2 then
-				--	singleTearSprite:Load("gfx/apple_two.anm2", true)			
-				--end
-				--if randomAppleNum == 3 then
-				--	singleTearSprite:Load("gfx/apple_three.anm2", true)			
-				--end
-				--if randomAppleNum == 4 then
-				--	singleTearSprite:Load("gfx/apple_four.anm2", true)							
-				--end 
+				local currentSprite = singleEntity:GetSprite():GetFilename() 
+				if currentSprite ~= "gfx/apple_one.anm2" and currentSprite ~= "gfx/apple_two.anm2" and currentSprite ~= "gfx/apple_three.anm2" and currentSprite ~= "gfx/apple_four.anm2" then
+					--local knockBackAmount = math.random(1.0)				
+					--singleEntity:SetKnockbackMultiplier(knockBackAmount) --Grant random amount of knockback
+					
+					local singleTearSprite = singleEntity:GetSprite() 
+					local randomAppleNum = math.random(4)				 
+					if randomAppleNum == 1 then 
+						singleTearSprite:Load("gfx/apple_one.anm2", true)	
+					end
+					if randomAppleNum == 2 then
+						singleTearSprite:Load("gfx/apple_two.anm2", true)				
+					end
+					if randomAppleNum == 3 then
+						singleTearSprite:Load("gfx/apple_three.anm2", true)			
+					end
+					if randomAppleNum == 4 then
+						singleTearSprite:Load("gfx/apple_four.anm2", true)							
+					end 
+					singleTearSprite:Play("Idle", true)
+				end		
 			end
 		end		
 	end	
