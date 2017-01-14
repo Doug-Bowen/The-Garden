@@ -120,7 +120,7 @@ function garden:forbiddenFruitEffect()
 				if currentSprite ~= "gfx/apple_one.anm2" and currentSprite ~= "gfx/apple_two.anm2" and currentSprite ~= "gfx/apple_three.anm2" and currentSprite ~= "gfx/apple_four.anm2" then
 					
 					singleEntity:Remove() --Remove old tear to replace it
-					local newTear = Game():GetPlayer(0):FireTear(singleEntity.Position, singleEntity.Velocity, true, true, true)
+					--I DONT HTINK I SHOULD BE DOING THIS -- local newTear = Game():GetPlayer(0):FireTear(singleEntity.Position, singleEntity.Velocity, true, true, true)
 					--Add effect here
 					--newTear.Target:AddConfusion(EntityRef(player),100,false)
 
