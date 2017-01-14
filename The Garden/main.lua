@@ -199,24 +199,28 @@ function garden:gardenRoomUpdate()
 			end
 
 			garden.VISIT_NUMBER = garden.VISIT_NUMBER + 1
-			--Build Tree Sprite
-			Isaac.RenderText(player.Position.X, 50, 50, 255, 255, 255, 255)
-			Isaac.RenderText(player.Position.Y, 100, 50, 255, 255, 255, 255)
+			--Render Tree Sprite
 			local roomCenter = currentRoom:GetCenterPos()
-			Isaac.GridSpawn(GridEntityType.GRID_ROCK, 0, roomCenter, true)
-			local treeLocation = Vector(roomCenter.X, roomCenter.Y-50)
+			local rockLocation = Vector(roomCenter.X,roomCenter.Y-30)
+			Isaac.GridSpawn(GridEntityType.GRID_PIT, 0, rockLocation, true)
+			local treeLocation = Vector(roomCenter.X, roomCenter.Y-100)
 			local velocity = Vector(0,0)
 			local spawnOwner = nil
 			local nullSpawn = Isaac.Spawn(EntityType.ENTITY_EFFECT, 0, 0, treeLocation, velocity, spawnOwner)
+			nullSpawn.RenderZOffset = 5000000
 			local treeSprite = nullSpawn:GetSprite()
 			treeSprite:Load("gfx/tree.anm2",true)
 			treeSprite:Play("Idle", true)		
 
-
 			--Handle the music for the room			
 			--play music here (Garden_Drone.ogg)
 			--play quieter music here (Garden_Ambience.ogg)  
-		end		
+		end	
+
+		local player = Isaac.GetPlayer(0)
+		local playerPosition = player.Position
+		Isaac.RenderText(playerPosition.X, 50, 15, 255, 255, 255, 255)
+		Isaac.RenderText(playerPosition.Y, 50, 30, 255, 255, 255, 255)	
 
 		--Check if player is activating The Serpent fight
 		local player = Isaac.GetPlayer(0)
