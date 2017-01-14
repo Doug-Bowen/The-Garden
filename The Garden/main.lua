@@ -56,7 +56,7 @@ garden.CURSE_MORTALITY = Isaac.GetCurseIdByName("Curse of Mortality")
 garden.HAS_MORTALITY_CURSE = false
 
 --Sprites
-garden.treeSprite = Isaac.GetEntityTypeByName("The Tree")
+--garden.TREE = Isaac.GetEntityTypeByName("The Tree")
 
 function garden:debugMode()
 	if garden.DEBUG_MODE then
@@ -121,19 +121,20 @@ function garden:forbiddenFruitEffect()
 				--singleEntity:SetKnockbackMultiplier(knockBackAmount) --Grant random amount of knockback
 
 				local singleTearSprite = singleEntity:GetSprite() 
-				local randomAppleNum = math.random(4)				 
-				if randomAppleNum == 1 then 
-					singleTearSprite:Load("gfx/effects/apple_one.anm2", true)			
-				end
-				if randomAppleNum == 2 then
-					singleTearSprite:Load("gfx/effects/apple_two.anm2", true)			
-				end
-				if randomAppleNum == 3 then
-					singleTearSprite:Load("gfx/effects/apple_three.anm2", true)			
-				end
-				if randomAppleNum == 4 then
-					singleTearSprite:Load("gfx/effects/apple_four.anm2", true)							
-				end 
+				--local randomAppleNum = math.random(4)				 
+				--if randomAppleNum == 1 then 
+					local tearAnimation = singleTearSprite:Load("gfx/apple_one.anm2", true)
+					singleTearSprite:Play(tearAnimation, true)			
+				--end
+				--if randomAppleNum == 2 then
+				--	singleTearSprite:Load("gfx/apple_two.anm2", true)			
+				--end
+				--if randomAppleNum == 3 then
+				--	singleTearSprite:Load("gfx/apple_three.anm2", true)			
+				--end
+				--if randomAppleNum == 4 then
+				--	singleTearSprite:Load("gfx/apple_four.anm2", true)							
+				--end 
 			end
 		end		
 	end	
