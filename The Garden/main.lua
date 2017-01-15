@@ -55,6 +55,9 @@ garden.GARDEN_ROOM_INDEX = -3
 garden.CURSE_MORTALITY = Isaac.GetCurseIdByName("Curse of Mortality") 
 garden.HAS_MORTALITY_CURSE = false
 
+--Entity for Tree Spawn
+garden.nullSpawn = nil
+
 function garden:debugMode()
 	if garden.DEBUG_MODE then
 		Isaac.RenderText("Debug Mode, VISIT NUMBER = ", 15, 50, 255, 0, 255, 0)		
@@ -75,6 +78,12 @@ function garden:debugMode()
 			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_THE_FIRST_DAY, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
 			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_MIRACLE_GROW, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
 		end		
+	end
+end
+
+function garden:newGame()
+	if Game():GetFrameCount() == 1 then
+	 	garden.VISIT_NUMBER = 0
 	end
 end
 
@@ -206,9 +215,9 @@ function garden:gardenRoomUpdate()
 			local treeLocation = Vector(roomCenter.X, roomCenter.Y-100)
 			local velocity = Vector(0,0)
 			local spawnOwner = nil
-			local nullSpawn = Isaac.Spawn(EntityType.ENTITY_EFFECT, 0, 0, treeLocation, velocity, spawnOwner)
-			nullSpawn.RenderZOffset = 5000000
-			local treeSprite = nullSpawn:GetSprite()
+			garden.nullSpawn = Isaac.Spawn(EntityType.ENTITY_EFFECT, 0, 0, treeLocation, velocity, spawnOwner)
+			garden.nullSpawn.RenderZOffset = -69999
+			local treeSprite = garden.nullSpawn:GetSprite()
 			treeSprite:Load("gfx/tree.anm2",true)
 			treeSprite:Play("Idle", true)		
 
@@ -220,7 +229,13 @@ function garden:gardenRoomUpdate()
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position
 		Isaac.RenderText(playerPosition.X, 50, 15, 255, 255, 255, 255)
-		Isaac.RenderText(playerPosition.Y, 50, 30, 255, 255, 255, 255)	
+		Isaac.RenderText(playerPosition.Y, 50, 30, 255, 255, 255, 255)
+		if playerPosition.Y>430 then
+			garden.nullSpawn.RenderZOffset = 5000000
+			--treeSprite:Load("gfx/tree.anm2",true)
+			--treeSprite:Play("Idle", true)		
+		end
+
 
 		--Check if player is activating The Serpent fight
 		local player = Isaac.GetPlayer(0)
@@ -325,6 +340,7 @@ function garden:barCurrentRoomDoors()
 end
 
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.debugMode)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.newGame)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.shameEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.forbiddenFruitEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.creationEffect)
