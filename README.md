@@ -30,7 +30,8 @@ Adds:
 * Has its own item pool
 * Eternal hearts and broken hearts have a chance to spawn in this room. (25%).
 * Discovering the garden unlocks the Genesis challenge.
-* Touching the tree in the center of the room will trigger a fight with The Serpent and give the player the Curse of Mortality
+* Touching the tree in the center of the room will trigger a fight with The Serpent
+ * Defeating The Serpent will give the player the Curse of Mortality
  * The Serpent is a reskin of Pin (not a replacement) that shoots apples (knockback).
  * The music played before, during, and after the Serpent fight should be different and follow the theme.
  
