@@ -259,7 +259,6 @@ function garden:gardenRoomUpdate()
 				--change music here (Garden_Serpent.ogg)
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)				
 				garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_ID, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
-				garden.SERPENT_SHELL.RenderZOffset = 10 --Above Isaac
 
 				garden.SERPENT_CAN_SPAWN = false
 				garden.SERPENT_HAS_SPAWNED = true			
@@ -299,6 +298,7 @@ function garden:gardenRoomUpdate()
 			local randomItem = garden.gardenPool[randomNumber]			
 			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)
 			garden.ITEM_REWARDED = true
+			table.Remove(garden.gardenPool, randomNumber)
 		end
 	end
 end

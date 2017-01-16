@@ -7,7 +7,7 @@
         <preload-snd id="66" />  <!-- SOUND_MAGGOT_ENTER_GROUND -->
     </entity>
 
-    <entity anm2path="tree.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="1" friction="1" id="1000" name="The Tree" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="993">
+    <entity anm2path="tree.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="30" friction="1" id="1000" name="The Tree" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="993">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
 </entities>
