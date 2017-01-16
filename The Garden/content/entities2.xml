@@ -1,8 +1,5 @@
 <entities anm2root="gfx/" version="5">
-    <entity anm2path="treeIdle.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="1" friction="1" id="1000" name="The Tree" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="9">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-    </entity>
-    <entity anm2path="theSerpent.anm2" baseHP="100" boss="1" bossID="37" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="1000" name="The Serpent" numGridCollisionPoints="12" shadowSize="18" stageHP="0" variant="0" portrait="25" bestiary="true" bestiaryTransform="0,0,1" bestiaryAnim="Attack1">
+      <entity anm2path="theSerpent.anm2" baseHP="100" boss="1" bossID="37" champion="0" collisionDamage="1" collisionMass="30" collisionRadius="13" friction="1" id="1000" name="The Serpent" numGridCollisionPoints="12" shadowSize="18" stageHP="0" variant="0" portrait="25" bestiary="true" bestiaryTransform="0,0,1" bestiaryAnim="Attack1">
         <gibs amount="2" blood="1" bone="0" eye="0" gut="1" large="1" />
         <preload-snd id="117" /> <!-- SOUND_MONSTER_ROAR_2 -->
         <preload-snd id="25" /> <!-- SOUND_CUTE_GRUNT -->
