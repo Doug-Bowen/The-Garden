@@ -1,4 +1,0 @@
-This file is purely informational. Changing it will have no effect on saving or loading data.
-
-Save Data Path: C:\Users\Bowen Family/Documents/My Games/Binding of Isaac Afterbirth+/
-Modding Data Path: C:\Users\Bowen Family/Documents/My Games/Binding of Isaac Afterbirth+ Mods/

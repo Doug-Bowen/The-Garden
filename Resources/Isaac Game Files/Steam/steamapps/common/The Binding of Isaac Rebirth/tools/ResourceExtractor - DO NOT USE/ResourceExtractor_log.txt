@@ -1,7 +1,0 @@
-ERROR: Could not open F:\isaacMods\Isaac Game Files\Steam\steamapps\common\The Binding of Isaac Rebirth\isaac-ng.exe/resources/packed.
-********************************************************************************
-This program will extract the .a files from
-The Binding of Isaac: Rebirth/Afterbirth/Afterbirth+
-Input Path: F:\isaacMods\Isaac Game Files\Steam\steamapps\common\The Binding of Isaac Rebirth\isaac-ng.exe
-ERROR: No archive files found in the input path.
-Press ENTER to exit.
