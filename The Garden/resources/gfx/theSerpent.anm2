@@ -1,8 +1,8 @@
 <AnimatedActor>
-	<Info CreatedBy="robot" CreatedOn="14/10/2015 7:01:39 PM" Version="103" Fps="30"/>
+	<Info CreatedBy="robot" CreatedOn="1/15/2017 6:09:18 PM" Version="103" Fps="30"/>
 	<Content>
 		<Spritesheets>
-			<Spritesheet Path="Bosses/Classic/Boss_019_Pin.png" Id="0"/>
+			<Spritesheet Path="effects\theSerpent.png" Id="0"/>
 		</Spritesheets>
 		<Layers>
 			<Layer Name="body" Id="0" SpritesheetId="0"/>
