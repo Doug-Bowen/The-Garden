@@ -210,6 +210,14 @@ function garden:gardenRoomUpdate()
 			end
 
 			garden.VISIT_NUMBER = garden.VISIT_NUMBER + 1
+
+			--Render Floor and Walls
+			--local backdrop = currentRoom:GetBackdropType()
+
+			--Handle the music for the room			
+			--play music here (Garden_Drone.ogg)
+			--play quieter music here (Garden_Ambience.ogg)  
+			
 			--Render Tree Sprite
 			local roomCenter = currentRoom:GetCenterPos()
 			local rockLocation = Vector(roomCenter.X,roomCenter.Y-30)
@@ -221,11 +229,7 @@ function garden:gardenRoomUpdate()
 			garden.nullSpawn.RenderZOffset = -69999 --Below Isaac
 			local treeSprite = garden.nullSpawn:GetSprite()
 			treeSprite:Load("gfx/tree.anm2",true)
-			treeSprite:Play("Idle", true)		
-
-			--Handle the music for the room			
-			--play music here (Garden_Drone.ogg)
-			--play quieter music here (Garden_Ambience.ogg)  
+			treeSprite:Play("Idle", true)	
 		end	
 
 		--Handle Randering of the Tree based on Isaac's Position
