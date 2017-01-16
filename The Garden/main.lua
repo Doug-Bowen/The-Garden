@@ -216,7 +216,7 @@ function garden:gardenRoomUpdate()
 			local velocity = Vector(0,0)
 			local spawnOwner = nil
 			garden.nullSpawn = Isaac.Spawn(EntityType.ENTITY_EFFECT, 0, 0, treeLocation, velocity, spawnOwner)
-			garden.nullSpawn.RenderZOffset = -69999
+			garden.nullSpawn.RenderZOffset = -69999 --Below Isaac
 			local treeSprite = garden.nullSpawn:GetSprite()
 			treeSprite:Load("gfx/tree.anm2",true)
 			treeSprite:Play("Idle", true)		
@@ -226,14 +226,18 @@ function garden:gardenRoomUpdate()
 			--play quieter music here (Garden_Ambience.ogg)  
 		end	
 
+		--Handle Randering of the Tree based on Isaac's Position
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position
 		Isaac.RenderText(playerPosition.X, 50, 15, 255, 255, 255, 255)
 		Isaac.RenderText(playerPosition.Y, 50, 30, 255, 255, 255, 255)
 		if playerPosition.Y>430 then
-			garden.nullSpawn.RenderZOffset = 5000000
+			garden.nullSpawn.RenderZOffset = 5000000 --Above Isaac
 			--treeSprite:Load("gfx/tree.anm2",true)
 			--treeSprite:Play("Idle", true)		
+		end
+		if playerPosition.Y<=430 then
+			garden.nullSpawn.RenderZOffset = -69999 --Below Isaac			
 		end
 
 
