@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="robot" CreatedOn="1/15/2017 6:09:18 PM" Version="103" Fps="30"/>
+	<Info CreatedBy="robot" CreatedOn="1/16/2017 12:41:55 PM" Version="103" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="effects\theSerpent.png" Id="0"/>

@@ -56,10 +56,10 @@ garden.CURSE_MORTALITY = Isaac.GetCurseIdByName("Curse of Mortality")
 garden.HAS_MORTALITY_CURSE = false
 
 --Entities
-garden.TREE_SHELL = nil    --This is used to spawn The Tree 
-garden.SERPENT_SHELL = nil --This is used to spawn The Serpent 
-garden.SERPENT_ID = "62"   --This is Pin's ID
-garden.SERPENT_VARIANT = 3 --This is the Serpent's Variant Number
+garden.TREE_SHELL = nil     --This is used to spawn The Tree 
+garden.SERPENT_SHELL = nil  --This is used to spawn The Serpent 
+garden.SERPENT_ID = 62      --This is Pin's ID
+garden.SERPENT_VARIANT = 55 --This is the Serpent's Variant Number
 garden.SERPENT_SUBTYPE = 0 
 garden.SERPENT_VELOCITY = Vector(0,0)
 garden.SERPENT_SPAWN_OWNER = nil			
@@ -243,13 +243,19 @@ function garden:gardenRoomUpdate()
 		--Handle Randering of the Tree based on Isaac's Position
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position
-		if playerPosition.Y>430 then
-			garden.TREE_SHELL.RenderZOffset = 10 --Above Isaac
-			garden.TREE_SHELL:Update()			
-		end
-		if playerPosition.Y<=430 then
-			garden.TREE_SHELL.RenderZOffset = 0 --Below Isaac			
+		if playerPosition.Y>223 then
+			garden.TREE_SHELL.RenderZOffset = -69999 --Below Isaac
 			garden.TREE_SHELL:Update()
+			local treeSprite = garden.TREE_SHELL:GetSprite()
+			treeSprite:Load("gfx/tree.anm2",true)
+			treeSprite:Play("Idle", true)				
+		end
+		if playerPosition.Y<=223 then
+			garden.TREE_SHELL.RenderZOffset = 500000000 --Above Isaac			
+			garden.TREE_SHELL:Update()
+			local treeSprite = garden.TREE_SHELL:GetSprite()
+			treeSprite:Load("gfx/tree.anm2",true)
+			treeSprite:Play("Idle", true)	
 		end
 
 
@@ -264,9 +270,6 @@ function garden:gardenRoomUpdate()
 				local serpentSpawnPosition = Vector(roomCenter.X, roomCenter.Y+100)				
 				garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_ID, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, serpentSpawnPosition, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
 				garden.SERPENT_SHELL.RenderZOffset = 10 --Above Isaac
-				--local serpentSprite = garden.SERPENT_SHELL:GetSprite();				
-				--serpentSprite:Load("gfx/theSerpent.anm2",true)
-				--serpentSprite:Play("HeadWiggle", false);
 
 				garden.SERPENT_CAN_SPAWN = false
 				garden.SERPENT_HAS_SPAWNED = true			
