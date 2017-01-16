@@ -61,7 +61,6 @@ garden.SERPENT_SHELL = nil --This is used to spawn The Serpent
 garden.SERPENT_ID = "62"   --This is Pin's ID
 garden.SERPENT_VARIANT = 3 --This is the Serpent's Variant Number
 garden.SERPENT_SUBTYPE = 0 
-garden.SERPENT_SPAWN_POSITION = Vector(roomCenter.X, roomCenter.Y+100)
 garden.SERPENT_VELOCITY = Vector(0,0)
 garden.SERPENT_SPAWN_OWNER = nil			
 
@@ -259,8 +258,9 @@ function garden:gardenRoomUpdate()
 		local positionalDifference = Vector(playerPosition.X-roomCenter.X, playerPosition.Y-roomCenter.Y)
 		if math.abs(positionalDifference.X) < 20 and math.abs(positionalDifference.Y) < 20 then
 			if garden.SERPENT_CAN_SPAWN and not garden.SERPENT_HAS_SPAWNED then
-				--change music here (Garden_Serpent.ogg)				
-				garden.SERPENT_SHELL = serpentIsaac.Spawn(garden.SERPENT_ID, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_SPAWN_POSITION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
+				--change music here (Garden_Serpent.ogg)
+				local serpentSpawnPosition = Vector(roomCenter.X, roomCenter.Y+100)				
+				garden.SERPENT_SHELL = serpentIsaac.Spawn(garden.SERPENT_ID, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, serpentSpawnPosition, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
 				garden.SERPENT_SHELL.RenderZOffset = 10 --Above Isaac
 				--local serpentSprite = garden.SERPENT_SHELL:GetSprite();				
 				--serpentSprite:Load("gfx/theSerpent.anm2",true)
