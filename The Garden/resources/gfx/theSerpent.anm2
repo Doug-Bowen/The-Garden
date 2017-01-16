@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="robot" CreatedOn="1/16/2017 12:41:55 PM" Version="103" Fps="30"/>
+	<Info CreatedBy="robot" CreatedOn="1/16/2017 1:46:16 PM" Version="103" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="effects\theSerpent.png" Id="0"/>
@@ -15,7 +15,7 @@
 			<Event Name="Explosion" Id="0"/>
 		</Events>
 	</Content>
-	<Animations DefaultAnimation="HeadWiggle">
+	<Animations DefaultAnimation="Body1Wiggle">
 		<Animation Name="HeadWiggle" FrameNum="18" Loop="true">
 			<RootAnimation>
 				<Frame XPosition="0" YPosition="0" XScale="100" YScale="100" Delay="18" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
