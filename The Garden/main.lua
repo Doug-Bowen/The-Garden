@@ -60,8 +60,10 @@ garden.nullSpawn = nil
 
 function garden:debugMode()
 	if garden.DEBUG_MODE then
-		Isaac.RenderText("Debug Mode, VISIT NUMBER = ", 15, 50, 255, 0, 255, 0)		
-		Isaac.RenderText(garden.VISIT_NUMBER, 50, 50, 255, 0, 255, 0)
+		Isaac.RenderText("Debug Mode", 50, 15, 255, 255, 255, 255)
+		Isaac.RenderText("X:" .. playerPosition.X, 50, 30, 255, 255, 255, 255)
+		Isaac.RenderText("Y:" .. playerPosition.Y, 50, 45, 255, 255, 255, 255)
+		--Isaac.RenderText(garden.VISIT_NUMBER, 50, 50, 255, 0, 255, 0)
 		--Isaac.DebugString(RNG:GetSeed()) --Should output the seed to the log, just crashes though
 		if Game():GetFrameCount() == 1 then
 			local currentRoom = Game():GetRoom()
@@ -229,8 +231,6 @@ function garden:gardenRoomUpdate()
 		--Handle Randering of the Tree based on Isaac's Position
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position
-		Isaac.RenderText(playerPosition.X, 50, 15, 255, 255, 255, 255)
-		Isaac.RenderText(playerPosition.Y, 50, 30, 255, 255, 255, 255)
 		if playerPosition.Y>430 then
 			garden.nullSpawn.RenderZOffset = 5000000 --Above Isaac
 			--treeSprite:Load("gfx/tree.anm2",true)
