@@ -16,6 +16,21 @@ garden.COLLECTIBLE_EXILED = Isaac.GetItemIdByName("Exiled")
 garden.COLLECTIBLE_THE_FIRST_DAY = Isaac.GetItemIdByName("The First Day")
 garden.COLLECTIBLE_MIRACLE_GROW = Isaac.GetItemIdByName("Miracle Grow")
 
+--Pool
+garden.gardenPool = {}
+garden.gardenPool[1] = garden.COLLECTIBLE_SHAME
+garden.gardenPool[2] = garden.COLLECTIBLE_FORBIDDEN_FRUIT
+garden.gardenPool[3] = garden.COLLECTIBLE_DECEPTION
+garden.gardenPool[4] = garden.COLLECTIBLE_CREATION
+garden.gardenPool[5] = garden.COLLECTIBLE_GRANTED_DOMAIN
+garden.gardenPool[6] = garden.COLLECTIBLE_THE_WILL_OF_MAN
+garden.gardenPool[7] = garden.COLLECTIBLE_THE_FALL_OF_MAN
+garden.gardenPool[8] = garden.COLLECTIBLE_REBIRTH
+garden.gardenPool[9] = garden.COLLECTIBLE_EXILED
+garden.gardenPool[10] = garden.COLLECTIBLE_THE_FIRST_DAY
+garden.gardenPool[11] = garden.COLLECTIBLE_MIRACLE_GROW
+
+
 --Item Flags
 garden.HAS_SHAME = false
 garden.HAS_FORBIDDEN_FRUIT = false
@@ -85,17 +100,9 @@ function garden:debugMode()
 		if Game():GetFrameCount() == 1 then
 			local currentRoom = Game():GetRoom()
 			local roomCenter = currentRoom:GetCenterPos()
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_SHAME, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_FORBIDDEN_FRUIT, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_DECEPTION, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_CREATION, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_GRANTED_DOMAIN, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_THE_WILL_OF_MAN, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_THE_FALL_OF_MAN, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_REBIRTH, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_EXILED, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_THE_FIRST_DAY, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.COLLECTIBLE_MIRACLE_GROW, currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
+			for i = 1, #garden.gardenPool do
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.gardenPool[i], currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
+			end
 		end		
 	end
 end
@@ -288,7 +295,8 @@ function garden:gardenRoomUpdate()
 			local pickupPosition = currentRoom:FindFreePickupSpawnPosition(startingPosition, initialStep, avoidActiveEnemies)
 			local velocity = Vector(0,0)
 			local spawnOwner = nil
-			local randomItem = 0 -- technically we should use Game():GetItemPool() to return an item pool, however this does not work yet.
+			local randomNumber = math.random(11)
+			local randomItem = garden.gardenPool[randomNumber]			
 			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)
 			garden.ITEM_REWARDED = true
 		end
