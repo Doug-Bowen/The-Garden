@@ -67,6 +67,8 @@ garden.SERPENT_SPAWN_OWNER = nil
 function garden:debugMode()
 	if garden.DEBUG_MODE then
 		Isaac.RenderText("Debug Mode", 50, 15, 255, 255, 255, 255)
+		local player = Isaac.GetPlayer(0)
+		local playerPosition = player.Position
 		Isaac.RenderText("X:" .. playerPosition.X, 50, 30, 255, 255, 255, 255)
 		Isaac.RenderText("Y:" .. playerPosition.Y, 50, 45, 255, 255, 255, 255)
 		--Isaac.RenderText(garden.VISIT_NUMBER, 50, 50, 255, 0, 255, 0)
@@ -260,7 +262,7 @@ function garden:gardenRoomUpdate()
 			if garden.SERPENT_CAN_SPAWN and not garden.SERPENT_HAS_SPAWNED then
 				--change music here (Garden_Serpent.ogg)
 				local serpentSpawnPosition = Vector(roomCenter.X, roomCenter.Y+100)				
-				garden.SERPENT_SHELL = serpentIsaac.Spawn(garden.SERPENT_ID, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, serpentSpawnPosition, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
+				garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_ID, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, serpentSpawnPosition, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
 				garden.SERPENT_SHELL.RenderZOffset = 10 --Above Isaac
 				--local serpentSprite = garden.SERPENT_SHELL:GetSprite();				
 				--serpentSprite:Load("gfx/theSerpent.anm2",true)
