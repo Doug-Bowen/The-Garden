@@ -1,7 +1,7 @@
 local garden = RegisterMod("TheGarden", 1) --'1' denotes API v1.0
 
 --Debug Flag
-garden.DEBUG_MODE = true
+garden.DEBUG_MODE = false
 
 --Items
 garden.COLLECTIBLE_SHAME = Isaac.GetItemIdByName("Shame")
@@ -57,12 +57,21 @@ garden.HAS_MORTALITY_CURSE = false
 
 --Entities
 garden.TREE_SHELL = nil     --This is used to spawn The Tree 
+garden.TREE_ID = 1000       --This is The Effect ID
+garden.TREE_VARIANT = 993     
+garden.TREE_SUBTYPE = 0 
+garden.TREE_LOCATION = nil
+garden.TREE_VELOCITY = Vector(0,0)
+garden.TREE_SPAWN_OWNER = nil			
+
 garden.SERPENT_SHELL = nil  --This is used to spawn The Serpent 
 garden.SERPENT_ID = 62      --This is Pin's ID
 garden.SERPENT_VARIANT = 55 --This is the Serpent's Variant Number
 garden.SERPENT_SUBTYPE = 0 
+garden.SERPENT_LOCATION = nil
 garden.SERPENT_VELOCITY = Vector(0,0)
 garden.SERPENT_SPAWN_OWNER = nil			
+
 
 function garden:debugMode()
 	if garden.DEBUG_MODE then
@@ -219,44 +228,20 @@ function garden:gardenRoomUpdate()
 
 			garden.VISIT_NUMBER = garden.VISIT_NUMBER + 1
 
+			--Render Tree Sprite
+			local roomCenter = currentRoom:GetCenterPos()			
+			Isaac.GridSpawn(GridEntityType.GRID_PIT, 0, roomCenter, true)
+			garden.TREE_LOCATION = Vector(roomCenter.X, roomCenter.Y+10)			
+			garden.TREE_SHELL = Isaac.Spawn(garden.TREE_ID, garden.TREE_VARIANT, garden.TREE_SUBTYPE, garden.TREE_LOCATION, garden.TREE_VELOCITY, garden.TREE_SPAWN_OWNER)			
+
 			--Render Floor and Walls
 			--local backdrop = currentRoom:GetBackdropType()
 
 			--Handle the music for the room			
 			--play music here (Garden_Drone.ogg)
 			--play quieter music here (Garden_Ambience.ogg)  
-			
-			--Render Tree Sprite
-			local roomCenter = currentRoom:GetCenterPos()
-			local rockLocation = Vector(roomCenter.X,roomCenter.Y-30)
-			Isaac.GridSpawn(GridEntityType.GRID_PIT, 0, rockLocation, true)
-			local treeLocation = Vector(roomCenter.X, roomCenter.Y-100)
-			local velocity = Vector(0,0)
-			local spawnOwner = nil
-			garden.TREE_SHELL = Isaac.Spawn(EntityType.ENTITY_EFFECT, 0, 0, treeLocation, velocity, spawnOwner)
-			garden.TREE_SHELL.RenderZOffset = 0 --Below Isaac
-			local treeSprite = garden.TREE_SHELL:GetSprite()
-			treeSprite:Load("gfx/tree.anm2",true)
-			treeSprite:Play("Idle", true)	
 		end	
 
-		--Handle Randering of the Tree based on Isaac's Position
-		local player = Isaac.GetPlayer(0)
-		local playerPosition = player.Position
-		if playerPosition.Y>223 then
-			garden.TREE_SHELL.RenderZOffset = -69999 --Below Isaac
-			garden.TREE_SHELL:Update()
-			local treeSprite = garden.TREE_SHELL:GetSprite()
-			treeSprite:Load("gfx/tree.anm2",true)
-			treeSprite:Play("Idle", true)				
-		end
-		if playerPosition.Y<=223 then
-			garden.TREE_SHELL.RenderZOffset = 500000000 --Above Isaac			
-			garden.TREE_SHELL:Update()
-			local treeSprite = garden.TREE_SHELL:GetSprite()
-			treeSprite:Load("gfx/tree.anm2",true)
-			treeSprite:Play("Idle", true)	
-		end
 
 
 		--Check if player is activating The Serpent fight
@@ -267,8 +252,8 @@ function garden:gardenRoomUpdate()
 		if math.abs(positionalDifference.X) < 20 and math.abs(positionalDifference.Y) < 20 then
 			if garden.SERPENT_CAN_SPAWN and not garden.SERPENT_HAS_SPAWNED then
 				--change music here (Garden_Serpent.ogg)
-				local serpentSpawnPosition = Vector(roomCenter.X, roomCenter.Y+100)				
-				garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_ID, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, serpentSpawnPosition, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
+				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)				
+				garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_ID, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
 				garden.SERPENT_SHELL.RenderZOffset = 10 --Above Isaac
 
 				garden.SERPENT_CAN_SPAWN = false
