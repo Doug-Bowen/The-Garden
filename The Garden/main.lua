@@ -1,7 +1,7 @@
 local garden = RegisterMod("TheGarden", 1) --'1' denotes API v1.0
 
 --Debug Flag
-garden.DEBUG_MODE = false
+garden.DEBUG_MODE = true
 
 --Items
 garden.COLLECTIBLE_SHAME = Isaac.GetItemIdByName("Shame")
@@ -242,14 +242,12 @@ function garden:gardenRoomUpdate()
 			--play quieter music here (Garden_Ambience.ogg)  
 		end	
 
-
-
 		--Check if player is activating The Serpent fight
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position
 		local roomCenter = currentRoom:GetCenterPos()
 		local positionalDifference = Vector(playerPosition.X-roomCenter.X, playerPosition.Y-roomCenter.Y)
-		if math.abs(positionalDifference.X) < 20 and math.abs(positionalDifference.Y) < 20 then
+		if math.abs(positionalDifference.X) < 35 and math.abs(positionalDifference.Y) < 35 then
 			if garden.SERPENT_CAN_SPAWN and not garden.SERPENT_HAS_SPAWNED then
 				--change music here (Garden_Serpent.ogg)
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)				
@@ -286,7 +284,8 @@ function garden:gardenRoomUpdate()
 			local roomCenter = currentRoom:GetCenterPos()
 			local initialStep = 0 --Not sure what this does
 			local avoidActiveEnemies = true
-			local pickupPosition = currentRoom:FindFreePickupSpawnPosition(roomCenter, initialStep, avoidActiveEnemies)
+			local startingPosition = Vector(roomCenter.X,roomCenter.Y+20)
+			local pickupPosition = currentRoom:FindFreePickupSpawnPosition(startingPosition, initialStep, avoidActiveEnemies)
 			local velocity = Vector(0,0)
 			local spawnOwner = nil
 			local randomItem = 0 -- technically we should use Game():GetItemPool() to return an item pool, however this does not work yet.
