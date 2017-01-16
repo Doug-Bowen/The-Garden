@@ -226,7 +226,7 @@ function garden:gardenRoomUpdate()
 			local velocity = Vector(0,0)
 			local spawnOwner = nil
 			garden.nullSpawn = Isaac.Spawn(EntityType.ENTITY_EFFECT, 0, 0, treeLocation, velocity, spawnOwner)
-			garden.nullSpawn.RenderZOffset = -69999 --Below Isaac
+			garden.nullSpawn.RenderZOffset = 0 --Below Isaac
 			local treeSprite = garden.nullSpawn:GetSprite()
 			treeSprite:Load("gfx/tree.anm2",true)
 			treeSprite:Play("Idle", true)	
@@ -236,12 +236,12 @@ function garden:gardenRoomUpdate()
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position
 		if playerPosition.Y>430 then
-			garden.nullSpawn.RenderZOffset = 5000000 --Above Isaac
+			garden.nullSpawn.RenderZOffset = 10 --Above Isaac
 			--treeSprite:Load("gfx/tree.anm2",true)
 			--treeSprite:Play("Idle", true)		
 		end
 		if playerPosition.Y<=430 then
-			garden.nullSpawn.RenderZOffset = -69999 --Below Isaac			
+			garden.nullSpawn.RenderZOffset = 0 --Below Isaac			
 		end
 
 
