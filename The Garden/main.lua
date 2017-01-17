@@ -88,7 +88,7 @@ garden.SERPENT_VELOCITY = Vector(0,0)
 garden.SERPENT_SPAWN_OWNER = nil		
 
 --Level
-garden.CURRENT_LEVEL = Game():GetLevel()
+garden.CURRENT_LEVEL = nil
 
 function garden:debugMode()
 	if garden.DEBUG_MODE then
@@ -438,10 +438,10 @@ function garden:barCurrentRoomDoors()
 	end
 end
 
---DOE NOT WORK
 function garden:checkForNewLevel() --Reset Flags on a new floor
-	if Game():GetLevel() ~= garden.CURRENT_LEVEL then
-		garden.CURRENT_LEVEL = Game():GetLevel()
+	local currentLevel = Game():GetLevel()
+	if currentLevel:GetStage() ~= garden.CURRENT_LEVEL then
+		garden.CURRENT_LEVEL = currentLevel:GetStage()
 		garden.GARDEN_HEARTS_CAN_SPAWN = true
 		garden.SERPENT_CAN_SPAWN = true
 		garden.SERPENT_HAS_SPAWNED = false
@@ -450,6 +450,16 @@ function garden:checkForNewLevel() --Reset Flags on a new floor
 		garden.ITEM_REWARDED = false
 	end	
 end	
+
+function garden:checkForNewRun() --Reset Flags on a new run
+	garden.GARDEN_HEARTS_CAN_SPAWN = true
+	garden.SERPENT_CAN_SPAWN = true
+	garden.SERPENT_HAS_SPAWNED = false
+	garden.SERPENT_HAS_DIED = false
+	garden.VISIT_NUMBER = 0
+	garden.ITEM_REWARDED = false	
+end	
+
 
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.debugMode)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.shameEffect)
@@ -466,5 +476,6 @@ garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.miracleGrowEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoomUpdate)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.checkForNewLevel)
+garden:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, garden.checkForNewRun)
 garden:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, garden.removeMortalityCurse)
 garden:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, garden.modifyStats)
