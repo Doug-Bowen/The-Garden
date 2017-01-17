@@ -178,6 +178,13 @@ function garden:forbiddenFruitEffect()
 end
 
 function garden:creationEffect()
+	local player = Isaac.GetPlayer(0)
+	if player:HasCollectible(garden.COLLECTIBLE_CREATION) then		
+		if not garden.HAS_CREATION then			
+			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_CREATION)
+			garden.HAS_CREATION = true  
+		end
+	end
 end
 
 function garden:deceptionEffect()
