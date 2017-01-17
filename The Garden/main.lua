@@ -458,6 +458,18 @@ function garden:checkForNewRun() --Reset Flags on a new run
 	garden.SERPENT_HAS_DIED = false
 	garden.VISIT_NUMBER = 0
 	garden.ITEM_REWARDED = false	
+
+	garden.HAS_SHAME = false
+	garden.HAS_FORBIDDEN_FRUIT = false
+	garden.HAS_DECEPTION = false
+	garden.HAS_CREATION = false
+	garden.HAS_GRANTED_DOMAIN = false
+	garden.HAS_THE_WILL_OF_MAN = false
+	garden.HAS_THE_FALL_OF_MAN = false
+	garden.HAS_REBIRTH = false
+	garden.HAS_EXILED = false
+	garden.HAS_THE_FIRST_DAY = false
+	garden.HAS_MIRACLE_GROW = false
 end	
 
 
