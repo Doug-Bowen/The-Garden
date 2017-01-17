@@ -348,6 +348,8 @@ function garden:applyMortalityCurse()
 	local currentLevel = Game():GetLevel()	
 	local showCurseName = true
 	--play sfx here (Curse_of_Mortality.wav)
+	--local TREE_SHELL_NPC = garden.TREE_SHELL:ToNPC()
+	--TREE_SHELL_NPC:PlaySound("772", 0, false, 0)	
 	currentLevel:AddCurse(garden.CURSE_MORTALITY, showCurseName)
 	garden.HAS_MORTALITY_CURSE = true
 end
@@ -365,7 +367,7 @@ function garden:mortalityCurseEffect()
 		for i = 1, #entities do
 			local singleEntity = entities[i]
 			if singleEntity.Variant == PickupVariant.PICKUP_HEART then				
-				--make a 'poof'?
+				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, singleEntity.Position, Vector(0,0), nil)
 				singleEntity:Remove()					
 			end
 		end

@@ -1,5 +1,5 @@
 <sounds root="sfx/">
-	<sound id="1">
-		<sample weight="1" path="Garden_Difficulty.wav" />
+	<sound id="772">
+		<sample weight="1" path="Curse_of_Mortality.wav" />
 	</sound>
 </sounds>
