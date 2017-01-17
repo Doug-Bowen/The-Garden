@@ -2,7 +2,7 @@
 	<passive description="Awareness of oneself" gfx="collectibles_shame.png" name="Shame" />
 	<passive description="Don't believe his lies!" gfx="collectibles_forbidden_fruit.png" name="Forbidden Fruit" />
 	<passive description="The Serpent lies..." gfx="collectibles_deception.png" name="Deception" />
-	<passive description="In the beginning..." gfx="collectibles_creation.png" name="Creation" />
+	<passive description="In the beginning..." gfx="collectibles_creation.png" name="Creation" cache="damage firedelay speed shotspeed tearcolor" />
 	<passive description="All authority is yours" gfx="collectibles_granted_domain.png" name="Granted Domain" />
 	<passive description="Know good, know evil." gfx="collectibles_the_will_of_man.png" name="The Will of Man" />
 	<passive description="Original sin" gfx="collectibles_the_fall_of_man.png" name="The Fall of Man" />

@@ -235,6 +235,19 @@ end
 function garden:miracleGrowEffect()
 end
 
+function garden:modifyStats(player, statFromXML)
+	local player = Isaac.GetPlayer(0)
+	
+	if player:HasCollectible(garden.COLLECTIBLE_CREATION) then
+		player.Damage = player.Damage+.51
+		player.FireDelay = player.FireDelay-1
+		player.MoveSpeed = player.MoveSpeed+.3
+		player.ShotSpeed = player.ShotSpeed+.25
+		local white = Color(255, 255, 255, 255, 0, 0, 0)
+		player.TearColor = white
+	end			
+end
+
 function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
 	local currentRoomIndex = currentLevel:GetCurrentRoomIndex()
@@ -395,3 +408,4 @@ garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.miracleGrowEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoomUpdate)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect)
 garden:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, garden.removeMortalityCurse)
+garden:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, garden.modifyStats)
