@@ -245,7 +245,7 @@ function garden:exiledEffect()
 			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_EXILED)
 			garden.HAS_EXILED = true 
 			local currentGame = Game()
-			local addChampionBeltCostume = false
+			local addChampionBeltCostume = true
 			currentGame:AddCollectibleEffect(CollectibleType.COLLECTIBLE_CHAMPION_BELT, addChampionBeltCostume) 
 		end
 	end
@@ -258,11 +258,12 @@ function garden:theFirstDayEffect()
 			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_THE_FIRST_DAY)
 			garden.HAS_THE_FIRST_DAY = true  
 		end
+		
+		--NOT WORKING
 		local currentLevel = Game():GetLevel()
 		local currentChance = currentLevel:GetAngelRoomChance()
 		local difference = 100.00 - currentChance
-		currentLevel:AddAngelRoomChance(difference)
-		currentLevel:InitializeDevilAngelRoom(true,false)
+		currentLevel:AddAngelRoomChance(difference)		
 	end	
 end
 
@@ -390,7 +391,7 @@ function garden:applyMortalityCurse()
 	local currentLevel = Game():GetLevel()	
 	local showCurseName = true
 	--play sfx here (Curse_of_Mortality.wav)
-	local TREE_SHELL_NPC = garden.TREE_SHELL:ToNPC()
+	--local TREE_SHELL_NPC = garden.TREE_SHELL:ToNPC()
 	--TREE_SHELL_NPC:PlaySound("772", 0, false, 0)	
 	currentLevel:AddCurse(garden.CURSE_MORTALITY, showCurseName)
 	garden.HAS_MORTALITY_CURSE = true
@@ -401,8 +402,8 @@ function garden:removeMortalityCurse()
 	currentLevel:RemoveCurse(garden.CURSE_MORTALITY)
 	garden.HAS_MORTALITY_CURSE = false	
 
-	if currentLevel:GetFrameCount() == 1 then
-		--Reset all flags for the new floor
+	--NOT WORKING
+	if currentLevel:GetCurrentRoomIndex() == currentLevel:GetStartingRoomIndex() then --Reset all flags for the new floor
 		garden.GARDEN_HEARTS_CAN_SPAWN = true
 		garden.SERPENT_CAN_SPAWN = true
 		garden.SERPENT_HAS_SPAWNED = false
