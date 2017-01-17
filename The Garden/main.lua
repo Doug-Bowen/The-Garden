@@ -95,8 +95,7 @@ function garden:debugMode()
 		local playerPosition = player.Position
 		--Isaac.RenderText("X:" .. playerPosition.X, 50, 30, 255, 255, 255, 255)
 		--Isaac.RenderText("Y:" .. playerPosition.Y, 50, 45, 255, 255, 255, 255)
-		--Isaac.RenderText(garden.VISIT_NUMBER, 50, 50, 255, 0, 255, 0)
-		--Isaac.DebugString(RNG:GetSeed()) --Should output the seed to the log, just crashes though
+		Isaac.RenderText("Visit:" .. garden.VISIT_NUMBER, 50, 30, 255, 255, 255, 255)		
 		if Game():GetFrameCount() == 1 then
 			local currentRoom = Game():GetRoom()
 			local roomCenter = currentRoom:GetCenterPos()
@@ -244,7 +243,10 @@ function garden:exiledEffect()
 	if player:HasCollectible(garden.COLLECTIBLE_EXILED) then		
 		if not garden.HAS_EXILED then			
 			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_EXILED)
-			garden.HAS_EXILED = true  
+			garden.HAS_EXILED = true 
+			local currentGame = Game()
+			local addChampionBeltCostume = false
+			currentGame:AddCollectibleEffect(CollectibleType.COLLECTIBLE_CHAMPION_BELT, addChampionBeltCostume) 
 		end
 	end
 end
@@ -256,8 +258,12 @@ function garden:theFirstDayEffect()
 			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_THE_FIRST_DAY)
 			garden.HAS_THE_FIRST_DAY = true  
 		end
-	end
-	--might be Level:AddAngelRoomChance
+		local currentLevel = Game():GetLevel()
+		local currentChance = currentLevel:GetAngelRoomChance()
+		local difference = 100.00 - currentChance
+		currentLevel:AddAngelRoomChance(difference)
+		currentLevel:InitializeDevilAngelRoom(true,false)
+	end	
 end
 
 function garden:miracleGrowEffect()
@@ -287,10 +293,10 @@ function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
 	local currentRoomIndex = currentLevel:GetCurrentRoomIndex()
 	local currentRoom = Game():GetRoom()
-	local currentRoomType = currentRoom.RoomType		
-	if currentRoomType == RoomType.ROOM_LIBRARY and currentRoomIndex~= nil and currentRoomIndex == garden.GARDEN_ROOM_INDEX then --Player is in a Garden
+	local currentRoomType = currentRoom:GetType()	
+	if currentRoomType == RoomType.ROOM_LIBRARY and currentRoomIndex == garden.GARDEN_ROOM_INDEX then --Player is in a Garden
 		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden
-			if garden.VISIT_NUMBER == 0 then --Player has never been in this Garden			
+			if garden.VISIT_NUMBER == 0 then      --Player has never been in this Garden			
 				garden.SERPENT_CAN_SPAWN = true			
 				garden.SERPENT_HAS_SPAWNED = false
 				garden.GARDEN_HEARTS_CAN_SPAWN = true
@@ -384,7 +390,7 @@ function garden:applyMortalityCurse()
 	local currentLevel = Game():GetLevel()	
 	local showCurseName = true
 	--play sfx here (Curse_of_Mortality.wav)
-	--local TREE_SHELL_NPC = garden.TREE_SHELL:ToNPC()
+	local TREE_SHELL_NPC = garden.TREE_SHELL:ToNPC()
 	--TREE_SHELL_NPC:PlaySound("772", 0, false, 0)	
 	currentLevel:AddCurse(garden.CURSE_MORTALITY, showCurseName)
 	garden.HAS_MORTALITY_CURSE = true
@@ -395,7 +401,7 @@ function garden:removeMortalityCurse()
 	currentLevel:RemoveCurse(garden.CURSE_MORTALITY)
 	garden.HAS_MORTALITY_CURSE = false	
 
-	if Game():GetFrameCount() == 1 then
+	if currentLevel:GetFrameCount() == 1 then
 		--Reset all flags for the new floor
 		garden.GARDEN_HEARTS_CAN_SPAWN = true
 		garden.SERPENT_CAN_SPAWN = true
