@@ -1,8 +1,13 @@
 <costumes anm2root="gfx/characters/">
   <costume anm2path="shame.anm2" priority="99" type="none" />
   <costume anm2path="forbidden_fruit.anm2" priority="99" type="none" />
+  <costume anm2path="deception.anm2" priority="99" type="none" />
   <costume anm2path="creation.anm2" priority="99" type="none" />
   <costume anm2path="the_first_day.anm2" priority="99" type="none" />
   <costume anm2path="granted_domain.anm2" priority="99" type="none" />
-  <costume anm2path="the_will_of_man.anm2" priority="99" type="none" />
+  <costume anm2path="rebirth.anm2" priority="99" type="none" />
+  <costume anm2path="the_will_of_man.anm2" priority="99" type="none" />  
+  <costume anm2path="the_fall_of_man.anm2" priority="99" type="none" />
+  <costume anm2path="miracle_grow.anm2" priority="99" type="none" />
+  <costume anm2path="exiled.anm2" priority="99" type="none" />
 </costumes>

@@ -62,17 +62,17 @@ Art Style:
 
 |Item Name|Description|Effect|Item Sprite Suggestion|Character Costume Suggestion|Item Sprite Created|Costume Spirtes Created|Functionality Done|
 |---|---|---|---|---|---|---|---|
-|Shame|Awareness of oneself|Enemies that move too close to Isaac have a short fear effect applied to them.|Reversed, 'Filled in' Gnawed Leaf|A leaf between Isaacs legs|:white_check_mark:|:clock3:|:white_check_mark:|
-|Forbidden Fruit|Don't believe his lies|Tears become apples and have varying amounts of knock back.|Red juicy apple (Borrow sprite from the item 'Apple!')|Tears are apples, Isaacs head becomes shiny.|:white_check_mark:|:clock3:|:clock3:|
-|Deception|The Serpent Lies|Shuffle pull colors, Shuffle consumable numbers, Shuffle stats|Snake (Coiled up), google the 'Come And Take It Flag'|Isaac has a snake wrapped around his neck.|:white_check_mark:|:clock3:|:clock3:|
+|Shame|Awareness of oneself|Enemies that move too close to Isaac have a short fear effect applied to them.|Reversed, 'Filled in' Gnawed Leaf|A leaf between Isaacs legs|:white_check_mark:|:white_check_mark:|:white_check_mark:|
+|Forbidden Fruit|Don't believe his lies|Tears become apples and have varying amounts of knock back.|Red juicy apple (Borrow sprite from the item 'Apple!')|Tears are apples, Isaacs head becomes shiny.|:white_check_mark:|:white_check_mark:|:clock3:|
+|Deception|The Serpent Lies|Shuffle pull colors, Shuffle consumable numbers, Shuffle stats|Snake (Coiled up), google the 'Come And Take It Flag'|Isaac has a snake wrapped around his neck.|:white_check_mark:|:white_check_mark:|:clock3:|
 |Creation|In the beginning|All stats up, ~~Game timer reset to 00:00~~ |Earth (Reskin Tiny Planet)|Isaac's head becomes the Earth|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |Granted Domain|All authority is yours|Enemies stop moving (not firing) when Isaac stops moving|Crown (Reskin 'Crown of light' to be bright yellow)|Isaac wears a crown|:white_check_mark:|:white_check_mark:|:clock3:|
 |The Will of Man|Know good, know evil.|The player is shown Bosses (on the wall next to the boss door) and Items (on the wall next to the item room door)|A tree (strong trunk, cartoony)|Isaac has leaves behind one of his ears|:white_check_mark:|:white_check_mark:|:clock3:|
-|The Fall of Man|Original Sin|Devil deal items are now in all item pools. The Devil deal pool is now empty. Devil deal rooms will no longer be item rooms.|Crossed Scythes (Borrow from Death's Touch)|Isaac's body turns A shade of black|:white_check_mark:|:clock3:|:clock3:|
-|Rebirth|From one, come two|The player becomes Eve. The player keeps items and health. The player gains a familiar that looks like your original character (fires tears at your current rate. Fire rate for familiar is locked.|A Rib|Miniature Isaac familiar|:white_check_mark:|:clock3:|:clock3:|
+|The Fall of Man|Original Sin|Devil deal items are now in all item pools. The Devil deal pool is now empty. Devil deal rooms will no longer be item rooms.|Crossed Scythes (Borrow from Death's Touch)|Isaac's body turns A shade of black|:white_check_mark:|:white_check_mark:|:clock3:|
+|Rebirth|From one, come two|The player becomes Eve. The player keeps items and health. The player gains a familiar that looks like your original character (fires tears at your current rate. Fire rate for familiar is locked.|A Rib|Miniature Isaac familiar|:white_check_mark:|:white_check_mark:|:clock3:|
 |The First Day|Let there be light!|100% Angel room stat (locked)|A sun (Cartoony)|Isaac's head shines|:white_check_mark:|:white_check_mark:|:clock3:|
-|Exiled|Deliberate Disobedience|All dice and familiars removed from pools. Champion belt affect for remainder of the run|Closed iron gates (Cartoony)|Ivy wrapped around Isaacs neck|:white_check_mark:|:clock3:|:clock3:|
-|Miracle Grow|Roses are Red|[This item is to be included in the Item Room Pool]. A Garden Room with Spawn on the next floor.|Recolored Eden's Blessing (to be rose red)|Recolored Purity Effect|:white_check_mark:|:clock3:|:clock3:|
+|Exiled|Deliberate Disobedience|All dice and familiars removed from pools. Champion belt affect for remainder of the run|Closed iron gates (Cartoony)|Ivy wrapped around Isaacs neck|:white_check_mark:|:white_check_mark:|:clock3:|
+|Miracle Grow|Roses are Red|[This item is to be included in the Item Room Pool]. A Garden Room with Spawn on the next floor.|Recolored Eden's Blessing (to be rose red)|Recolored Purity Effect|:white_check_mark:|:white_check_mark:|:clock3:|
 
 
 

@@ -51,7 +51,7 @@ garden.COSTUME_ID_DECEPTION = Isaac.GetCostumeIdByPath("gfx/characters/deception
 garden.COSTUME_ID_CREATION = Isaac.GetCostumeIdByPath("gfx/characters/creation.anm2")
 garden.COSTUME_ID_GRANTED_DOMAIN = Isaac.GetCostumeIdByPath("gfx/characters/granted_domain.anm2")
 garden.COSTUME_ID_THE_WILL_OF_MAN = Isaac.GetCostumeIdByPath("gfx/characters/the_will_of_man.anm2")
-garden.COSTUME_ID_THE_FALL_OF_MAN = Isaac.GetCostumeIdByPath("gfx/characters/the_falll_of_man.anm2")
+garden.COSTUME_ID_THE_FALL_OF_MAN = Isaac.GetCostumeIdByPath("gfx/characters/the_fall_of_man.anm2")
 garden.COSTUME_ID_REBIRTH = Isaac.GetCostumeIdByPath("gfx/characters/rebirth.anm2")
 garden.COSTUME_ID_EXILED = Isaac.GetCostumeIdByPath("gfx/characters/exiled.anm2")
 garden.COSTUME_ID_THE_FIRST_DAY = Isaac.GetCostumeIdByPath("gfx/characters/the_first_day.anm2")
@@ -93,8 +93,8 @@ function garden:debugMode()
 		Isaac.RenderText("Debug Mode", 50, 15, 255, 255, 255, 255)
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position
-		Isaac.RenderText("X:" .. playerPosition.X, 50, 30, 255, 255, 255, 255)
-		Isaac.RenderText("Y:" .. playerPosition.Y, 50, 45, 255, 255, 255, 255)
+		--Isaac.RenderText("X:" .. playerPosition.X, 50, 30, 255, 255, 255, 255)
+		--Isaac.RenderText("Y:" .. playerPosition.Y, 50, 45, 255, 255, 255, 255)
 		--Isaac.RenderText(garden.VISIT_NUMBER, 50, 50, 255, 0, 255, 0)
 		--Isaac.DebugString(RNG:GetSeed()) --Should output the seed to the log, just crashes though
 		if Game():GetFrameCount() == 1 then
@@ -104,12 +104,6 @@ function garden:debugMode()
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.gardenPool[i], currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
 			end
 		end		
-	end
-end
-
-function garden:newGame()
-	if Game():GetFrameCount() == 1 then
-	 	garden.VISIT_NUMBER = 0
 	end
 end
 
@@ -188,6 +182,13 @@ function garden:creationEffect()
 end
 
 function garden:deceptionEffect()
+	local player = Isaac.GetPlayer(0)
+	if player:HasCollectible(garden.COLLECTIBLE_DECEPTION) then		
+		if not garden.HAS_DECEPTION then			
+			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_DECEPTION)
+			garden.HAS_DECEPTION = true  
+		end
+	end
 end
 
 function garden:grantedDomainEffect()
@@ -211,14 +212,41 @@ function garden:theWillOfManEffect()
 end
 
 function garden:theFallOfManEffect()
+	local player = Isaac.GetPlayer(0)
+	if player:HasCollectible(garden.COLLECTIBLE_THE_FALL_OF_MAN) then		
+		if not garden.HAS_THE_FALL_OF_MAN then			
+			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_THE_FALL_OF_MAN)
+			garden.HAS_THE_FALL_OF_MAN = true  
+		end
+	end
 	--use GridEntityDoor:TargetRoomType to possibly see the item/boss in the next room (not sure if this is possible) --or try searching the surrounding rooms looking for items or bosses and post that info on the wall
 	--use entity:AddEntityFlags(FLAG_RENDER_WALL) to attempt to apply that item/boss to a wall
 end
 
 function garden:rebirthEffect()
+	local player = Isaac.GetPlayer(0)
+	if player:HasCollectible(garden.COLLECTIBLE_REBIRTH) then		
+		if not garden.HAS_REBIRTH then			
+			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_REBIRTH)
+			
+			--local character = player:GetPlayerType()
+			--if not character == PlayerType.PLAYER_EVE then
+			--	player.PlayerType = PlayerType.PLAYER_EVE				
+			--	player:AnimateAppear()
+			--end
+			garden.HAS_REBIRTH = true  
+		end		
+	end
 end
 
 function garden:exiledEffect()
+	local player = Isaac.GetPlayer(0)
+	if player:HasCollectible(garden.COLLECTIBLE_EXILED) then		
+		if not garden.HAS_EXILED then			
+			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_EXILED)
+			garden.HAS_EXILED = true  
+		end
+	end
 end
 
 function garden:theFirstDayEffect()
@@ -233,6 +261,13 @@ function garden:theFirstDayEffect()
 end
 
 function garden:miracleGrowEffect()
+	local player = Isaac.GetPlayer(0)
+	if player:HasCollectible(garden.COLLECTIBLE_MIRACLE_GROW) then		
+		if not garden.HAS_MIRACLE_GROW then			
+			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_MIRACLE_GROW)
+			garden.HAS_MIRACLE_GROW = true  
+		end
+	end
 end
 
 function garden:modifyStats(player, statFromXML)
@@ -251,8 +286,9 @@ end
 function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
 	local currentRoomIndex = currentLevel:GetCurrentRoomIndex()
-	local currentRoom = Game():GetRoom()		
-	if currentRoomIndex~= nil and currentRoomIndex == garden.GARDEN_ROOM_INDEX then --Player is in a Garden
+	local currentRoom = Game():GetRoom()
+	local currentRoomType = currentRoom.RoomType		
+	if currentRoomType == RoomType.ROOM_LIBRARY and currentRoomIndex~= nil and currentRoomIndex == garden.GARDEN_ROOM_INDEX then --Player is in a Garden
 		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden
 			if garden.VISIT_NUMBER == 0 then --Player has never been in this Garden			
 				garden.SERPENT_CAN_SPAWN = true			
@@ -357,8 +393,17 @@ end
 function garden:removeMortalityCurse()
 	local currentLevel = Game():GetLevel()		
 	currentLevel:RemoveCurse(garden.CURSE_MORTALITY)
-	garden.HAS_MORTALITY_CURSE = false
-	garden.VISIT_NUMBER = 0	--Reset Gardens for this floor
+	garden.HAS_MORTALITY_CURSE = false	
+
+	if Game():GetFrameCount() == 1 then
+		--Reset all flags for the new floor
+		garden.GARDEN_HEARTS_CAN_SPAWN = true
+		garden.SERPENT_CAN_SPAWN = true
+		garden.SERPENT_HAS_SPAWNED = false
+		garden.SERPENT_HAS_DIED = false
+		garden.VISIT_NUMBER = 0
+		garden.ITEM_REWARDED = false
+	end	
 end
 
 function garden:mortalityCurseEffect()
@@ -367,8 +412,8 @@ function garden:mortalityCurseEffect()
 		for i = 1, #entities do
 			local singleEntity = entities[i]
 			if singleEntity.Variant == PickupVariant.PICKUP_HEART then				
-				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, singleEntity.Position, Vector(0,0), nil)
 				singleEntity:Remove()					
+				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, singleEntity.Position, Vector(0,0), nil)				
 			end
 		end
 	end
@@ -395,7 +440,6 @@ function garden:barCurrentRoomDoors()
 end
 
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.debugMode)
-garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.newGame)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.shameEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.forbiddenFruitEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.creationEffect)
