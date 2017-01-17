@@ -191,9 +191,23 @@ function garden:deceptionEffect()
 end
 
 function garden:grantedDomainEffect()
+	local player = Isaac.GetPlayer(0)
+	if player:HasCollectible(garden.COLLECTIBLE_GRANTED_DOMAIN) then		
+		if not garden.HAS_GRANTED_DOMAIN then			
+			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_GRANTED_DOMAIN)
+			garden.HAS_GRANTED_DOMAIN = true  
+		end
+	end
 end
 
 function garden:theWillOfManEffect()
+	local player = Isaac.GetPlayer(0)
+	if player:HasCollectible(garden.COLLECTIBLE_THE_WILL_OF_MAN) then		
+		if not garden.HAS_THE_WILL_OF_MAN then			
+			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_THE_WILL_OF_MAN)
+			garden.HAS_THE_WILL_OF_MAN = true  
+		end
+	end
 end
 
 function garden:theFallOfManEffect()
@@ -208,6 +222,13 @@ function garden:exiledEffect()
 end
 
 function garden:theFirstDayEffect()
+	local player = Isaac.GetPlayer(0)
+	if player:HasCollectible(garden.COLLECTIBLE_THE_FIRST_DAY) then		
+		if not garden.HAS_THE_FIRST_DAY then			
+			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_THE_FIRST_DAY)
+			garden.HAS_THE_FIRST_DAY = true  
+		end
+	end
 	--might be Level:AddAngelRoomChance
 end
 
