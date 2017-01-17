@@ -85,8 +85,10 @@ garden.SERPENT_VARIANT = 55 --This is the Serpent's Variant Number
 garden.SERPENT_SUBTYPE = 0 
 garden.SERPENT_LOCATION = nil
 garden.SERPENT_VELOCITY = Vector(0,0)
-garden.SERPENT_SPAWN_OWNER = nil			
+garden.SERPENT_SPAWN_OWNER = nil		
 
+--Level
+garden.CURRENT_LEVEL = Game():GetLevel()
 
 function garden:debugMode()
 	if garden.DEBUG_MODE then
@@ -260,9 +262,9 @@ function garden:theFirstDayEffect()
 		end
 		
 		--NOT WORKING
-		local currentLevel = Game():GetLevel()
+		local currentLevel = Game():GetLevel()		
 		local currentChance = currentLevel:GetAngelRoomChance()
-		local difference = 100.00 - currentChance
+		local difference = 100.00-currentChance
 		currentLevel:AddAngelRoomChance(difference)		
 	end	
 end
@@ -401,16 +403,6 @@ function garden:removeMortalityCurse()
 	local currentLevel = Game():GetLevel()		
 	currentLevel:RemoveCurse(garden.CURSE_MORTALITY)
 	garden.HAS_MORTALITY_CURSE = false	
-
-	--NOT WORKING
-	if currentLevel:GetCurrentRoomIndex() == currentLevel:GetStartingRoomIndex() then --Reset all flags for the new floor
-		garden.GARDEN_HEARTS_CAN_SPAWN = true
-		garden.SERPENT_CAN_SPAWN = true
-		garden.SERPENT_HAS_SPAWNED = false
-		garden.SERPENT_HAS_DIED = false
-		garden.VISIT_NUMBER = 0
-		garden.ITEM_REWARDED = false
-	end	
 end
 
 function garden:mortalityCurseEffect()
@@ -446,6 +438,19 @@ function garden:barCurrentRoomDoors()
 	end
 end
 
+--DOE NOT WORK
+function garden:checkForNewLevel() --Reset Flags on a new floor
+	if Game():GetLevel() ~= garden.CURRENT_LEVEL then
+		garden.CURRENT_LEVEL = Game():GetLevel()
+		garden.GARDEN_HEARTS_CAN_SPAWN = true
+		garden.SERPENT_CAN_SPAWN = true
+		garden.SERPENT_HAS_SPAWNED = false
+		garden.SERPENT_HAS_DIED = false
+		garden.VISIT_NUMBER = 0
+		garden.ITEM_REWARDED = false
+	end	
+end	
+
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.debugMode)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.shameEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.forbiddenFruitEffect)
@@ -460,5 +465,6 @@ garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theFirstDayEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.miracleGrowEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoomUpdate)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.checkForNewLevel)
 garden:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, garden.removeMortalityCurse)
 garden:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, garden.modifyStats)
