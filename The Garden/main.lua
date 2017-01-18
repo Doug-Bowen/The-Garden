@@ -30,6 +30,8 @@ garden.gardenPool[9] = garden.COLLECTIBLE_EXILED
 garden.gardenPool[10] = garden.COLLECTIBLE_THE_FIRST_DAY
 garden.gardenPool[11] = garden.COLLECTIBLE_MY_BELOVED
 
+--Familiars
+garden.ADAM_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("Adam")
 
 --Item Flags
 garden.HAS_SHAME = false
@@ -52,7 +54,6 @@ garden.COSTUME_ID_CREATION = Isaac.GetCostumeIdByPath("gfx/characters/creation.a
 garden.COSTUME_ID_GRANTED_DOMAIN = Isaac.GetCostumeIdByPath("gfx/characters/granted_domain.anm2")
 garden.COSTUME_ID_THE_WILL_OF_MAN = Isaac.GetCostumeIdByPath("gfx/characters/the_will_of_man.anm2")
 garden.COSTUME_ID_THE_FALL_OF_MAN = Isaac.GetCostumeIdByPath("gfx/characters/the_fall_of_man.anm2")
-garden.COSTUME_ID_REBIRTH = Isaac.GetCostumeIdByPath("gfx/characters/rebirth.anm2")
 garden.COSTUME_ID_EXILED = Isaac.GetCostumeIdByPath("gfx/characters/exiled.anm2")
 garden.COSTUME_ID_THE_FIRST_DAY = Isaac.GetCostumeIdByPath("gfx/characters/the_first_day.anm2")
 garden.COSTUME_ID_MY_BELOVED = Isaac.GetCostumeIdByPath("gfx/characters/my_beloved.anm2")
@@ -246,16 +247,17 @@ end
 function garden:rebirthEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_REBIRTH) then		
-		if not garden.HAS_REBIRTH then			
-			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_REBIRTH)
-			
+		if not garden.HAS_REBIRTH then
+			local player = Isaac.GetPlayer(0)
+			local playerPosition = player.Position			
+			Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.ADAM_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)
 			--local character = player:GetPlayerType()
 			--if not character == PlayerType.PLAYER_EVE then
 			--	player.PlayerType = PlayerType.PLAYER_EVE				
 			--	player:AnimateAppear()
 			--end
 			garden.HAS_REBIRTH = true  
-		end		
+		end	
 	end
 end
 
@@ -302,6 +304,7 @@ end
 
 function garden:modifyStats(player, statFromXML)
 	local player = Isaac.GetPlayer(0)
+	local playerPosition = player.Position
 	
 	if player:HasCollectible(garden.COLLECTIBLE_CREATION) then
 		player.Damage = player.Damage+.51
@@ -364,6 +367,7 @@ function garden:gardenRoomUpdate()
 		if math.abs(positionalDifference.X) < 35 and math.abs(positionalDifference.Y) < 35 then
 			if garden.SERPENT_CAN_SPAWN and not garden.SERPENT_HAS_SPAWNED then
 				--change music here (Garden_Serpent.ogg)
+				--Screen shake if possible
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)				
 				garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_ID, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
 
@@ -517,6 +521,13 @@ function garden:checkForNewRun() --Reset Flags on a new run
 	garden.HAS_MY_BELOVED = false
 end	
 
+function garden:updateFamiliar(familiar)
+	if garden.HAS_REBIRTH then
+		local player = Isaac.GetPlayer(0)
+		local playerPosition = player.Position
+		familiar:FollowPosition(playerPosition)
+	end
+end
 
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.debugMode)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.shameEffect)
@@ -536,4 +547,5 @@ garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.checkForNewLevel)
 garden:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, garden.checkForNewRun)
 garden:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, garden.removeMortalityCurse)
 garden:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, garden.modifyStats)
-garden:AddCallback(ModCallbacks.MC_NPC_UPDATE, garden.serpentFight, EntityType.SERPENT_SHELL);
+garden:AddCallback(ModCallbacks.MC_NPC_UPDATE, garden.serpentFight, EntityType.SERPENT_SHELL)
+garden:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, garden.updateFamiliar, garden.ADAM_FAMILIAR_VARIANT)
