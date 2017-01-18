@@ -93,10 +93,11 @@ garden.CURRENT_LEVEL = nil
 function garden:debugMode()
 	if garden.DEBUG_MODE then
 		Isaac.RenderText("Debug Mode", 50, 15, 255, 255, 255, 255)
-		local player = Isaac.GetPlayer(0)
-		local playerPosition = player.Position
-		local currentRoom = Game():GetRoom()
-		--Isaac.RenderText("X:" .. playerPosition.X, 50, 30, 255, 255, 255, 255)
+		--local currentGame = Game()
+		--local currentLevel = currentGame:GetLevel()		
+		--local currentRoom = Game():GetRoom()
+		--local player = Isaac.GetPlayer(0)
+		--local playerPosition = player.Position		
 		--Isaac.RenderText("Y:" .. playerPosition.Y, 50, 45, 255, 255, 255, 255)
 		--Isaac.RenderText("Visit:" .. garden.VISIT_NUMBER, 50, 30, 255, 255, 255, 255)		
 		if Game():GetFrameCount() == 1 then
@@ -124,9 +125,9 @@ function garden:shameEffect()
 				local entityPosition = singleEntity.Position
 				local positionalDifference = Vector(playerPosition.X-entityPosition.X, playerPosition.Y-entityPosition.Y)
 				if math.abs(positionalDifference.X) < 80 and math.abs(positionalDifference.Y) < 80 then
-					local fearWho = EntityRef(player)
+					local fearOwner = EntityRef(player)
 					local fearDuration = 5
-					singleEntity:AddFear(fearWho, fearDuration)						
+					singleEntity:AddFear(fearOwner, fearDuration)						
 				end
 			end
 		end
@@ -147,10 +148,7 @@ function garden:forbiddenFruitEffect()
 				local currentSprite = singleEntity:GetSprite():GetFilename() 
 				if currentSprite ~= "gfx/apple_one.anm2" and currentSprite ~= "gfx/apple_two.anm2" and currentSprite ~= "gfx/apple_three.anm2" and currentSprite ~= "gfx/apple_four.anm2" then
 					
-					--singleEntity:Remove() --Remove old tear to replace it
-					--I DONT THINK I SHOULD BE DOING THIS -- local newTear = Game():GetPlayer(0):FireTear(singleEntity.Position, singleEntity.Velocity, true, true, true)
-					--Add effect here
-					--newTear.Target:AddConfusion(EntityRef(player),100,false)
+					--Apply Knockback here
 
 					local newTearSprite = singleEntity:GetSprite() 
 					local randomAppleNum = math.random(4)				 
@@ -200,6 +198,18 @@ function garden:grantedDomainEffect()
 			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_GRANTED_DOMAIN)
 			garden.HAS_GRANTED_DOMAIN = true  
 		end
+		Isaac.RenderText(player.Velocity, 50, 45, 255, 255, 255, 255)		
+		if player.Velocity == Vector(0,0) then
+			local entities = Isaac.GetRoomEntities()
+			for i = 1, #entities do
+				local singleEntity = entities[i]
+				if singleEntity:IsVulnerableEnemy() then		
+					local freezeOwner = EntityRef(player)
+					local freezeDuration = 5
+					singleEntity:AddFreeze(freezeOwner, freezeDuration)	
+				end
+			end			
+		end
 	end
 end
 
@@ -247,9 +257,9 @@ function garden:exiledEffect()
 		if not garden.HAS_EXILED then			
 			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_EXILED)
 			garden.HAS_EXILED = true 
-			local currentGame = Game()
-			local addChampionBeltCostume = true
-			currentGame:AddCollectibleEffect(CollectibleType.COLLECTIBLE_CHAMPION_BELT, addChampionBeltCostume) 
+			--local currentGame = Game()
+			--local addChampionBeltCostume = true
+			--currentGame:AddCollectibleEffect(CollectibleType.COLLECTIBLE_CHAMPION_BELT, addChampionBeltCostume) 
 		end
 	end
 end
@@ -263,10 +273,12 @@ function garden:theFirstDayEffect()
 		end
 		
 		--NOT WORKING
-		local currentLevel = Game():GetLevel()		
-		local currentChance = currentLevel:GetAngelRoomChance()
-		local difference = 100.00-currentChance
-		currentLevel:AddAngelRoomChance(difference)		
+		--local currentGame = Game()
+		--local currentLevel = currentGame:GetLevel()		
+		--currentGame:AddDevilRoomDeal()
+		--local currentChance = currentLevel:GetAngelRoomChance()		
+		--local difference = 100.00-currentChance
+		--currentLevel:AddAngelRoomChance(difference)		
 	end	
 end
 
@@ -296,7 +308,7 @@ end
 function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
 	local currentRoomIndex = currentLevel:GetCurrentRoomIndex()
-	local currentRoom = Game():GetRoom()
+	local currentRoom = Game():GetRoom()	
 	local currentRoomType = currentRoom:GetType()	
 	if currentRoomType == RoomType.ROOM_LIBRARY and currentRoomIndex == garden.GARDEN_ROOM_INDEX then --Player is in a Garden
 		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden
@@ -485,7 +497,7 @@ garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theFallOfManEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.rebirthEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.exiledEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theFirstDayEffect)
-garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.miracleGrowEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.myBelovedEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoomUpdate)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.checkForNewLevel)
