@@ -114,9 +114,9 @@ end
 
 function garden:shameEffect()
 	local player = Isaac.GetPlayer(0)
-	if player:HasCollectible(garden.COLLECTIBLE_SHAME) then		
-		if not garden.HAS_SHAME then			
-			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_SHAME)
+	if player:HasCollectible(garden.COLLECTIBLE_SHAME) then				
+		if not garden.HAS_SHAME then					
+			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_SHAME)		
 			garden.HAS_SHAME = true
 		end
 		local entities = Isaac.GetRoomEntities()
@@ -302,15 +302,13 @@ function garden:myBelovedEffect()
 	end
 end
 
-function garden:modifyStats(player, statFromXML)
-	local player = Isaac.GetPlayer(0)
-	local playerPosition = player.Position
+function garden:itemPickedUp(player, statFromXML)
+	local player = Isaac.GetPlayer(0)	
 	
 	if player:HasCollectible(garden.COLLECTIBLE_CREATION) then
-		player.Damage = player.Damage+.51
-		player.FireDelay = player.FireDelay-1
-		player.MoveSpeed = player.MoveSpeed+.3
-		player.ShotSpeed = player.ShotSpeed+.25
+		player.Damage = player.Damage+.51		
+		player.MoveSpeed = player.MoveSpeed+.1
+		player.ShotSpeed = player.ShotSpeed+.1
 		local white = Color(255, 255, 255, 255, 0, 0, 0)
 		player.TearColor = white
 	end			
@@ -546,6 +544,6 @@ garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.checkForNewLevel)
 garden:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, garden.checkForNewRun)
 garden:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, garden.removeMortalityCurse)
-garden:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, garden.modifyStats)
+garden:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, garden.itemPickedUp)
 garden:AddCallback(ModCallbacks.MC_NPC_UPDATE, garden.serpentFight, EntityType.SERPENT_SHELL)
 garden:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, garden.updateFamiliar, garden.ADAM_FAMILIAR_VARIANT)
