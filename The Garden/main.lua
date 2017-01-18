@@ -14,7 +14,7 @@ garden.COLLECTIBLE_THE_FALL_OF_MAN = Isaac.GetItemIdByName("The Fall of Man")
 garden.COLLECTIBLE_REBIRTH = Isaac.GetItemIdByName("Rebirth")
 garden.COLLECTIBLE_EXILED = Isaac.GetItemIdByName("Exiled")
 garden.COLLECTIBLE_THE_FIRST_DAY = Isaac.GetItemIdByName("The First Day")
-garden.COLLECTIBLE_MIRACLE_GROW = Isaac.GetItemIdByName("Miracle Grow")
+garden.COLLECTIBLE_MY_BELOVED = Isaac.GetItemIdByName("My Beloved")
 
 --Pool
 garden.gardenPool = {}
@@ -28,7 +28,7 @@ garden.gardenPool[7] = garden.COLLECTIBLE_THE_FALL_OF_MAN
 garden.gardenPool[8] = garden.COLLECTIBLE_REBIRTH
 garden.gardenPool[9] = garden.COLLECTIBLE_EXILED
 garden.gardenPool[10] = garden.COLLECTIBLE_THE_FIRST_DAY
-garden.gardenPool[11] = garden.COLLECTIBLE_MIRACLE_GROW
+garden.gardenPool[11] = garden.COLLECTIBLE_MY_BELOVED
 
 
 --Item Flags
@@ -42,7 +42,7 @@ garden.HAS_THE_FALL_OF_MAN = false
 garden.HAS_REBIRTH = false
 garden.HAS_EXILED = false
 garden.HAS_THE_FIRST_DAY = false
-garden.HAS_MIRACLE_GROW = false
+garden.HAS_MY_BELOVED = false
 
 --Costumes
 garden.COSTUME_ID_SHAME = Isaac.GetCostumeIdByPath("gfx/characters/shame.anm2")
@@ -55,7 +55,7 @@ garden.COSTUME_ID_THE_FALL_OF_MAN = Isaac.GetCostumeIdByPath("gfx/characters/the
 garden.COSTUME_ID_REBIRTH = Isaac.GetCostumeIdByPath("gfx/characters/rebirth.anm2")
 garden.COSTUME_ID_EXILED = Isaac.GetCostumeIdByPath("gfx/characters/exiled.anm2")
 garden.COSTUME_ID_THE_FIRST_DAY = Isaac.GetCostumeIdByPath("gfx/characters/the_first_day.anm2")
-garden.COSTUME_ID_MIRACLE_GROW = Isaac.GetCostumeIdByPath("gfx/characters/miracle_grow.anm2")
+garden.COSTUME_ID_MY_BELOVED = Isaac.GetCostumeIdByPath("gfx/characters/my_beloved.anm2")
 
 --Room Flags
 garden.GARDEN_HEARTS_CAN_SPAWN = true
@@ -269,12 +269,12 @@ function garden:theFirstDayEffect()
 	end	
 end
 
-function garden:miracleGrowEffect()
+function garden:myBelovedEffect()
 	local player = Isaac.GetPlayer(0)
-	if player:HasCollectible(garden.COLLECTIBLE_MIRACLE_GROW) then		
-		if not garden.HAS_MIRACLE_GROW then			
-			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_MIRACLE_GROW)
-			garden.HAS_MIRACLE_GROW = true  
+	if player:HasCollectible(garden.COLLECTIBLE_MY_BELOVED) then		
+		if not garden.HAS_MY_BELOVED then			
+			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_MY_BELOVED)
+			garden.HAS_MY_BELOVED = true  
 		end
 	end
 end
@@ -469,7 +469,7 @@ function garden:checkForNewRun() --Reset Flags on a new run
 	garden.HAS_REBIRTH = false
 	garden.HAS_EXILED = false
 	garden.HAS_THE_FIRST_DAY = false
-	garden.HAS_MIRACLE_GROW = false
+	garden.HAS_MY_BELOVED = false
 end	
 
 
