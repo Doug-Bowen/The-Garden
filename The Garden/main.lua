@@ -98,10 +98,11 @@ function garden:debugMode()
 		--local currentGame = Game()
 		--local currentLevel = currentGame:GetLevel()		
 		--local currentRoom = Game():GetRoom()
-		--local player = Isaac.GetPlayer(0)
+		local player = Isaac.GetPlayer(0)
 		--local playerPosition = player.Position		
 		--Isaac.RenderText("Y:" .. playerPosition.Y, 50, 45, 255, 255, 255, 255)
-		--Isaac.RenderText("Visit:" .. garden.VISIT_NUMBER, 50, 30, 255, 255, 255, 255)		
+		--Isaac.RenderText("Visit:" .. garden.VISIT_NUMBER, 50, 30, 255, 255, 255, 255)
+		Isaac.RenderText("Type:" .. player:GetPlayerType(), 50, 30, 255, 255, 255, 255)		
 		if Game():GetFrameCount() == 1 then
 			local currentRoom = Game():GetRoom()
 			local roomCenter = currentRoom:GetCenterPos()
@@ -246,16 +247,15 @@ end
 
 function garden:rebirthEffect()
 	local player = Isaac.GetPlayer(0)
-	if player:HasCollectible(garden.COLLECTIBLE_REBIRTH) then		
+	if player:HasCollectible(garden.COLLECTIBLE_REBIRTH) then				
 		if not garden.HAS_REBIRTH then
 			local player = Isaac.GetPlayer(0)
 			local playerPosition = player.Position			
 			Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.ADAM_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)
-			--local character = player:GetPlayerType()
-			--if not character == PlayerType.PLAYER_EVE then
-			--	player.PlayerType = PlayerType.PLAYER_EVE				
-			--	player:AnimateAppear()
-			--end
+			local character = player:GetPlayerType()
+			if not character == PlayerType.PLAYER_EVE then
+				player.PlayerType = PlayerType.PLAYER_EVE				
+			end
 			garden.HAS_REBIRTH = true  
 		end	
 	end
