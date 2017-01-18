@@ -58,7 +58,7 @@ Art Style:
 |Rebirth|From one, come two|The player becomes Eve. The player keeps items and health. The player gains a familiar that looks like Adam that fires tears at your current rate.|A Rib|Miniature Isaac familiar|:white_check_mark:|:white_check_mark:|:clock3:|
 |The First Day|Let there be light!|100% Angel room stat (locked)|A sun (Cartoony)|Isaac's head shines|:white_check_mark:|:white_check_mark:|:clock3:|
 |Exiled|Deliberate Disobedience|All dice and familiars removed from pools. Champion belt affect for remainder of the run|Closed iron gates|Ivy wrapped around Isaacs neck|:white_check_mark:|:white_check_mark:|:clock3:|
-|My Beloved|Lover, I'm yours...|+1 Heart Container, All hearts in the room slowly gravitate towards Isaac until he obtains them.|Recolored Eden's Blessing (to be rose red)|Recolored Purity Effect|:white_check_mark:|:white_check_mark:|:clock3:|
+|My Beloved|Lover, I'm yours...|+1 Heart Container, All hearts in the room slowly gravitate towards Isaac until he obtains them.|Recolored Eden's Blessing (to be rose red)|Recolored Purity Effect|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 
 
 

@@ -202,7 +202,7 @@ function garden:grantedDomainEffect()
 		end
 		if garden.previousPosition ~= nil then
 			local positionalDifference = Vector(player.Position.X-garden.previousPosition.X, player.Position.Y-garden.previousPosition.Y)
-			if positionalDifference.X == 0 and positionalDifference.Y == 0 then
+			if math.abs(positionalDifference.X) == 0 and math.abs(positionalDifference.Y) == 0 then
 				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.CRACK_THE_SKY , 0, player.Position, Vector(0,0), player)
 				local entities = Isaac.GetRoomEntities()
 				for i = 1, #entities do
@@ -297,7 +297,34 @@ function garden:myBelovedEffect()
 	if player:HasCollectible(garden.COLLECTIBLE_MY_BELOVED) then		
 		if not garden.HAS_MY_BELOVED then			
 			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_MY_BELOVED)
+			local ignoreKeeper = false
+			player:AddMaxHearts(2, ignoreKeeper)
+			player:AddHearts(2)
 			garden.HAS_MY_BELOVED = true  
+		end
+		local entities = Isaac.GetRoomEntities()
+		for i = 1, #entities do
+			local singleEntity = entities[i]
+			if singleEntity.Variant == PickupVariant.PICKUP_HEART then			
+				local playerPosition = player.Position
+				local entityPosition = singleEntity.Position
+				local positionalDifference = Vector(playerPosition.X-entityPosition.X, playerPosition.Y-entityPosition.Y)
+				if positionalDifference.X > 0 then
+					singleEntity:AddVelocity(Vector(1,0))
+				end
+				if positionalDifference.X < 0 then
+					singleEntity:AddVelocity(Vector(-1,0))
+				end
+				if positionalDifference.Y > 0 then
+					singleEntity:AddVelocity(Vector(0,1))
+				end
+				if positionalDifference.Y < 0 then
+					singleEntity:AddVelocity(Vector(0,-1))
+				end
+				if positionalDifference.X ==0 and positionalDifference.Y == 0 then
+					singleEntity:Remove()
+				end
+			end
 		end
 	end
 end
