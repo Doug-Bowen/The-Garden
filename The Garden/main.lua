@@ -87,8 +87,9 @@ garden.SERPENT_LOCATION = nil
 garden.SERPENT_VELOCITY = Vector(0,0)
 garden.SERPENT_SPAWN_OWNER = nil		
 
---Level
+--Storages
 garden.CURRENT_LEVEL = nil
+garden.previousPosition = nil
 
 function garden:debugMode()
 	if garden.DEBUG_MODE then
@@ -198,17 +199,24 @@ function garden:grantedDomainEffect()
 			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_GRANTED_DOMAIN)
 			garden.HAS_GRANTED_DOMAIN = true  
 		end
-		Isaac.RenderText(player.Velocity, 50, 45, 255, 255, 255, 255)		
-		if player.Velocity == Vector(0,0) then
-			local entities = Isaac.GetRoomEntities()
-			for i = 1, #entities do
-				local singleEntity = entities[i]
-				if singleEntity:IsVulnerableEnemy() then		
-					local freezeOwner = EntityRef(player)
-					local freezeDuration = 5
-					singleEntity:AddFreeze(freezeOwner, freezeDuration)	
-				end
-			end			
+		if garden.previousPosition ~= nil then
+			local positionalDifference = Vector(player.Position.X-garden.previousPosition.X, player.Position.Y-garden.previousPosition.Y)
+			if positionalDifference.X == 0 and positionalDifference.Y == 0 then
+				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.CRACK_THE_SKY , 0, player.Position, Vector(0,0), player)
+				local entities = Isaac.GetRoomEntities()
+				for i = 1, #entities do
+					local singleEntity = entities[i]
+					if singleEntity:IsVulnerableEnemy() then		
+						local freezeOwner = EntityRef(player)
+						local freezeDuration = -5
+						singleEntity:AddFreeze(freezeOwner, freezeDuration)
+					end
+				end	
+			else
+				garden.previousPosition = player.Position
+			end
+		else
+			garden.previousPosition = player.Position
 		end
 	end
 end
