@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="robot" CreatedOn="1/17/2017 12:55:22 PM" Version="112" Fps="30"/>
+	<Info CreatedBy="robot" CreatedOn="1/18/2017 12:28:16 PM" Version="112" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="costumes\costume_the_fall_of_man_body.png" Id="0"/>
@@ -10,10 +10,7 @@
 			<Layer Name="head" Id="1" SpritesheetId="1"/>
 		</Layers>
 		<Nulls/>
-		<Events>
-			<Event Name="sparkle" Id="0"/>
-			<Event Name="blah" Id="1"/>
-		</Events>
+		<Events/>
 	</Content>
 	<Animations DefaultAnimation="WalkDown">
 		<Animation Name="WalkLeft" FrameNum="20" Loop="true">
@@ -104,15 +101,15 @@
 			<NullAnimations/>
 			<Triggers/>
 		</Animation>
-		<Animation Name="HeadLeft" FrameNum="3" Loop="false">
+		<Animation Name="HeadLeft" FrameNum="4" Loop="false">
 			<RootAnimation>
 				<Frame XPosition="0" YPosition="0" XScale="100" YScale="100" Delay="4" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 			</RootAnimation>
 			<LayerAnimations>
 				<LayerAnimation LayerId="0" Visible="true"/>
 				<LayerAnimation LayerId="1" Visible="true">
-					<Frame XPosition="0" YPosition="-5" XPivot="16" YPivot="44" XCrop="192" YCrop="0" Width="32" Height="64" XScale="-100" YScale="100" Delay="2" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
-					<Frame XPosition="0" YPosition="-5" XPivot="16" YPivot="44" XCrop="224" YCrop="0" Width="32" Height="64" XScale="-100" YScale="100" Delay="2" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+					<Frame XPosition="0" YPosition="-5" XPivot="16" YPivot="44" XCrop="64" YCrop="0" Width="32" Height="64" XScale="-100" YScale="100" Delay="2" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+					<Frame XPosition="0" YPosition="-5" XPivot="16" YPivot="44" XCrop="96" YCrop="0" Width="32" Height="64" XScale="-100" YScale="100" Delay="2" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</LayerAnimation>
 			</LayerAnimations>
 			<NullAnimations/>
