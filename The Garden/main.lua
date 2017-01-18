@@ -95,9 +95,10 @@ function garden:debugMode()
 		Isaac.RenderText("Debug Mode", 50, 15, 255, 255, 255, 255)
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position
+		local currentRoom = Game():GetRoom()
 		--Isaac.RenderText("X:" .. playerPosition.X, 50, 30, 255, 255, 255, 255)
 		--Isaac.RenderText("Y:" .. playerPosition.Y, 50, 45, 255, 255, 255, 255)
-		Isaac.RenderText("Visit:" .. garden.VISIT_NUMBER, 50, 30, 255, 255, 255, 255)		
+		--Isaac.RenderText("Visit:" .. garden.VISIT_NUMBER, 50, 30, 255, 255, 255, 255)		
 		if Game():GetFrameCount() == 1 then
 			local currentRoom = Game():GetRoom()
 			local roomCenter = currentRoom:GetCenterPos()
