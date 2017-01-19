@@ -442,30 +442,6 @@ function garden:gardenRoomUpdate()
 	end
 end
 
-function garden:serpentFight(serpent)
-  if garden.SERPENT_HAS_SPAWNED and serpent.State == NpcState.STATE_ATTACK then --Add creep to serpent attack
-  	local topLeftCreep = Vector(serpent.Position.X+30,serpent.Position.Y+30)
-  	local topCenterCreep = Vector(serpent.Position.X,serpent.Position.Y+30)
-  	local topRightCreep = Vector(serpent.Position.X-30,serpent.Position.Y+30)
-  	local leftCreep = Vector(serpent.Position.X+30,serpent.Position.Y)
-  	local centerCreep = Vector(serpent.Position.X,serpent.Position.Y)
-  	local rightCreep = Vector(serpent.Position.X-30,serpent.Position.Y)
-  	local bottomLeftCreep = Vector(serpent.Position.X+30,serpent.Position.Y-30)
-  	local bottomCenterCreep = Vector(serpent.Position.X,serpent.Position.Y-30)
-  	local bottomRightCreep = Vector(serpent.Position.X-30,serpent.Position.Y-30)
-  	local velocity = Vector(0,0)
-  	Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.CREEP_GREEN , 0, topLeftCreep, velocity, serpent)         
-  	Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.CREEP_GREEN, 0, topCenterCreep, velocity, serpent)         
-  	Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.CREEP_GREEN, 0, topRightCreep, velocity, serpent)         
-  	Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.CREEP_GREEN, 0, leftCreep, velocity, serpent)         
-  	Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.CREEP_GREEN, 0, centerCreep, velocity, serpent)         
-  	Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.CREEP_GREEN, 0, rightCreep, velocity, serpent)         
-  	Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.CREEP_GREEN, 0, bottomLeftCreep, velocity, serpent)         
-  	Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.CREEP_GREEN, 0, bottomCenterCreep, velocity, serpent)         
-  	Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.CREEP_GREEN, 0, bottomRightCreep, velocity, serpent)         
-  end    
-end
-
 function garden:applyMortalityCurse()
 	local currentLevel = Game():GetLevel()	
 	local showCurseName = true
@@ -575,5 +551,4 @@ garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.checkForNewLevel)
 garden:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, garden.checkForNewRun)
 garden:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, garden.removeMortalityCurse)
 garden:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, garden.itemPickedUp)
-garden:AddCallback(ModCallbacks.MC_NPC_UPDATE, garden.serpentFight, EntityType.SERPENT_SHELL)
 garden:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, garden.updateFamiliar, garden.ADAM_FAMILIAR_VARIANT)
