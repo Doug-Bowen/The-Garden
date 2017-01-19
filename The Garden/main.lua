@@ -91,7 +91,6 @@ garden.SERPENT_SPAWN_OWNER = nil
 --Storage Variabes
 garden.CURRENT_LEVEL = nil
 garden.previousPosition = nil
-garden.MAX_HEARTS = nil
 
 function garden:debugMode()
 	if garden.DEBUG_MODE then
@@ -102,11 +101,7 @@ function garden:debugMode()
 		local player = Isaac.GetPlayer(0)
 		--local playerPosition = player.Position						
 		--Isaac.RenderText("Player Type:" .. player:GetPlayerType(), 50, 30, 255, 255, 255, 255)
-		Isaac.RenderText("Max Hearts:" .. player:GetMaxHearts(), 50, 30, 255, 255, 255, 255)
-		if garden.MAX_HEARTS ~= nil then
-			Isaac.RenderText("Max Hearts:" .. garden.MAX_HEARTS, 50, 45, 255, 255, 255, 255)
-		end
-		
+		--Isaac.RenderText("Max Hearts:" .. player:GetMaxHearts(), 50, 30, 255, 255, 255, 255)
 		
 		if currentRoom.Subtype ~= nil then
 			Isaac.RenderText("RoomSub:" .. currentRoom.Subtype, 50, 45, 255, 255, 255, 255)		
@@ -124,10 +119,6 @@ end
 function garden:shameEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_SHAME) then				
-		if not garden.HAS_SHAME then					
-			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_SHAME)		
-			garden.HAS_SHAME = true
-		end
 		local entities = Isaac.GetRoomEntities()
 		for i = 1, #entities do
 			local singleEntity = entities[i]
@@ -148,10 +139,6 @@ end
 function garden:forbiddenFruitEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_FORBIDDEN_FRUIT) then		
-		if not garden.HAS_FORBIDDEN_FRUIT then			
-			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_FORBIDDEN_FRUIT)
-			garden.HAS_FORBIDDEN_FRUIT = true  
-		end
 		local entities = Isaac.GetRoomEntities()
 		for i = 1, #entities do
 			local singleEntity = entities[i]
@@ -182,33 +169,9 @@ function garden:forbiddenFruitEffect()
 	end	
 end
 
-function garden:creationEffect()
-	local player = Isaac.GetPlayer(0)
-	if player:HasCollectible(garden.COLLECTIBLE_CREATION) then		
-		if not garden.HAS_CREATION then			
-			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_CREATION)
-			garden.HAS_CREATION = true  
-		end
-	end
-end
-
-function garden:deceptionEffect()
-	local player = Isaac.GetPlayer(0)
-	if player:HasCollectible(garden.COLLECTIBLE_DECEPTION) then		
-		if not garden.HAS_DECEPTION then			
-			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_DECEPTION)
-			garden.HAS_DECEPTION = true  
-		end
-	end
-end
-
 function garden:grantedDomainEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_GRANTED_DOMAIN) then		
-		if not garden.HAS_GRANTED_DOMAIN then			
-			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_GRANTED_DOMAIN)
-			garden.HAS_GRANTED_DOMAIN = true  
-		end
 		if garden.previousPosition ~= nil then
 			local positionalDifference = Vector(player.Position.X-garden.previousPosition.X, player.Position.Y-garden.previousPosition.Y)
 			if math.abs(positionalDifference.X) == 0 and math.abs(positionalDifference.Y) == 0 then
@@ -231,93 +194,34 @@ function garden:grantedDomainEffect()
 	end
 end
 
-function garden:theWillOfManEffect()
-	local player = Isaac.GetPlayer(0)
-	if player:HasCollectible(garden.COLLECTIBLE_THE_WILL_OF_MAN) then		
-		if not garden.HAS_THE_WILL_OF_MAN then			
-			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_THE_WILL_OF_MAN)
-			garden.HAS_THE_WILL_OF_MAN = true  
-		end
-	end
-end
-
-function garden:theFallOfManEffect()
-	local player = Isaac.GetPlayer(0)
-	if player:HasCollectible(garden.COLLECTIBLE_THE_FALL_OF_MAN) then		
-		if not garden.HAS_THE_FALL_OF_MAN then			
-			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_THE_FALL_OF_MAN)
-            
-            garden.MAX_HEARTS = player:GetMaxHearts()			
-			local ignoreKeeper = true
-			player:AddBlackHearts(4, ignoreKeeper)
-			player:AddMaxHearts(garden.MAX_HEARTS*-1, ignoreKeeper)
-
-			garden.HAS_THE_FALL_OF_MAN = true 
-		end
-	end
-end
-
-function garden:rebirthEffect()
-	local player = Isaac.GetPlayer(0)
-	if player:HasCollectible(garden.COLLECTIBLE_REBIRTH) then				
-		if not garden.HAS_REBIRTH then
-			local player = Isaac.GetPlayer(0)
-			local playerPosition = player.Position			
-			Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.ADAM_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)
-			
-			--NOT WORKING
-			--local character = player:GetPlayerType()
-			--if not character == PlayerType.PLAYER_EVE then
-			--	player.PlayerType = PlayerType.PLAYER_EVE				
-			--end
-			garden.HAS_REBIRTH = true  
-		end	
-	end
-end
-
 function garden:exiledEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_EXILED) then		
-		if not garden.HAS_EXILED then			
-			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_EXILED)
-			garden.HAS_EXILED = true 
 
-			--NOT WORKING
-			--local currentGame = Game()
-			--local addChampionBeltCostume = true
-			--currentGame:AddCollectibleEffect(CollectibleType.COLLECTIBLE_CHAMPION_BELT, addChampionBeltCostume) 
-		end
+		--NOT WORKING
+		--local currentGame = Game()
+		--local addChampionBeltCostume = true
+		--currentGame:AddCollectibleEffect(CollectibleType.COLLECTIBLE_CHAMPION_BELT, addChampionBeltCostume) 
 	end
 end
 
 function garden:theFirstDayEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_THE_FIRST_DAY) then		
-		if not garden.HAS_THE_FIRST_DAY then			
-			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_THE_FIRST_DAY)
-			garden.HAS_THE_FIRST_DAY = true  
-		end
-		
-		--NOT WORKING
-		--local currentGame = Game()
-		--local currentLevel = currentGame:GetLevel()		
-		--currentGame:AddDevilRoomDeal()
-		--local currentChance = currentLevel:GetAngelRoomChance()		
-		--local difference = 100.00-currentChance
-		--currentLevel:AddAngelRoomChance(difference)		
-	end	
+	
+	--NOT WORKING
+	--local currentGame = Game()
+	--local currentLevel = currentGame:GetLevel()		
+	--currentGame:AddDevilRoomDeal()
+	--local currentChance = currentLevel:GetAngelRoomChance()		
+	--local difference = 100.00-currentChance
+	--currentLevel:AddAngelRoomChance(difference)
+	end		
 end
 
 function garden:myBelovedEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_MY_BELOVED) then		
-		if not garden.HAS_MY_BELOVED then			
-			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_MY_BELOVED)
-			local ignoreKeeper = false
-			player:AddMaxHearts(2, ignoreKeeper)
-			player:AddHearts(2)
-			garden.HAS_MY_BELOVED = true  
-		end
 		local entities = Isaac.GetRoomEntities()
 		for i = 1, #entities do
 			local singleEntity = entities[i]
@@ -345,8 +249,6 @@ function garden:myBelovedEffect()
 	end
 end
 
-function garden:itemPickedUp(player, statFromXML)					
-end
 
 function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
@@ -547,40 +449,104 @@ end
 function garden:itemPickedUp(player, statFromXML)
 	local player = Isaac.GetPlayer(0)	
 	
-	if player:HasCollectible(garden.COLLECTIBLE_CREATION) then		
+	if player:HasCollectible(garden.COLLECTIBLE_CREATION) and not garden.HAS_CREATION then
+		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_CREATION)	
 		player.Damage = player.Damage+.51		
 		player.MoveSpeed = player.MoveSpeed+.1
 		player.ShotSpeed = player.ShotSpeed+.1
 		local white = Color(255, 255, 255, 255, 0, 0, 0)
 		player.TearColor = white
-	end			
-
-	if player:HasCollectible(garden.COLLECTIBLE_THE_FALL_OF_MAN) then		
-		for i = 1, garden.MAX_HEARTS/2 do
-			player.Damage = player.Damage+1.0
-		end
-		garden.MAX_HEARTS = 0
+		garden.HAS_CREATION = true
 	end
 
+
+	if player:HasCollectible(garden.COLLECTIBLE_THE_FALL_OF_MAN) and not garden.HAS_THE_FALL_OF_MAN then		
+		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_THE_FALL_OF_MAN)
+        
+        local totalHearts = player:GetMaxHearts()			
+		local ignoreKeeper = true
+		player:AddBlackHearts(4, ignoreKeeper)
+		player:AddMaxHearts(totalHearts*-1, ignoreKeeper)
+
+		for i = 1, totalHearts/2 do
+			player.Damage = player.Damage+1.0
+		end
+		garden.HAS_THE_FALL_OF_MAN = true
+	end	
+
+
+	if player:HasCollectible(garden.COLLECTIBLE_MY_BELOVED) and not garden.HAS_MY_BELOVED then			
+		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_MY_BELOVED)
+		local ignoreKeeper = false
+		player:AddMaxHearts(2, ignoreKeeper)
+		player:AddHearts(2)
+		garden.HAS_MY_BELOVED = true
+	end
+
+	if player:HasCollectible(garden.COLLECTIBLE_SHAME) and not garden.HAS_SHAME then									
+		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_SHAME)		
+		garden.HAS_SHAME = true
+	end
+
+	if player:HasCollectible(garden.COLLECTIBLE_FORBIDDEN_FRUIT) and not garden.HAS_FORBIDDEN_FRUIT then			
+		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_FORBIDDEN_FRUIT)
+		garden.HAS_FORBIDDEN_FRUIT = true  
+	end
+
+	if player:HasCollectible(garden.COLLECTIBLE_THE_FIRST_DAY) and not garden.HAS_THE_FIRST_DAY then			
+		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_THE_FIRST_DAY)
+		garden.HAS_THE_FIRST_DAY = true  
+	end
+
+	if player:HasCollectible(garden.COLLECTIBLE_DECEPTION) and not garden.HAS_DECEPTION then			
+		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_DECEPTION)
+		garden.HAS_DECEPTION = true  
+	end
+
+	if player:HasCollectible(garden.COLLECTIBLE_GRANTED_DOMAIN) and not garden.HAS_GRANTED_DOMAIN then			
+		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_GRANTED_DOMAIN)
+		garden.HAS_GRANTED_DOMAIN = true  
+	end
+
+	if player:HasCollectible(garden.COLLECTIBLE_THE_WILL_OF_MAN) and not garden.HAS_THE_WILL_OF_MAN then			
+		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_THE_WILL_OF_MAN)
+		garden.HAS_THE_WILL_OF_MAN = true  
+	end
+
+	if player:HasCollectible(garden.COLLECTIBLE_EXILED) and not garden.HAS_EXILED then			
+		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_EXILED)
+		garden.HAS_EXILED = true 
+	end
+
+	if player:HasCollectible(garden.COLLECTIBLE_REBIRTH) and not garden.HAS_REBIRTH then			
+		local player = Isaac.GetPlayer(0)
+		local playerPosition = player.Position			
+		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.ADAM_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)
+		
+		--NOT WORKING
+		--local character = player:GetPlayerType()
+		--if not character == PlayerType.PLAYER_EVE then
+		--	player.PlayerType = PlayerType.PLAYER_EVE				
+		--end
+		garden.HAS_REBIRTH = true  
+	end
 end
 
 
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.debugMode)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.shameEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.forbiddenFruitEffect)
-garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.creationEffect)
-garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.deceptionEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.grantedDomainEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theWillOfManEffect)
-garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theFallOfManEffect)
-garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.rebirthEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.exiledEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theFirstDayEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.myBelovedEffect)
+
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoomUpdate)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.checkForNewLevel)
 garden:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, garden.checkForNewRun)
+
 garden:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, garden.removeMortalityCurse)
 garden:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, garden.itemPickedUp)
 garden:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, garden.updateFamiliar, garden.ADAM_FAMILIAR_VARIANT)
