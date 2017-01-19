@@ -100,10 +100,14 @@ function garden:debugMode()
 		local currentLevel = currentGame:GetLevel()		
 		local currentRoom = Game():GetRoom()
 		local player = Isaac.GetPlayer(0)
-		--local playerPosition = player.Position		
-		--Isaac.RenderText("Y:" .. playerPosition.Y, 50, 45, 255, 255, 255, 255)
-		--Isaac.RenderText("Visit:" .. garden.VISIT_NUMBER, 50, 30, 255, 255, 255, 255)
-		Isaac.RenderText("Player Type:" .. player:GetPlayerType(), 50, 30, 255, 255, 255, 255)
+		--local playerPosition = player.Position						
+		--Isaac.RenderText("Player Type:" .. player:GetPlayerType(), 50, 30, 255, 255, 255, 255)
+		Isaac.RenderText("Max Hearts:" .. player:GetMaxHearts(), 50, 30, 255, 255, 255, 255)
+		if garden.MAX_HEARTS ~= nil then
+			Isaac.RenderText("Max Hearts:" .. garden.MAX_HEARTS, 50, 45, 255, 255, 255, 255)
+		end
+		
+		
 		if currentRoom.Subtype ~= nil then
 			Isaac.RenderText("RoomSub:" .. currentRoom.Subtype, 50, 45, 255, 255, 255, 255)		
 		end
@@ -183,13 +187,6 @@ function garden:creationEffect()
 	if player:HasCollectible(garden.COLLECTIBLE_CREATION) then		
 		if not garden.HAS_CREATION then			
 			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_CREATION)
-			
-			player.Damage = player.Damage+.51		
-			player.MoveSpeed = player.MoveSpeed+.1
-			player.ShotSpeed = player.ShotSpeed+.1
-			local white = Color(255, 255, 255, 255, 0, 0, 0)
-			player.TearColor = white
-
 			garden.HAS_CREATION = true  
 		end
 	end
@@ -250,15 +247,10 @@ function garden:theFallOfManEffect()
 		if not garden.HAS_THE_FALL_OF_MAN then			
 			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_THE_FALL_OF_MAN)
             
-            local maxHearts = player:GetMaxHearts()
-			local negativeHearts = maxHearts*-1
+            garden.MAX_HEARTS = player:GetMaxHearts()			
 			local ignoreKeeper = true
 			player:AddBlackHearts(4, ignoreKeeper)
-			player:AddMaxHearts(negativeHearts, ignoreKeeper)
-
-			for i = 1, maxHearts/2 do
-				player.Damage = player.Damage+1.0
-			end
+			player:AddMaxHearts(garden.MAX_HEARTS*-1, ignoreKeeper)
 
 			garden.HAS_THE_FALL_OF_MAN = true 
 		end
@@ -272,10 +264,12 @@ function garden:rebirthEffect()
 			local player = Isaac.GetPlayer(0)
 			local playerPosition = player.Position			
 			Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.ADAM_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)
-			local character = player:GetPlayerType()
-			if not character == PlayerType.PLAYER_EVE then
-				player.PlayerType = PlayerType.PLAYER_EVE				
-			end
+			
+			--NOT WORKING
+			--local character = player:GetPlayerType()
+			--if not character == PlayerType.PLAYER_EVE then
+			--	player.PlayerType = PlayerType.PLAYER_EVE				
+			--end
 			garden.HAS_REBIRTH = true  
 		end	
 	end
@@ -287,6 +281,8 @@ function garden:exiledEffect()
 		if not garden.HAS_EXILED then			
 			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_EXILED)
 			garden.HAS_EXILED = true 
+
+			--NOT WORKING
 			--local currentGame = Game()
 			--local addChampionBeltCostume = true
 			--currentGame:AddCollectibleEffect(CollectibleType.COLLECTIBLE_CHAMPION_BELT, addChampionBeltCostume) 
@@ -375,8 +371,8 @@ function garden:gardenRoomUpdate()
 						local spawnOwner = Isaac.GetPlayer(0)
 						local leftHeart = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, leftHeartPosition, velocity, spawnOwner) 	
 						local rightHeart = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, rightHeartPosition, velocity, spawnOwner) 
-						leftHeart.RenderZOffset = -699999 --This should be below characters in the room
-						rightHeart.RenderZOffset = -699999
+						leftHeart.RenderZOffset = -50 --This should be below characters in the room
+						rightHeart.RenderZOffset = -50
 					end
 				end						
 			end
@@ -547,6 +543,27 @@ function garden:updateFamiliar(familiar)
 		familiar:FollowPosition(playerPosition)
 	end
 end
+
+function garden:itemPickedUp(player, statFromXML)
+	local player = Isaac.GetPlayer(0)	
+	
+	if player:HasCollectible(garden.COLLECTIBLE_CREATION) then		
+		player.Damage = player.Damage+.51		
+		player.MoveSpeed = player.MoveSpeed+.1
+		player.ShotSpeed = player.ShotSpeed+.1
+		local white = Color(255, 255, 255, 255, 0, 0, 0)
+		player.TearColor = white
+	end			
+
+	if player:HasCollectible(garden.COLLECTIBLE_THE_FALL_OF_MAN) then		
+		for i = 1, garden.MAX_HEARTS/2 do
+			player.Damage = player.Damage+1.0
+		end
+		garden.MAX_HEARTS = 0
+	end
+
+end
+
 
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.debugMode)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.shameEffect)
