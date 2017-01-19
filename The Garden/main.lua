@@ -88,9 +88,10 @@ garden.SERPENT_LOCATION = nil
 garden.SERPENT_VELOCITY = Vector(0,0)
 garden.SERPENT_SPAWN_OWNER = nil		
 
---Storages
+--Storage Variabes
 garden.CURRENT_LEVEL = nil
 garden.previousPosition = nil
+garden.MAX_HEARTS = nil
 
 function garden:debugMode()
 	if garden.DEBUG_MODE then
@@ -102,7 +103,7 @@ function garden:debugMode()
 		--local playerPosition = player.Position		
 		--Isaac.RenderText("Y:" .. playerPosition.Y, 50, 45, 255, 255, 255, 255)
 		--Isaac.RenderText("Visit:" .. garden.VISIT_NUMBER, 50, 30, 255, 255, 255, 255)
-		Isaac.RenderText("Type:" .. player:GetPlayerType(), 50, 30, 255, 255, 255, 255)
+		Isaac.RenderText("Player Type:" .. player:GetPlayerType(), 50, 30, 255, 255, 255, 255)
 		if currentRoom.Subtype ~= nil then
 			Isaac.RenderText("RoomSub:" .. currentRoom.Subtype, 50, 45, 255, 255, 255, 255)		
 		end
@@ -182,6 +183,13 @@ function garden:creationEffect()
 	if player:HasCollectible(garden.COLLECTIBLE_CREATION) then		
 		if not garden.HAS_CREATION then			
 			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_CREATION)
+			
+			player.Damage = player.Damage+.51		
+			player.MoveSpeed = player.MoveSpeed+.1
+			player.ShotSpeed = player.ShotSpeed+.1
+			local white = Color(255, 255, 255, 255, 0, 0, 0)
+			player.TearColor = white
+
 			garden.HAS_CREATION = true  
 		end
 	end
@@ -241,11 +249,20 @@ function garden:theFallOfManEffect()
 	if player:HasCollectible(garden.COLLECTIBLE_THE_FALL_OF_MAN) then		
 		if not garden.HAS_THE_FALL_OF_MAN then			
 			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_THE_FALL_OF_MAN)
-			garden.HAS_THE_FALL_OF_MAN = true  
+            
+            local maxHearts = player:GetMaxHearts()
+			local negativeHearts = maxHearts*-1
+			local ignoreKeeper = true
+			player:AddBlackHearts(4, ignoreKeeper)
+			player:AddMaxHearts(negativeHearts, ignoreKeeper)
+
+			for i = 1, maxHearts/2 do
+				player.Damage = player.Damage+1.0
+			end
+
+			garden.HAS_THE_FALL_OF_MAN = true 
 		end
 	end
-	--use GridEntityDoor:TargetRoomType to possibly see the item/boss in the next room (not sure if this is possible) --or try searching the surrounding rooms looking for items or bosses and post that info on the wall
-	--use entity:AddEntityFlags(FLAG_RENDER_WALL) to attempt to apply that item/boss to a wall
 end
 
 function garden:rebirthEffect()
@@ -332,16 +349,7 @@ function garden:myBelovedEffect()
 	end
 end
 
-function garden:itemPickedUp(player, statFromXML)
-	local player = Isaac.GetPlayer(0)	
-	
-	if player:HasCollectible(garden.COLLECTIBLE_CREATION) then
-		player.Damage = player.Damage+.51		
-		player.MoveSpeed = player.MoveSpeed+.1
-		player.ShotSpeed = player.ShotSpeed+.1
-		local white = Color(255, 255, 255, 255, 0, 0, 0)
-		player.TearColor = white
-	end			
+function garden:itemPickedUp(player, statFromXML)					
 end
 
 function garden:gardenRoomUpdate()
