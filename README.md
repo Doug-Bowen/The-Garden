@@ -15,7 +15,6 @@ Adds:
   * Exiled (Item)
   * My Beloved (Item) :white_check_mark:
 * Genisis (New Challenge) :white_check_mark: (Challenge Created)
-~~* Broken Heart (New heart type)~~
 * Curse of Mortality (New Curse) :white_check_mark: 
 * The Serpent (Boss) :white_check_mark:
 * 4 New Music Tracks :white_check_mark:
