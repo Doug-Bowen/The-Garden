@@ -3,17 +3,17 @@
 Adds:
 * The Garden (New Room) :white_check_mark: (Room Created)
 * The Garden Pool (New Item Pool) :white_check_mark: (Pool Created)
-  * Shame (Item) 
+  * Shame (Item) :white_check_mark:
   * Forbidden Fruit (Item) 
-  * Deception (Item) 
-  * Creation (Item) 
-  * Granted Domain (Item)
-  * The Harvest (Item)
-  * The Fall of Man (Item)
+  * Deception (Item)
+  * Creation (Item) :white_check_mark:
+  * Granted Domain (Item) :white_check_mark:
+  * The Harvest (Item) :white_check_mark:
+  * The Fall of Man (Item) :white_check_mark:
   * Rebirth (Item)
   * The First Day (Item)
   * Exiled (Item)
-  * My Beloved (Item)
+  * My Beloved (Item) :white_check_mark:
 * Genisis (New Challenge) :white_check_mark: (Challenge Created)
 ~~* Broken Heart (New heart type)~~
 * Curse of Mortality (New Curse) :white_check_mark: 
@@ -22,9 +22,13 @@ Adds:
 * 1 New SFX :white_check_mark:
 
 **The Garden Room:** A room that randomly replaces a library (40% chance)
+
 * Has its own item pool
+
 * Eternal hearts have a chance to spawn in this room on first entry. (25%).
+
 ~~* Discovering the garden unlocks the Genesis challenge.~~
+
 * Touching the tree in the center of the room will trigger a fight with The Serpent
  * Defeating The Serpent will give the player the Curse of Mortality.
  * The Serpent is a clone and reskin of Pin.
