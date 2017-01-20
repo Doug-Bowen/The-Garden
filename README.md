@@ -8,7 +8,7 @@ Adds:
   * Deception (Item) 
   * Creation (Item) 
   * Granted Domain (Item)
-  * The Will of Man (Item)
+  ~* The Will of Man (Item)~
   * The Fall of Man (Item)
   * Rebirth (Item)
   * The First Day (Item)

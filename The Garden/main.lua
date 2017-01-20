@@ -9,12 +9,12 @@ garden.COLLECTIBLE_FORBIDDEN_FRUIT = Isaac.GetItemIdByName("Forbidden Fruit")
 garden.COLLECTIBLE_DECEPTION = Isaac.GetItemIdByName("Deception")
 garden.COLLECTIBLE_CREATION = Isaac.GetItemIdByName("Creation")
 garden.COLLECTIBLE_GRANTED_DOMAIN = Isaac.GetItemIdByName("Granted Domain")
-garden.COLLECTIBLE_THE_WILL_OF_MAN = Isaac.GetItemIdByName("The Will of Man")
 garden.COLLECTIBLE_THE_FALL_OF_MAN = Isaac.GetItemIdByName("The Fall of Man")
 garden.COLLECTIBLE_REBIRTH = Isaac.GetItemIdByName("Rebirth")
 garden.COLLECTIBLE_EXILED = Isaac.GetItemIdByName("Exiled")
 garden.COLLECTIBLE_THE_FIRST_DAY = Isaac.GetItemIdByName("The First Day")
 garden.COLLECTIBLE_MY_BELOVED = Isaac.GetItemIdByName("My Beloved")
+garden.COLLECTIBLE_THE_WILL_OF_MAN = Isaac.GetItemIdByName("The Will of Man")
 
 --Pool
 garden.gardenPool = {}
@@ -23,12 +23,12 @@ garden.gardenPool[2] = garden.COLLECTIBLE_FORBIDDEN_FRUIT
 garden.gardenPool[3] = garden.COLLECTIBLE_DECEPTION
 garden.gardenPool[4] = garden.COLLECTIBLE_CREATION
 garden.gardenPool[5] = garden.COLLECTIBLE_GRANTED_DOMAIN
-garden.gardenPool[6] = garden.COLLECTIBLE_THE_WILL_OF_MAN
-garden.gardenPool[7] = garden.COLLECTIBLE_THE_FALL_OF_MAN
-garden.gardenPool[8] = garden.COLLECTIBLE_REBIRTH
-garden.gardenPool[9] = garden.COLLECTIBLE_EXILED
-garden.gardenPool[10] = garden.COLLECTIBLE_THE_FIRST_DAY
-garden.gardenPool[11] = garden.COLLECTIBLE_MY_BELOVED
+garden.gardenPool[6] = garden.COLLECTIBLE_THE_FALL_OF_MAN
+garden.gardenPool[7] = garden.COLLECTIBLE_REBIRTH
+garden.gardenPool[8] = garden.COLLECTIBLE_EXILED
+garden.gardenPool[9] = garden.COLLECTIBLE_THE_FIRST_DAY
+garden.gardenPool[10] = garden.COLLECTIBLE_MY_BELOVED
+--garden.gardenPool[11] = garden.COLLECTIBLE_THE_WILL_OF_MAN --REMOVE WILL OF MAN FROM THE GAME
 
 --Familiars
 garden.ADAM_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("Adam")
@@ -39,12 +39,12 @@ garden.HAS_FORBIDDEN_FRUIT = false
 garden.HAS_DECEPTION = false
 garden.HAS_CREATION = false
 garden.HAS_GRANTED_DOMAIN = false
-garden.HAS_THE_WILL_OF_MAN = false
 garden.HAS_THE_FALL_OF_MAN = false
 garden.HAS_REBIRTH = false
 garden.HAS_EXILED = false
 garden.HAS_THE_FIRST_DAY = false
 garden.HAS_MY_BELOVED = false
+garden.HAS_THE_WILL_OF_MAN = false
 
 --Costumes
 garden.COSTUME_ID_SHAME = Isaac.GetCostumeIdByPath("gfx/characters/shame.anm2")
@@ -52,11 +52,11 @@ garden.COSTUME_ID_FORBIDDEN_FRUIT = Isaac.GetCostumeIdByPath("gfx/characters/for
 garden.COSTUME_ID_DECEPTION = Isaac.GetCostumeIdByPath("gfx/characters/deception.anm2")
 garden.COSTUME_ID_CREATION = Isaac.GetCostumeIdByPath("gfx/characters/creation.anm2")
 garden.COSTUME_ID_GRANTED_DOMAIN = Isaac.GetCostumeIdByPath("gfx/characters/granted_domain.anm2")
-garden.COSTUME_ID_THE_WILL_OF_MAN = Isaac.GetCostumeIdByPath("gfx/characters/the_will_of_man.anm2")
 garden.COSTUME_ID_THE_FALL_OF_MAN = Isaac.GetCostumeIdByPath("gfx/characters/the_fall_of_man.anm2")
 garden.COSTUME_ID_EXILED = Isaac.GetCostumeIdByPath("gfx/characters/exiled.anm2")
 garden.COSTUME_ID_THE_FIRST_DAY = Isaac.GetCostumeIdByPath("gfx/characters/the_first_day.anm2")
 garden.COSTUME_ID_MY_BELOVED = Isaac.GetCostumeIdByPath("gfx/characters/my_beloved.anm2")
+garden.COSTUME_ID_THE_WILL_OF_MAN = Isaac.GetCostumeIdByPath("gfx/characters/the_will_of_man.anm2")
 
 --Room Flags
 garden.GARDEN_HEARTS_CAN_SPAWN = true
@@ -95,22 +95,21 @@ garden.previousPosition = nil
 function garden:debugMode()
 	if garden.DEBUG_MODE then
 		Isaac.RenderText("Debug Mode", 50, 15, 255, 255, 255, 255)
-		local currentGame = Game()
-		local currentLevel = currentGame:GetLevel()		
-		local currentRoom = Game():GetRoom()
-		local player = Isaac.GetPlayer(0)
+		--local currentGame = Game()
+		--local currentLevel = currentGame:GetLevel()		
+		--local currentRoom = Game():GetRoom()
+		--local player = Isaac.GetPlayer(0)
 		--local playerPosition = player.Position						
 		--Isaac.RenderText("Player Type:" .. player:GetPlayerType(), 50, 30, 255, 255, 255, 255)
-		--Isaac.RenderText("Max Hearts:" .. player:GetMaxHearts(), 50, 30, 255, 255, 255, 255)
-		
-		if currentRoom.Subtype ~= nil then
-			Isaac.RenderText("RoomSub:" .. currentRoom.Subtype, 50, 45, 255, 255, 255, 255)		
-		end
+		--Isaac.RenderText("Max Hearts:" .. player:GetMaxHearts(), 50, 30, 255, 255, 255, 255)		
+		--if currentRoom.Subtype ~= nil then
+		--	Isaac.RenderText("RoomSub:" .. currentRoom.Subtype, 50, 45, 255, 255, 255, 255)		
+		--end
 		if Game():GetFrameCount() == 1 then
 			local currentRoom = Game():GetRoom()
 			local roomCenter = currentRoom:GetCenterPos()
 			for i = 1, #garden.gardenPool do
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.gardenPool[i], currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, garden.gardenPool[i], currentRoom:FindFreePickupSpawnPosition(roomCenter,0,true), Vector(0,0), nil)												
 			end
 		end		
 	end
@@ -240,10 +239,7 @@ function garden:myBelovedEffect()
 				end
 				if positionalDifference.Y < 0 then
 					singleEntity:AddVelocity(Vector(0,-1))
-				end
-				if positionalDifference.X ==0 and positionalDifference.Y == 0 then
-					singleEntity:Remove()
-				end
+				end				
 			end
 		end
 	end
@@ -305,7 +301,7 @@ function garden:gardenRoomUpdate()
 				--change music here (Garden_Serpent.ogg)				
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)				
 				Game():ShakeScreen(12)
-				garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_ID, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
+				garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_ID, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)				
 				
 				--play sfx here (Curse_of_Mortality.wav)
 				local volume = 100
@@ -342,15 +338,15 @@ function garden:gardenRoomUpdate()
 						local roomCenter = currentRoom:GetCenterPos()
 						local initialStep = 0 --Not sure what this does
 						local avoidActiveEnemies = true
-						local startingPosition = Vector(roomCenter.X,roomCenter.Y+20)
+						local startingPosition = Vector(roomCenter.X,roomCenter.Y+30)
 						local pickupPosition = currentRoom:FindFreePickupSpawnPosition(startingPosition, initialStep, avoidActiveEnemies)
 						local velocity = Vector(0,0)
 						local spawnOwner = nil
-						local randomNumber = math.random(11)
+						local randomNumber = math.random(10) 
 						local randomItem = garden.gardenPool[randomNumber]			
 						Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)
 						garden.ITEM_REWARDED = true
-						--table.Remove(garden.gardenPool, randomNumber) -- We're not removing the item spawned from the garden pool currently as this call doesnt work											
+						table.remove(garden.gardenPool,randomNumber) --Remove the item from the pool										
 					end
 				end
 			end
@@ -430,12 +426,12 @@ function garden:checkForNewRun() --Reset Flags on a new run
 	garden.HAS_DECEPTION = false
 	garden.HAS_CREATION = false
 	garden.HAS_GRANTED_DOMAIN = false
-	garden.HAS_THE_WILL_OF_MAN = false
 	garden.HAS_THE_FALL_OF_MAN = false
 	garden.HAS_REBIRTH = false
 	garden.HAS_EXILED = false
 	garden.HAS_THE_FIRST_DAY = false
 	garden.HAS_MY_BELOVED = false
+	garden.HAS_THE_WILL_OF_MAN = false
 end	
 
 function garden:updateFamiliar(familiar)
@@ -500,6 +496,26 @@ function garden:itemPickedUp(player, statFromXML)
 
 	if player:HasCollectible(garden.COLLECTIBLE_DECEPTION) and not garden.HAS_DECEPTION then			
 		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_DECEPTION)
+
+		--Suffle Pills NOT WORKING
+		for i = 1, PillEffect.NUM_PILL_EFFECTS do
+			local pillEffect = Isaac.GetPillEffectByName(i)
+			local pillRNG = player:GetPillRNG(pillEffect)
+			local currentSeed = pillRNG:GetSeed()			
+			pillRNG:Next() --Shift pill
+		end	
+
+		--shuffle consumables
+		local additionalComsumables = math.random(2)		
+		local numCoins = player:GetNumCoins()
+		local numKeys = player:GetNumKeys()
+		local numBombs = player:GetNumBombs()
+		player:AddCoins(numKeys+additionalComsumables)
+		player:AddKeys(numBombs+additionalComsumables)
+		player:AddBombs(numCoins+additionalComsumables)
+
+		--shuffle stats
+
 		garden.HAS_DECEPTION = true  
 	end
 

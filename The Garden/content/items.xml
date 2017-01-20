@@ -1,13 +1,13 @@
 <items gfxroot="gfx/items/" version="1">
 	<passive description="Self awareness" gfx="collectibles_shame.png" name="Shame" cache="shame"/>
-	<passive description="Don't believe his lies!" gfx="collectibles_forbidden_fruit.png" name="Forbidden Fruit" cache="forbiddenFruit"/>
-	<passive description="The Serpent lies..." gfx="collectibles_deception.png" name="Deception" cache="deception"/>
-	<passive description="In the beginning..." gfx="collectibles_creation.png" name="Creation" cache="creation" />
-	<passive description="All authority is yours" gfx="collectibles_granted_domain.png" name="Granted Domain" cache="grantedDomain" />
-	<passive description="Know good, know evil." gfx="collectibles_the_will_of_man.png" name="The Will of Man" cache="willOfMan" />
-	<passive description="You have become corrupted by sin..." gfx="collectibles_the_fall_of_man.png" name="The Fall of Man" cache="fallOfMan" />
-	<familiar description="From Adam, came Eve..." gfx="collectibles_rebirth.png" name="Rebirth" cache="rebirth"/>
-	<passive description="Deliberate disobedience" gfx="collectibles_exiled.png" name="Exiled" cache="exiled"/>
-	<passive description="Lover, I'm yours..." gfx="collectibles_my_beloved.png" name="My Beloved" cache="beloved"/>
-	<passive description="Let there be light!" gfx="collectibles_the_first_day.png" name="The First Day" cache="firstDay"/>
+	<passive description="Don't believe his lies!" gfx="collectibles_forbidden_fruit.png" name="Forbidden Fruit" cache="none"/>
+	<passive description="The Serpent lies..." gfx="collectibles_deception.png" name="Deception" cache="none"/>
+	<passive description="In the beginning..." gfx="collectibles_creation.png" name="Creation" cache="none" />
+	<passive description="All authority is yours" gfx="collectibles_granted_domain.png" name="Granted Domain" cache="none" />
+	<passive description="Know good, know evil." gfx="collectibles_the_will_of_man.png" name="The Will of Man" cache="none" />
+	<passive description="You have become corrupted by sin..." gfx="collectibles_the_fall_of_man.png" name="The Fall of Man" cache="none" />
+	<familiar description="From Adam, came Eve..." gfx="collectibles_rebirth.png" name="Rebirth" cache="none"/>
+	<passive description="Deliberate disobedience" gfx="collectibles_exiled.png" name="Exiled" cache="none"/>
+	<passive description="Lover, I'm yours..." gfx="collectibles_my_beloved.png" name="My Beloved" cache="none"/>
+	<passive description="Let there be light!" gfx="collectibles_the_first_day.png" name="The First Day" cache="none"/>
 </items>
