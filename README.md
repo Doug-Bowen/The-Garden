@@ -8,7 +8,7 @@ Adds:
   * Deception (Item) 
   * Creation (Item) 
   * Granted Domain (Item)
-  ~* The Will of Man (Item)~
+  * The Harvest (Item)
   * The Fall of Man (Item)
   * Rebirth (Item)
   * The First Day (Item)
@@ -53,7 +53,7 @@ Art Style:
 |Deception|The Serpent Lies|Shuffle pull colors, Shuffle consumable numbers, Shuffle stats|Snake (Coiled up), google the 'Come And Take It Flag'|Isaac has a snake wrapped around his neck.|:white_check_mark:|:white_check_mark:|:clock3:|
 |Creation|In the beginning|All stats up|Earth (Reskin Tiny Planet)|Isaac's head becomes the Earth|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |Granted Domain|All authority is yours|Enemies stop moving when Isaac stops moving|Crown (Reskin 'Crown of light' to be bright yellow)|Isaac wears a crown|:white_check_mark:|:white_check_mark:|:white_check_mark:|
-|The Will of Man|Know good, know evil.|The player is shown Bosses (on the wall next to the boss door) and Items (on the wall next to the item room door)|A tree (strong trunk, cartoony)|Isaac has leaves behind one of his ears|:white_check_mark:|:white_check_mark:|:clock3:|
+|Harvest |Sow! Reap!|Upon clearing a room, the player has a 5% chance to be rewarded with a random item in the center of the room.|Bundle of gains|Isaac has a sinbgle grain behind one of his ears|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |The Fall of Man|Original Sin|+2 Black Hearts. Removes all red hearts. For each red heart removed, +1 damage.|Crossed Scythes (Borrow from Death's Touch)|Isaac's body turns A shade of black|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |Rebirth|From one, come two|The player becomes Eve. The player keeps items and health. The player gains a familiar that looks like Adam that fires tears at your current rate.|A Rib|Miniature Isaac familiar|:white_check_mark:|:white_check_mark:|:clock3:|
 |The First Day|Let there be light!|100% Angel room stat (locked)|A sun (Cartoony)|Isaac's head shines|:white_check_mark:|:white_check_mark:|:clock3:|
