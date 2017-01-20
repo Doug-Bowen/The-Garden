@@ -1,8 +1,8 @@
 <AnimatedActor>
-	<Info CreatedBy="robot" CreatedOn="1/16/2017 7:43:06 PM" Version="103" Fps="30"/>
+	<Info CreatedBy="robot" CreatedOn="1/20/2017 1:09:10 PM" Version="103" Fps="30"/>
 	<Content>
 		<Spritesheets>
-			<Spritesheet Path="costumes\costume_the_will_of_man.png" Id="0"/>
+			<Spritesheet Path="costumes\costume_harvest.png" Id="0"/>
 		</Spritesheets>
 		<Layers>
 			<Layer Name="head2" Id="0" SpritesheetId="0"/>

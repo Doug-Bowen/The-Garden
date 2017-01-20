@@ -14,7 +14,7 @@ garden.COLLECTIBLE_REBIRTH = Isaac.GetItemIdByName("Rebirth")
 garden.COLLECTIBLE_EXILED = Isaac.GetItemIdByName("Exiled")
 garden.COLLECTIBLE_THE_FIRST_DAY = Isaac.GetItemIdByName("The First Day")
 garden.COLLECTIBLE_MY_BELOVED = Isaac.GetItemIdByName("My Beloved")
-garden.COLLECTIBLE_THE_WILL_OF_MAN = Isaac.GetItemIdByName("The Will of Man")
+garden.COLLECTIBLE_THE_HARVEST = Isaac.GetItemIdByName("The Harvest")
 
 --Pool
 garden.gardenPool = {}
@@ -28,7 +28,7 @@ garden.gardenPool[7] = garden.COLLECTIBLE_REBIRTH
 garden.gardenPool[8] = garden.COLLECTIBLE_EXILED
 garden.gardenPool[9] = garden.COLLECTIBLE_THE_FIRST_DAY
 garden.gardenPool[10] = garden.COLLECTIBLE_MY_BELOVED
---garden.gardenPool[11] = garden.COLLECTIBLE_THE_WILL_OF_MAN --REMOVE WILL OF MAN FROM THE GAME
+garden.gardenPool[11] = garden.COLLECTIBLE_THE_HARVEST
 
 --Familiars
 garden.ADAM_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("Adam")
@@ -44,7 +44,7 @@ garden.HAS_REBIRTH = false
 garden.HAS_EXILED = false
 garden.HAS_THE_FIRST_DAY = false
 garden.HAS_MY_BELOVED = false
-garden.HAS_THE_WILL_OF_MAN = false
+garden.HAS_THE_HARVEST = false
 
 --Costumes
 garden.COSTUME_ID_SHAME = Isaac.GetCostumeIdByPath("gfx/characters/shame.anm2")
@@ -56,7 +56,7 @@ garden.COSTUME_ID_THE_FALL_OF_MAN = Isaac.GetCostumeIdByPath("gfx/characters/the
 garden.COSTUME_ID_EXILED = Isaac.GetCostumeIdByPath("gfx/characters/exiled.anm2")
 garden.COSTUME_ID_THE_FIRST_DAY = Isaac.GetCostumeIdByPath("gfx/characters/the_first_day.anm2")
 garden.COSTUME_ID_MY_BELOVED = Isaac.GetCostumeIdByPath("gfx/characters/my_beloved.anm2")
-garden.COSTUME_ID_THE_WILL_OF_MAN = Isaac.GetCostumeIdByPath("gfx/characters/the_will_of_man.anm2")
+garden.COSTUME_ID_THE_HARVEST = Isaac.GetCostumeIdByPath("gfx/characters/the_harvest.anm2")
 
 --Room Flags
 garden.GARDEN_HEARTS_CAN_SPAWN = true
@@ -88,20 +88,33 @@ garden.SERPENT_LOCATION = nil
 garden.SERPENT_VELOCITY = Vector(0,0)
 garden.SERPENT_SPAWN_OWNER = nil		
 
+garden.GRAIN_SHELL = nil    --This is used to spawn Grains 
+garden.GRAIN_ID = 1000      --This is The Effect ID
+garden.GRAIN_VARIANT = 779  --This is the Grain's Variant Number
+garden.GRAIN_SUBTYPE = 0 
+
 --Storage Variabes
 garden.CURRENT_LEVEL = nil
-garden.previousPosition = nil
+garden.PREVIOUS_POSITION = nil
+garden.ROOM_FIGHT = false
+garden.ROOM_DONE = false
 
 function garden:debugMode()
 	if garden.DEBUG_MODE then
 		Isaac.RenderText("Debug Mode", 50, 15, 255, 255, 255, 255)
 		--local currentGame = Game()
 		--local currentLevel = currentGame:GetLevel()		
-		--local currentRoom = Game():GetRoom()
+		local currentRoom = Game():GetRoom()
 		--local player = Isaac.GetPlayer(0)
 		--local playerPosition = player.Position						
 		--Isaac.RenderText("Player Type:" .. player:GetPlayerType(), 50, 30, 255, 255, 255, 255)
-		--Isaac.RenderText("Max Hearts:" .. player:GetMaxHearts(), 50, 30, 255, 255, 255, 255)		
+		--Isaac.RenderText("Max Hearts:" .. player:GetMaxHearts(), 50, 30, 255, 255, 255, 255)				
+		if garden.enemyInTheRoom then
+			Isaac.RenderText("Enemy: Y", 50, 30, 255, 255, 255, 255)		
+		else
+			Isaac.RenderText("Enemy: N", 50, 30, 255, 255, 255, 255)		
+		end
+
 		--if currentRoom.Subtype ~= nil then
 		--	Isaac.RenderText("RoomSub:" .. currentRoom.Subtype, 50, 45, 255, 255, 255, 255)		
 		--end
@@ -171,8 +184,8 @@ end
 function garden:grantedDomainEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_GRANTED_DOMAIN) then		
-		if garden.previousPosition ~= nil then
-			local positionalDifference = Vector(player.Position.X-garden.previousPosition.X, player.Position.Y-garden.previousPosition.Y)
+		if garden.PREVIOUS_POSITION ~= nil then
+			local positionalDifference = Vector(player.Position.X-garden.PREVIOUS_POSITION.X, player.Position.Y-garden.PREVIOUS_POSITION.Y)
 			if math.abs(positionalDifference.X) == 0 and math.abs(positionalDifference.Y) == 0 then
 				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.CRACK_THE_SKY , 0, player.Position, Vector(0,0), player)
 				local entities = Isaac.GetRoomEntities()
@@ -185,10 +198,10 @@ function garden:grantedDomainEffect()
 					end
 				end	
 			else
-				garden.previousPosition = player.Position
+				garden.PREVIOUS_POSITION = player.Position
 			end
 		else
-			garden.previousPosition = player.Position
+			garden.PREVIOUS_POSITION = player.Position
 		end
 	end
 end
@@ -201,6 +214,108 @@ function garden:exiledEffect()
 		--local currentGame = Game()
 		--local addChampionBeltCostume = true
 		--currentGame:AddCollectibleEffect(CollectibleType.COLLECTIBLE_CHAMPION_BELT, addChampionBeltCostume) 
+	end
+end
+
+function garden:harvestEffect()
+	local player = Isaac.GetPlayer(0)	
+	if player:HasCollectible(garden.COLLECTIBLE_THE_HARVEST) then		
+		local currentRoom = Game():GetRoom()
+		if currentRoom:GetFrameCount() == 1 then
+			garden.ROOM_FIGHT = false
+			garden.ROOM_DONE = false
+			local entities = Isaac.GetRoomEntities()
+			for i = 1, #entities do
+				local singleEntity = entities[i]
+				if singleEntity:IsVulnerableEnemy() then		
+					garden.ROOM_FIGHT = true
+				end
+			end
+		elseif currentRoom:IsClear() and garden.ROOM_FIGHT and not garden.ROOM_DONE then				
+			local randomNum = math.random(1)  --5% chance
+			if randomNum == 1 then
+				local roomCenter = currentRoom:GetCenterPos()
+				local initialStep = 0 --Not sure what this does
+				local avoidActiveEnemies = true
+				local startingPosition = Vector(roomCenter.X,roomCenter.Y+30)
+				local pickupPosition = currentRoom:FindFreePickupSpawnPosition(startingPosition, initialStep, avoidActiveEnemies)
+				local velocity = Vector(0,0)
+				local spawnOwner = nil
+				local randomItem = 0 
+				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pickupPosition, velocity, spawnOwner)				
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)
+				
+				--Render grains
+				local position = nil
+				local grainSprite = nil
+				
+				local showGrain = math.random(2)
+				if showGrain == 1 then
+					position = Vector(pickupPosition.X+30,pickupPosition.Y-30)
+					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_ID, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)			
+					grainSprite = garden.GRAIN_SHELL:GetSprite() 
+					grainSprite:Load("gfx/grain.anm2", true)							
+					grainSprite:Play("North East", true) 
+				end				
+				showGrain = math.random(2)
+				if showGrain == 1 then
+					position = Vector(pickupPosition.X,pickupPosition.Y-30)
+					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_ID, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
+					grainSprite = garden.GRAIN_SHELL:GetSprite() 
+					grainSprite:Load("gfx/grain.anm2", true)							
+					grainSprite:Play("North", true) 				
+				end
+				showGrain = math.random(2)
+				if showGrain == 1 then
+					position = Vector(pickupPosition.X-30,pickupPosition.Y-30)
+					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_ID, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
+					grainSprite = garden.GRAIN_SHELL:GetSprite() 
+					grainSprite:Load("gfx/grain.anm2", true)							
+					grainSprite:Play("North West", true) 
+				end
+				showGrain = math.random(2)
+				if showGrain == 1 then
+					position = Vector(pickupPosition.X-30,pickupPosition.Y)
+					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_ID, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
+					grainSprite = garden.GRAIN_SHELL:GetSprite() 
+					grainSprite:Load("gfx/grain.anm2", true)							
+					grainSprite:Play("West", true) 
+				end
+				showGrain = math.random(2)
+				if showGrain == 1 then
+					position = Vector(pickupPosition.X-30,pickupPosition.Y+30)
+					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_ID, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
+					grainSprite = garden.GRAIN_SHELL:GetSprite() 
+					grainSprite:Load("gfx/grain.anm2", true)							
+					grainSprite:Play("South West", true) 
+				end
+				showGrain = math.random(2)
+				if showGrain == 1 then
+					position = Vector(pickupPosition.X,pickupPosition.Y+30)
+					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_ID, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
+					grainSprite = garden.GRAIN_SHELL:GetSprite() 
+					grainSprite:Load("gfx/grain.anm2", true)							
+					grainSprite:Play("South", true)
+				end
+				showGrain = math.random(2)
+				if showGrain == 1 then
+					position = Vector(pickupPosition.X+30,pickupPosition.Y+30)
+					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_ID, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
+					grainSprite = garden.GRAIN_SHELL:GetSprite() 
+					grainSprite:Load("gfx/grain.anm2", true)							
+					grainSprite:Play("South East", true)
+				end
+				showGrain = math.random(2)
+				if showGrain == 1 then  
+					position = Vector(pickupPosition.X+30,pickupPosition.Y)
+					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_ID, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
+					grainSprite = garden.GRAIN_SHELL:GetSprite() 
+					grainSprite:Load("gfx/grain.anm2", true)							
+					grainSprite:Play("East", true) 
+				end
+				garden.ROOM_DONE = true
+			end									
+		end
 	end
 end
 
@@ -431,7 +546,7 @@ function garden:checkForNewRun() --Reset Flags on a new run
 	garden.HAS_EXILED = false
 	garden.HAS_THE_FIRST_DAY = false
 	garden.HAS_MY_BELOVED = false
-	garden.HAS_THE_WILL_OF_MAN = false
+	garden.HAS_THE_HARVEST = false
 end	
 
 function garden:updateFamiliar(familiar)
@@ -476,6 +591,7 @@ function garden:itemPickedUp(player, statFromXML)
 		local ignoreKeeper = false
 		player:AddMaxHearts(2, ignoreKeeper)
 		player:AddHearts(2)
+		player.Luck = player.Luck+1.0
 		garden.HAS_MY_BELOVED = true
 	end
 
@@ -524,9 +640,9 @@ function garden:itemPickedUp(player, statFromXML)
 		garden.HAS_GRANTED_DOMAIN = true  
 	end
 
-	if player:HasCollectible(garden.COLLECTIBLE_THE_WILL_OF_MAN) and not garden.HAS_THE_WILL_OF_MAN then			
-		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_THE_WILL_OF_MAN)
-		garden.HAS_THE_WILL_OF_MAN = true  
+	if player:HasCollectible(garden.COLLECTIBLE_THE_HARVEST) and not garden.HAS_THE_HARVEST then			
+		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_THE_HARVEST)
+		garden.HAS_THE_HARVEST = true  
 	end
 
 	if player:HasCollectible(garden.COLLECTIBLE_EXILED) and not garden.HAS_EXILED then			
@@ -556,6 +672,7 @@ garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.grantedDomainEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.exiledEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theFirstDayEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.myBelovedEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.harvestEffect)
 
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoomUpdate)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect)
