@@ -1,5 +1,5 @@
 <entities anm2root="gfx/" version="5">
-    <entity anm2path="theSerpent.anm2" reroll="false" baseHP="50" boss="1" bossID="7" champion="0" collisionDamage="2" collisionMass="30" collisionRadius="13" friction="1" id="62" name="The Serpent" numGridCollisionPoints="12" shadowSize="18" stageHP="0" variant="55" subtype="0" portrait="0" bestiary="false">
+    <entity anm2path="theSerpent.anm2" reroll="false" baseHP="130" boss="1" bossID="7" champion="0" collisionDamage="2" collisionMass="30" collisionRadius="13" friction="1" id="62" name="The Serpent" numGridCollisionPoints="12" shadowSize="18" stageHP="0" variant="55" subtype="0" portrait="0" bestiary="false">
         <gibs amount="2" blood="1" bone="0" eye="0" gut="1" large="1" />
         <preload-snd id="117" /> <!-- SOUND_MONSTER_ROAR_2 -->
         <preload-snd id="13" />  <!-- SOUND_BOSS_LITE_HISS -->
