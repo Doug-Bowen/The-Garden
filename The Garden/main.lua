@@ -105,10 +105,10 @@ function garden:debugMode()
 		--local currentGame = Game()
 		--local currentLevel = currentGame:GetLevel()		
 		--local currentRoom = Game():GetRoom()
-		local player = Isaac.GetPlayer(0)
-		local playerPosition = player.Position						
-		Isaac.RenderText("X:" .. playerPosition.X, 50, 30, 255, 255, 255, 255)
-		Isaac.RenderText("Y:" .. playerPosition.Y, 50, 45, 255, 255, 255, 255)				
+		--local player = Isaac.GetPlayer(0)
+		--local playerPosition = player.Position						
+		--Isaac.RenderText("X:" .. playerPosition.X, 50, 30, 255, 255, 255, 255)
+		---Isaac.RenderText("Y:" .. playerPosition.Y, 50, 45, 255, 255, 255, 255)				
 		if Game():GetFrameCount() == 1 then
 			local currentRoom = Game():GetRoom()
 			local roomCenter = currentRoom:GetCenterPos()
@@ -149,8 +149,6 @@ function garden:forbiddenFruitEffect()
 				local currentSprite = singleEntity:GetSprite():GetFilename() 
 				if currentSprite ~= "gfx/apple_one.anm2" and currentSprite ~= "gfx/apple_two.anm2" and currentSprite ~= "gfx/apple_three.anm2" and currentSprite ~= "gfx/apple_four.anm2" then
 					
-					--Apply Knockback here
-
 					local newTearSprite = singleEntity:GetSprite() 
 					local randomAppleNum = math.random(4)				 
 					if randomAppleNum == 1 then 
@@ -597,6 +595,7 @@ function garden:itemPickedUp(player, statFromXML)
 
 	if player:HasCollectible(garden.COLLECTIBLE_FORBIDDEN_FRUIT) and not garden.HAS_FORBIDDEN_FRUIT then			
 		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_FORBIDDEN_FRUIT)
+		player.ShotSpeed = player.ShotSpeed+.6
 		garden.HAS_FORBIDDEN_FRUIT = true  
 	end
 
