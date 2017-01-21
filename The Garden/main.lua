@@ -314,14 +314,17 @@ end
 function garden:theFirstDayEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_THE_FIRST_DAY) then		
-	
-	--NOT WORKING
-	--local currentGame = Game()
-	--local currentLevel = currentGame:GetLevel()		
-	--currentGame:AddDevilRoomDeal()
-	--local currentChance = currentLevel:GetAngelRoomChance()		
-	--local difference = 100.00-currentChance
-	--currentLevel:AddAngelRoomChance(difference)
+
+		local currentGame = Game()
+		local currentLevel = currentGame:GetLevel()		
+		local currentChance = currentLevel:GetAngelRoomChance()		
+		local difference = 100.00-currentChance
+		currentLevel:AddAngelRoomChance(difference)
+
+		local doneWithLevel = currentLevel:IsNextStageAvailable()
+		if doneWithLevel then
+			currentLevel:InitializeDevilAngelRoom(true, false)
+		end
 	end		
 end
 
@@ -405,7 +408,7 @@ function garden:gardenRoomUpdate()
 		local playerPosition = player.Position
 		local roomCenter = currentRoom:GetCenterPos()
 		local positionalDifference = Vector(playerPosition.X-roomCenter.X, playerPosition.Y-roomCenter.Y)
-		if math.abs(positionalDifference.X) < 35 and math.abs(positionalDifference.Y) < 35 then
+		if math.abs(positionalDifference.X) < 75 and math.abs(positionalDifference.Y) < 45 then
 			if garden.SERPENT_CAN_SPAWN and not garden.SERPENT_HAS_SPAWNED then
 				--change music here (Garden_Serpent.ogg)				
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)				
