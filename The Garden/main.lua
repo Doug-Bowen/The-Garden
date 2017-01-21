@@ -78,7 +78,8 @@ garden.TREE_VARIANT = 993
 garden.TREE_SUBTYPE = 0 
 garden.TREE_LOCATION = nil
 garden.TREE_VELOCITY = Vector(0,0)
-garden.TREE_SPAWN_OWNER = nil			
+garden.TREE_SPAWN_OWNER = nil
+garden.PATCH_VARIANT = 994   		
 
 garden.SERPENT_SHELL = nil  --This is used to spawn The Serpent 
 garden.SERPENT_ID = 62      --This is Pin's ID
@@ -104,20 +105,11 @@ function garden:debugMode()
 		Isaac.RenderText("Debug Mode", 50, 15, 255, 255, 255, 255)
 		--local currentGame = Game()
 		--local currentLevel = currentGame:GetLevel()		
-		local currentRoom = Game():GetRoom()
-		--local player = Isaac.GetPlayer(0)
-		--local playerPosition = player.Position						
-		--Isaac.RenderText("Player Type:" .. player:GetPlayerType(), 50, 30, 255, 255, 255, 255)
-		--Isaac.RenderText("Max Hearts:" .. player:GetMaxHearts(), 50, 30, 255, 255, 255, 255)				
-		if garden.enemyInTheRoom then
-			Isaac.RenderText("Enemy: Y", 50, 30, 255, 255, 255, 255)		
-		else
-			Isaac.RenderText("Enemy: N", 50, 30, 255, 255, 255, 255)		
-		end
-
-		--if currentRoom.Subtype ~= nil then
-		--	Isaac.RenderText("RoomSub:" .. currentRoom.Subtype, 50, 45, 255, 255, 255, 255)		
-		--end
+		--local currentRoom = Game():GetRoom()
+		local player = Isaac.GetPlayer(0)
+		local playerPosition = player.Position						
+		Isaac.RenderText("X:" .. playerPosition.X, 50, 30, 255, 255, 255, 255)
+		Isaac.RenderText("Y:" .. playerPosition.Y, 50, 45, 255, 255, 255, 255)				
 		if Game():GetFrameCount() == 1 then
 			local currentRoom = Game():GetRoom()
 			local roomCenter = currentRoom:GetCenterPos()
@@ -232,19 +224,19 @@ function garden:harvestEffect()
 				end
 			end
 		elseif currentRoom:IsClear() and garden.ROOM_FIGHT and not garden.ROOM_DONE then				
-			local randomNum = math.random(20)  --5% chance
+			local randomNum = math.random(1)  --5% chance
 			if randomNum == 1 then
 				local roomCenter = currentRoom:GetCenterPos()
 				local initialStep = 0 --Not sure what this does
 				local avoidActiveEnemies = true
-				local startingPosition = Vector(roomCenter.X,roomCenter.Y+30)
+				local startingPosition = Vector(roomCenter.X,roomCenter.Y)
 				local pickupPosition = currentRoom:FindFreePickupSpawnPosition(startingPosition, initialStep, avoidActiveEnemies)
 				local velocity = Vector(0,0)
 				local spawnOwner = nil
 				local randomItem = 0 
 				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, pickupPosition, velocity, spawnOwner)				
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)
-				
+
 				--Render grains
 				local position = nil
 				local grainSprite = nil
@@ -384,8 +376,8 @@ function garden:gardenRoomUpdate()
 						local spawnOwner = Isaac.GetPlayer(0)
 						local leftHeart = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, leftHeartPosition, velocity, spawnOwner) 	
 						local rightHeart = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_ETERNAL, rightHeartPosition, velocity, spawnOwner) 
-						leftHeart.RenderZOffset = -50 --This should be below characters in the room
-						rightHeart.RenderZOffset = -50
+						leftHeart.RenderZOffset = -5000 --This should be below characters in the room
+						rightHeart.RenderZOffset = -5000
 					end
 				end						
 			end
@@ -396,7 +388,9 @@ function garden:gardenRoomUpdate()
 			local roomCenter = currentRoom:GetCenterPos()			
 			Isaac.GridSpawn(GridEntityType.GRID_PIT, 0, roomCenter, true)
 			garden.TREE_LOCATION = Vector(roomCenter.X, roomCenter.Y+10)			
-			garden.TREE_SHELL = Isaac.Spawn(garden.TREE_ID, garden.TREE_VARIANT, garden.TREE_SUBTYPE, garden.TREE_LOCATION, garden.TREE_VELOCITY, garden.TREE_SPAWN_OWNER)			
+			garden.TREE_SHELL = Isaac.Spawn(garden.TREE_ID, garden.TREE_VARIANT, garden.TREE_SUBTYPE, garden.TREE_LOCATION, garden.TREE_VELOCITY, garden.TREE_SPAWN_OWNER)
+			local patch = Isaac.Spawn(garden.TREE_ID, garden.PATCH_VARIANT, garden.TREE_SUBTYPE, garden.TREE_LOCATION, garden.TREE_VELOCITY, garden.TREE_SPAWN_OWNER)
+			patch.RenderZOffset = -5000
 
 			--Render Floor and Walls
 			--local backdrop = currentRoom:GetBackdropType()
@@ -453,7 +447,7 @@ function garden:gardenRoomUpdate()
 						local roomCenter = currentRoom:GetCenterPos()
 						local initialStep = 0 --Not sure what this does
 						local avoidActiveEnemies = true
-						local startingPosition = Vector(roomCenter.X,roomCenter.Y+30)
+						local startingPosition = Vector(roomCenter.X,roomCenter.Y+90)
 						local pickupPosition = currentRoom:FindFreePickupSpawnPosition(startingPosition, initialStep, avoidActiveEnemies)
 						local velocity = Vector(0,0)
 						local spawnOwner = nil

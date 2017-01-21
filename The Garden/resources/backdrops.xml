@@ -1,3 +1,0 @@
-<backdrops gfxroot="gfx/backdrop/">
-	<backdrop id="99" gfx="garden_walls.png" walls="1" wallvariants="3" floors="1" floorvariants="6" nfloorgfx="garden_floors.png" />
-</backdrops>

@@ -12,6 +12,11 @@
         <preload-snd id="172" /> <!-- Curse of Mortality Alarm -->
     </entity>
 
+    <entity anm2path="patch.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="30" friction="1" id="1000" name="The Patch" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="994">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+
+
     <entity anm2path="adam.anm2" baseHP="0" boss="0" champion="0" collisionDamage="1" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Adam" numGridCollisionPoints="10" shadowSize="10" stageHP="0" variant="778">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />        
     </entity>
