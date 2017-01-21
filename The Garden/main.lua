@@ -64,8 +64,7 @@ garden.SERPENT_CAN_SPAWN = true
 garden.SERPENT_HAS_SPAWNED = false
 garden.SERPENT_HAS_DIED = false
 garden.VISIT_NUMBER = 0
-garden.ITEM_REWARDED = false
-garden.GARDEN_ROOM_INDEX = -3	
+garden.ITEM_REWARDED = false	
 
 --Curses
 garden.CURSE_MORTALITY = Isaac.GetCurseIdByName("Curse of Mortality") 
@@ -358,10 +357,9 @@ end
 
 function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
-	local currentRoomIndex = currentLevel:GetCurrentRoomIndex()
 	local currentRoom = Game():GetRoom()	
 	local currentRoomType = currentRoom:GetType()	
-	if currentRoomType == RoomType.ROOM_LIBRARY and currentRoomIndex == garden.GARDEN_ROOM_INDEX then --Player is in a Garden
+	if currentRoomType == RoomType.ROOM_LIBRARY then --Player is in a Garden
 		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden
 			if garden.VISIT_NUMBER == 0 then      --Player has never been in this Garden			
 				garden.SERPENT_CAN_SPAWN = true			
