@@ -103,6 +103,7 @@ garden.CURRENT_LEVEL = nil
 garden.PREVIOUS_POSITION = nil
 garden.ROOM_FIGHT = false
 garden.ROOM_DONE = false
+garden.HAS_CONVERTED_HEARTS = false
 
 function garden:debugMode()
 	if garden.DEBUG_MODE then
@@ -203,11 +204,15 @@ end
 function garden:exiledEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_EXILED) then		
-
-		--NOT WORKING
-		--local currentGame = Game()
-		--local addChampionBeltCostume = true
-		--currentGame:AddCollectibleEffect(CollectibleType.COLLECTIBLE_CHAMPION_BELT, addChampionBeltCostume) 
+		local entities = Isaac.GetRoomEntities()
+		for i = 1, #entities do
+			local singleEntity = entities[i]
+			if singleEntity.Variant == PickupVariant.PICKUP_HEART and singleEntity.SubType ~= HeartSubType.HEART_BLACK then				
+				singleEntity:Remove()					
+				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, singleEntity.Position, Vector(0,0), nil)
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_BLACK, singleEntity.Position, Vector(0,0), nil)				
+			end
+		end 
 	end
 end
 
@@ -688,11 +693,22 @@ function garden:itemPickedUp(player, statFromXML)
 		local playerPosition = player.Position			
 		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.ADAM_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)
 		
-		--NOT WORKING
-		--local character = player:GetPlayerType()
-		--if not character == PlayerType.PLAYER_EVE then
-		--	player.PlayerType = PlayerType.PLAYER_EVE				
-		--end
+
+		
+		local character = player:GetPlayerType()
+		if not character == PlayerType.PLAYER_EVE then
+			player.PlayerType = PlayerType.PLAYER_EVE				
+		end
+
+		local totalHearts = player:GetMaxHearts()		
+		--x = store soulheart
+		--y = store black hearts	
+		local ignoreKeeper = true
+		player:AddMaxHearts(totalHearts*-1, ignoreKeeper)
+		player:Revive()
+		player:AddMaxHearts(totalHearts, ignoreKeeper)
+		--player:AddBlackHearts(x, ignoreKeeper)
+		--player:AddSoulHearts(y, ignoreKeeper)
 		garden.HAS_REBIRTH = true  
 	end
 end
