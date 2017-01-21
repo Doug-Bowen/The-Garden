@@ -93,6 +93,11 @@ garden.GRAIN_ID = 1000      --This is The Effect ID
 garden.GRAIN_VARIANT = 779  --This is the Grain's Variant Number
 garden.GRAIN_SUBTYPE = 0 
 
+garden.GRASS_SHELL = nil    --This is used to spawn Grass
+garden.GRASS_ID = 1000      --This is The Effect ID
+garden.GRASS_VARIANT = 780  --This is the GRASS's Variant Number
+garden.GRASS_SUBTYPE = 0 
+
 --Storage Variabes
 garden.CURRENT_LEVEL = nil
 garden.PREVIOUS_POSITION = nil
@@ -391,12 +396,46 @@ function garden:gardenRoomUpdate()
 			local patch = Isaac.Spawn(garden.TREE_ID, garden.PATCH_VARIANT, garden.TREE_SUBTYPE, garden.TREE_LOCATION, garden.TREE_VELOCITY, garden.TREE_SPAWN_OWNER)
 			patch.RenderZOffset = -5000
 
-			--Render Floor and Walls
-			--local backdrop = currentRoom:GetBackdropType()
-
-			--Handle the music for the room			
-			--play music here (Garden_Drone.ogg)
-			--play quieter music here (Garden_Ambience.ogg)  
+			--Render grass
+			local position = nil
+			local grassSprite = nil
+			local velocity = Vector(0,0)
+			local spawnOwner = nil
+			for i = 1, math.random(13) do
+				position = currentRoom:GetRandomPosition(0)
+				garden.GRASS_SHELL = Isaac.Spawn(garden.GRASS_ID, garden.GRASS_VARIANT, garden.GRASS_SUBTYPE, position, velocity, spawnOwner)
+				garden.GRASS_SHELL.RenderZOffset = -5000			
+				grassSprite = garden.GRASS_SHELL:GetSprite() 
+				grassSprite:Load("gfx/grass.anm2", true)
+				local randomGrass = math.random(13)
+				if randomGrass == 1 then							
+					grassSprite:Play("GrassA", true)
+				elseif randomGrass == 2 then
+					grassSprite:Play("GrassB", true)
+				elseif randomGrass == 3 then
+					grassSprite:Play("GrassC", true)
+				elseif randomGrass == 4 then
+					grassSprite:Play("GrassD", true)
+				elseif randomGrass == 5 then
+					grassSprite:Play("GrassE", true)
+				elseif randomGrass == 6 then
+					grassSprite:Play("GrassF", true)
+				elseif randomGrass == 7 then
+					grassSprite:Play("GrassG", true)
+				elseif randomGrass == 8 then
+					grassSprite:Play("GrassH", true)
+				elseif randomGrass == 9 then
+					grassSprite:Play("GrassI", true)
+				elseif randomGrass == 10 then
+					grassSprite:Play("GrassJ", true)
+				elseif randomGrass == 11 then
+					grassSprite:Play("GrassK", true)
+				elseif randomGrass == 12 then
+					grassSprite:Play("GrassL", true)
+				elseif randomGrass == 13 then
+					grassSprite:Play("GrassM", true)
+				end
+			end
 		end	
 
 		--Check if player is activating The Serpent fight
