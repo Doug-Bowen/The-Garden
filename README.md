@@ -10,7 +10,7 @@ Adds:
   * Granted Domain (Item) :white_check_mark:
   * The Harvest (Item) :white_check_mark:
   * The Fall of Man (Item) :white_check_mark:
-  * Rebirth (Item)
+  * Rebirth (Item) :white_check_mark:
   * The First Day (Item)
   * Exiled (Item) :white_check_mark:
   * My Beloved (Item) :white_check_mark:
@@ -58,7 +58,7 @@ Art Style:
 |Granted Domain|All authority is yours|Enemies stop moving when Isaac stops moving|Crown (Reskin 'Crown of light' to be bright yellow)|Isaac wears a crown|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |Harvest |Sow! Reap!|Upon clearing a room, the player has a 5% chance to be rewarded with a random item in the center of the room.|Bundle of gains|Isaac has a sinbgle grain behind one of his ears|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |The Fall of Man|Original Sin|+2 Black Hearts. Removes all red hearts. For each red heart removed, +1 damage.|Crossed Scythes (Borrow from Death's Touch)|Isaac's body turns A shade of black|:white_check_mark:|:white_check_mark:|:white_check_mark:|
-|Rebirth|From one, come two|The player becomes Eve. The player keeps items and health. The player gains a familiar that looks like Adam that fires tears at your current rate.|A Rib|Miniature Isaac familiar|:white_check_mark:|:white_check_mark:|:clock3:|
+|Rebirth|Adam was born!|The player gains a familiar that looks like Adam. Adam rotates very fast but deals large damage.|A Rib|Miniature Adam familiar|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |The First Day|Let there be light!|100% Angel room stat (locked)|A sun (Cartoony)|Isaac's head shines|:white_check_mark:|:white_check_mark:|:clock3:|
 |Exiled|Your heart is black...|+3 Heart Containers, All heart drops are now black hearts|Closed iron gates|Ivy wrapped around Isaacs neck|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |My Beloved|Lover, I'm yours...|+1 Heart Container, All hearts in the room slowly gravitate towards Isaac until he obtains them.|Recolored Eden's Blessing (to be rose red)|Recolored Purity Effect|:white_check_mark:|:white_check_mark:|:white_check_mark:|
