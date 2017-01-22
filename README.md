@@ -4,7 +4,7 @@ Adds:
 * The Garden (New Room) :white_check_mark: (Room Created)
 * The Garden Pool (New Item Pool) :white_check_mark: (Pool Created)
   * Shame (Item) :white_check_mark:
-  * Forbidden Fruit (Item) 
+  * Forbidden Fruit (Item) :white_check_mark:
   * Deception (Item)
   * Creation (Item) :white_check_mark:
   * Granted Domain (Item) :white_check_mark:
@@ -12,7 +12,7 @@ Adds:
   * The Fall of Man (Item) :white_check_mark:
   * Rebirth (Item)
   * The First Day (Item)
-  * Exiled (Item)
+  * Exiled (Item) :white_check_mark:
   * My Beloved (Item) :white_check_mark:
 * Genisis (New Challenge) :white_check_mark: (Challenge Created)
 * Curse of Mortality (New Curse) :white_check_mark: 
@@ -52,7 +52,7 @@ Art Style:
 |Item Name|Description|Effect|Item Sprite Suggestion|Character Costume Suggestion|Item Sprite Created|Costume Spirtes Created|Functionality Done|
 |---|---|---|---|---|---|---|---|
 |Shame|Awareness of oneself|Enemies that move too close to Isaac have a short fear effect applied to them.|Reversed, 'Filled in' Gnawed Leaf|A leaf between Isaacs legs|:white_check_mark:|:white_check_mark:|:white_check_mark:|
-|Forbidden Fruit|Don't believe his lies|Tears become apples and have varying amounts of knock back.|Red juicy apple (Borrow sprite from the item 'Apple!')|Tears are apples, Isaacs head becomes shiny.|:white_check_mark:|:white_check_mark:|:clock3:|
+|Forbidden Fruit|Don't believe his lies|Tears become apples, Shot Speed up.|Red juicy apple (Borrow sprite from the item 'Apple!')|Tears are apples, Isaacs head becomes shiny.|:white_check_mark:|:white_check_mark:|:clock3:|
 |Deception|The Serpent Lies|Shuffle pull colors, Shuffle consumable numbers, Shuffle stats|Snake (Coiled up), google the 'Come And Take It Flag'|Isaac has a snake wrapped around his neck.|:white_check_mark:|:white_check_mark:|:clock3:|
 |Creation|In the beginning|All stats up|Earth (Reskin Tiny Planet)|Isaac's head becomes the Earth|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |Granted Domain|All authority is yours|Enemies stop moving when Isaac stops moving|Crown (Reskin 'Crown of light' to be bright yellow)|Isaac wears a crown|:white_check_mark:|:white_check_mark:|:white_check_mark:|
@@ -60,7 +60,7 @@ Art Style:
 |The Fall of Man|Original Sin|+2 Black Hearts. Removes all red hearts. For each red heart removed, +1 damage.|Crossed Scythes (Borrow from Death's Touch)|Isaac's body turns A shade of black|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |Rebirth|From one, come two|The player becomes Eve. The player keeps items and health. The player gains a familiar that looks like Adam that fires tears at your current rate.|A Rib|Miniature Isaac familiar|:white_check_mark:|:white_check_mark:|:clock3:|
 |The First Day|Let there be light!|100% Angel room stat (locked)|A sun (Cartoony)|Isaac's head shines|:white_check_mark:|:white_check_mark:|:clock3:|
-|Exiled|Deliberate Disobedience|All dice and familiars removed from pools. Champion belt affect for remainder of the run|Closed iron gates|Ivy wrapped around Isaacs neck|:white_check_mark:|:white_check_mark:|:clock3:|
+|Exiled|Your heart is black...|+3 Heart Containers, All heart drops are now black hearts|Closed iron gates|Ivy wrapped around Isaacs neck|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |My Beloved|Lover, I'm yours...|+1 Heart Container, All hearts in the room slowly gravitate towards Isaac until he obtains them.|Recolored Eden's Blessing (to be rose red)|Recolored Purity Effect|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 
 
