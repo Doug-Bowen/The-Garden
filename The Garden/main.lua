@@ -685,6 +685,8 @@ function garden:itemPickedUp(player, statFromXML)
 
 	if player:HasCollectible(garden.COLLECTIBLE_EXILED) and not garden.HAS_EXILED then			
 		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_EXILED)
+		local ignoreKeeper = true
+		player:AddMaxHearts(6, ignoreKeeper)
 		garden.HAS_EXILED = true 
 	end
 
