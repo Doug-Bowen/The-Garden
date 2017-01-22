@@ -5,7 +5,7 @@ Adds:
 * The Garden Pool (New Item Pool) :white_check_mark: 
   * Shame (Item) :white_check_mark:
   * Forbidden Fruit (Item) :white_check_mark:
-  * Deception (Item)
+  * Deception (Item) :white_check_mark:
   * Creation (Item) :white_check_mark:
   * Granted Domain (Item) :white_check_mark:
   * The Harvest (Item) :white_check_mark:
@@ -20,7 +20,7 @@ Adds:
 * 4 New Music Tracks :white_check_mark:
 * 1 New SFX :white_check_mark:
 
-**The Garden Room:** A room that randomly replaces a library (40% chance)
+**The Garden Room:** A room that replaces all libraries 
 
 * Has its own item pool
 
@@ -52,8 +52,8 @@ Art Style:
 |Item Name|Description|Effect|Item Sprite Suggestion|Character Costume Suggestion|Item Sprite Created|Costume Spirtes Created|Functionality Done|
 |---|---|---|---|---|---|---|---|
 |Shame|Awareness of oneself|Enemies that move too close to Isaac have a short fear effect applied to them.|Reversed, 'Filled in' Gnawed Leaf|A leaf between Isaacs legs|:white_check_mark:|:white_check_mark:|:white_check_mark:|
-|Forbidden Fruit|Don't believe his lies|Tears become apples, Shot Speed up.|Red juicy apple (Borrow sprite from the item 'Apple!')|Tears are apples, Isaacs head becomes shiny.|:white_check_mark:|:white_check_mark:|:clock3:|
-|Deception|The Serpent Lies|Shuffle pull colors, Shuffle consumable numbers, Shuffle stats|Snake (Coiled up), google the 'Come And Take It Flag'|Isaac has a snake wrapped around his neck.|:white_check_mark:|:white_check_mark:|:clock3:|
+|Forbidden Fruit|Don't believe his lies|Tears become apples, Shot Speed up.|Red juicy apple (Borrow sprite from the item 'Apple!')|Tears are apples, Isaacs head becomes shiny.|:white_check_mark:|:white_check_mark:|:white_check_mark:|
+|Deception|The Serpent Lies|Shuffle consumable numbers (High risk/high reward)|Snake (Coiled up), google the 'Come And Take It Flag'|Isaac has a snake wrapped around his neck.|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |Creation|In the beginning|All stats up|Earth (Reskin Tiny Planet)|Isaac's head becomes the Earth|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |Granted Domain|All authority is yours|Enemies stop moving when Isaac stops moving|Crown (Reskin 'Crown of light' to be bright yellow)|Isaac wears a crown|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |Harvest |Sow! Reap!|Upon clearing a room, the player has a 5% chance to be rewarded with a random item in the center of the room.|Bundle of gains|Isaac has a sinbgle grain behind one of his ears|:white_check_mark:|:white_check_mark:|:white_check_mark:|
