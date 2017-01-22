@@ -114,7 +114,6 @@ function garden:debugMode()
 		--local player = Isaac.GetPlayer(0)
 		--local playerPosition = player.Position						
 		--Isaac.RenderText("X:" .. playerPosition.X, 50, 30, 255, 255, 255, 255)
-		---Isaac.RenderText("Y:" .. playerPosition.Y, 50, 45, 255, 255, 255, 255)				
 		if Game():GetFrameCount() == 1 then
 			local currentRoom = Game():GetRoom()
 			local roomCenter = currentRoom:GetCenterPos()
@@ -589,8 +588,12 @@ end
 function garden:updateFamiliar(familiar)
 	if garden.HAS_REBIRTH then
 		local player = Isaac.GetPlayer(0)
-		local playerPosition = player.Position
-		familiar:FollowPosition(playerPosition)
+		familiar.OrbitDistance = Vector(35, 35)
+		familiar.OrbitLayer = 98
+		familiar.OrbitSpeed = 0.07
+		familiar.Velocity = familiar:GetOrbitPosition(player.Position + player.Velocity) - familiar.Position
+		familiar.GridCollisionClass = 0
+		familiar.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ENEMIES
 	end
 end
 
@@ -694,24 +697,7 @@ function garden:itemPickedUp(player, statFromXML)
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position			
 		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.ADAM_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)
-		
-
-		
-		local character = player:GetPlayerType()
-		if not character == PlayerType.PLAYER_EVE then
-			player.PlayerType = PlayerType.PLAYER_EVE				
-		end
-
-		local totalHearts = player:GetMaxHearts()		
-		--x = store soulheart
-		--y = store black hearts	
-		local ignoreKeeper = true
-		player:AddMaxHearts(totalHearts*-1, ignoreKeeper)
-		player:Revive()
-		player:AddMaxHearts(totalHearts, ignoreKeeper)
-		--player:AddBlackHearts(x, ignoreKeeper)
-		--player:AddSoulHearts(y, ignoreKeeper)
-		garden.HAS_REBIRTH = true  
+		garden.HAS_REBIRTH = true
 	end
 end
 
