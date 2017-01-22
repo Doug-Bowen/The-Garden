@@ -1,8 +1,8 @@
 # The Garden Mod:
 
 Adds:
-* The Garden (New Room) :white_check_mark: (Room Created)
-* The Garden Pool (New Item Pool) :white_check_mark: (Pool Created)
+* The Garden (New Room) :white_check_mark:
+* The Garden Pool (New Item Pool) :white_check_mark: 
   * Shame (Item) :white_check_mark:
   * Forbidden Fruit (Item) :white_check_mark:
   * Deception (Item)
@@ -11,10 +11,10 @@ Adds:
   * The Harvest (Item) :white_check_mark:
   * The Fall of Man (Item) :white_check_mark:
   * Rebirth (Item) :white_check_mark:
-  * The First Day (Item)
+  * The First Day (Item) :white_check_mark:
   * Exiled (Item) :white_check_mark:
   * My Beloved (Item) :white_check_mark:
-* Genisis (New Challenge) :white_check_mark: (Challenge Created)
+* Genisis (New Challenge) :white_check_mark: 
 * Curse of Mortality (New Curse) :white_check_mark: 
 * The Serpent (Boss) :white_check_mark:
 * 4 New Music Tracks :white_check_mark:
@@ -59,7 +59,7 @@ Art Style:
 |Harvest |Sow! Reap!|Upon clearing a room, the player has a 5% chance to be rewarded with a random item in the center of the room.|Bundle of gains|Isaac has a sinbgle grain behind one of his ears|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |The Fall of Man|Original Sin|+2 Black Hearts. Removes all red hearts. For each red heart removed, +1 damage.|Crossed Scythes (Borrow from Death's Touch)|Isaac's body turns A shade of black|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |Rebirth|Adam was born!|The player gains a familiar that looks like Adam. Adam rotates very fast but deals large damage.|A Rib|Miniature Adam familiar|:white_check_mark:|:white_check_mark:|:white_check_mark:|
-|The First Day|Let there be light!|100% Angel room stat (locked)|A sun (Cartoony)|Isaac's head shines|:white_check_mark:|:white_check_mark:|:clock3:|
+|The First Day|Let there be light!|100% Angel Precedence|A sun (Cartoony)|Isaac's head shines|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |Exiled|Your heart is black...|+3 Heart Containers, All heart drops are now black hearts|Closed iron gates|Ivy wrapped around Isaacs neck|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |My Beloved|Lover, I'm yours...|+1 Heart Container, All hearts in the room slowly gravitate towards Isaac until he obtains them.|Recolored Eden's Blessing (to be rose red)|Recolored Purity Effect|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 
