@@ -320,17 +320,12 @@ end
 function garden:theFirstDayEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_THE_FIRST_DAY) then		
-
 		local currentGame = Game()
 		local currentLevel = currentGame:GetLevel()		
+		local currentRoom = Game():GetRoom()	
 		local currentChance = currentLevel:GetAngelRoomChance()		
 		local difference = 100.00-currentChance
 		currentLevel:AddAngelRoomChance(difference)
-
-		local doneWithLevel = currentLevel:IsNextStageAvailable()
-		if doneWithLevel then
-			currentLevel:InitializeDevilAngelRoom(true, false)
-		end
 	end		
 end
 
@@ -654,15 +649,7 @@ function garden:itemPickedUp(player, statFromXML)
 	if player:HasCollectible(garden.COLLECTIBLE_DECEPTION) and not garden.HAS_DECEPTION then			
 		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_DECEPTION)
 
-		--Suffle Pills NOT WORKING
-		for i = 1, PillEffect.NUM_PILL_EFFECTS do
-			local pillEffect = Isaac.GetPillEffectByName(i)
-			local pillRNG = player:GetPillRNG(pillEffect)
-			local currentSeed = pillRNG:GetSeed()			
-			pillRNG:Next() --Shift pill
-		end	
-
-		--shuffle consumables
+		--Suffle (and small gain) to consumables
 		local additionalComsumables = math.random(2)		
 		local numCoins = player:GetNumCoins()
 		local numKeys = player:GetNumKeys()
