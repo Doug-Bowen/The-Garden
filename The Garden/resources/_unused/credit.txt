@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<metadata>
-    <name>The Garden</name>
-    <directory>the garden</directory>
-    <id>847639592</id>
-    <description>Check out where it all started! In the Garden of Eden!  Battle The Serpent and recieve a reward! If you choose to disobey.....
+Check out where it all started! In the Garden of Eden!  Battle The Serpent and recieve a reward! If you choose to disobey.....
 
 This mod adds:
  - 1 new room: The Garden
@@ -31,9 +26,4 @@ reddit.com/u/Aczom - Room Art
 reddit.com/u/Wertandrew - Music (Sound Cloud: https://soundcloud.com/wertandrew2/binding-of-isaac-boss-fight-serpent)
 reddit.com/u/TheFoxyDragon - Costume/Item Art
 
-I cannot thank my team enough. You guys helped me so much and motivated me a lot. Thank you. - Doug</description>
-    <version>1.1</version>
-    <visibility>Public</visibility>
-    <tag id="Lua"/>
-    <tag id="Items"/>
-</metadata>
+I cannot thank my team enough. You guys helped me so much and motivated me a lot. Thank you. - Doug
