@@ -649,17 +649,22 @@ function garden:itemPickedUp(player, statFromXML)
 	if player:HasCollectible(garden.COLLECTIBLE_DECEPTION) and not garden.HAS_DECEPTION then			
 		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_DECEPTION)
 
-		--Suffle (and small gain) to consumables
-		local additionalComsumables = math.random(2)		
-		local numCoins = player:GetNumCoins()
-		local numKeys = player:GetNumKeys()
-		local numBombs = player:GetNumBombs()
-		player:AddCoins(numKeys+additionalComsumables)
-		player:AddKeys(numBombs+additionalComsumables)
-		player:AddBombs(numCoins+additionalComsumables)
-
-		--shuffle stats
-
+		--Shuffle consumables
+		for i = 1, 3 do
+			local posOrNeg = math.random(2)
+			local consumableOffset = math.random(8)
+			if posOrNeg == 1 then
+				consumableOffset = consumableOffset*-1
+			end
+			local shuffleWhichConsumable = math.random(3)
+			if shuffleWhichConsumable == 1 then
+				player:AddCoins(consumableOffset)
+			elseif shuffleWhichConsumable == 2 then
+				player:AddKeys(consumableOffset)
+			elseif shuffleWhichConsumable == 3 then
+				player:AddBombs(consumableOffset)
+			end
+		end
 		garden.HAS_DECEPTION = true  
 	end
 
