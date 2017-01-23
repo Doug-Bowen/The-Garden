@@ -15,6 +15,8 @@ garden.COLLECTIBLE_EXILED = Isaac.GetItemIdByName("Exiled")
 garden.COLLECTIBLE_THE_FIRST_DAY = Isaac.GetItemIdByName("The First Day")
 garden.COLLECTIBLE_MY_BELOVED = Isaac.GetItemIdByName("My Beloved")
 garden.COLLECTIBLE_THE_HARVEST = Isaac.GetItemIdByName("The Harvest")
+garden.COLLECTIBLE_CRACK_THE_EARTH = Isaac.GetItemIdByName("Crack The Earth")
+garden.COLLECTIBLE_THE_BEAST = Isaac.GetItemIdByName("The Beast")
 
 --Pool
 garden.gardenPool = {}
@@ -29,9 +31,12 @@ garden.gardenPool[8] = garden.COLLECTIBLE_EXILED
 garden.gardenPool[9] = garden.COLLECTIBLE_THE_FIRST_DAY
 garden.gardenPool[10] = garden.COLLECTIBLE_MY_BELOVED
 garden.gardenPool[11] = garden.COLLECTIBLE_THE_HARVEST
+garden.gardenPool[12] = garden.COLLECTIBLE_CRACK_THE_EARTH
+garden.gardenPool[13] = garden.COLLECTIBLE_THE_BEAST
 
 --Familiars
 garden.ADAM_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("Adam")
+garden.BEAST_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("TheBeast")
 
 --Item Flags
 garden.HAS_SHAME = false
@@ -45,6 +50,8 @@ garden.HAS_EXILED = false
 garden.HAS_THE_FIRST_DAY = false
 garden.HAS_MY_BELOVED = false
 garden.HAS_THE_HARVEST = false
+garden.HAS_CRACK_THE_EARTH = false
+garden.HAS_THE_BEAST = false
 
 --Costumes
 garden.COSTUME_ID_SHAME = Isaac.GetCostumeIdByPath("gfx/characters/shame.anm2")
@@ -57,6 +64,8 @@ garden.COSTUME_ID_EXILED = Isaac.GetCostumeIdByPath("gfx/characters/exiled.anm2"
 garden.COSTUME_ID_THE_FIRST_DAY = Isaac.GetCostumeIdByPath("gfx/characters/the_first_day.anm2")
 garden.COSTUME_ID_MY_BELOVED = Isaac.GetCostumeIdByPath("gfx/characters/my_beloved.anm2")
 garden.COSTUME_ID_THE_HARVEST = Isaac.GetCostumeIdByPath("gfx/characters/the_harvest.anm2")
+garden.COSTUME_ID_CRACK_THE_EARTH = Isaac.GetCostumeIdByPath("gfx/characters/crack_the_earth.anm2")
+garden.COSTUME_ID_THE_BEAST = Isaac.GetCostumeIdByPath("gfx/characters/the_beast.anm2")
 
 --Room Flags
 garden.GARDEN_HEARTS_CAN_SPAWN = true
@@ -332,6 +341,9 @@ function garden:theFirstDayEffect()
 	end		
 end
 
+function garden:crackTheEarthEffect()
+end
+
 function garden:myBelovedEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_MY_BELOVED) then		
@@ -358,7 +370,6 @@ function garden:myBelovedEffect()
 		end
 	end
 end
-
 
 function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
@@ -601,14 +612,21 @@ function garden:checkForNewRun() --Reset Flags on a new run
 end	
 
 function garden:updateFamiliar(familiar)
-	if garden.HAS_REBIRTH then
-		local player = Isaac.GetPlayer(0)
-		familiar.OrbitDistance = Vector(35, 35)
-		familiar.OrbitLayer = 98
-		familiar.OrbitSpeed = 0.07
-		familiar.Velocity = familiar:GetOrbitPosition(player.Position + player.Velocity) - familiar.Position
-		familiar.GridCollisionClass = 0
-		familiar.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ENEMIES
+	if familiar.Variant == garden.ADAM_FAMILIAR_VARIANT then
+		if garden.HAS_REBIRTH then
+			local player = Isaac.GetPlayer(0)
+			familiar.OrbitDistance = Vector(35, 35)
+			familiar.OrbitLayer = 98
+			familiar.OrbitSpeed = 0.07
+			familiar.Velocity = familiar:GetOrbitPosition(player.Position + player.Velocity) - familiar.Position
+			familiar.GridCollisionClass = 0
+			familiar.EntityCollisionClass = EntityCollisionClass.ENTCOLL_ENEMIES
+		end
+	end
+
+	if familiar.Variant == garden.BEAST_FAMILIAR_VARIANT then
+		if garden.HAS_THE_BEAST then
+		end
 	end
 end
 
@@ -711,6 +729,17 @@ function garden:itemPickedUp(player, statFromXML)
 		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.ADAM_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)
 		garden.HAS_REBIRTH = true
 	end
+
+
+	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) and not garden.HAS_CRACK_THE_EARTH then			
+		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_CRACK_THE_EARTH)
+		garden.HAS_CRACK_THE_EARTH = true  
+	end
+
+	if player:HasCollectible(garden.COLLECTIBLE_THE_BEAST) and not garden.HAS_THE_BEAST then			
+		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_THE_BEAST)
+		garden.HAS_THE_BEAST = true  
+	end
 end
 
 
@@ -722,6 +751,7 @@ garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.exiledEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theFirstDayEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.myBelovedEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.harvestEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.crackTheEarthEffect)
 
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoomUpdate)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect)
@@ -731,3 +761,4 @@ garden:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, garden.checkForNewRun)
 garden:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, garden.removeMortalityCurse)
 garden:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, garden.itemPickedUp)
 garden:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, garden.updateFamiliar, garden.ADAM_FAMILIAR_VARIANT)
+garden:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, garden.updateFamiliar, garden.BEAST_FAMILIAR_VARIANT)
