@@ -52,7 +52,7 @@ Released in v1.0:
  
 **Curse of Mortality:** Hearts no longer spawn for the remainder of the floor.
 
-**Genesis challenge:** Eve starts with Rebirth, Shame, and Forbidden Fruit and must beat the Lamb (on normal difficulty). There are no item rooms.
+**Genesis challenge:** Eve starts with Rebirth and must beat Mom's Heart (on normal difficulty).
 
 Art Style:
 * Check the following folders for what has already been done: 
