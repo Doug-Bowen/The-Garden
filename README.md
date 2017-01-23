@@ -1,13 +1,17 @@
-# The Garden Mod:
+# The Garden Mod
 
 Coming in v1.1:
+Features:
 * 2 new Serpent variants
-* New doors in the Garden
+* New door aesthetic in the Garden
 * New Ladybug enemies
-* Possible new items (2 at most)
-* Debug flag (set this to true to see and test all of the items!
+* 2 New items
+* Debug flag (set this to true to see and test all of the items)
 
-Adds:
+Fixes:
+* Curse of Mortality making Donation and Reroll machines disappear
+
+Released in v1.0:
 * The Garden (New Room) :white_check_mark:
 * The Garden Pool (New Item Pool) :white_check_mark: 
   * Shame (Item) :white_check_mark:
@@ -69,6 +73,16 @@ Art Style:
 |The First Day|Let there be light!|100% Angel Precedence|A sun (Cartoony)|Isaac's head shines|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |Exiled|Your heart is black...|+3 Heart Containers, All heart drops are now black hearts|Closed iron gates|Ivy wrapped around Isaacs neck|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 |My Beloved|Lover, I'm yours...|+1 Heart Container, All hearts in the room slowly gravitate towards Isaac until he obtains them.|Recolored Eden's Blessing (to be rose red)|Recolored Purity Effect|:white_check_mark:|:white_check_mark:|:white_check_mark:|
+|v1.1 Item 1|==|==|==|==|==|==|==|
+|v1.1 Item 2|==|==|==|==|==|==|==|
+
+
+
+
+
+
+
+
 
 
 
