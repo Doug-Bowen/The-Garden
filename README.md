@@ -35,7 +35,7 @@ His stature/height/angry face: https://www.google.com/url?sa=i&rct=j&q=&esrc=s&s
 
 His arms: https://www.google.com/search?q=hulk&espv=2&biw=1846&bih=990&tbm=isch&imgil=6Re0atFNNT64DM%253A%253BitRlDa709tO2_M%253Bhttp%25253A%25252F%25252Fvsbattles.wikia.com%25252Fwiki%25252FHulk_(Marvel_Comics)&source=iu&pf=m&fir=6Re0atFNNT64DM%253A%252CitRlDa709tO2_M%252C_&usg=__5tPwCWJZEgYv3Reqjcmwjod72GI%3D&ved=0ahUKEwiKp5eIw9jRAhXEPxoKHeQPBZ8QyjcIqwE&ei=ZRmGWMrgIcT_aOSflPgJ#imgrc=6Re0atFNNT64DM%3A
 
-Walks like a gorilla: https://www.google.com/search?q=gorilla+walking&espv=2&biw=1846&bih=990&tbm=isch&imgil=uuXC8ea91DtLkM%253A%253B0LpKJACYYHX7cM%253Bhttps%25253A%25252F%25252Fwww.flickr.com%25252Fphotos%25252Fslingher%25252F8457970351&source=iu&pf=m&fir=uuXC8ea91DtLkM%253A%252C0LpKJACYYHX7cM%252C_&usg=__77wWXMcE8rBVOtPb1pomsEE8_PE%3D&ved=0ahUKEwiN94aWw9jRAhWDmBoKHWBjDZsQyjcIOg&ei=ghmGWI2uJ4OxauDGtdgJ#imgrc=uuXC8ea91DtLkM%3A
+Walks like a gorilla/colored like a gorilla?: https://www.google.com/search?q=gorilla+walking&espv=2&biw=1846&bih=990&tbm=isch&imgil=uuXC8ea91DtLkM%253A%253B0LpKJACYYHX7cM%253Bhttps%25253A%25252F%25252Fwww.flickr.com%25252Fphotos%25252Fslingher%25252F8457970351&source=iu&pf=m&fir=uuXC8ea91DtLkM%253A%252C0LpKJACYYHX7cM%252C_&usg=__77wWXMcE8rBVOtPb1pomsEE8_PE%3D&ved=0ahUKEwiN94aWw9jRAhWDmBoKHWBjDZsQyjcIOg&ei=ghmGWI2uJ4OxauDGtdgJ#imgrc=uuXC8ea91DtLkM%3A
 
 _____________________
 
