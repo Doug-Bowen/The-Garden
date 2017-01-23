@@ -11,25 +11,33 @@ Features:
 Fixes:
 * Curse of Mortality making Donation and Reroll machines disappear
 
+
+|Item Name|Effect|
+|---|---|
+|v1.1 Item 1|==|
+|v1.1 Item 2|==|
+
+
 Released in v1.0:
-* The Garden (New Room) :white_check_mark:
-* The Garden Pool (New Item Pool) :white_check_mark: 
-  * Shame (Item) :white_check_mark:
-  * Forbidden Fruit (Item) :white_check_mark:
-  * Deception (Item) :white_check_mark:
-  * Creation (Item) :white_check_mark:
-  * Granted Domain (Item) :white_check_mark:
-  * The Harvest (Item) :white_check_mark:
-  * The Fall of Man (Item) :white_check_mark:
-  * Rebirth (Item) :white_check_mark:
-  * The First Day (Item) :white_check_mark:
-  * Exiled (Item) :white_check_mark:
-  * My Beloved (Item) :white_check_mark:
-* Genisis (New Challenge) :white_check_mark: 
-* Curse of Mortality (New Curse) :white_check_mark: 
-* The Serpent (Boss) :white_check_mark:
-* 4 New Music Tracks :white_check_mark:
-* 1 New SFX :white_check_mark:
+* The Garden (New Room) 
+* The Garden Pool (New Item Pool)  
+* 11 new items:  
+  * Shame
+  * Forbidden Fruit
+  * Deception
+  * Creation
+  * Granted Domain
+  * The Harvest
+  * The Fall of Man
+  * Rebirth
+  * The First Day
+  * Exiled
+  * My Beloved (Item)
+* Genisis (New Challenge)
+* Curse of Mortality (Curse)
+* The Serpent (Boss) 
+* 1 New Music Track
+* 1 New SFX 
 
 **The Garden Room:** A room that replaces all libraries 
 
@@ -54,31 +62,19 @@ Art Style:
 
 [Music Sampling](https://soundcloud.com/wertandrew2/binding-of-isaac-boss-fight-serpent)
 
-|Item Name|Description|Effect|Item Sprite Suggestion|Character Costume Suggestion|Item Sprite Created|Costume Spirtes Created|Functionality Done|
-|---|---|---|---|---|---|---|---|
-|Shame|Awareness of oneself|Enemies that move too close to Isaac have a short fear effect applied to them.|Reversed, 'Filled in' Gnawed Leaf|A leaf between Isaacs legs|:white_check_mark:|:white_check_mark:|:white_check_mark:|
-|Forbidden Fruit|Don't believe his lies|Tears become apples, Shot Speed up.|Red juicy apple (Borrow sprite from the item 'Apple!')|Tears are apples, Isaacs head becomes shiny.|:white_check_mark:|:white_check_mark:|:white_check_mark:|
-|Deception|The Serpent Lies|Shuffle consumable numbers (High risk/high reward)|Snake (Coiled up), google the 'Come And Take It Flag'|Isaac has a snake wrapped around his neck.|:white_check_mark:|:white_check_mark:|:white_check_mark:|
-|Creation|In the beginning|All stats up|Earth (Reskin Tiny Planet)|Isaac's head becomes the Earth|:white_check_mark:|:white_check_mark:|:white_check_mark:|
-|Granted Domain|All authority is yours|Enemies stop moving when Isaac stops moving|Crown (Reskin 'Crown of light' to be bright yellow)|Isaac wears a crown|:white_check_mark:|:white_check_mark:|:white_check_mark:|
-|Harvest |Sow! Reap!|Upon clearing a room, the player has a 5% chance to be rewarded with a random item in the center of the room.|Bundle of gains|Isaac has a sinbgle grain behind one of his ears|:white_check_mark:|:white_check_mark:|:white_check_mark:|
-|The Fall of Man|Original Sin|+2 Black Hearts. Removes all red hearts. For each red heart removed, +1 damage.|Crossed Scythes (Borrow from Death's Touch)|Isaac's body turns A shade of black|:white_check_mark:|:white_check_mark:|:white_check_mark:|
-|Rebirth|Adam was born!|The player gains a familiar that looks like Adam. Adam rotates very fast but deals large damage.|A Rib|Miniature Adam familiar|:white_check_mark:|:white_check_mark:|:white_check_mark:|
-|The First Day|Let there be light!|100% Angel Precedence|A sun (Cartoony)|Isaac's head shines|:white_check_mark:|:white_check_mark:|:white_check_mark:|
-|Exiled|Your heart is black...|+3 Heart Containers, All heart drops are now black hearts|Closed iron gates|Ivy wrapped around Isaacs neck|:white_check_mark:|:white_check_mark:|:white_check_mark:|
-|My Beloved|Lover, I'm yours...|+1 Heart Container, All hearts in the room slowly gravitate towards Isaac until he obtains them.|Recolored Eden's Blessing (to be rose red)|Recolored Purity Effect|:white_check_mark:|:white_check_mark:|:white_check_mark:|
-|v1.1 Item 1|==|==|==|==|==|==|==|
-|v1.1 Item 2|==|==|==|==|==|==|==|
-
-
-
-
-
-
-
-
-
-
+|Item Name|Effect|
+|---|---|
+|Shame|Enemies that move too close to Isaac have a short fear effect applied to them.|
+|Forbidden Fruit|Tears become apples, Shot Speed up.|
+|Deception|Shuffle consumable numbers (High risk/high reward)|
+|Creation|All stats up|
+|Granted Domain|Enemies stop moving when Isaac stops moving|
+|The Harvest|Upon clearing a room, the player has a 5% chance to be rewarded with a random item in the center of the room.|
+|The Fall of Man|+2 Black Hearts. Removes all red hearts. For each red heart removed, +1 damage.|
+|Rebirth|The player gains a familiar that looks like Adam. Adam rotates very fast but deals large damage.|
+|The First Day|100% Angel Precedence.|
+|Exiled|+3 Heart Containers, All heart drops are now black hearts.|
+|My Beloved|+1 Heart Container, All hearts in the room quickly gravitate towards Isaac until he obtains them.|
 
 **IGNORE BELOW THIS LINE**
 
