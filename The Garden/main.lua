@@ -483,6 +483,7 @@ function garden:gardenRoomUpdate()
 
 		--Checks during TheSerpent fight
 		if garden.SERPENT_HAS_SPAWNED then
+			--MYABE JUST TRY CHECKING IF ROOM IS CLEAR????? (like on harvest?)
 			local entities = Isaac.GetRoomEntities()
 			for i = 1, #entities do
 				local singleEntity = entities[i]
