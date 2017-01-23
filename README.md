@@ -13,14 +13,18 @@ Fixes:
 
 |Item Name|Design|Item Art|Costume Art|Functionality|
 |---|---|---|---|---|
-|Afraid|:white_check_mark:|:clock3:|:clock3:|:clock3:|
+|Crack The Earth|:white_check_mark:|:clock3:|:clock3:|:clock3:|
 |The Beast|:white_check_mark:|:clock3:|:clock3:|:clock3:|
 
 ### Item Details
- * Afraid
-   * Effect: At the point in which your tears begin falling to the floor, instead they freeze in place. (and possibly shake? possibly clear the room after 15 tears?)
-   * Item Look: Black Scared Cat (http://tinyurl.com/jdk2msf)  -- do not resemble guppy
-   * Costume: Isaac has a back cat's tail (very similar to the Gnawed leaf Mario tail costume)
+ * Crack The Earth
+   * Effect: At the point in which your tears begin falling to the floor, instead they freeze in place. 
+     * They never fall 
+     * Clear the room after 15 tears
+     * Make them shake
+     * They create small earthquakes under them
+   * Item Look: Black Feather (from a raven)
+   * Costume: Isaac has a back cat's tail (Similar to the Gnawed leaf Mario tail costume)
 
  * The Beast
    * Effect: Isaac gains a familiar who travels the room punching his fists down on the ground. (causing small rock groud erruption effects)
