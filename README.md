@@ -1,5 +1,12 @@
 # The Garden Mod:
 
+Coming in v1.1:
+* 2 new Serpent variants
+* New doors in the Garden
+* New Ladybug enemies
+* Possible new items (2 at most)
+* Debug flag (set this to true to see and test all of the items!
+
 Adds:
 * The Garden (New Room) :white_check_mark:
 * The Garden Pool (New Item Pool) :white_check_mark: 
