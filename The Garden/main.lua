@@ -342,6 +342,10 @@ function garden:theFirstDayEffect()
 end
 
 function garden:crackTheEarthEffect()
+	--if singleEntity.Type == EntityType.ENTITY_TEAR then	
+		--player.TearFallingAcceleration == 0.1
+		--player.TearFallingSpeed? Player stat - Only change this in a callback to MC_EVALUATE_CACHE. How high above the ground is the tear when it spawns?
+		--player:TearHeight? Player stat - Only change this in a callback to MC_EVALUATE_CACHE. How high above the ground is the tear when it spawns?
 end
 
 function garden:myBelovedEffect()
