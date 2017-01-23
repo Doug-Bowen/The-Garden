@@ -86,7 +86,9 @@ garden.SERPENT_VARIANT = 55 --This is the Serpent's Variant Number
 garden.SERPENT_SUBTYPE = 0 
 garden.SERPENT_LOCATION = nil
 garden.SERPENT_VELOCITY = Vector(0,0)
-garden.SERPENT_SPAWN_OWNER = nil		
+garden.SERPENT_SPAWN_OWNER = nil	
+garden.SERPENT_HOLLOW_ID = 19      --This is The Hollow's ID
+garden.SERPENT_HOLLOW_VARIANT = 54 --This is the Serpent's (Hollow) Variant Number
 
 garden.GRAIN_SHELL = nil    --This is used to spawn Grains 
 garden.GRAIN_ID = 1000      --This is The Effect ID
@@ -104,6 +106,7 @@ garden.PREVIOUS_POSITION = nil
 garden.ROOM_FIGHT = false
 garden.ROOM_DONE = false
 garden.HAS_CONVERTED_HEARTS = false
+garden.SERPENT_VERSION = 1
 
 function garden:debugMode()
 	if garden.DEBUG_MODE then
@@ -444,11 +447,27 @@ function garden:gardenRoomUpdate()
 		local positionalDifference = Vector(playerPosition.X-roomCenter.X, playerPosition.Y-roomCenter.Y)
 		if math.abs(positionalDifference.X) < 75 and math.abs(positionalDifference.Y) < 45 then
 			if garden.SERPENT_CAN_SPAWN and not garden.SERPENT_HAS_SPAWNED then
+				
 				--change music here (Garden_Serpent.ogg)				
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)				
 				Game():ShakeScreen(12)
-				garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_ID, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)				
 				
+				--randomize serpent version
+				garden.SERPENT_VERSION = math.random(2)
+				if garden.SERPENT_VERSION == 1 then
+					--randomize length of Hollow here
+					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)		
+					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
+					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
+					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
+					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
+					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
+					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
+					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
+				else
+					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_ID, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)				
+				end
+
 				--play sfx here (Curse_of_Mortality.wav)
 				local volume = 100
 				local frameDelay = 0
