@@ -11,6 +11,7 @@ Fixes:
 * Corrected Curse of Mortality making Donation and Reroll machines disappear :clock3:
 * Corrected Apple tears gfx not popping correctly :clock3:
 * Corrected a rare situation where Harvest would enter a state where it would never proc again :white_check_mark:
+* Correct Harvest proc chance 5% -> 3%
 * Adams damage changed from 14 to 10 :white_check_mark:
 * Corrected Serpent gibs :white_check_mark:
 
