@@ -16,7 +16,8 @@ Fixes:
 * Adams damage changed from 14 to 10 :white_check_mark:
 * Corrected Serpent gibs :white_check_mark:
 * Corrected Costume overlays :white_check_mark:
-
+* Corrected obscure bug where Donation Machines would be affected by Exiled :white_check_mark:
+* Corrected obscure bug where Lil' Haunt enemies would be affected by Exiled, making the Haunt impossible to kill :white_check_mark:
 
 |Name|Design|Item Art|Costume Art|Functionality|
 |---|---|---|---|---|
