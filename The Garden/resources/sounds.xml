@@ -365,11 +365,27 @@
 	<sound id="172">
 		<sample weight="1" path="Curse_of_Mortality.wav" />
 	</sound>
+	<sound id="173">
+		<sample weight="1" path="FlyBuzz.wav" />
+	</sound>
+	<sound id="174">
+		<sample weight="1" path="Pound1.wav" />
+	</sound>
 	<!-- CUSTOM SOUNDS HERE -->
 
 	<sound id="175">
 		<sample weight="1" path="Feedback/blood bank spawn.wav" />
 	</sound>
+
+	<!-- CUSTOM SOUNDS HERE -->
+	<sound id="176">
+		<sample weight="1" path="Pound2.wav" />
+	</sound>
+	<sound id="177">
+		<sample weight="1" path="Pound3.wav" />
+	</sound>
+	<!-- CUSTOM SOUNDS HERE -->
+
 	<sound id="178">
 		<sample weight="1" path="blood fire.wav" />
 		<sample weight="1" path="blood fire 2.wav" />
