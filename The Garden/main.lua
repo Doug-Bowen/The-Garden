@@ -235,14 +235,21 @@ function garden:harvestEffect()
 			garden.ROOM_FIGHT = false
 			garden.ROOM_DONE = false
 			local entities = Isaac.GetRoomEntities()
-			for i = 1, #entities do
+			for i = 1, #entities do 
 				local singleEntity = entities[i]
-				if singleEntity:IsVulnerableEnemy() then		
+				if singleEntity:IsVulnerableEnemy() then --Check if enemies are in the room		
 					garden.ROOM_FIGHT = true
 				end
+				
+				for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do --Check if doors are open in the room
+					local door = currentRoom:GetDoor(i)
+					if door ~= nil and door.DoorState == DoorState.STATE_OPEN then
+    					garden.ROOM_FIGHT = false
+					end	
+				end				
 			end
 		elseif currentRoom:IsClear() and garden.ROOM_FIGHT and not garden.ROOM_DONE then				
-			local randomNum = math.random(1)  --5% chance
+			local randomNum = math.random(20)  --5% chance
 			if randomNum == 1 then
 				local roomCenter = currentRoom:GetCenterPos()
 				local initialStep = 0 --Not sure what this does
