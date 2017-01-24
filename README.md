@@ -1,4 +1,4 @@
-v1.1:
+v2.0:
 
 Features:
 * 2 new Serpent variants :clock3: (Consider make the room a wave defense against them all?)
