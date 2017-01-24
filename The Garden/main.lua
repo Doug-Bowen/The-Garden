@@ -217,10 +217,11 @@ function garden:exiledEffect()
 		local entities = Isaac.GetRoomEntities()
 		for i = 1, #entities do
 			local singleEntity = entities[i]
-			if singleEntity.Type == EntityType.ENTITY_PICKUP and singleEntity.Variant == PickupVariant.PICKUP_HEART and singleEntity.SubType ~= HeartSubType.HEART_BLACK then								
-				singleEntity:Remove()					
-				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, singleEntity.Position, Vector(0,0), nil)
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_BLACK, singleEntity.Position, Vector(0,0), nil)				
+				if singleEntity.Type == EntityType.ENTITY_PICKUP and singleEntity.Variant == PickupVariant.PICKUP_HEART and singleEntity.SubType ~= HeartSubType.HEART_BLACK then								
+					singleEntity:Remove()										
+					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, singleEntity.Position, Vector(0,0), nil)
+					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_BLACK, singleEntity.Position, Vector(0,0), nil)				
+				end			
 			end
 		end 
 	end
@@ -743,8 +744,12 @@ function garden:itemPickedUp(player, statFromXML)
 
 	if player:HasCollectible(garden.COLLECTIBLE_EXILED) and not garden.HAS_EXILED then			
 		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_EXILED)
+		
+		local player = Isaac.GetPlayer(0)
+		local totalHearts = player:GetMaxHearts()			
 		local ignoreKeeper = true
-		player:AddMaxHearts(6, ignoreKeeper)
+		player:AddMaxHearts(4, ignoreKeeper)		
+
 		garden.HAS_EXILED = true 
 	end
 
@@ -755,10 +760,13 @@ function garden:itemPickedUp(player, statFromXML)
 		garden.HAS_REBIRTH = true
 	end
 
-
 	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) and not garden.HAS_CRACK_THE_EARTH then			
 		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_CRACK_THE_EARTH)
 		garden.HAS_CRACK_THE_EARTH = true  
+	end
+
+	if player:HasCollectible(garden.COLLECTIBLE_THE_BEAST) and not garden.HAS_THE_BEAST then			
+		garden.HAS_THE_BEAST = true  
 	end
 end
 
