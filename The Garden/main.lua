@@ -678,7 +678,7 @@ function garden:itemPickedUp(player, statFromXML)
 		player:AddMaxHearts(totalHearts*-1, ignoreKeeper)
 
 		for i = 1, totalHearts/2 do
-			player.Damage = player.Damage+.3
+			player.Damage = player.Damage+.5
 		end
 		garden.HAS_THE_FALL_OF_MAN = true
 	end	
