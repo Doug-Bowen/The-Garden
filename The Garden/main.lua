@@ -65,7 +65,6 @@ garden.COSTUME_ID_THE_FIRST_DAY = Isaac.GetCostumeIdByPath("gfx/characters/the_f
 garden.COSTUME_ID_MY_BELOVED = Isaac.GetCostumeIdByPath("gfx/characters/my_beloved.anm2")
 garden.COSTUME_ID_THE_HARVEST = Isaac.GetCostumeIdByPath("gfx/characters/the_harvest.anm2")
 garden.COSTUME_ID_CRACK_THE_EARTH = Isaac.GetCostumeIdByPath("gfx/characters/crack_the_earth.anm2")
-garden.COSTUME_ID_THE_BEAST = Isaac.GetCostumeIdByPath("gfx/characters/the_beast.anm2")
 
 --Room Flags
 garden.GARDEN_HEARTS_CAN_SPAWN = true
@@ -355,8 +354,8 @@ function garden:crackTheEarthEffect()
 	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) then		
 		local currentRoom = Game():GetRoom()	
 		if currentRoom:GetFrameCount() % 10 == 0 then -- try only every 10th frame
-			local randomNum = math.random(1000)
-			if randomNum == 1000 then
+			local randomNum = math.random(1000) -- 1% chance
+			if randomNum == 5 then
 				local entities = Isaac.GetRoomEntities()
 				for i = 1, #entities do
 					local singleEntity = entities[i]
@@ -760,11 +759,6 @@ function garden:itemPickedUp(player, statFromXML)
 	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) and not garden.HAS_CRACK_THE_EARTH then			
 		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_CRACK_THE_EARTH)
 		garden.HAS_CRACK_THE_EARTH = true  
-	end
-
-	if player:HasCollectible(garden.COLLECTIBLE_THE_BEAST) and not garden.HAS_THE_BEAST then			
-		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_THE_BEAST)
-		garden.HAS_THE_BEAST = true  
 	end
 end
 
