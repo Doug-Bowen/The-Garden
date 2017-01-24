@@ -19,14 +19,14 @@ Fixes:
 
 |Name|Design|Item Art|Costume Art|Functionality|
 |---|---|---|---|---|
-|Crack The Earth|:white_check_mark:|:clock3:|:clock3:|:clock3:|
-|The Beast|:white_check_mark:|:clock3:|:clock3:|:clock3:|
+|Crack The Earth|:white_check_mark:|:clock3:|:clock3:|:white_check_mark:|
+|The Beast|:white_check_mark:|:clock3:|No Costume|:clock3:|
 |Deciever!|:white_check_mark:|Not needed|:clock3:|:clock3:|
 
 
 ### Item Details
  * Crack The Earth
-   * Effect: Randomly creates 5 earth quakes on the floor that target enemies and deal damage equal to your tear damage + 20. 
+   * Effect: Every 10 frames, has a 1% chance to creates earth quakes under all enemies in the room
    * Item Look: Black Feather (from a raven)
    * Costume: Isaac has a back cat's tail (Similar to the Gnawed leaf Mario tail costume)
 
