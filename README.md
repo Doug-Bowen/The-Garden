@@ -18,11 +18,7 @@ Fixes:
 
 ### Item Details
  * Crack The Earth
-   * Effect: At the point in which your tears begin falling to the floor, instead they freeze in place. 
-     * They never fall 
-     * Clear the room after 15 tears
-     * Make them shake
-     * They create small earthquakes under them
+   * Effect: Randomly creates 5 earth quakes on the floor that target enemies and deal damage equal to your tear damage + 20. 
    * Item Look: Black Feather (from a raven)
    * Costume: Isaac has a back cat's tail (Similar to the Gnawed leaf Mario tail costume)
 
