@@ -1,6 +1,6 @@
 # The Garden Mod
 
-## Coming in v1.1:
+## Coming soon:
 
 Features:
 * 2 new Serpent variants
@@ -11,12 +11,6 @@ Features:
 
 Fixes:
 * Curse of Mortality making Donation and Reroll machines disappear
-
-
-|Item Name|Effect|
-|---|---|
-|v1.1 Item 1|==|
-|v1.1 Item 2|==|
 
 _____________________
 
