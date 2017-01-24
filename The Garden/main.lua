@@ -249,8 +249,8 @@ function garden:harvestEffect()
 				end				
 			end
 		elseif currentRoom:IsClear() and garden.ROOM_FIGHT and not garden.ROOM_DONE then				
-			local randomNum = math.random(20)  --5% chance			
-			if randomNum == 5 then
+			local randomNum = math.random(100)  --3% chance			
+			if randomNum <= 3 then
 				local roomCenter = currentRoom:GetCenterPos()
 				local initialStep = 0 --Not sure what this does
 				local avoidActiveEnemies = true
