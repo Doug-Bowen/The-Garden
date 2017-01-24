@@ -8,8 +8,12 @@ Features:
 * Debug flag - Test all of the items in room 1 :white_check_mark:
  
 Fixes:
-* Curse of Mortality making Donation and Reroll machines disappear :clock3:
-* Apple tears gfx not popping correctly :clock3:
+* Corrected Curse of Mortality making Donation and Reroll machines disappear :clock3:
+* Corrected Apple tears gfx not popping correctly :clock3:
+* Corrected a rare situation where Harvest would enter a state where it would never proc again :white_check_mark:
+* Adams damage changed from 14 to 10 :white_check_mark:
+* Corrected Serpent gibs :white_check_mark:
+
 
 |Item Name|Design|Item Art|Costume Art|Functionality|
 |---|---|---|---|---|
