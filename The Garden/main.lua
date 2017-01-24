@@ -351,15 +351,23 @@ function garden:theFirstDayEffect()
 end
 
 function garden:crackTheEarthEffect()
-	--if GetFrameCount() % 10 == 0 (only every 10th frame)
-		--get random number (out of 100)
-		--if random == 1 then -- 1% chance
-			--get room entities
-			--if entity is vulnerable enemy then
-				--spanw earthquake under them
-			--end					
-		--end
-	--end
+	local player = Isaac.GetPlayer(0)
+	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) then		
+		local currentRoom = Game():GetRoom()	
+		if currentRoom:GetFrameCount() % 10 == 0 then -- try only every 10th frame
+			local randomNum = math.random(1000)
+			if randomNum == 1000 then
+				local entities = Isaac.GetRoomEntities()
+				for i = 1, #entities do
+					local singleEntity = entities[i]
+					if singleEntity:IsVulnerableEnemy() then		
+						Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.SHOCKWAVE, 0, singleEntity.Position, Vector(0,0), nil)
+						Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ROCK_EXPLOSION, 0, singleEntity.Position, Vector(0,0), nil)
+					end	
+				end				
+			end
+		end
+	end
 end
 
 function garden:myBelovedEffect()
