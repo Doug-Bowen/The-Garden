@@ -9,9 +9,6 @@ Features:
 * 2 New items
 * Debug flag (set this to true to see and test all of the items)
 
-Fixes:
-* Curse of Mortality making Donation and Reroll machines disappear
-
 _____________________
 
 ## v1.0:
