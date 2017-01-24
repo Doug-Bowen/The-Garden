@@ -714,9 +714,9 @@ function garden:itemPickedUp(player, statFromXML)
 
 		--Shuffle consumables
 		for i = 1, 3 do
-			local posOrNeg = math.random(2)
-			local consumableOffset = math.random(8)
-			if posOrNeg == 1 then
+			local posOrNeg = math.random(10)
+			local consumableOffset = math.random(15)
+			if posOrNeg <= 4 then
 				consumableOffset = consumableOffset*-1
 			end
 			local shuffleWhichConsumable = math.random(3)
