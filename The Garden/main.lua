@@ -249,8 +249,8 @@ function garden:harvestEffect()
 				end				
 			end
 		elseif currentRoom:IsClear() and garden.ROOM_FIGHT and not garden.ROOM_DONE then				
-			local randomNum = math.random(20)  --5% chance
-			if randomNum == 1 then
+			local randomNum = math.random(20)  --5% chance			
+			if randomNum == 5 then
 				local roomCenter = currentRoom:GetCenterPos()
 				local initialStep = 0 --Not sure what this does
 				local avoidActiveEnemies = true
@@ -330,6 +330,8 @@ function garden:harvestEffect()
 					grainSprite:Load("gfx/grain.anm2", true)							
 					grainSprite:Play("East", true) 
 				end
+				garden.ROOM_DONE = true
+			else 
 				garden.ROOM_DONE = true
 			end									
 		end
