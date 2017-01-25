@@ -52,6 +52,7 @@ garden.HAS_MY_BELOVED = false
 garden.HAS_THE_HARVEST = false
 garden.HAS_CRACK_THE_EARTH = false
 garden.HAS_THE_BEAST = false
+garden.HAS_DECEIVER = false
 
 --Costumes
 garden.COSTUME_ID_SHAME = Isaac.GetCostumeIdByPath("gfx/characters/shame.anm2")
@@ -65,6 +66,8 @@ garden.COSTUME_ID_THE_FIRST_DAY = Isaac.GetCostumeIdByPath("gfx/characters/the_f
 garden.COSTUME_ID_MY_BELOVED = Isaac.GetCostumeIdByPath("gfx/characters/my_beloved.anm2")
 garden.COSTUME_ID_THE_HARVEST = Isaac.GetCostumeIdByPath("gfx/characters/the_harvest.anm2")
 garden.COSTUME_ID_CRACK_THE_EARTH = Isaac.GetCostumeIdByPath("gfx/characters/crack_the_earth.anm2")
+garden.COSTUME_ID_DECEIVER = Isaac.GetCostumeIdByPath("gfx/characters/deceiver.anm2")
+
 
 --Room Flags
 garden.GARDEN_HEARTS_CAN_SPAWN = true
@@ -396,6 +399,9 @@ function garden:myBelovedEffect()
 	end
 end
 
+function garden:deceiverEffect()
+end
+
 function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
 	local currentRoom = Game():GetRoom()	
@@ -657,6 +663,7 @@ end
 
 function garden:itemPickedUp(player, statFromXML)
 	local player = Isaac.GetPlayer(0)	
+	local deceiverParts = 0
 	
 	if player:HasCollectible(garden.COLLECTIBLE_CREATION) and not garden.HAS_CREATION then
 		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_CREATION)	
@@ -767,6 +774,30 @@ function garden:itemPickedUp(player, statFromXML)
 	if player:HasCollectible(garden.COLLECTIBLE_THE_BEAST) and not garden.HAS_THE_BEAST then			
 		garden.HAS_THE_BEAST = true  
 	end
+
+	--Deceiver Tansformation
+	if not gardne.HAS_DECEIVER then
+		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIBLE) then			
+			deceiverParts = deceiverParts+1   
+		end
+
+		if player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_REVELATIONS then			
+			deceiverParts = deceiverParts+1   
+		end
+
+		if player:HasCollectible(garden.COLLECTIBLE_DECEPTION then			
+			deceiverParts = deceiverParts+1   
+		end
+
+		if player:HasCollectible(garden.COLLECTIBLE_THE_FALL_OF_MAN then			
+			deceiverParts = deceiverParts+1   
+		end
+
+		if deceiverParts >= 2 then
+			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_DECEIVER)
+			garden.HAS_DECEIVER = true 
+		end
+	end
 end
 
 
@@ -779,6 +810,7 @@ garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theFirstDayEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.myBelovedEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.harvestEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.crackTheEarthEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.deceiverEffect)
 
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoomUpdate)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect)
