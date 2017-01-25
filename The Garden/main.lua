@@ -776,20 +776,20 @@ function garden:itemPickedUp(player, statFromXML)
 	end
 
 	--Deceiver Tansformation
-	if not gardne.HAS_DECEIVER then
+	if not garden.HAS_DECEIVER then
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIBLE) then			
 			deceiverParts = deceiverParts+1   
 		end
 
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_REVELATIONS then			
+		if player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_REVELATIONS) then			
 			deceiverParts = deceiverParts+1   
 		end
 
-		if player:HasCollectible(garden.COLLECTIBLE_DECEPTION then			
+		if player:HasCollectible(garden.COLLECTIBLE_DECEPTION) then			
 			deceiverParts = deceiverParts+1   
 		end
 
-		if player:HasCollectible(garden.COLLECTIBLE_THE_FALL_OF_MAN then			
+		if player:HasCollectible(garden.COLLECTIBLE_THE_FALL_OF_MAN) then			
 			deceiverParts = deceiverParts+1   
 		end
 
