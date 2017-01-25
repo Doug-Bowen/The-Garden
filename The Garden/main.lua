@@ -795,6 +795,10 @@ function garden:itemPickedUp(player, statFromXML)
 
 		if deceiverParts >= 2 then
 			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_DECEIVER)
+			local player = Isaac.GetPlayer(0)
+			local playerPosition = player.Position			
+			Isaac.RenderText("DECEIVER!", player.Position.X, player.Position.Y-30, 255, 255, 0, 0)
+			player:AnimateHappy()
 			garden.HAS_DECEIVER = true 
 		end
 	end
