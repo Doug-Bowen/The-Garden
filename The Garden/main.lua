@@ -71,9 +71,10 @@ garden.COSTUME_ID_DECEIVER = Isaac.GetCostumeIdByPath("gfx/characters/deceiver.a
 
 --Room Flags
 garden.GARDEN_HEARTS_CAN_SPAWN = true
-garden.SERPENT_CAN_SPAWN = true
-garden.SERPENT_HAS_SPAWNED = false
-garden.SERPENT_HAS_DIED = false
+garden.FIGHT_CAN_START = true
+garden.FIGHT_HAS_STARTED = false
+garden.WAVE_NUMBER = 0
+garden.WAVE_ENDED = false
 garden.VISIT_NUMBER = 0
 garden.ITEM_REWARDED = false	
 
@@ -100,6 +101,8 @@ garden.SERPENT_VELOCITY = Vector(0,0)
 garden.SERPENT_SPAWN_OWNER = nil	
 garden.SERPENT_HOLLOW_ID = 19      --This is The Hollow's ID
 garden.SERPENT_HOLLOW_VARIANT = 54 --This is the Serpent's (Hollow) Variant Number
+garden.SERPENT_LARRY_ID = 19      --This is Larry Jr's ID
+garden.SERPENT_LARRY_VARIANT = 53 --This is the Serpent's (Hollow) Variant Number
 
 garden.GRAIN_SHELL = nil    --This is used to spawn Grains 
 garden.GRAIN_ID = 1000      --This is The Effect ID
@@ -117,7 +120,6 @@ garden.PREVIOUS_POSITION = nil
 garden.ROOM_FIGHT = false
 garden.ROOM_DONE = false
 garden.HAS_CONVERTED_HEARTS = false
-garden.SERPENT_VERSION = 1
 
 function garden:debugMode()
 	if garden.DEBUG_MODE then
@@ -358,7 +360,7 @@ function garden:crackTheEarthEffect()
 		local currentRoom = Game():GetRoom()	
 		if currentRoom:GetFrameCount() % 10 == 0 then -- try only every 10th frame
 			local randomNum = math.random(1000) -- 1% chance
-			if randomNum == 5 then
+			if randomNum >= 5 then
 				local entities = Isaac.GetRoomEntities()
 				for i = 1, #entities do
 					local singleEntity = entities[i]
@@ -409,8 +411,8 @@ function garden:gardenRoomUpdate()
 	if currentRoomType == RoomType.ROOM_LIBRARY then --Player is in a Garden
 		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden
 			if garden.VISIT_NUMBER == 0 then      --Player has never been in this Garden			
-				garden.SERPENT_CAN_SPAWN = true			
-				garden.SERPENT_HAS_SPAWNED = false
+				garden.FIGHT_CAN_START = true			
+				garden.FIGHT_HAS_STARTED = false
 				garden.GARDEN_HEARTS_CAN_SPAWN = true
 
 				--Handle Heart Spawning
@@ -482,33 +484,20 @@ function garden:gardenRoomUpdate()
 			end
 		end	
 
-		--Check if player is activating The Serpent fight
+		--Check if player is activating the fight
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position
 		local roomCenter = currentRoom:GetCenterPos()
 		local positionalDifference = Vector(playerPosition.X-roomCenter.X, playerPosition.Y-roomCenter.Y)
 		if math.abs(positionalDifference.X) < 75 and math.abs(positionalDifference.Y) < 45 then
-			if garden.SERPENT_CAN_SPAWN and not garden.SERPENT_HAS_SPAWNED then
+			if garden.FIGHT_CAN_START and not garden.FIGHT_HAS_STARTED then
 				
 				--change music here (Garden_Serpent.ogg)				
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)				
 				Game():ShakeScreen(12)
 				
-				--randomize serpent version
-				garden.SERPENT_VERSION = math.random(2)
-				if garden.SERPENT_VERSION == 1 then
-					--randomize length of Hollow here
-					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)		
-					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
-					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
-					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
-					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
-					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
-					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
-					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)
-				else
-					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_ID, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)				
-				end
+				--Spawn Wave 1 (Pin)				
+				garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_ID, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
 
 				--play sfx here (Curse_of_Mortality.wav)
 				local volume = 100
@@ -517,46 +506,63 @@ function garden:gardenRoomUpdate()
 				local pitch = 1
 				garden.SERPENT_SHELL:ToNPC():PlaySound("172", volume, frameDelay, loop, pitch)	
 
-				garden.SERPENT_CAN_SPAWN = false
-				garden.SERPENT_HAS_SPAWNED = true			
+				garden.FIGHT_CAN_START = false
+				garden.FIGHT_HAS_STARTED = true			
+				garden.WAVE_NUMBER = garden.WAVE_NUMBER + 1
+				garden.WAVE_ENDED = false
 				garden.barCurrentRoomDoors()				
 			end				
 		end
 
 		--Checks during TheSerpent fight
-		if garden.SERPENT_HAS_SPAWNED then
-			--MYABE JUST TRY CHECKING IF ROOM IS CLEAR????? (like on harvest?)
+		if garden.FIGHT_HAS_STARTED then 
 			local entities = Isaac.GetRoomEntities()
 			for i = 1, #entities do
 				local singleEntity = entities[i]
-				if singleEntity:IsBoss() and singleEntity:IsDead() then					
-					garden.SERPENT_HAS_DIED = true						
-					if not garden.ITEM_REWARDED then
-						garden.openCurrentRoomDoors()						 
-						garden.applyMortalityCurse()
-						
-						local volume = 100
-						local frameDelay = 0
-						local loop = false
-						local pitch = 1
-						garden.SERPENT_SHELL:ToNPC():PlaySound(SoundEffect.SOUND_HOLY, volume, frameDelay, loop, pitch)	
-						
-						--currentRoom:PlayMusic() doesnt seem to do anything			
-						--change music here (Garden_Holy.ogg)
-						local roomCenter = currentRoom:GetCenterPos()
-						local initialStep = 0 --Not sure what this does
-						local avoidActiveEnemies = true
-						local startingPosition = Vector(roomCenter.X,roomCenter.Y+90)
-						local pickupPosition = currentRoom:FindFreePickupSpawnPosition(startingPosition, initialStep, avoidActiveEnemies)
-						local velocity = Vector(0,0)
-						local spawnOwner = nil
-						local randomNumber = math.random(10) 
-						local randomItem = garden.gardenPool[randomNumber]			
-						Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)
-						garden.ITEM_REWARDED = true
-						table.remove(garden.gardenPool,randomNumber) --Remove the item from the pool										
-					end
+				if singleEntity:IsBoss() and singleEntity:IsDead() then	
+					garden.WAVE_NUMBER = garden.WAVE_NUMBER +1
+					garden.WAVE_ENDED = true
 				end
+			end
+		end
+
+		if garden.WAVE_ENDED then 
+			if garden.WAVE_NUMBER == 1 then --Spawn Hollow
+				garden.SERPENT_LOCATION = Vector(roomCenter.X+100, roomCenter.Y)		
+				garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
+				garden.SERPENT_SHELL:ToNPC():PlaySound("172", 100, 0, false, 1)	
+				garden.WAVE_ENDED = false
+			elseif garden.WAVE_NUMBER == 2 then --Spawn Larry
+				garden.SERPENT_LOCATION = Vector(roomCenter.X-100, roomCenter.Y)		
+				garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_LARRY_ID, garden.SERPENT_LARRY_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
+				garden.SERPENT_SHELL:ToNPC():PlaySound("172", 100, 0, false, 1)	
+				garden.WAVE_NUMBER = garden.WAVE_NUMBER +1
+				garden.WAVE_ENDED = false
+			elseif garden.WAVE_NUMBER == 3 and not garden.ITEM_REWARDED then
+				garden.openCurrentRoomDoors()						 
+				garden.applyMortalityCurse()
+				
+				local volume = 100
+				local frameDelay = 0
+				local loop = false
+				local pitch = 1
+				garden.SERPENT_SHELL:ToNPC():PlaySound(SoundEffect.SOUND_HOLY, volume, frameDelay, loop, pitch)	
+				
+				--currentRoom:PlayMusic() doesnt seem to do anything			
+				--change music here (Garden_Holy.ogg)
+				local roomCenter = currentRoom:GetCenterPos()
+				local initialStep = 0 --Not sure what this does
+				local avoidActiveEnemies = true
+				local startingPosition = Vector(roomCenter.X,roomCenter.Y+90)
+				local pickupPosition = currentRoom:FindFreePickupSpawnPosition(startingPosition, initialStep, avoidActiveEnemies)
+				local velocity = Vector(0,0)
+				local spawnOwner = nil
+				local randomNumber = math.random(#garden.gardenPool) 
+				local randomItem = garden.gardenPool[randomNumber]			
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)
+				garden.ITEM_REWARDED = true
+				table.remove(garden.gardenPool,randomNumber) --Remove the item from the pool										
+				garden.WAVE_ENDED = false
 			end
 		end
 	end
@@ -612,21 +618,23 @@ function garden:checkForNewLevel() --Reset Flags on a new floor
 	local currentLevel = Game():GetLevel()
 	if currentLevel:GetStage() ~= garden.CURRENT_LEVEL then
 		garden.CURRENT_LEVEL = currentLevel:GetStage()
-		garden.GARDEN_HEARTS_CAN_SPAWN = true
-		garden.SERPENT_CAN_SPAWN = true
-		garden.SERPENT_HAS_SPAWNED = false
-		garden.SERPENT_HAS_DIED = false
-		garden.VISIT_NUMBER = 0
-		garden.ITEM_REWARDED = false		
+	garden.GARDEN_HEARTS_CAN_SPAWN = true
+	garden.FIGHT_CAN_START = true
+	garden.FIGHT_HAS_STARTED = false
+	garden.WAVE_NUMBER = 0
+	garden.WAVE_ENDED = false
+	garden.VISIT_NUMBER = 0 
+	garden.ITEM_REWARDED = false	
 	end	
 end	
 
 function garden:checkForNewRun() --Reset Flags on a new run
 	garden.GARDEN_HEARTS_CAN_SPAWN = true
-	garden.SERPENT_CAN_SPAWN = true
-	garden.SERPENT_HAS_SPAWNED = false
-	garden.SERPENT_HAS_DIED = false
-	garden.VISIT_NUMBER = 0
+	garden.FIGHT_CAN_START = true
+	garden.FIGHT_HAS_STARTED = false
+	garden.WAVE_NUMBER = 0
+	garden.WAVE_ENDED = false
+	garden.VISIT_NUMBER = 0 
 	garden.ITEM_REWARDED = false	
 
 	garden.HAS_SHAME = false
@@ -640,6 +648,8 @@ function garden:checkForNewRun() --Reset Flags on a new run
 	garden.HAS_THE_FIRST_DAY = false
 	garden.HAS_MY_BELOVED = false
 	garden.HAS_THE_HARVEST = false
+	garden.HAS_THE_BEAST = false
+	garden.HAS_DECEIVER = false
 end	
 
 function garden:updateFamiliar(familiar)
@@ -776,31 +786,18 @@ function garden:itemPickedUp(player, statFromXML)
 	end
 
 	--Deceiver Tansformation
-	if not garden.HAS_DECEIVER then
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIBLE) then			
-			deceiverParts = deceiverParts+1   
-		end
-
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_BOOK_REVELATIONS) then			
-			deceiverParts = deceiverParts+1   
-		end
-
-		if player:HasCollectible(garden.COLLECTIBLE_DECEPTION) then			
-			deceiverParts = deceiverParts+1   
-		end
-
-		if player:HasCollectible(garden.COLLECTIBLE_THE_FALL_OF_MAN) then			
-			deceiverParts = deceiverParts+1   
-		end
-
-		if deceiverParts >= 2 then
-			Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_DECEIVER)
-			local player = Isaac.GetPlayer(0)
-			local playerPosition = player.Position			
-			Isaac.RenderText("DECEIVER!", player.Position.X, player.Position.Y-30, 255, 255, 0, 0)
-			player:AnimateHappy()
-			garden.HAS_DECEIVER = true 
-		end
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_BIBLE) and garden.HAS_DECEPTION and not garden.HAS_DECEIVER then
+		Game():GetPlayer(0):AddNullCostume(garden.COSTUME_ID_DECEIVER)
+		local player = Isaac.GetPlayer(0)
+		local playerPosition = player.Position			
+		local volume = 100
+		local frameDelay = 0
+		local loop = false
+		local pitch = 1
+		local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
+		soundShell:ToNPC():PlaySound(SoundEffect.SOUND_POWERUP_SPEWER, volume, frameDelay, loop, pitch)	--Make it a sound						
+		--update player here? for visual effect? --its not triggering until the next room
+		garden.HAS_DECEIVER = true 	
 	end
 end
 
