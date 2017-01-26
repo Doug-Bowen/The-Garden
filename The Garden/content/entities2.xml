@@ -28,7 +28,11 @@
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />        
     </entity>    
 
-    <entity anm2path="serpentHollow.anm2" baseHP="22" boss="1" bossID="26" champion="0" collisionDamage="1" collisionMass="50" collisionRadius="20" friction="1" id="19" name="The Hollow" numGridCollisionPoints="0" shadowSize="23" stageHP="0" variant="54" portrait="0" bestiary="false">
+    <entity anm2path="serpentHollow.anm2" baseHP="22" boss="1" bossID="26" champion="0" collisionDamage="1" collisionMass="50" collisionRadius="20" friction="1" id="19" name="Serpent Hollow" numGridCollisionPoints="0" shadowSize="23" stageHP="0" variant="54" portrait="0" bestiary="false">
+        <gibs amount="6" blood="1" bone="1" eye="0" gut="0" large="0" worm="1" />
+    </entity>
+
+    <entity anm2path="serpentLarry.anm2" baseHP="22" boss="1" bossID="26" champion="0" collisionDamage="1" collisionMass="50" collisionRadius="20" friction="1" id="19" name="Serpent Larry" numGridCollisionPoints="0" shadowSize="23" stageHP="0" variant="53" portrait="0" bestiary="false">
         <gibs amount="6" blood="1" bone="1" eye="0" gut="0" large="0" worm="1" />
     </entity>
 
