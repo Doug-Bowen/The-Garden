@@ -11,4 +11,5 @@
   <costume anm2path="my_beloved.anm2" priority="100" type="none" />
   <costume anm2path="exiled.anm2" priority="99" type="none" />
   <costume anm2path="crack_the_earth.anm2" priority="100" type="none" />  
+  <costume anm2path="deceiver.anm2" priority="110" type="none" />  
 </costumes>
