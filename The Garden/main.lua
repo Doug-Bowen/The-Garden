@@ -582,9 +582,13 @@ function garden:gardenRoomUpdate()
 					if singleEntity.Type == garden.SERPENT_ID and singleEntity.Variant == garden.SERPENT_VARIANT and singleEntity.Subtype == garden.SERPENT_SUBTYPE then						
 						garden.SERPENT_LOCATION = Vector(roomCenter.X+100, roomCenter.Y)		
 						garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
+						garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
+						garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
 						garden.SERPENT_SHELL:ToNPC():PlaySound("172", 100, 0, false, 1)							
 					elseif singleEntity.Type == garden.SERPENT_HOLLOW_ID and singleEntity.Variant == garden.SERPENT_HOLLOW_VARIANT and singleEntity.Subtype == garden.SERPENT_SUBTYPE then						
 						garden.SERPENT_LOCATION = Vector(roomCenter.X-100, roomCenter.Y)		
+						garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_LARRY_ID, garden.SERPENT_LARRY_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
+						garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_LARRY_ID, garden.SERPENT_LARRY_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
 						garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_LARRY_ID, garden.SERPENT_LARRY_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
 						garden.SERPENT_SHELL:ToNPC():PlaySound("172", 100, 0, false, 1)					
 					elseif singleEntity.Type == garden.SERPENT_LARRY_ID and singleEntity.Variant == garden.SERPENT_LARRY_VARIANT and singleEntity.Subtype == garden.SERPENT_SUBTYPE and not garden.ITEM_REWARDED then
