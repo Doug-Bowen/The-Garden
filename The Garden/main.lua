@@ -18,7 +18,7 @@ garden.COLLECTIBLE_THE_HARVEST = Isaac.GetItemIdByName("The Harvest")
 garden.COLLECTIBLE_CRACK_THE_EARTH = Isaac.GetItemIdByName("Crack The Earth")
 garden.COLLECTIBLE_THE_BEAST = Isaac.GetItemIdByName("The Beast")
 
---Pool
+--Garden Item Pool
 garden.gardenPool = {}
 garden.gardenPool[1] = garden.COLLECTIBLE_SHAME
 garden.gardenPool[2] = garden.COLLECTIBLE_FORBIDDEN_FRUIT
@@ -33,10 +33,6 @@ garden.gardenPool[10] = garden.COLLECTIBLE_MY_BELOVED
 garden.gardenPool[11] = garden.COLLECTIBLE_THE_HARVEST
 garden.gardenPool[12] = garden.COLLECTIBLE_CRACK_THE_EARTH
 garden.gardenPool[13] = garden.COLLECTIBLE_THE_BEAST
-
---Familiars
-garden.ADAM_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("Adam")
-garden.BEAST_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("TheBeast")
 
 --Item Flags
 garden.HAS_SHAME = false
@@ -68,13 +64,18 @@ garden.COSTUME_ID_THE_HARVEST = Isaac.GetCostumeIdByPath("gfx/characters/the_har
 garden.COSTUME_ID_CRACK_THE_EARTH = Isaac.GetCostumeIdByPath("gfx/characters/crack_the_earth.anm2")
 garden.COSTUME_ID_DECEIVER = Isaac.GetCostumeIdByPath("gfx/characters/deceiver.anm2")
 
+--Storage Variabes
+garden.CURRENT_LEVEL = nil
+garden.PREVIOUS_POSITION = nil
+garden.ROOM_FIGHT = false
+garden.ROOM_DONE = false
+garden.HAS_CONVERTED_HEARTS = false
+TearFlags = {FLAG_POISONING = 1<<4}
 
 --Room Flags
 garden.GARDEN_HEARTS_CAN_SPAWN = true
 garden.FIGHT_CAN_START = true
-garden.FIGHT_HAS_STARTED = false
 garden.WAVE_NUMBER = 0
-garden.WAVE_ENDED = false
 garden.VISIT_NUMBER = 0
 garden.ITEM_REWARDED = false	
 
@@ -82,48 +83,44 @@ garden.ITEM_REWARDED = false
 garden.CURSE_MORTALITY = Isaac.GetCurseIdByName("Curse of Mortality") 
 garden.HAS_MORTALITY_CURSE = false
 
---Entities
-garden.TREE_SHELL = nil     --This is used to spawn The Tree 
-garden.TREE_ID = 1000       --This is The Effect ID
-garden.TREE_VARIANT = 993     
-garden.TREE_SUBTYPE = 0 
-garden.TREE_LOCATION = nil
-garden.TREE_VELOCITY = Vector(0,0)
-garden.TREE_SPAWN_OWNER = nil
-garden.PATCH_VARIANT = 994   		
+--Entity Shells
+garden.TREE_SHELL = nil                                        
+garden.SERPENT_SHELL = nil                                           
+garden.GRAIN_SHELL = nil
+garden.GRASS_SHELL = nil 
 
-garden.SERPENT_SHELL = nil  --This is used to spawn The Serpent 
-garden.SERPENT_ID = 62      --This is Pin's ID
-garden.SERPENT_VARIANT = 55 --This is the Serpent's Variant Number
-garden.SERPENT_SUBTYPE = 0 
-garden.SERPENT_LOCATION = nil
-garden.SERPENT_VELOCITY = Vector(0,0)
-garden.SERPENT_SPAWN_OWNER = nil	
-garden.SERPENT_HOLLOW_ID = 19      --This is The Hollow's ID
-garden.SERPENT_HOLLOW_VARIANT = 54 --This is the Serpent's (Hollow) Variant Number
-garden.SERPENT_LARRY_ID = 19      --This is Larry Jr's ID
-garden.SERPENT_LARRY_VARIANT = 53 --This is the Serpent's (Hollow) Variant Number
+--Entity Types
+garden.SERPENT_TYPE = Isaac.GetEntityTypeByName("The Serpent")         
+garden.SERPENT_HOLLOW_TYPE = Isaac.GetEntityTypeByName("Serpent Hollow")         
+garden.SERPENT_LARRY_TYPE = Isaac.GetEntityTypeByName("Serpent Larry")                                                 
+garden.GRAIN_TYPE = Isaac.GetEntityTypeByName("Grain")          
+garden.GRASS_TYPE = Isaac.GetEntityTypeByName("Grass")     
+garden.TREE_TYPE = Isaac.GetEntityTypeByName("The Tree")         
 
-garden.GRAIN_SHELL = nil    --This is used to spawn Grains 
-garden.GRAIN_ID = 1000      --This is The Effect ID
-garden.GRAIN_VARIANT = 779  --This is the Grain's Variant Number
+--Entity Vairants
+garden.SERPENT_VARIANT = Isaac.GetEntityVariantByName("The Serpent") 
+garden.TREE_VARIANT = Isaac.GetEntityVariantByName("The Tree")     
+garden.SERPENT_HOLLOW_VARIANT = Isaac.GetEntityVariantByName("Serpent Hollow") 
+garden.SERPENT_LARRY_VARIANT = Isaac.GetEntityVariantByName("Serpent Larry")   
+garden.GRAIN_VARIANT = Isaac.GetEntityVariantByName("Grain")  
+garden.GRASS_VARIANT = Isaac.GetEntityVariantByName("Grass")  
+garden.PATCH_VARIANT = Isaac.GetEntityVariantByName("The Patch")   		
+garden.ADAM_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("Adam")
+garden.BEAST_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("TheBeast")
+
+--Entity Subtypes
 garden.GRAIN_SUBTYPE = 0 
-
-garden.GRASS_SHELL = nil    --This is used to spawn Grass
-garden.GRASS_ID = 1000      --This is The Effect ID
-garden.GRASS_VARIANT = 780  --This is the GRASS's Variant Number
 garden.GRASS_SUBTYPE = 0 
+garden.SERPENT_SUBTYPE = 0
+garden.TREE_SUBTYPE = 0 
 
---Storage Variabes
-garden.CURRENT_LEVEL = nil
-garden.PREVIOUS_POSITION = nil
-garden.ROOM_FIGHT = false
-garden.ROOM_DONE = false
-garden.HAS_CONVERTED_HEARTS = false
-
-TearFlags = {
-	FLAG_POISONING = 1<<4,
-}
+--Entity Containers (Misc.)
+garden.SERPENT_LOCATION = nil
+garden.TREE_LOCATION = nil
+garden.SERPENT_VELOCITY = Vector(0,0)
+garden.TREE_VELOCITY = Vector(0,0)
+garden.SERPENT_SPAWN_OWNER = nil	
+garden.TREE_SPAWN_OWNER = nil
 
 function garden:debugMode()
 	if garden.DEBUG_MODE then
@@ -143,6 +140,11 @@ function garden:debugMode()
 		end		
 	end
 end
+
+
+----------------
+--Item EFFECTS--
+----------------
 
 function garden:shameEffect()
 	local player = Isaac.GetPlayer(0)
@@ -277,7 +279,7 @@ function garden:harvestEffect()
 				local showGrain = math.random(2)
 				if showGrain == 1 then
 					position = Vector(pickupPosition.X+30,pickupPosition.Y-30)
-					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_ID, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)			
+					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_TYPE, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)			
 					grainSprite = garden.GRAIN_SHELL:GetSprite() 
 					grainSprite:Load("gfx/grain.anm2", true)							
 					grainSprite:Play("North East", true) 
@@ -285,7 +287,7 @@ function garden:harvestEffect()
 				showGrain = math.random(2)
 				if showGrain == 1 then
 					position = Vector(pickupPosition.X,pickupPosition.Y-30)
-					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_ID, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
+					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_TYPE, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
 					grainSprite = garden.GRAIN_SHELL:GetSprite() 
 					grainSprite:Load("gfx/grain.anm2", true)							
 					grainSprite:Play("North", true) 				
@@ -293,7 +295,7 @@ function garden:harvestEffect()
 				showGrain = math.random(2)
 				if showGrain == 1 then
 					position = Vector(pickupPosition.X-30,pickupPosition.Y-30)
-					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_ID, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
+					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_TYPE, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
 					grainSprite = garden.GRAIN_SHELL:GetSprite() 
 					grainSprite:Load("gfx/grain.anm2", true)							
 					grainSprite:Play("North West", true) 
@@ -301,7 +303,7 @@ function garden:harvestEffect()
 				showGrain = math.random(2)
 				if showGrain == 1 then
 					position = Vector(pickupPosition.X-30,pickupPosition.Y)
-					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_ID, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
+					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_TYPE, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
 					grainSprite = garden.GRAIN_SHELL:GetSprite() 
 					grainSprite:Load("gfx/grain.anm2", true)							
 					grainSprite:Play("West", true) 
@@ -309,7 +311,7 @@ function garden:harvestEffect()
 				showGrain = math.random(2)
 				if showGrain == 1 then
 					position = Vector(pickupPosition.X-30,pickupPosition.Y+30)
-					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_ID, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
+					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_TYPE, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
 					grainSprite = garden.GRAIN_SHELL:GetSprite() 
 					grainSprite:Load("gfx/grain.anm2", true)							
 					grainSprite:Play("South West", true) 
@@ -317,7 +319,7 @@ function garden:harvestEffect()
 				showGrain = math.random(2)
 				if showGrain == 1 then
 					position = Vector(pickupPosition.X,pickupPosition.Y+30)
-					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_ID, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
+					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_TYPE, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
 					grainSprite = garden.GRAIN_SHELL:GetSprite() 
 					grainSprite:Load("gfx/grain.anm2", true)							
 					grainSprite:Play("South", true)
@@ -325,7 +327,7 @@ function garden:harvestEffect()
 				showGrain = math.random(2)
 				if showGrain == 1 then
 					position = Vector(pickupPosition.X+30,pickupPosition.Y+30)
-					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_ID, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
+					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_TYPE, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
 					grainSprite = garden.GRAIN_SHELL:GetSprite() 
 					grainSprite:Load("gfx/grain.anm2", true)							
 					grainSprite:Play("South East", true)
@@ -333,7 +335,7 @@ function garden:harvestEffect()
 				showGrain = math.random(2)
 				if showGrain == 1 then  
 					position = Vector(pickupPosition.X+30,pickupPosition.Y)
-					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_ID, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
+					garden.GRAIN_SHELL = Isaac.Spawn(garden.GRAIN_TYPE, garden.GRAIN_VARIANT, garden.GRAIN_SUBTYPE, position, velocity, spawnOwner)								
 					grainSprite = garden.GRAIN_SHELL:GetSprite() 
 					grainSprite:Load("gfx/grain.anm2", true)							
 					grainSprite:Play("East", true) 
@@ -426,6 +428,10 @@ function garden:deceiverEffect(target, amount, flags, source, cooldown)
 	end
 end
 
+-------------------
+--The Garden Room--
+-------------------
+
 function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
 	local currentRoom = Game():GetRoom()	
@@ -433,8 +439,7 @@ function garden:gardenRoomUpdate()
 	if currentRoomType == RoomType.ROOM_LIBRARY then --Player is in a Garden
 		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden
 			if garden.VISIT_NUMBER == 0 then      --Player has never been in this Garden			
-				garden.FIGHT_CAN_START = true			
-				garden.FIGHT_HAS_STARTED = false
+				garden.FIGHT_CAN_START = true							
 				garden.GARDEN_HEARTS_CAN_SPAWN = true
 
 				--Handle Heart Spawning
@@ -460,8 +465,8 @@ function garden:gardenRoomUpdate()
 			local roomCenter = currentRoom:GetCenterPos()			
 			Isaac.GridSpawn(GridEntityType.GRID_PIT, 0, roomCenter, true)
 			garden.TREE_LOCATION = Vector(roomCenter.X, roomCenter.Y+10)			
-			garden.TREE_SHELL = Isaac.Spawn(garden.TREE_ID, garden.TREE_VARIANT, garden.TREE_SUBTYPE, garden.TREE_LOCATION, garden.TREE_VELOCITY, garden.TREE_SPAWN_OWNER)
-			local patch = Isaac.Spawn(garden.TREE_ID, garden.PATCH_VARIANT, garden.TREE_SUBTYPE, garden.TREE_LOCATION, garden.TREE_VELOCITY, garden.TREE_SPAWN_OWNER)
+			garden.TREE_SHELL = Isaac.Spawn(garden.TREE_TYPE, garden.TREE_VARIANT, garden.TREE_SUBTYPE, garden.TREE_LOCATION, garden.TREE_VELOCITY, garden.TREE_SPAWN_OWNER)
+			local patch = Isaac.Spawn(garden.TREE_TYPE, garden.PATCH_VARIANT, garden.TREE_SUBTYPE, garden.TREE_LOCATION, garden.TREE_VELOCITY, garden.TREE_SPAWN_OWNER)
 			patch.RenderZOffset = -5000
 
 			--Render grass
@@ -471,7 +476,7 @@ function garden:gardenRoomUpdate()
 			local spawnOwner = nil
 			for i = 1, math.random(13) do
 				position = currentRoom:GetRandomPosition(0)
-				garden.GRASS_SHELL = Isaac.Spawn(garden.GRASS_ID, garden.GRASS_VARIANT, garden.GRASS_SUBTYPE, position, velocity, spawnOwner)
+				garden.GRASS_SHELL = Isaac.Spawn(garden.GRASS_TYPE, garden.GRASS_VARIANT, garden.GRASS_SUBTYPE, position, velocity, spawnOwner)
 				garden.GRASS_SHELL.RenderZOffset = -5000			
 				grassSprite = garden.GRASS_SHELL:GetSprite() 
 				grassSprite:Load("gfx/grass.anm2", true)
@@ -506,20 +511,20 @@ function garden:gardenRoomUpdate()
 			end
 		end	
 
-		--Check if player is activating the fight
+		--Checks before Wave 1
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position
 		local roomCenter = currentRoom:GetCenterPos()
 		local positionalDifference = Vector(playerPosition.X-roomCenter.X, playerPosition.Y-roomCenter.Y)
 		if math.abs(positionalDifference.X) < 75 and math.abs(positionalDifference.Y) < 45 then
-			if garden.FIGHT_CAN_START and not garden.FIGHT_HAS_STARTED then
+			if garden.FIGHT_CAN_START then
 				
 				--change music here (Garden_Serpent.ogg)				
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)				
 				Game():ShakeScreen(12)
 				
 				--Spawn Wave 1 (Pin)				
-				garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_ID, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
+				garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_TYPE, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
 
 				--play sfx here (Curse_of_Mortality.wav)
 				local volume = 100
@@ -528,59 +533,120 @@ function garden:gardenRoomUpdate()
 				local pitch = 1
 				garden.SERPENT_SHELL:ToNPC():PlaySound("172", volume, frameDelay, loop, pitch)	
 
+				garden.WAVE_NUMBER = 1
 				garden.FIGHT_CAN_START = false												
 				garden.barCurrentRoomDoors()				
 			end				
 		end
 
-		--Checks during TheSerpent fight
-		if not FIGHT_CAN_START then 
+		
+		--Checks during Wave 1
+		local bossAlive = false
+		if garden.WAVE_NUMBER == 1 then
 			local entities = Isaac.GetRoomEntities()
 			for i = 1, #entities do
 				local singleEntity = entities[i]
-				if singleEntity:IsBoss() and singleEntity:IsDead() then	
-					if singleEntity.Type == garden.SERPENT_ID and singleEntity.Variant == garden.SERPENT_VARIANT and singleEntity.Subtype == garden.SERPENT_SUBTYPE then						
-						garden.SERPENT_LOCATION = Vector(roomCenter.X+100, roomCenter.Y)		
-						garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
-						garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
-						garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_ID, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
-						garden.SERPENT_SHELL:ToNPC():PlaySound("172", 100, 0, false, 1)							
-					elseif singleEntity.Type == garden.SERPENT_HOLLOW_ID and singleEntity.Variant == garden.SERPENT_HOLLOW_VARIANT and singleEntity.Subtype == garden.SERPENT_SUBTYPE then						
-						garden.SERPENT_LOCATION = Vector(roomCenter.X-100, roomCenter.Y)		
-						garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_LARRY_ID, garden.SERPENT_LARRY_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
-						garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_LARRY_ID, garden.SERPENT_LARRY_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
-						garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_LARRY_ID, garden.SERPENT_LARRY_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
-						garden.SERPENT_SHELL:ToNPC():PlaySound("172", 100, 0, false, 1)					
-					elseif singleEntity.Type == garden.SERPENT_LARRY_ID and singleEntity.Variant == garden.SERPENT_LARRY_VARIANT and singleEntity.Subtype == garden.SERPENT_SUBTYPE and not garden.ITEM_REWARDED then
-						garden.openCurrentRoomDoors()						 
-						garden.applyMortalityCurse()
-						
-						local volume = 100
-						local frameDelay = 0
-						local loop = false
-						local pitch = 1
-						garden.SERPENT_SHELL:ToNPC():PlaySound(SoundEffect.SOUND_HOLY, volume, frameDelay, loop, pitch)	
-						
-						--currentRoom:PlayMusic() doesnt seem to do anything			
-						--change music here (Garden_Holy.ogg)
-						local roomCenter = currentRoom:GetCenterPos()
-						local initialStep = 0 --Not sure what this does
-						local avoidActiveEnemies = true
-						local startingPosition = Vector(roomCenter.X,roomCenter.Y+90)
-						local pickupPosition = currentRoom:FindFreePickupSpawnPosition(startingPosition, initialStep, avoidActiveEnemies)
-						local velocity = Vector(0,0)
-						local spawnOwner = nil
-						local randomNumber = math.random(#garden.gardenPool) 
-						local randomItem = garden.gardenPool[randomNumber]			
-						Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)
-						garden.ITEM_REWARDED = true
-						table.remove(garden.gardenPool,randomNumber) --Remove the item from the pool																
-					end
+				if singleEntity.Type == garden.SERPENT_TYPE then	
+					bossAlive = true
 				end
+			end
+
+			if not bossAlive then
+				garden.SERPENT_LOCATION = Vector(roomCenter.X+100, roomCenter.Y)		
+				local randomNum = math.random(5,12)
+				for i=1, randomNum do
+					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_TYPE, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
+				end
+				garden.SERPENT_SHELL:ToNPC():PlaySound("172", 100, 0, false, 1)
+				garden.WAVE_NUMBER = 2																	
+			end
+		end		
+
+		--Checks during Wave 2
+		bossAlive = false
+		if garden.WAVE_NUMBER == 2 then
+			local entities = Isaac.GetRoomEntities()
+			for i = 1, #entities do
+				local singleEntity = entities[i]
+				if singleEntity.Type == garden.SERPENT_HOLLOW_TYPE then	
+					bossAlive = true
+				end
+			end
+
+			if not bossAlive then
+				garden.SERPENT_LOCATION = Vector(roomCenter.X+100, roomCenter.Y)		
+				local randomNum = math.random(5,12)
+				for i=1, randomNum do
+					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_LARRY_TYPE, garden.SERPENT_LARRY_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
+				end
+				garden.SERPENT_SHELL:ToNPC():PlaySound("172", 100, 0, false, 1)
+				garden.WAVE_NUMBER = 3																	
+			end
+		end		
+
+		--Checks during Wave 3
+		bossAlive = false
+		if garden.WAVE_NUMBER == 3 then 
+			local entities = Isaac.GetRoomEntities()
+			for i = 1, #entities do
+				local singleEntity = entities[i]
+				if singleEntity.Type == garden.SERPENT_LARRY_TYPE then	
+					bossAlive = true
+				end
+			end
+
+			if not bossAlive and not garden.ITEM_REWARDED then
+				garden.openCurrentRoomDoors()						 
+				garden.applyMortalityCurse()
+				
+				local volume = 100
+				local frameDelay = 0
+				local loop = false
+				local pitch = 1
+				garden.SERPENT_SHELL:ToNPC():PlaySound(SoundEffect.SOUND_HOLY, volume, frameDelay, loop, pitch)	
+				
+				--currentRoom:PlayMusic() doesnt seem to do anything			
+				--change music here (Garden_Holy.ogg)
+				local roomCenter = currentRoom:GetCenterPos()
+				local initialStep = 0 --Not sure what this does
+				local avoidActiveEnemies = true
+				local startingPosition = Vector(roomCenter.X,roomCenter.Y+90)
+				local pickupPosition = currentRoom:FindFreePickupSpawnPosition(startingPosition, initialStep, avoidActiveEnemies)
+				local velocity = Vector(0,0)
+				local spawnOwner = nil
+				local randomNumber = math.random(#garden.gardenPool) 
+				local randomItem = garden.gardenPool[randomNumber]			
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)
+				garden.ITEM_REWARDED = true
+				table.remove(garden.gardenPool,randomNumber) --Remove the item from the pool																				
 			end
 		end
 	end
 end
+
+function garden:openCurrentRoomDoors()
+	local currentRoom = Game():GetRoom()
+	for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
+	local door = currentRoom:GetDoor(i)
+		if door ~= nil then
+	    	door:Open() 
+		end
+	end
+end
+
+function garden:barCurrentRoomDoors()
+	local currentRoom = Game():GetRoom()
+	for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
+	local door = currentRoom:GetDoor(i)
+		if door ~= nil then
+	    	door:Bar() 
+		end
+	end
+end
+
+---------------------
+--Curse Controllers--
+---------------------
 
 function garden:applyMortalityCurse()
 	local currentLevel = Game():GetLevel()	
@@ -608,46 +674,26 @@ function garden:mortalityCurseEffect()
 	end
 end
 
-function garden:openCurrentRoomDoors()
-	local currentRoom = Game():GetRoom()
-	for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
-	local door = currentRoom:GetDoor(i)
-		if door ~= nil then
-	    	door:Open() 
-		end
-	end
-end
+--------------------
+--Flag Controllers--
+--------------------
 
-function garden:barCurrentRoomDoors()
-	local currentRoom = Game():GetRoom()
-	for i = 0, DoorSlot.NUM_DOOR_SLOTS-1 do
-	local door = currentRoom:GetDoor(i)
-		if door ~= nil then
-	    	door:Bar() 
-		end
-	end
-end
-
-function garden:checkForNewLevel() --Reset Flags on a new floor
+function garden:setNewFloorFlags()
 	local currentLevel = Game():GetLevel()
 	if currentLevel:GetStage() ~= garden.CURRENT_LEVEL then
 		garden.CURRENT_LEVEL = currentLevel:GetStage()
 		garden.GARDEN_HEARTS_CAN_SPAWN = true
-		garden.FIGHT_CAN_START = true
-		garden.FIGHT_HAS_STARTED = false
-		garden.WAVE_NUMBER = 0
-		garden.WAVE_ENDED = false
+		garden.FIGHT_CAN_START = true		
+		garden.WAVE_NUMBER = 0		
 		garden.VISIT_NUMBER = 0 
 		garden.ITEM_REWARDED = false	
 	end	
 end	
 
-function garden:checkForNewRun() --Reset Flags on a new run
+function garden:setNewRunFlags()
 	garden.GARDEN_HEARTS_CAN_SPAWN = true
-	garden.FIGHT_CAN_START = true
-	garden.FIGHT_HAS_STARTED = false
-	garden.WAVE_NUMBER = 0
-	garden.WAVE_ENDED = false
+	garden.FIGHT_CAN_START = true	
+	garden.WAVE_NUMBER = 0	
 	garden.VISIT_NUMBER = 0 
 	garden.ITEM_REWARDED = false	
 
@@ -665,6 +711,10 @@ function garden:checkForNewRun() --Reset Flags on a new run
 	garden.HAS_THE_BEAST = false
 	garden.HAS_DECEIVER = false
 end	
+
+--------------------
+--Familiar Effects--
+--------------------
 
 function garden:updateFamiliar(familiar)
 	if familiar.Variant == garden.ADAM_FAMILIAR_VARIANT then
@@ -685,6 +735,10 @@ function garden:updateFamiliar(familiar)
 		end
 	end
 end
+
+----------------
+--Item Pickups--
+----------------
 
 function garden:itemPickedUp(player, statFromXML)
 	local player = Isaac.GetPlayer(0)	
@@ -835,8 +889,14 @@ function garden:itemPickedUp(player, statFromXML)
 	end
 end
 
+-----------------
+--Mod Callbacks--
+-----------------
 
+--Admin Callbacks
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.debugMode)
+
+--Item Callbacks
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.shameEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.forbiddenFruitEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.grantedDomainEffect)
@@ -845,14 +905,20 @@ garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theFirstDayEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.myBelovedEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.harvestEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.crackTheEarthEffect)
-
-garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoomUpdate)
-garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect)
-garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.checkForNewLevel)
-garden:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, garden.checkForNewRun)
-
-garden:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, garden.removeMortalityCurse)
+garden:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, garden.deceiverEffect)
 garden:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, garden.itemPickedUp)
+
+--Room Callbacks
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoomUpdate)
+
+--Curse Callbacks
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect)
+garden:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, garden.removeMortalityCurse)
+
+--Flag Callbacks
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.setNewFloorFlags)
+garden:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, garden.setNewRunFlags)
+
+--Familiar Callbacks
 garden:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, garden.updateFamiliar, garden.ADAM_FAMILIAR_VARIANT)
 garden:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, garden.updateFamiliar, garden.BEAST_FAMILIAR_VARIANT)
-garden:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, garden.deceiverEffect)

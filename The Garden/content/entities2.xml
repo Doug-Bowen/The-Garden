@@ -1,6 +1,6 @@
 <entities anm2root="gfx/" version="5">
     <entity anm2path="theSerpent.anm2" reroll="false" baseHP="130" boss="1" bossID="7" champion="0" collisionDamage="2" collisionMass="30" collisionRadius="13" friction="1" id="62" name="The Serpent" numGridCollisionPoints="12" shadowSize="18" stageHP="0" variant="55" subtype="0" portrait="0" bestiary="false">
-        <gibs amount="1" blood="1" bone="0" eye="0" gut="0" large="1" />
+        <gibs amount="6" blood="1" bone="0" eye="0" gut="0" large="0" />
         <preload-snd id="117" /> <!-- SOUND_MONSTER_ROAR_2 -->
         <preload-snd id="13" />  <!-- SOUND_BOSS_LITE_HISS -->
         <preload-snd id="64" />  <!-- SOUND_MAGGOT_BURST_OUT -->
@@ -24,16 +24,16 @@
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />        
     </entity>
 
-    <entity anm2path="grass.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" id="1000" name="Grain" numGridCollisionPoints="10" shadowSize="0" stageHP="0" variant="780">
+    <entity anm2path="grass.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" id="1000" name="Grass" numGridCollisionPoints="10" shadowSize="0" stageHP="0" variant="780">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />        
     </entity>    
 
-    <entity anm2path="serpentHollow.anm2" baseHP="22" boss="1" bossID="26" champion="0" collisionDamage="1" collisionMass="50" collisionRadius="20" friction="1" id="19" name="Serpent Hollow" numGridCollisionPoints="0" shadowSize="23" stageHP="0" variant="54" portrait="0" bestiary="false">
-        <gibs amount="6" blood="1" bone="1" eye="0" gut="0" large="0" worm="1" />
+    <entity anm2path="serpentHollow.anm2" baseHP="22" boss="1" bossID="26" champion="0" collisionDamage="1" collisionMass="50" collisionRadius="20" friction="1" id="19" name="Serpent Hollow" numGridCollisionPoints="0" shadowSize="23" stageHP="0" variant="765" portrait="0" bestiary="false">
+        <gibs amount="6" blood="1" bone="0" eye="0" gut="0" large="0" worm="1" />
     </entity>
 
-    <entity anm2path="serpentLarry.anm2" baseHP="22" boss="1" bossID="26" champion="0" collisionDamage="1" collisionMass="50" collisionRadius="20" friction="1" id="19" name="Serpent Larry" numGridCollisionPoints="0" shadowSize="23" stageHP="0" variant="53" portrait="0" bestiary="false">
-        <gibs amount="6" blood="1" bone="1" eye="0" gut="0" large="0" worm="1" />
+    <entity anm2path="serpentLarry.anm2" baseHP="22" boss="1" bossID="26" champion="0" collisionDamage="1" collisionMass="50" collisionRadius="20" friction="1" id="19" name="Serpent Larry" numGridCollisionPoints="0" shadowSize="23" stageHP="0" variant="766" portrait="0" bestiary="false">
+        <gibs amount="6" blood="1" bone="0" eye="0" gut="0" large="0" worm="1" />
     </entity>
 
     <entity anm2path="Beast.anm2" baseHP="0" boss="0" champion="0" collisionDamage="14" collisionMass="3" collisionRadius="13" friction="1" id="3" name="TheBeast" numGridCollisionPoints="10" shadowSize="10" stageHP="0" variant="779">
