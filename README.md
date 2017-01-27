@@ -10,7 +10,7 @@ Features:
 * Debug flag - Test all of the items in room 1 :white_check_mark:
  
 Fixes:
-* Corrected Curse of Mortality making Donation and Reroll machines disappear :clock3:
+* Corrected Curse of Mortality making Donation and Reroll machines disappear :white_check_mark:
 * Corrected Apple tears gfx not popping correctly :clock3:
 * Corrected a rare situation where Harvest would enter a state where it would never proc again :white_check_mark:
 * Correct Harvest proc chance 5% -> 3% :white_check_mark:
