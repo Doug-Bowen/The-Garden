@@ -737,6 +737,7 @@ function garden:updateFamiliar(familiar)
 
 	if familiar.Variant == garden.BEAST_FAMILIAR_VARIANT then
 		if garden.HAS_THE_BEAST then
+			--familiar:MoveDelayed(100)
 		end
 	end
 end
@@ -850,7 +851,10 @@ function garden:itemPickedUp(player, statFromXML)
 	end
 
 	if player:HasCollectible(garden.COLLECTIBLE_THE_BEAST) and not garden.HAS_THE_BEAST then			
-		garden.HAS_THE_BEAST = true  
+		garden.HAS_THE_BEAST = true
+		local player = Isaac.GetPlayer(0)
+		local playerPosition = player.Position			
+		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.BEAST_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)		  
 	end
 
 	--Deceiver Tansformation
