@@ -1,11 +1,12 @@
 # v2.0:
 
 Features:
-* 2 new Serpent variants :clock3: (Consider make the room a wave defense against them all?)
+* The Garden Room is now 3 waves of bosses :white_check_mark: 
+* 2 new Serpent variants :white_check_mark:
 * New door aesthetic in the Garden :clock3:
 * New Ladybug enemies in the garden :clock3: (Clone of melee creepers)
 * 2 New items :clock3: (Deisgned below)
-* 1 New transformation
+* 1 New transformation :white_check_mark:
 * Debug flag - Test all of the items in room 1 :white_check_mark:
  
 Fixes:
@@ -28,7 +29,7 @@ Balances:
 |---|---|---|---|---|
 |Crack The Earth|:white_check_mark:|:clock3:|:clock3:|:white_check_mark:|
 |The Beast|:white_check_mark:|:clock3:|No Costume|:clock3:|
-|Deceiver!|:white_check_mark:|Not needed|:clock3:|:clock3:|
+|Deceiver!|:white_check_mark:|Not needed|:clock3:|:white_check_mark:|
 
 
 ### Item Details
