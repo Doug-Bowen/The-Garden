@@ -419,8 +419,8 @@ function garden:crackTheEarthEffect()
 	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) then		
 		local currentRoom = Game():GetRoom()	
 		if currentRoom:GetFrameCount() % 10 == 0 then -- try only every 10th frame
-			local randomNum = math.random(1000) -- 1% chance
-			if randomNum >= 5 then
+			local randomNum = math.random(100) -- 1% chance
+			if randomNum == 5 then
 				local entities = Isaac.GetRoomEntities()
 				for i = 1, #entities do
 					local singleEntity = entities[i]
@@ -461,8 +461,24 @@ function garden:myBelovedEffect()
 	end
 end
 
-function garden:deceiverEffect()
+function garden:deceiverEffect(target, amount, flags, source, cooldown)
 	if garden.HAS_DECEIVER then
+		if target:IsVulnerableEnemy() and target.HitPoints-amount <= 0 then
+			local randomNum = math.random(1) --5% chance
+			if randomNum == 1 then 				
+				local player = Isaac.GetPlayer(0)
+				if not player:HasFullHearts() then
+					player:AddHearts(1)  --Lifesteal
+					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
+					local volume = 100
+					local frameDelay = 0
+					local loop = false
+					local pitch = 1
+					soundShell:ToNPC():PlaySound(SoundEffect.SOUND_VAMP_GULP, volume, frameDelay, loop, pitch)	--Make it a sound
+					soundShell:Remove()	
+				end
+			end
+		end
 	end
 end
 
@@ -672,13 +688,13 @@ function garden:checkForNewLevel() --Reset Flags on a new floor
 	local currentLevel = Game():GetLevel()
 	if currentLevel:GetStage() ~= garden.CURRENT_LEVEL then
 		garden.CURRENT_LEVEL = currentLevel:GetStage()
-	garden.GARDEN_HEARTS_CAN_SPAWN = true
-	garden.FIGHT_CAN_START = true
-	garden.FIGHT_HAS_STARTED = false
-	garden.WAVE_NUMBER = 0
-	garden.WAVE_ENDED = false
-	garden.VISIT_NUMBER = 0 
-	garden.ITEM_REWARDED = false	
+		garden.GARDEN_HEARTS_CAN_SPAWN = true
+		garden.FIGHT_CAN_START = true
+		garden.FIGHT_HAS_STARTED = false
+		garden.WAVE_NUMBER = 0
+		garden.WAVE_ENDED = false
+		garden.VISIT_NUMBER = 0 
+		garden.ITEM_REWARDED = false	
 	end	
 end	
 
@@ -863,8 +879,7 @@ function garden:itemPickedUp(player, statFromXML)
 			local pitch = 1
 			local pillText = Isaac.GetPillEffectByName("Deceiver!")
 			player:UsePill(pillText,PillColor.PILL_BLUE_BLUE)
-			player:StopExtraAnimation()            
-			player:AnimateHappy()            
+			player:StopExtraAnimation()            			
 			local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
 			soundShell:ToNPC():PlaySound(SoundEffect.SOUND_POWERUP_SPEWER, volume, frameDelay, loop, pitch)	--Make it a sound
 			soundShell:Remove()									
@@ -882,7 +897,6 @@ garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theFirstDayEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.myBelovedEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.harvestEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.crackTheEarthEffect)
-garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.deceiverEffect)
 
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoomUpdate)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.mortalityCurseEffect)
@@ -893,3 +907,4 @@ garden:AddCallback(ModCallbacks.MC_POST_CURSE_EVAL, garden.removeMortalityCurse)
 garden:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, garden.itemPickedUp)
 garden:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, garden.updateFamiliar, garden.ADAM_FAMILIAR_VARIANT)
 garden:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, garden.updateFamiliar, garden.BEAST_FAMILIAR_VARIANT)
+garden:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, garden.deceiverEffect)
