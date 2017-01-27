@@ -864,6 +864,7 @@ function garden:itemPickedUp(player, statFromXML)
 			local pillText = Isaac.GetPillEffectByName("Deceiver!")
 			player:UsePill(pillText,PillColor.PILL_BLUE_BLUE)
 			player:StopExtraAnimation()            
+			player:AnimateHappy()            
 			local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
 			soundShell:ToNPC():PlaySound(SoundEffect.SOUND_POWERUP_SPEWER, volume, frameDelay, loop, pitch)	--Make it a sound
 			soundShell:Remove()									
