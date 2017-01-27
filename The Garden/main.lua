@@ -143,7 +143,7 @@ end
 
 
 ----------------
---Item EFFECTS--
+--Item Effects--
 ----------------
 
 function garden:shameEffect()
@@ -428,9 +428,9 @@ function garden:deceiverEffect(target, amount, flags, source, cooldown)
 	end
 end
 
--------------------
---The Garden Room--
--------------------
+--------------------
+--Room Controllers--
+--------------------
 
 function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
@@ -516,7 +516,7 @@ function garden:gardenRoomUpdate()
 		local playerPosition = player.Position
 		local roomCenter = currentRoom:GetCenterPos()
 		local positionalDifference = Vector(playerPosition.X-roomCenter.X, playerPosition.Y-roomCenter.Y)
-		if math.abs(positionalDifference.X) < 75 and math.abs(positionalDifference.Y) < 45 then
+		if math.abs(positionalDifference.X) < 75 and math.abs(positionalDifference.Y) < 40 then
 			if garden.FIGHT_CAN_START then
 				
 				--change music here (Garden_Serpent.ogg)				
@@ -574,7 +574,7 @@ function garden:gardenRoomUpdate()
 			end
 
 			if not bossAlive then
-				garden.SERPENT_LOCATION = Vector(roomCenter.X+100, roomCenter.Y)		
+				garden.SERPENT_LOCATION = Vector(roomCenter.X-100, roomCenter.Y)		
 				local randomNum = math.random(5,12)
 				for i=1, randomNum do
 					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_LARRY_TYPE, garden.SERPENT_LARRY_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
