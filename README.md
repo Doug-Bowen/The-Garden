@@ -34,9 +34,9 @@ Balances:
 
 ### Item Details
  * Crack The Earth
-   * Effect: Every 10 frames, has a 1% chance to creates earth quakes under all enemies in the room, instantly killing all enemies in the room
+   * Effect: Every 10 frames, has a 5% chance to creates earth quakes under all enemies in the room, dealing strong damage. Excludes flying enemies and bosses.
    * Item Look: Black Feather (from a raven)
-   * Costume: Isaac has a back cat's tail (Similar to the Gnawed leaf Mario tail costume)
+   * Costume: Isaac has a back cat's tail? (Similar to the Gnawed leaf Mario tail costume)
 
  * The Beast
    * Effect: Isaac gains a familiar who travels the room punching his fists down on the ground. (causing small rock groud erruption effects)
