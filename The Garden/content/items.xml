@@ -10,6 +10,6 @@
 	<passive description="Your heart is black..." gfx="collectibles_exiled.png" name="Exiled" cache="none"/>
 	<passive description="Lover, I'm yours..." gfx="collectibles_my_beloved.png" name="My Beloved" cache="none"/>
 	<passive description="Let there be light!" gfx="collectibles_the_first_day.png" name="The First Day" cache="none"/>
-	<passive description="Jagged Rocky Death" gfx="collectibles_crack_the_earth.png" name="Crack The Earth" cache="none"/>
+	<passive description="Sharp Rocky Death" gfx="collectibles_crack_the_earth.png" name="Crack The Earth" cache="none"/>
 	<familiar description="Awake! Ancient evil!" gfx="collectibles_the_beast.png" name="The Beast" cache="none"/>
 </items>

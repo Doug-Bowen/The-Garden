@@ -32,12 +32,12 @@
         <gibs amount="6" blood="1" bone="0" eye="0" gut="0" large="0" worm="1" />
     </entity>
 
-    <entity anm2path="serpentLarry.anm2" baseHP="22" boss="1" bossID="2" champion="0" collisionDamage="1" collisionMass="50" collisionRadius="20" friction="1" id="19" name="Serpent Larry" numGridCollisionPoints="0" shadowSize="25" stageHP="0" variant="766" portrait="0" bestiary="false">
+    <entity anm2path="serpentLarry.anm2" baseHP="22" boss="1" bossID="2" champion="0" collisionDamage="1" collisionMass="50" collisionRadius="20" friction="1" id="19" name="Serpent Larry" numGridCollisionPoints="0" shadowSize="25" stageHP="0" variant="799" portrait="0" bestiary="false">
         <gibs amount="8" blood="1" bone="1" eye="0" gut="1" large="0" />
         <preload-snd id="115" /> <!-- SOUND_MONSTER_ROAR_0 -->
     </entity>
 
-    <entity anm2path="Beast.anm2" baseHP="0" boss="0" champion="0" collisionDamage="14" collisionMass="3" collisionRadius="13" friction="1" id="3" name="TheBeast" numGridCollisionPoints="10" shadowSize="10" stageHP="0" variant="779">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />        
+    <entity anm2path="Beast.anm2" baseHP="0" boss="0" champion="0" collisionDamage="5.5" collisionMass="5" collisionRadius="13" friction="1" id="3" name="TheBeast" numGridCollisionPoints="12" shadowSize="12" stageHP="0" variant="779">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
 </entities>

@@ -556,6 +556,12 @@ function garden:gardenRoomUpdate()
 				if singleEntity.Type == garden.SERPENT_TYPE then	
 					bossAlive = true
 				end
+
+				--turn pins tears green
+				--if singleEntity.Type == EntityType.ENTITY_PROJECTILE then
+				--	local green = Color(0, 255, 0, 255, 0, 0, 0)
+				--	singleEntity.Color = green					
+				--end
 			end
 
 			if not bossAlive then
