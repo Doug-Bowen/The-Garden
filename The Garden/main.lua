@@ -364,15 +364,22 @@ function garden:crackTheEarthEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) then		
 		local currentRoom = Game():GetRoom()	
-		if currentRoom:GetFrameCount() % 10 == 0 then -- Only every 10th frame
-			local randomNum = math.random(100) -- 5% chance
-			if randomNum <=5 then
-				local entities = Isaac.GetRoomEntities()
-				for i = 1, #entities do
+		if currentRoom:GetFrameCount() % 100 == 0 then -- Only every 100th frame
+			local entities = Isaac.GetRoomEntities()
+			for i = 1, #entities do
+				local randomNum = math.random(100) -- 10% chance
+				if randomNum <=10 then
 					local singleEntity = entities[i]
 					if singleEntity:IsVulnerableEnemy() and not singleEntity:IsFlying() and not singleEntity:IsBoss() then		
 						Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ROCK_EXPLOSION, 0, singleEntity.Position, Vector(0,0), nil)
-						singleEntity:TakeDamage(7.0,0,EntityRef(player),0)
+						singleEntity:TakeDamage(10.0,0,EntityRef(player),0)
+						local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
+						local volume = 30
+						local frameDelay = 0
+						local loop = false
+						local pitch = 1
+						soundShell:ToNPC():PlaySound(SoundEffect.SOUND_ROCK_CRUMBLE, volume, frameDelay, loop, pitch)	--Make it a sound
+						soundShell:Remove()	
 					end	
 				end				
 			end
