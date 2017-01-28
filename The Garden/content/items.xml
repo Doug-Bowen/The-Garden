@@ -11,5 +11,5 @@
 	<passive description="Lover, I'm yours..." gfx="collectibles_my_beloved.png" name="My Beloved" cache="none"/>
 	<passive description="Let there be light!" gfx="collectibles_the_first_day.png" name="The First Day" cache="none"/>
 	<passive description="Jagged Rocky Death" gfx="collectibles_crack_the_earth.png" name="Crack The Earth" cache="none"/>
-	<familiar description="Awaken the ancient evil!" gfx="collectibles_the_beast.png" name="The Beast" cache="none"/>
+	<familiar description="Awake! Ancient evil!" gfx="collectibles_the_beast.png" name="The Beast" cache="none"/>
 </items>

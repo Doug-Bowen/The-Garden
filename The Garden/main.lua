@@ -364,15 +364,15 @@ function garden:crackTheEarthEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) then		
 		local currentRoom = Game():GetRoom()	
-		if currentRoom:GetFrameCount() % 10 == 0 then -- try only every 10th frame
-			local randomNum = math.random(100) -- 1% chance
-			if randomNum == 5 then
+		if currentRoom:GetFrameCount() % 10 == 0 then -- Only every 10th frame
+			local randomNum = math.random(100) -- 5% chance
+			if randomNum <=5 then
 				local entities = Isaac.GetRoomEntities()
 				for i = 1, #entities do
 					local singleEntity = entities[i]
-					if singleEntity:IsVulnerableEnemy() then		
-						Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.SHOCKWAVE, 0, singleEntity.Position, Vector(0,0), nil)
+					if singleEntity:IsVulnerableEnemy() and not singleEntity:IsFlying() and not singleEntity:IsBoss() then		
 						Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ROCK_EXPLOSION, 0, singleEntity.Position, Vector(0,0), nil)
+						singleEntity:TakeDamage(7.0,0,EntityRef(player),0)
 					end	
 				end				
 			end
