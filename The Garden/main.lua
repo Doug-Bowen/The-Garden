@@ -367,8 +367,8 @@ function garden:crackTheEarthEffect()
 		if currentRoom:GetFrameCount() % 100 == 0 then -- Only every 100th frame
 			local entities = Isaac.GetRoomEntities()
 			for i = 1, #entities do
-				local randomNum = math.random(100) -- 10% chance
-				if randomNum <=10 then
+				local randomNum = math.random(100) -- 2% chance per luck
+				if randomNum <= (player.Luck * 2) then
 					local singleEntity = entities[i]
 					if singleEntity:IsVulnerableEnemy() and not singleEntity:IsFlying() and not singleEntity:IsBoss() then		
 						Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ROCK_EXPLOSION, 0, singleEntity.Position, Vector(0,0), nil)
