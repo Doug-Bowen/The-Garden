@@ -1,6 +1,4 @@
-Do you like my mods? Give this repo a star! ★
-
-<a href="https://flattr.com/submit/auto?fid=z72okx&url=http%3A%2F%2Fwww.github.com%2FDoug-Bowen%2FisaacMods" target="_blank"><img src="http://i.imgur.com/Xnq1jGe.png" alt="Flattr this" title="Flattr this" border="0"></a>
+Do you like my mods? Give this repo a star! ★ or buy me a beer: <a href="https://flattr.com/submit/auto?fid=z72okx&url=http%3A%2F%2Fwww.github.com%2FDoug-Bowen%2FisaacMods" target="_blank"><img src="http://i.imgur.com/Xnq1jGe.png" alt="Flattr this" title="Flattr this" border="0"></a>
 
 # The Garden Mod
 
