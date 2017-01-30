@@ -590,7 +590,7 @@ function garden:gardenRoomUpdate()
 				garden.SERPENT_LOCATION = Vector(roomCenter.X-100, roomCenter.Y)		
 				local randomNum = math.random(5,12)
 				for i=1, randomNum do
-					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_LARRY_TYPE, garden.SERPENT_LARRY_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
+					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_LARRY_TYPE, garden.SERPENT_LARRY_VARIANT, 1, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
 				end
 				garden.SERPENT_SHELL:ToNPC():PlaySound("172", 100, 0, false, 1)
 				garden.WAVE_NUMBER = 3																	
