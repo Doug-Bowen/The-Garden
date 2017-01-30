@@ -13,7 +13,6 @@ Fixes:
 * Corrected Curse of Mortality making Donation and Reroll machines disappear :white_check_mark:
 * Corrected Apple tears gfx not popping correctly :clock3:
 * Corrected a rare situation where Harvest would enter a state where it would never proc again :white_check_mark:
-* Correct Harvest proc chance 5% -> 3% :white_check_mark:
 * Corrected an issue where the player could not get 'My Beloved' from the Garden Room :white_check_mark:
 * Corrected Serpent gibs :white_check_mark:
 * Corrected Costume overlays :white_check_mark:
@@ -23,6 +22,7 @@ Balances:
 * Deception risk changed to 40% chance to negatively impact you, down from 50% :white_check_mark:
 * Exiled gives players 2 Heart Containers, not 3 :white_check_mark:
 * The Fall of Man rewards .5 damage per heart taken, down from 1.0 :white_check_mark:
+* Harvest proc chance 5% -> 1.5%/Luck :white_check_mark:
 
 
 |Name|Design|Item Art|Costume Art|Functionality|
