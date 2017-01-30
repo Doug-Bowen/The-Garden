@@ -28,7 +28,7 @@ Balances:
 |Name|Design|Item Art|Costume Art|Functionality|
 |---|---|---|---|---|
 |Crack The Earth|:white_check_mark:|:clock3:|:clock3:|:white_check_mark:|
-|The Beast|:white_check_mark:|:clock3:|No Costume|:clock3:|
+|The Beast|:white_check_mark:|:clock3:|No Costume|:white_check_mark:|
 |Deceiver!|:white_check_mark:|Not needed|:clock3:|:white_check_mark:|
 
 
@@ -39,7 +39,7 @@ Balances:
    * Costume: Isaac has a back cat's tail? (Similar to the Gnawed leaf Mario tail costume)
 
  * The Beast
-   * Effect: Isaac gains a familiar who travels the room punching his fists down on the ground. (causing small rock groud erruption effects)
+   * Effect: Isaac gains a familiar who travels to the center of the room. Once he reaches the rooms center, he begins sending shockwaves in the room, damaging everything.
    * Item Look: see below (the item should look like the beast familiar)
    * Costume: Isaac scared face
    * Details on the Beast's look: 
