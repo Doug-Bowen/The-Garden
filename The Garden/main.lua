@@ -627,7 +627,7 @@ function garden:gardenRoomUpdate()
 				local pickupPosition = currentRoom:FindFreePickupSpawnPosition(startingPosition, initialStep, avoidActiveEnemies)
 				local velocity = Vector(0,0)
 				local spawnOwner = nil
-				local randomNumber = math.random(#garden.gardenPool) 
+				local randomNumber = math.random(13) 
 				local randomItem = garden.gardenPool[randomNumber]			
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, randomItem, pickupPosition, velocity, spawnOwner)
 				garden.ITEM_REWARDED = true
