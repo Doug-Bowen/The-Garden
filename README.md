@@ -60,3 +60,6 @@ _____________________
 **Curse of Mortality:** Hearts no longer spawn for the remainder of the floor.
 
 **Genesis challenge:** Eve starts with Rebirth and must beat Mom's Heart (on normal difficulty).
+
+Like my work?  Buy me a beer!
+<script id='fbl9crw'>(function(i){var f,s=document.getElementById(i);f=document.createElement('iframe');f.src='//button.flattr.com/view/?fid=z72okx&url='+encodeURIComponent(document.URL);f.title='Flattr';f.height=62;f.width=55;f.style.borderWidth=0;s.parentNode.insertBefore(f,s);})('fbl9crw');</script>
