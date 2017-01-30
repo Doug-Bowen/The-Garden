@@ -1,4 +1,6 @@
-Do you like my mods? Give this repo a star! ?
+Do you like my mods? Give this repo a star! ★
+
+<a href="https://flattr.com/submit/auto?fid=z72okx&url=http%3A%2F%2Fwww.github.com%2FDoug-Bowen%2FisaacMods" target="_blank"><img src="//button.flattr.com/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0"></a>
 
 # The Garden Mod
 
@@ -62,6 +64,3 @@ _____________________
 **Curse of Mortality:** Hearts no longer spawn for the remainder of the floor.
 
 **Genesis challenge:** Eve starts with Rebirth and must beat Mom's Heart (on normal difficulty).
-
-
-
