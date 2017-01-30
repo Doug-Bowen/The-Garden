@@ -70,6 +70,7 @@ garden.PREVIOUS_POSITION = nil
 garden.ROOM_FIGHT = false
 garden.ROOM_DONE = false
 garden.HAS_CONVERTED_HEARTS = false
+garden.BEAST_MOVE = false
 TearFlags = {FLAG_POISONING = 1<<4}
 
 --Room Flags
@@ -744,7 +745,48 @@ function garden:updateFamiliar(familiar)
 
 	if familiar.Variant == garden.BEAST_FAMILIAR_VARIANT then
 		if garden.HAS_THE_BEAST then
-			--familiar:MoveDelayed(100)
+			local currentRoom = Game():GetRoom()
+			if currentRoom:GetFrameCount() == 1 then
+				garden.BEAST_MOVE = true
+			end
+			local roomCenter = currentRoom:GetCenterPos()
+			local familiarPosition = familiar.Position
+			local positionalDifference = Vector(roomCenter.X-familiarPosition.X, roomCenter.Y-familiarPosition.Y)
+			if garden.BEAST_MOVE then
+				if math.abs(roomCenter.X) ~= math.abs(familiarPosition.X) or math.abs(roomCenter.Y) ~= math.abs(familiarPosition.Y) then 
+					familiar:MultiplyFriction(0.02) --Slow that sucker down
+					if positionalDifference.X > 0 then
+						familiar:AddVelocity(Vector(0.2,0))
+					end
+					if positionalDifference.X < 0 then
+						familiar:AddVelocity(Vector(-0.2,0))
+					end
+					if positionalDifference.Y > 0 then
+						familiar:AddVelocity(Vector(0,0.2))
+					end
+					if positionalDifference.Y < 0 then
+						familiar:AddVelocity(Vector(0,-0.2))
+					end	
+				else
+					garden.BEAST_MOVE = false
+				end	
+			end
+			
+			--Room center effect
+			if positionalDifference.X < 1 and positionalDifference.Y < 1 and not garden.BEAST_MOVE then 
+				familiarSprite = familiar:GetSprite() 
+				familiarSprite:Play("FloatUp", true)
+				if currentRoom:GetFrameCount() % 100 == 0 then
+					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.SHOCKWAVE, 0, familiar.Position, Vector(0,0), nil)
+					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
+					local volume = 30
+					local frameDelay = 0
+					local loop = false
+					local pitch = 1
+					soundShell:ToNPC():PlaySound(SoundEffect.SOUND_ROCK_CRUMBLE, volume, frameDelay, loop, pitch)	--Make it a sound
+					soundShell:Remove()	
+				end
+			end
 		end
 	end
 end
