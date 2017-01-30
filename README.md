@@ -34,7 +34,7 @@ Balances:
 
 ### Item Details
  * Crack The Earth
-   * Effect: Every 10 frames, has a 5% chance to creates earth quakes under all enemies in the room, dealing strong damage. Excludes flying enemies and bosses.
+   * Effect: Every 10 frames, has a 2% chance per Luck to create an earth quake under a random enemy in the room, dealing strong damage. Excludes flying enemies and bosses.
    * Item Look: Black Feather (from a raven)
    * Costume: Isaac has a back cat's tail? (Similar to the Gnawed leaf Mario tail costume)
 
