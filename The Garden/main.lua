@@ -121,8 +121,8 @@ garden.TREE_LOCATION = nil
 garden.SERPENT_VELOCITY = Vector(0,0)
 garden.TREE_VELOCITY = Vector(0,0)
 garden.SERPENT_SPAWN_OWNER = nil	
-garden.TREE_SPAWN_OWNER = nil
-
+garden.TREE_SPAWN_OWNER = nil 
+ 
 function garden:debugMode()
 	if garden.DEBUG_MODE then
 		Isaac.RenderText("Debug Mode", 50, 15, 255, 255, 255, 255)
@@ -140,9 +140,8 @@ function garden:debugMode()
 			end
 		end		
 	end
-end
-
-
+end 
+ 
 ----------------
 --Item Effects--
 ----------------
@@ -434,8 +433,8 @@ function garden:deceiverEffect(target, amount, flags, source, cooldown)
 			end
 		end
 	end
-end
-
+end 
+ 
 --------------------
 --Room Controllers--
 --------------------
@@ -656,8 +655,8 @@ function garden:barCurrentRoomDoors()
 	    	door:Bar() 
 		end
 	end
-end
-
+end 
+ 
 ---------------------
 --Curse Controllers--
 ---------------------
@@ -686,8 +685,8 @@ function garden:mortalityCurseEffect()
 			end
 		end
 	end
-end
-
+end 
+ 
 --------------------
 --Flag Controllers--
 --------------------
@@ -724,8 +723,8 @@ function garden:setNewRunFlags()
 	garden.HAS_THE_HARVEST = false
 	garden.HAS_THE_BEAST = false
 	garden.HAS_DECEIVER = false
-end	
-
+end	 
+ 
 --------------------
 --Familiar Effects--
 --------------------
@@ -798,8 +797,8 @@ function garden:updateFamiliar(familiar)
 			end
 		end
 	end
-end
-
+end 
+ 
 ----------------
 --Item Pickups--
 ----------------
@@ -951,8 +950,8 @@ function garden:itemPickedUp(player, statFromXML)
 			soundShell:Remove()									
         end
 	end
-end
-
+end 
+ 
 -----------------
 --Mod Callbacks--
 -----------------
