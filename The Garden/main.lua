@@ -748,6 +748,7 @@ function garden:updateFamiliar(familiar)
 			local currentRoom = Game():GetRoom()
 			if currentRoom:GetFrameCount() == 1 then
 				garden.BEAST_MOVE = true
+				familiar.Velocity = Vector(0,0) --Ensures that if incorrect thigns happen to beast in the previous room. it gets corrected on new room.
 			end
 			local roomCenter = currentRoom:GetCenterPos()
 			local familiarPosition = familiar.Position
