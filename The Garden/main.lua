@@ -746,10 +746,12 @@ function garden:updateFamiliar(familiar)
 	if familiar.Variant == garden.BEAST_FAMILIAR_VARIANT then
 		if garden.HAS_THE_BEAST then
 			local currentRoom = Game():GetRoom()
-			if currentRoom:GetFrameCount() == 1 then
+			if currentRoom:GetFrameCount() == 1 then --Prepare to move to room center
 				garden.BEAST_MOVE = true
-				familiar.Velocity = Vector(0,0) --Ensures that if incorrect thigns happen to beast in the previous room. it gets corrected on new room.
+				familiar.Velocity = Vector(0,0) --Ensures that if incorrect velocity is ever applied to The Beast in a room, velocity is reset on new room.
 			end
+
+			--Move to room's center
 			local roomCenter = currentRoom:GetCenterPos()
 			local familiarPosition = familiar.Position
 			local positionalDifference = Vector(roomCenter.X-familiarPosition.X, roomCenter.Y-familiarPosition.Y)
@@ -773,11 +775,17 @@ function garden:updateFamiliar(familiar)
 				end	
 			end
 			
+			--Stop if room is clear
+			if currentRoom:IsClear() then
+				garden.BEAST_MOVE = false
+			end
+
 			--Room center effect
 			if positionalDifference.X < 1 and positionalDifference.Y < 1 and not garden.BEAST_MOVE then 
+				local player = Isaac.GetPlayer(0)	
 				familiarSprite = familiar:GetSprite() 
 				familiarSprite:Play("FloatUp", true)
-				if currentRoom:GetFrameCount() % 100 == 0 then
+				if currentRoom:GetFrameCount() % 100 <= player.Luck then --Luck-based frequency
 					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.SHOCKWAVE, 0, familiar.Position, Vector(0,0), nil)
 					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
 					local volume = 30
