@@ -1,3 +1,4 @@
+del main.lua
 type code\globals.lua > main.lua
 echo. >> main.lua
 echo. >> main.lua
