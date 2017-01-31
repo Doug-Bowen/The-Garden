@@ -43,9 +43,7 @@ Balances:
    * Item Look: see below (the item should look like the beast familiar)
    * Costume: Isaac scared face
    * Details on the Beast's look: 
-     * His stature/height/angry face: http://tinyurl.com/jrsxte2
-     * His arms: http://tinyurl.com/zjahnt3
-     * Walks like a gorilla/colored like a gorilla?: http://tinyurl.com/h5bzcow
+     * Statanic, dark, demonic, floating
 
  * Deceiver! (Transformation)
    * Effect: Killing enemies has a %5 chance to life steal (half heart)
