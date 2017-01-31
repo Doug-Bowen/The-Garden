@@ -44,6 +44,9 @@ Balances:
    * Costume: Isaac scared face
    * Details on the Beast's look: 
      * Statanic, dark, demonic, floating
+     * Needs walking/floating animation (left, right, up, down, and diagonals)
+     * Needs attack animation. (Stands in place and cuases damage below him) -- maybe just an angry face?
+     * Needs resting animation.  He stops moving and "sits" on the ground if the room clears.
 
  * Deceiver! (Transformation)
    * Effect: Killing enemies has a %5 chance to life steal (half heart)
