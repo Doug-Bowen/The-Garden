@@ -259,8 +259,8 @@ function garden:harvestEffect()
 				end				
 			end
 		elseif currentRoom:IsClear() and garden.ROOM_FIGHT and not garden.ROOM_DONE then				
-			local randomNum = math.random(100)  --3% chance			
-			if randomNum <= (player.Luck * 1.5) then
+			local randomNum = math.random(100)  --Luck-based chance			
+			if randomNum <= ((player.Luck + 1) * 1.5) then
 				local roomCenter = currentRoom:GetCenterPos()
 				local initialStep = 0 --Not sure what this does
 				local avoidActiveEnemies = true
@@ -368,7 +368,7 @@ function garden:crackTheEarthEffect()
 			local entities = Isaac.GetRoomEntities()
 			for i = 1, #entities do
 				local randomNum = math.random(100) -- 2% chance per luck
-				if randomNum <= (player.Luck * 2) then
+				if randomNum <= ((player.Luck + 1) * 2) then
 					local singleEntity = entities[i]
 					if singleEntity:IsVulnerableEnemy() and not singleEntity:IsFlying() and not singleEntity:IsBoss() then		
 						Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ROCK_EXPLOSION, 0, singleEntity.Position, Vector(0,0), nil)
@@ -774,17 +774,22 @@ function garden:updateFamiliar(familiar)
 				end	
 			end
 			
-			--Stop if room is clear
+			--Stop moving if room is clear
 			if currentRoom:IsClear() then
 				garden.BEAST_MOVE = false
+				familiar.Velocity = Vector(0,0)
 			end
 
+			Isaac.RenderText("X:" .. positionalDifference.X, 50, 30, 255, 255, 255, 255)
+			Isaac.RenderText("X:" .. positionalDifference.Y, 50, 45, 255, 255, 255, 255)
+
 			--Room center effect
-			if positionalDifference.X < 1 and positionalDifference.Y < 1 and not garden.BEAST_MOVE then 
+			if math.abs(positionalDifference.X) < 1 and math.abs(positionalDifference.Y) < 1 and not garden.BEAST_MOVE then 
 				local player = Isaac.GetPlayer(0)	
 				familiarSprite = familiar:GetSprite() 
 				familiarSprite:Play("FloatUp", true)
-				if currentRoom:GetFrameCount() % 100 <= player.Luck then --Luck-based frequency
+				local randomNum = math.random(100)
+				if randomNum <= player.Luck then --Luck-based frequency
 					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.SHOCKWAVE, 0, familiar.Position, Vector(0,0), nil)
 					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
 					local volume = 30
@@ -809,9 +814,9 @@ function garden:itemPickedUp(player, statFromXML)
 	if player:HasCollectible(garden.COLLECTIBLE_CREATION) and not garden.HAS_CREATION then
 		garden.HAS_CREATION = true
 		player:AddNullCostume(garden.COSTUME_ID_CREATION)	
-		player.Damage = player.Damage+.51		
-		player.MoveSpeed = player.MoveSpeed+.1
-		player.ShotSpeed = player.ShotSpeed+.1
+		player.Damage = player.Damage + 0.51		
+		player.MoveSpeed = player.MoveSpeed + 0.1
+		player.ShotSpeed = player.ShotSpeed + 0.1
 		local white = Color(255, 255, 255, 255, 0, 0, 0)
 		player.TearColor = white		
 	end
@@ -827,7 +832,7 @@ function garden:itemPickedUp(player, statFromXML)
 		player:AddMaxHearts(totalHearts*-1, ignoreKeeper)
 
 		for i = 1, totalHearts/2 do
-			player.Damage = player.Damage+.5
+			player.Damage = player.Damage + 0.5
 		end		
 	end	
 
@@ -838,7 +843,7 @@ function garden:itemPickedUp(player, statFromXML)
 		local ignoreKeeper = false
 		player:AddMaxHearts(2, ignoreKeeper)
 		player:AddHearts(2)
-		player.Luck = player.Luck+1.0		
+		player.Luck = player.Luck + 1.0		
 	end
 
 	if player:HasCollectible(garden.COLLECTIBLE_SHAME) and not garden.HAS_SHAME then									
@@ -849,7 +854,7 @@ function garden:itemPickedUp(player, statFromXML)
 	if player:HasCollectible(garden.COLLECTIBLE_FORBIDDEN_FRUIT) and not garden.HAS_FORBIDDEN_FRUIT then			
 		garden.HAS_FORBIDDEN_FRUIT = true 
 		player:AddNullCostume(garden.COSTUME_ID_FORBIDDEN_FRUIT)
-		player.ShotSpeed = player.ShotSpeed+.6		 
+		player.ShotSpeed = player.ShotSpeed + 0.6		 
 	end
 
 	if player:HasCollectible(garden.COLLECTIBLE_THE_FIRST_DAY) and not garden.HAS_THE_FIRST_DAY then			
@@ -916,6 +921,7 @@ function garden:itemPickedUp(player, statFromXML)
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position			
 		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.BEAST_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)		  
+		player.Luck = player.Luck + 1.0
 	end
 
 	--Deceiver Tansformation
