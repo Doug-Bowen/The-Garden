@@ -16,7 +16,7 @@ garden.COLLECTIBLE_THE_FIRST_DAY = Isaac.GetItemIdByName("The First Day")
 garden.COLLECTIBLE_MY_BELOVED = Isaac.GetItemIdByName("My Beloved")
 garden.COLLECTIBLE_THE_HARVEST = Isaac.GetItemIdByName("The Harvest")
 garden.COLLECTIBLE_CRACK_THE_EARTH = Isaac.GetItemIdByName("Crack The Earth")
-garden.COLLECTIBLE_THE_BEAST = Isaac.GetItemIdByName("The Beast")
+garden.COLLECTIBLE_LEGION = Isaac.GetItemIdByName("Legion")
 
 --Garden Item Pool
 garden.gardenPool = {}
@@ -32,7 +32,7 @@ garden.gardenPool[9] = garden.COLLECTIBLE_THE_FIRST_DAY
 garden.gardenPool[10] = garden.COLLECTIBLE_MY_BELOVED
 garden.gardenPool[11] = garden.COLLECTIBLE_THE_HARVEST
 garden.gardenPool[12] = garden.COLLECTIBLE_CRACK_THE_EARTH
-garden.gardenPool[13] = garden.COLLECTIBLE_THE_BEAST
+garden.gardenPool[13] = garden.COLLECTIBLE_LEGION
 
 --Item Flags
 garden.HAS_SHAME = false
@@ -47,7 +47,7 @@ garden.HAS_THE_FIRST_DAY = false
 garden.HAS_MY_BELOVED = false
 garden.HAS_THE_HARVEST = false
 garden.HAS_CRACK_THE_EARTH = false
-garden.HAS_THE_BEAST = false
+garden.HAS_LEGION = false
 garden.HAS_DECEIVER = false
 
 --Costumes
@@ -70,7 +70,7 @@ garden.PREVIOUS_POSITION = nil
 garden.ROOM_FIGHT = false
 garden.ROOM_DONE = false
 garden.HAS_CONVERTED_HEARTS = false
-garden.BEAST_MOVE = false
+garden.LEGION_MOVE = false
 TearFlags = {FLAG_POISONING = 1<<4}
 
 --Room Flags
@@ -107,7 +107,7 @@ garden.GRAIN_VARIANT = Isaac.GetEntityVariantByName("Grain")
 garden.GRASS_VARIANT = Isaac.GetEntityVariantByName("Grass")  
 garden.PATCH_VARIANT = Isaac.GetEntityVariantByName("The Patch")   		
 garden.ADAM_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("Adam")
-garden.BEAST_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("TheBeast")
+garden.LEGION_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("Legion")
 
 --Entity Subtypes
 garden.GRAIN_SUBTYPE = 0 

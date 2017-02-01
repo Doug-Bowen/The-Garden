@@ -16,7 +16,7 @@ garden.COLLECTIBLE_THE_FIRST_DAY = Isaac.GetItemIdByName("The First Day")
 garden.COLLECTIBLE_MY_BELOVED = Isaac.GetItemIdByName("My Beloved")
 garden.COLLECTIBLE_THE_HARVEST = Isaac.GetItemIdByName("The Harvest")
 garden.COLLECTIBLE_CRACK_THE_EARTH = Isaac.GetItemIdByName("Crack The Earth")
-garden.COLLECTIBLE_THE_BEAST = Isaac.GetItemIdByName("The Beast")
+garden.COLLECTIBLE_LEGION = Isaac.GetItemIdByName("Legion")
 
 --Garden Item Pool
 garden.gardenPool = {}
@@ -32,7 +32,7 @@ garden.gardenPool[9] = garden.COLLECTIBLE_THE_FIRST_DAY
 garden.gardenPool[10] = garden.COLLECTIBLE_MY_BELOVED
 garden.gardenPool[11] = garden.COLLECTIBLE_THE_HARVEST
 garden.gardenPool[12] = garden.COLLECTIBLE_CRACK_THE_EARTH
-garden.gardenPool[13] = garden.COLLECTIBLE_THE_BEAST
+garden.gardenPool[13] = garden.COLLECTIBLE_LEGION
 
 --Item Flags
 garden.HAS_SHAME = false
@@ -47,7 +47,7 @@ garden.HAS_THE_FIRST_DAY = false
 garden.HAS_MY_BELOVED = false
 garden.HAS_THE_HARVEST = false
 garden.HAS_CRACK_THE_EARTH = false
-garden.HAS_THE_BEAST = false
+garden.HAS_LEGION = false
 garden.HAS_DECEIVER = false
 
 --Costumes
@@ -70,7 +70,7 @@ garden.PREVIOUS_POSITION = nil
 garden.ROOM_FIGHT = false
 garden.ROOM_DONE = false
 garden.HAS_CONVERTED_HEARTS = false
-garden.BEAST_MOVE = false
+garden.LEGION_MOVE = false
 TearFlags = {FLAG_POISONING = 1<<4}
 
 --Room Flags
@@ -107,7 +107,7 @@ garden.GRAIN_VARIANT = Isaac.GetEntityVariantByName("Grain")
 garden.GRASS_VARIANT = Isaac.GetEntityVariantByName("Grass")  
 garden.PATCH_VARIANT = Isaac.GetEntityVariantByName("The Patch")   		
 garden.ADAM_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("Adam")
-garden.BEAST_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("TheBeast")
+garden.LEGION_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("Legion")
 
 --Entity Subtypes
 garden.GRAIN_SUBTYPE = 0 
@@ -721,7 +721,7 @@ function garden:setNewRunFlags()
 	garden.HAS_THE_FIRST_DAY = false
 	garden.HAS_MY_BELOVED = false
 	garden.HAS_THE_HARVEST = false
-	garden.HAS_THE_BEAST = false
+	garden.HAS_LEGION = false
 	garden.HAS_DECEIVER = false
 end	 
  
@@ -742,19 +742,19 @@ function garden:updateFamiliar(familiar)
 		end
 	end
 
-	if familiar.Variant == garden.BEAST_FAMILIAR_VARIANT then
-		if garden.HAS_THE_BEAST then
+	if familiar.Variant == garden.LEGION_FAMILIAR_VARIANT then
+		if garden.HAS_LEGION then
 			local currentRoom = Game():GetRoom()
 			if currentRoom:GetFrameCount() == 1 then --Prepare to move to room center
-				garden.BEAST_MOVE = true
-				familiar.Velocity = Vector(0,0) --Ensures that if incorrect velocity is ever applied to The Beast in a room, velocity is reset on new room.
+				garden.LEGION_MOVE = true
+				familiar.Velocity = Vector(0,0) --Ensures that if incorrect velocity is ever applied to The LEGION in a room, velocity is reset on new room.
 			end
 
 			--Move to room's center
 			local roomCenter = currentRoom:GetCenterPos()
 			local familiarPosition = familiar.Position
 			local positionalDifference = Vector(roomCenter.X-familiarPosition.X, roomCenter.Y-familiarPosition.Y)
-			if garden.BEAST_MOVE then
+			if garden.LEGION_MOVE then
 				if math.abs(roomCenter.X) ~= math.abs(familiarPosition.X) or math.abs(roomCenter.Y) ~= math.abs(familiarPosition.Y) then 
 					familiar:MultiplyFriction(0.02) --Slow that sucker down
 					if positionalDifference.X > 0 then
@@ -770,13 +770,13 @@ function garden:updateFamiliar(familiar)
 						familiar:AddVelocity(Vector(0,-0.2))
 					end	
 				else
-					garden.BEAST_MOVE = false
+					garden.LEGION_MOVE = false
 				end	
 			end
 			
 			--Stop moving if room is clear
 			if currentRoom:IsClear() then
-				garden.BEAST_MOVE = false
+				garden.LEGION_MOVE = false
 				familiar.Velocity = Vector(0,0)
 			end
 
@@ -784,7 +784,7 @@ function garden:updateFamiliar(familiar)
 			Isaac.RenderText("X:" .. positionalDifference.Y, 50, 45, 255, 255, 255, 255)
 
 			--Room center effect
-			if math.abs(positionalDifference.X) < 1 and math.abs(positionalDifference.Y) < 1 and not garden.BEAST_MOVE then 
+			if math.abs(positionalDifference.X) < 1 and math.abs(positionalDifference.Y) < 1 and not garden.LEGION_MOVE then 
 				local player = Isaac.GetPlayer(0)	
 				familiarSprite = familiar:GetSprite() 
 				familiarSprite:Play("FloatUp", true)
@@ -916,11 +916,11 @@ function garden:itemPickedUp(player, statFromXML)
 		player:AddNullCostume(garden.COSTUME_ID_CRACK_THE_EARTH)		
 	end
 
-	if player:HasCollectible(garden.COLLECTIBLE_THE_BEAST) and not garden.HAS_THE_BEAST then			
-		garden.HAS_THE_BEAST = true
+	if player:HasCollectible(garden.COLLECTIBLE_LEGION) and not garden.HAS_LEGION then			
+		garden.HAS_LEGION = true
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position			
-		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.BEAST_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)		  
+		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.LEGION_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)		  
 		player.Luck = player.Luck + 1.0
 	end
 
@@ -990,4 +990,4 @@ garden:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, garden.setNewRunFlags)
 
 --Familiar Callbacks
 garden:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, garden.updateFamiliar, garden.ADAM_FAMILIAR_VARIANT)
-garden:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, garden.updateFamiliar, garden.BEAST_FAMILIAR_VARIANT)
+garden:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, garden.updateFamiliar, garden.LEGION_FAMILIAR_VARIANT)

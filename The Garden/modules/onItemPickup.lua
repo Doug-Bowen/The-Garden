@@ -110,11 +110,11 @@ function garden:itemPickedUp(player, statFromXML)
 		player:AddNullCostume(garden.COSTUME_ID_CRACK_THE_EARTH)		
 	end
 
-	if player:HasCollectible(garden.COLLECTIBLE_THE_BEAST) and not garden.HAS_THE_BEAST then			
-		garden.HAS_THE_BEAST = true
+	if player:HasCollectible(garden.COLLECTIBLE_LEGION) and not garden.HAS_LEGION then			
+		garden.HAS_LEGION = true
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position			
-		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.BEAST_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)		  
+		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.LEGION_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)		  
 		player.Luck = player.Luck + 1.0
 	end
 

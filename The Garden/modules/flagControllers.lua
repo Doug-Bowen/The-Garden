@@ -32,6 +32,6 @@ function garden:setNewRunFlags()
 	garden.HAS_THE_FIRST_DAY = false
 	garden.HAS_MY_BELOVED = false
 	garden.HAS_THE_HARVEST = false
-	garden.HAS_THE_BEAST = false
+	garden.HAS_LEGION = false
 	garden.HAS_DECEIVER = false
 end	
