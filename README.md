@@ -38,13 +38,13 @@ Balances:
    * Item Look: Black Feather (from a raven)
    * Costume: Isaac has a back cat's tail? (Similar to the Gnawed leaf Mario tail costume)
 
- * The Beast
-   * Effect: Isaac gains a small gem familiar that orbits around Isaac. Upon room entry, there is a 10% change that Legion will appear in the center. Legion will fire brimstone at a random enemy until it dies.
-   * Item Look: see below (the item should look like the gem familiar)
-   * Costume: Isaac scared face
-   * Details on the Legions look: 
+ * Legion
+   * Effect: Isaac gains a demonic familiar (named Legion) that upon room entry, has a chance to spawn in the center of the room. Legion will fire a brimstone laser at enemies in the room until the room is clear.
+   * Item Look: Large red Diamond (Blood DIamond)
+   * Costume: Isaac has horns
+   * Details on Legions' look: 
      * Statanic, dark, demonic, floating
-     * Needs a shot animation. (Stands in place and cuases damage below him) -- maybe just an angry face?
+     * Use same sprite sheet as Adam (or Brother Bobby)
 
  * Deceiver! (Transformation)
    * Effect: Killing enemies has a %5 chance to life steal (half heart)
