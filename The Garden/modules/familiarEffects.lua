@@ -15,63 +15,114 @@ function garden:updateFamiliar(familiar)
 		end
 	end
 
-	if familiar.Variant == garden.LEGION_FAMILIAR_VARIANT then
-		if garden.HAS_LEGION then
+	if familiar.Variant == garden.GEM_FAMILIAR_VARIANT then
+		if garden.HAS_LEGION then			
+			local player = Isaac.GetPlayer(0)			
 			local currentRoom = Game():GetRoom()
-			if currentRoom:GetFrameCount() == 1 then --Prepare to move to room center
-				garden.LEGION_MOVE = true
-				familiar.Velocity = Vector(0,0) --Ensures that if incorrect velocity is ever applied to The LEGION in a room, velocity is reset on new room.
-			end
-
-			--Move to room's center
 			local roomCenter = currentRoom:GetCenterPos()
-			local familiarPosition = familiar.Position
-			local positionalDifference = Vector(roomCenter.X-familiarPosition.X, roomCenter.Y-familiarPosition.Y)
-			if garden.LEGION_MOVE then
-				if math.abs(roomCenter.X) ~= math.abs(familiarPosition.X) or math.abs(roomCenter.Y) ~= math.abs(familiarPosition.Y) then 
-					familiar:MultiplyFriction(0.02) --Slow that sucker down
-					if positionalDifference.X > 0 then
-						familiar:AddVelocity(Vector(0.2,0))
-					end
-					if positionalDifference.X < 0 then
-						familiar:AddVelocity(Vector(-0.2,0))
-					end
-					if positionalDifference.Y > 0 then
-						familiar:AddVelocity(Vector(0,0.2))
-					end
-					if positionalDifference.Y < 0 then
-						familiar:AddVelocity(Vector(0,-0.2))
-					end	
-				else
-					garden.LEGION_MOVE = false
+			familiar.OrbitDistance = Vector(25, 25)
+			familiar.OrbitLayer = 98
+			familiar.OrbitSpeed = 0.01
+			familiar.Velocity = familiar:GetOrbitPosition(player.Position + player.Velocity) - familiar.Position
+			familiar.GridCollisionClass = 0			
+		
+			if currentRoom:IsClear() then --Remove Legion from the room on clear
+				local entities = Isaac.GetRoomEntities() 
+				for i = 1, #entities do				
+					local singleEntity = entities[i]
+					if singleEntity.Type == EntityType.ENTITY_FAMILIAR and singleEntity.Variant == garden.LEGION_FAMILIAR_VARIANT and singleEntity.SubType == 0 then
+						singleEntity:Remove()						
+						garden.LEGION_IN_ROOM = false
+						local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
+						Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, singleEntity.Position, Vector(0,0), nil)				
+						local volume = 5
+						local frameDelay = 0
+						local loop = false
+						local pitch = 1
+						soundShell:ToNPC():PlaySound("174", volume, frameDelay, loop, pitch)	--Make it a sound
+						soundShell:Remove()	
+					end				
+				end				
+			end
+
+			if currentRoom:GetFrameCount() == 0 then --Remove Legion from the room on entry (failsafe)			
+				--Remove Legion from the room
+				local entities = Isaac.GetRoomEntities() 
+				for i = 1, #entities do				
+					local singleEntity = entities[i]
+					if singleEntity.Type == EntityType.ENTITY_FAMILIAR and singleEntity.Variant == garden.LEGION_FAMILIAR_VARIANT and singleEntity.SubType == 0 then
+						singleEntity:Remove()							
+					end				
+				end			
+
+				--Spawn Legion
+				local enemiesInRoom = false
+				local bossInRoom = false
+				local entities = Isaac.GetRoomEntities() 
+				for i = 1, #entities do				
+					local singleEntity = entities[i]
+					if singleEntity:IsVulnerableEnemy() then
+						enemiesInRoom = true
+						if singleEntity:IsBoss() then
+							bossInRoom = true
+						end
+					end				
 				end	
-			end
-			
-			--Stop moving if room is clear
-			if currentRoom:IsClear() then
-				garden.LEGION_MOVE = false
-				familiar.Velocity = Vector(0,0)
-			end
-
-			Isaac.RenderText("X:" .. positionalDifference.X, 50, 30, 255, 255, 255, 255)
-			Isaac.RenderText("X:" .. positionalDifference.Y, 50, 45, 255, 255, 255, 255)
-
-			--Room center effect
-			if math.abs(positionalDifference.X) < 1 and math.abs(positionalDifference.Y) < 1 and not garden.LEGION_MOVE then 
-				local player = Isaac.GetPlayer(0)	
-				familiarSprite = familiar:GetSprite() 
-				familiarSprite:Play("FloatUp", true)
 				local randomNum = math.random(100)
-				if randomNum <= player.Luck then --Luck-based frequency
-					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.SHOCKWAVE, 0, familiar.Position, Vector(0,0), nil)
+				if randomNum <= 10 and enemiesInRoom and not bossInRoom then --10% chance									
+					local spawnPosition = currentRoom:FindFreePickupSpawnPosition(roomCenter, 0, true)
+					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, spawnPosition, Vector(0,0), nil)				
+					Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.LEGION_FAMILIAR_VARIANT, 0, spawnPosition, Vector(0,0), player)
+					garden.LEGION_IN_ROOM = true
+
 					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-					local volume = 30
+					local volume = 5
 					local frameDelay = 0
 					local loop = false
 					local pitch = 1
-					soundShell:ToNPC():PlaySound(SoundEffect.SOUND_ROCK_CRUMBLE, volume, frameDelay, loop, pitch)	--Make it a sound
+					soundShell:ToNPC():PlaySound("174", volume, frameDelay, loop, pitch)	--Make it a sound
 					soundShell:Remove()	
 				end
+			end
+
+			--Fire Brimstone
+			if garden.LEGION_IN_ROOM and currentRoom:GetFrameCount() % 150 == 0 then --Every 150 frames
+				local brimstoneEndPosition
+				local brimstoneStartPosition				
+				local legionFamiliar
+				local chosenEnemy				
+
+				local entities = Isaac.GetRoomEntities() 
+				for i = 1, #entities do				
+					local singleEntity = entities[i]
+					--Find the end position of the brimstone shot
+					if singleEntity:IsVulnerableEnemy() then	
+						chosenEnemy = singleEntity					
+					end	
+
+					--Find the starting position of the brimstone shot
+					if singleEntity.Type == EntityType.ENTITY_FAMILIAR and singleEntity.Variant == garden.LEGION_FAMILIAR_VARIANT and singleEntity.SubType == 0 then
+						legionFamiliar = singleEntity
+						brimstoneStartPosition = singleEntity.Position --This is the position of the Legion familiar
+					end														
+				end				
+
+				--Firin' ma lazar
+				local direction = Vector(chosenEnemy.Position.X-legionFamiliar.Position.X, chosenEnemy.Position.Y-legionFamiliar.Position.Y)								
+				local xDistance = chosenEnemy.Position.X-legionFamiliar.Position.X
+				local yDistance = chosenEnemy.Position.Y-legionFamiliar.Position.Y
+				local distance = math.abs(math.sqrt(xDistance^2 + yDistance^2))
+				local legionData = familiar:GetData()				
+				legionData.Laser = player:FireBrimstone(direction)
+				legionData.Laser.Parent = legionFamiliar
+				legionData.Laser.Position = brimstoneStartPosition								
+				local black = Color(0, 0, 0, 255, 0, 0, 0)
+				legionData.Laser.Color = black
+				legionData.Laser.Timeout = 1
+				legionData.Laser.RenderZOffset = -5000 --Below characters
+				legionData.Laser.MaxDistance = distance
+				legionData.Laser.OneHit = true  --Weakens the brimstone significantly
+				legionData.FireDirection = direction --Fires the laser				
 			end
 		end
 	end

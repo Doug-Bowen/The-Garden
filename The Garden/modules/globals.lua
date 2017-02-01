@@ -70,7 +70,7 @@ garden.PREVIOUS_POSITION = nil
 garden.ROOM_FIGHT = false
 garden.ROOM_DONE = false
 garden.HAS_CONVERTED_HEARTS = false
-garden.LEGION_MOVE = false
+garden.LEGION_IN_ROOM = false
 TearFlags = {FLAG_POISONING = 1<<4}
 
 --Room Flags
@@ -108,6 +108,7 @@ garden.GRASS_VARIANT = Isaac.GetEntityVariantByName("Grass")
 garden.PATCH_VARIANT = Isaac.GetEntityVariantByName("The Patch")   		
 garden.ADAM_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("Adam")
 garden.LEGION_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("Legion")
+garden.GEM_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("Gem")
 
 --Entity Subtypes
 garden.GRAIN_SUBTYPE = 0 

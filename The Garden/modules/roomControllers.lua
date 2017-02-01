@@ -97,7 +97,7 @@ function garden:gardenRoomUpdate()
 				garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_TYPE, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
 
 				--play sfx here (Curse_of_Mortality.wav)
-				local volume = 100
+				local volume = 8
 				local frameDelay = 0
 				local loop = false
 				local pitch = 1
@@ -175,7 +175,7 @@ function garden:gardenRoomUpdate()
 				garden.openCurrentRoomDoors()						 
 				garden.applyMortalityCurse()
 				
-				local volume = 100
+				local volume = 8
 				local frameDelay = 0
 				local loop = false
 				local pitch = 1

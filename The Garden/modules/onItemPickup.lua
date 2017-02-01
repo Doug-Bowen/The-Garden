@@ -114,8 +114,16 @@ function garden:itemPickedUp(player, statFromXML)
 		garden.HAS_LEGION = true
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position			
-		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.LEGION_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)		  
+		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.GEM_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)
 		player.Luck = player.Luck + 1.0
+		local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
+		local volume = 10
+		local frameDelay = 0
+		local loop = false
+		local pitch = 1
+		soundShell:ToNPC():PlaySound("177", volume, frameDelay, loop, pitch)	--Make it a sound
+		soundShell:Remove()	
+
 	end
 
 	--Deceiver Tansformation

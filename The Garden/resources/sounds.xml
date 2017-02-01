@@ -369,7 +369,7 @@
 		<sample weight="1" path="FlyBuzz.wav" />
 	</sound>
 	<sound id="174">
-		<sample weight="1" path="Pound1.wav" />
+		<sample weight="1" path="Demon_Appear.wav" />
 	</sound>
 	<!-- CUSTOM SOUNDS HERE -->
 
@@ -379,10 +379,10 @@
 
 	<!-- CUSTOM SOUNDS HERE -->
 	<sound id="176">
-		<sample weight="1" path="Pound2.wav" />
+		<sample weight="1" path="Demon_Disappear.wav" />
 	</sound>
 	<sound id="177">
-		<sample weight="1" path="Pound3.wav" />
+		<sample weight="1" path="Demon_Laugh.wav" />
 	</sound>
 	<!-- CUSTOM SOUNDS HERE -->
 
