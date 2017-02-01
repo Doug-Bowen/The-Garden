@@ -41,7 +41,7 @@ Balances:
  * Legion
    * Effect: Isaac gains a demonic familiar (named Legion) that upon room entry, has a chance to spawn in the center of the room. Legion will fire a brimstone laser at enemies in the room until the room is clear.
    * Item Look: Large red Diamond (Blood DIamond)
-   * Costume: Isaac has claws (same claws as Legion)
+   * Costume: Isaac has a deep purple glow behind his head with particles rising off, eyes become black
    * Details on Legions' look: 
      * Statanic, dark, demonic, floating
      * Use same sprite sheet as Adam (or Brother Bobby)
