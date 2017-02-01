@@ -47,17 +47,22 @@ function garden:updateFamiliar(familiar)
 				end	
 			end
 			
-			--Stop if room is clear
+			--Stop moving if room is clear
 			if currentRoom:IsClear() then
 				garden.BEAST_MOVE = false
+				familiar.Velocity = Vector(0,0)
 			end
 
+			Isaac.RenderText("X:" .. positionalDifference.X, 50, 30, 255, 255, 255, 255)
+			Isaac.RenderText("X:" .. positionalDifference.Y, 50, 45, 255, 255, 255, 255)
+
 			--Room center effect
-			if positionalDifference.X < 1 and positionalDifference.Y < 1 and not garden.BEAST_MOVE then 
+			if math.abs(positionalDifference.X) < 1 and math.abs(positionalDifference.Y) < 1 and not garden.BEAST_MOVE then 
 				local player = Isaac.GetPlayer(0)	
 				familiarSprite = familiar:GetSprite() 
 				familiarSprite:Play("FloatUp", true)
-				if currentRoom:GetFrameCount() % 100 <= player.Luck then --Luck-based frequency
+				local randomNum = math.random(100)
+				if randomNum <= player.Luck then --Luck-based frequency
 					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.SHOCKWAVE, 0, familiar.Position, Vector(0,0), nil)
 					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
 					local volume = 30

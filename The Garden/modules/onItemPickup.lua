@@ -8,9 +8,9 @@ function garden:itemPickedUp(player, statFromXML)
 	if player:HasCollectible(garden.COLLECTIBLE_CREATION) and not garden.HAS_CREATION then
 		garden.HAS_CREATION = true
 		player:AddNullCostume(garden.COSTUME_ID_CREATION)	
-		player.Damage = player.Damage+.51		
-		player.MoveSpeed = player.MoveSpeed+.1
-		player.ShotSpeed = player.ShotSpeed+.1
+		player.Damage = player.Damage + 0.51		
+		player.MoveSpeed = player.MoveSpeed + 0.1
+		player.ShotSpeed = player.ShotSpeed + 0.1
 		local white = Color(255, 255, 255, 255, 0, 0, 0)
 		player.TearColor = white		
 	end
@@ -26,7 +26,7 @@ function garden:itemPickedUp(player, statFromXML)
 		player:AddMaxHearts(totalHearts*-1, ignoreKeeper)
 
 		for i = 1, totalHearts/2 do
-			player.Damage = player.Damage+.5
+			player.Damage = player.Damage + 0.5
 		end		
 	end	
 
@@ -37,7 +37,7 @@ function garden:itemPickedUp(player, statFromXML)
 		local ignoreKeeper = false
 		player:AddMaxHearts(2, ignoreKeeper)
 		player:AddHearts(2)
-		player.Luck = player.Luck+1.0		
+		player.Luck = player.Luck + 1.0		
 	end
 
 	if player:HasCollectible(garden.COLLECTIBLE_SHAME) and not garden.HAS_SHAME then									
@@ -48,7 +48,7 @@ function garden:itemPickedUp(player, statFromXML)
 	if player:HasCollectible(garden.COLLECTIBLE_FORBIDDEN_FRUIT) and not garden.HAS_FORBIDDEN_FRUIT then			
 		garden.HAS_FORBIDDEN_FRUIT = true 
 		player:AddNullCostume(garden.COSTUME_ID_FORBIDDEN_FRUIT)
-		player.ShotSpeed = player.ShotSpeed+.6		 
+		player.ShotSpeed = player.ShotSpeed + 0.6		 
 	end
 
 	if player:HasCollectible(garden.COLLECTIBLE_THE_FIRST_DAY) and not garden.HAS_THE_FIRST_DAY then			
@@ -115,6 +115,7 @@ function garden:itemPickedUp(player, statFromXML)
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position			
 		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.BEAST_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)		  
+		player.Luck = player.Luck + 1.0
 	end
 
 	--Deceiver Tansformation

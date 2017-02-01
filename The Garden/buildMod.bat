@@ -1,26 +1,26 @@
 del main.lua
-type code\globals.lua > main.lua
+type modules\globals.lua > main.lua
 echo. >> main.lua
 echo. >> main.lua
-type code\debug.lua >> main.lua
+type modules\debug.lua >> main.lua
 echo. >> main.lua
 echo. >> main.lua
-type code\itemEffects.lua >> main.lua
+type modules\itemEffects.lua >> main.lua
 echo. >> main.lua
 echo. >> main.lua
-type code\roomControllers.lua >> main.lua
+type modules\roomControllers.lua >> main.lua
 echo. >> main.lua
 echo. >> main.lua
-type code\curseControllers.lua >> main.lua
+type modules\curseControllers.lua >> main.lua
 echo. >> main.lua
 echo. >> main.lua
-type code\flagControllers.lua >> main.lua
+type modules\flagControllers.lua >> main.lua
 echo. >> main.lua
 echo. >> main.lua
-type code\familiarEffects.lua >> main.lua
+type modules\familiarEffects.lua >> main.lua
 echo. >> main.lua
 echo. >> main.lua
-type code\onItemPickup.lua >> main.lua
+type modules\onItemPickup.lua >> main.lua
 echo. >> main.lua
 echo. >> main.lua
-type code\modCallbacks.lua >> main.lua
+type modules\modCallbacks.lua >> main.lua

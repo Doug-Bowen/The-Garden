@@ -115,8 +115,8 @@ function garden:harvestEffect()
 				end				
 			end
 		elseif currentRoom:IsClear() and garden.ROOM_FIGHT and not garden.ROOM_DONE then				
-			local randomNum = math.random(100)  --3% chance			
-			if randomNum <= (player.Luck * 1.5) then
+			local randomNum = math.random(100)  --Luck-based chance			
+			if randomNum <= ((player.Luck + 1) * 1.5) then
 				local roomCenter = currentRoom:GetCenterPos()
 				local initialStep = 0 --Not sure what this does
 				local avoidActiveEnemies = true
@@ -224,7 +224,7 @@ function garden:crackTheEarthEffect()
 			local entities = Isaac.GetRoomEntities()
 			for i = 1, #entities do
 				local randomNum = math.random(100) -- 2% chance per luck
-				if randomNum <= (player.Luck * 2) then
+				if randomNum <= ((player.Luck + 1) * 2) then
 					local singleEntity = entities[i]
 					if singleEntity:IsVulnerableEnemy() and not singleEntity:IsFlying() and not singleEntity:IsBoss() then		
 						Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ROCK_EXPLOSION, 0, singleEntity.Position, Vector(0,0), nil)
