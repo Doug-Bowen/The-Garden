@@ -34,7 +34,7 @@ function garden:updateFamiliar(familiar)
 						local frameDelay = 0
 						local loop = false
 						local pitch = 1
-						soundShell:ToNPC():PlaySound("176", volume, frameDelay, loop, pitch)	--Make it a sound
+						soundShell:ToNPC():PlaySound("174", volume, frameDelay, loop, pitch)	--Make it a sound
 						soundShell:Remove()	
 					end				
 				end				
@@ -75,7 +75,7 @@ function garden:updateFamiliar(familiar)
 					local frameDelay = 0
 					local loop = false
 					local pitch = 1
-					soundShell:ToNPC():PlaySound("174", volume, frameDelay, loop, pitch)	--Make it a sound
+					soundShell:ToNPC():PlaySound("177", volume, frameDelay, loop, pitch)	--Make it a sound
 					soundShell:Remove()	
 				end
 			end
