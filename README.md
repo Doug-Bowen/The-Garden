@@ -41,10 +41,11 @@ Balances:
  * Legion
    * Effect: Isaac gains a demonic familiar (named Legion) that upon room entry, has a chance to spawn in the center of the room. Legion will fire a brimstone laser at enemies in the room until the room is clear.
    * Item Look: Large red Diamond (Blood DIamond)
-   * Costume: Isaac has horns
+   * Costume: Isaac has claws (same claws as Legion)
    * Details on Legions' look: 
      * Statanic, dark, demonic, floating
      * Use same sprite sheet as Adam (or Brother Bobby)
+     * Should be around 30 pixels wide and tall. This is a big familiar and will help hide the starting position of the Brimstone laser.
 
  * Deceiver! (Transformation)
    * Effect: Killing enemies has a %5 chance to life steal (half heart)
