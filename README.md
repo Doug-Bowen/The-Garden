@@ -44,7 +44,7 @@ Balances:
    * Costume: Isaac has a deep purple glow behind his head with particles rising off, eyes become black
    * Details on Legions' look: 
      * Statanic, dark, demonic, floating
-     * Use same sprite sheet as Adam (or Brother Bobby)
+     * Use same sprite sheet as Adam (or Brother Bobby) -- I think? We need 8 directions, these only have 4
      * Should be around 30 pixels wide and tall. This is a big familiar and will help hide the starting position of the Brimstone laser.
 
  * Deceiver! (Transformation)
