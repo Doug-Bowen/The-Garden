@@ -71,6 +71,7 @@ garden.ROOM_FIGHT = false
 garden.ROOM_DONE = false
 garden.HAS_CONVERTED_HEARTS = false
 garden.LEGION_IN_ROOM = false
+garden.LEGION_SPAWN_POSITION = nil
 TearFlags = {FLAG_POISONING = 1<<4}
 
 --Room Flags
@@ -108,7 +109,6 @@ garden.GRASS_VARIANT = Isaac.GetEntityVariantByName("Grass")
 garden.PATCH_VARIANT = Isaac.GetEntityVariantByName("The Patch")   		
 garden.ADAM_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("Adam")
 garden.LEGION_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("Legion")
-garden.GEM_FAMILIAR_VARIANT = Isaac.GetEntityVariantByName("Gem")
 
 --Entity Subtypes
 garden.GRAIN_SUBTYPE = 0 
@@ -743,16 +743,11 @@ function garden:updateFamiliar(familiar)
 		end
 	end
 
-	if familiar.Variant == garden.GEM_FAMILIAR_VARIANT then
+	if familiar.Variant == garden.LEGION_FAMILIAR_VARIANT then
 		if garden.HAS_LEGION then			
 			local player = Isaac.GetPlayer(0)			
 			local currentRoom = Game():GetRoom()
-			local roomCenter = currentRoom:GetCenterPos()
-			familiar.OrbitDistance = Vector(25, 25)
-			familiar.OrbitLayer = 98
-			familiar.OrbitSpeed = 0.01
-			familiar.Velocity = familiar:GetOrbitPosition(player.Position + player.Velocity) - familiar.Position
-			familiar.GridCollisionClass = 0			
+			local roomCenter = currentRoom:GetCenterPos()			
 		
 			if currentRoom:IsClear() then --Remove Legion from the room on clear
 				local entities = Isaac.GetRoomEntities() 
@@ -767,7 +762,7 @@ function garden:updateFamiliar(familiar)
 						local frameDelay = 0
 						local loop = false
 						local pitch = 1
-						soundShell:ToNPC():PlaySound("174", volume, frameDelay, loop, pitch)	--Make it a sound
+						soundShell:ToNPC():PlaySound("176", volume, frameDelay, loop, pitch)	--Make it a sound
 						soundShell:Remove()	
 					end				
 				end				
@@ -797,10 +792,10 @@ function garden:updateFamiliar(familiar)
 					end				
 				end	
 				local randomNum = math.random(100)
-				if randomNum <= 10 and enemiesInRoom and not bossInRoom then --10% chance									
-					local spawnPosition = currentRoom:FindFreePickupSpawnPosition(roomCenter, 0, true)
-					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, spawnPosition, Vector(0,0), nil)				
-					Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.LEGION_FAMILIAR_VARIANT, 0, spawnPosition, Vector(0,0), player)
+				if randomNum <= 20 and enemiesInRoom and not bossInRoom then --20% chance to spawn Legion
+					garden.LEGION_SPAWN_POSITION = currentRoom:FindFreePickupSpawnPosition(roomCenter, 0, true)
+					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, garden.LEGION_SPAWN_POSITION, Vector(0,0), nil)				
+					Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.LEGION_FAMILIAR_VARIANT, 0, garden.LEGION_SPAWN_POSITION, Vector(0,0), player)
 					garden.LEGION_IN_ROOM = true
 
 					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
@@ -823,15 +818,11 @@ function garden:updateFamiliar(familiar)
 				local entities = Isaac.GetRoomEntities() 
 				for i = 1, #entities do				
 					local singleEntity = entities[i]
-					--Find the end position of the brimstone shot
-					if singleEntity:IsVulnerableEnemy() then	
-						chosenEnemy = singleEntity					
-					end	
-
-					--Find the starting position of the brimstone shot
-					if singleEntity.Type == EntityType.ENTITY_FAMILIAR and singleEntity.Variant == garden.LEGION_FAMILIAR_VARIANT and singleEntity.SubType == 0 then
-						legionFamiliar = singleEntity
-						brimstoneStartPosition = singleEntity.Position --This is the position of the Legion familiar
+					if singleEntity:IsVulnerableEnemy() then 
+						chosenEnemy = singleEntity --Find an enemy in the room
+					end						
+					if singleEntity.Type == EntityType.ENTITY_FAMILIAR and singleEntity.Variant == garden.LEGION_FAMILIAR_VARIANT and singleEntity.SubType == 0 then 
+						legionFamiliar = singleEntity --Find Legion familiar						
 					end														
 				end				
 
@@ -839,11 +830,11 @@ function garden:updateFamiliar(familiar)
 				local direction = Vector(chosenEnemy.Position.X-legionFamiliar.Position.X, chosenEnemy.Position.Y-legionFamiliar.Position.Y)								
 				local xDistance = chosenEnemy.Position.X-legionFamiliar.Position.X
 				local yDistance = chosenEnemy.Position.Y-legionFamiliar.Position.Y
-				local distance = math.abs(math.sqrt(xDistance^2 + yDistance^2))
+				local distance = math.abs(math.sqrt(xDistance^2 + yDistance^2)) --Look ma! I used the distance formula! Thanks, Algebra II :)
 				local legionData = familiar:GetData()				
 				legionData.Laser = player:FireBrimstone(direction)
 				legionData.Laser.Parent = legionFamiliar
-				legionData.Laser.Position = brimstoneStartPosition								
+				legionData.Laser.Position = garden.LEGION_SPAWN_POSITION								
 				local black = Color(0, 0, 0, 255, 0, 0, 0)
 				legionData.Laser.Color = black
 				legionData.Laser.Timeout = 1
@@ -973,10 +964,8 @@ function garden:itemPickedUp(player, statFromXML)
 		garden.HAS_LEGION = true
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position			
-		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.GEM_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)
-		player.Luck = player.Luck + 1.0
 		local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-		local volume = 10
+		local volume = 3
 		local frameDelay = 0
 		local loop = false
 		local pitch = 1
@@ -1051,4 +1040,4 @@ garden:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, garden.setNewRunFlags)
 
 --Familiar Callbacks
 garden:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, garden.updateFamiliar, garden.ADAM_FAMILIAR_VARIANT)
-garden:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, garden.updateFamiliar, garden.GEM_FAMILIAR_VARIANT)
+garden:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, garden.updateFamiliar, garden.LEGION_FAMILIAR_VARIANT)
