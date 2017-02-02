@@ -15,7 +15,8 @@ Fixes:
 * Corrected a rare situation where Harvest would enter a state where it would never proc again :white_check_mark:
 * Corrected an issue where the player could not get 'My Beloved' from the Garden Room :white_check_mark:
 * Corrected Serpent gibs :white_check_mark:
-* Corrected Costume overlays :white_check_mark:
+* Corrected costume overlays :white_check_mark:
+* Corrected a situation where items removed from The Garden Pool would not be added back to the pool on new run :white_check_mark:
 
 Balances:
 * Adams damage changed from 14 to 10 :white_check_mark:
