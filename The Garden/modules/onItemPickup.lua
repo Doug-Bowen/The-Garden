@@ -8,9 +8,11 @@ function garden:itemPickedUp(player, statFromXML)
 	if player:HasCollectible(garden.COLLECTIBLE_CREATION) and not garden.HAS_CREATION then
 		garden.HAS_CREATION = true
 		player:AddNullCostume(garden.COSTUME_ID_CREATION)	
+		
 		player.Damage = player.Damage + 0.51		
 		player.MoveSpeed = player.MoveSpeed + 0.1
 		player.ShotSpeed = player.ShotSpeed + 0.1
+		
 		local white = Color(255, 255, 255, 255, 0, 0, 0)
 		player.TearColor = white		
 	end
