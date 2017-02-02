@@ -336,7 +336,7 @@ function garden:legionEffect()
 				end				
 			end			
 			local randomNum = math.random(100)
-			if randomNum <= 20 and garden.ENEMIES_IN_ROOM and not garden.BOSS_IN_ROOM then --20% chance to spawn Legion
+			if randomNum <= 15 and garden.ENEMIES_IN_ROOM and not garden.BOSS_IN_ROOM then --15% chance to spawn Legion
 				garden.LEGION_IN_ROOM = true
 				garden.LEGION_SPAWN_POSITION = currentRoom:FindFreePickupSpawnPosition(roomCenter, 0, true)
 				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, garden.LEGION_SPAWN_POSITION, Vector(0,0), nil)				
