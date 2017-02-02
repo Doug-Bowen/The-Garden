@@ -306,7 +306,7 @@ function garden:legionEffect()
 					garden.LEGION_IN_ROOM = false
 					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
 					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, singleEntity.Position, Vector(0,0), nil)				
-					local volume = 5
+					local volume = 3
 					local frameDelay = 0
 					local loop = false
 					local pitch = 1
