@@ -3,7 +3,10 @@
 ----------------
 
 function garden:itemPickedUp(player, statFromXML)
+	--I'm grabbing this 3 times to ensure cache actually gets updated. Without this, it was inconsistant.
 	local player = Isaac.GetPlayer(0)	
+	local player = Isaac.GetPlayer(0)
+	local player = Isaac.GetPlayer(0)
 	
 	if player:HasCollectible(garden.COLLECTIBLE_CREATION) and not garden.HAS_CREATION then
 		garden.HAS_CREATION = true
