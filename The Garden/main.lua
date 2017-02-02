@@ -461,7 +461,7 @@ function garden:legionEffect()
 					garden.LEGION_IN_ROOM = false
 					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
 					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, singleEntity.Position, Vector(0,0), nil)				
-					local volume = 5
+					local volume = 3
 					local frameDelay = 0
 					local loop = false
 					local pitch = 1
@@ -806,21 +806,37 @@ function garden:setNewFloorFlags()
 	local currentLevel = Game():GetLevel()
 	if currentLevel:GetStage() ~= garden.CURRENT_LEVEL then
 		garden.CURRENT_LEVEL = currentLevel:GetStage()
+		
+		--Room Flags
 		garden.GARDEN_HEARTS_CAN_SPAWN = true
-		garden.FIGHT_CAN_START = true		
-		garden.WAVE_NUMBER = 0		
-		garden.VISIT_NUMBER = 0 
-		garden.ITEM_REWARDED = false	
+		garden.FIGHT_CAN_START = true
+		garden.WAVE_NUMBER = 0
+		garden.VISIT_NUMBER = 0
+		garden.ITEM_REWARDED = false
+
+		--Curses
+		garden.HAS_MORTALITY_CURSE = false			
 	end	
 end	
 
 function garden:setNewRunFlags()
-	garden.GARDEN_HEARTS_CAN_SPAWN = true
-	garden.FIGHT_CAN_START = true	
-	garden.WAVE_NUMBER = 0	
-	garden.VISIT_NUMBER = 0 
-	garden.ITEM_REWARDED = false	
+	--Garden Item Pool
+	garden.gardenPool = {}
+	garden.gardenPool[1] = garden.COLLECTIBLE_SHAME
+	garden.gardenPool[2] = garden.COLLECTIBLE_FORBIDDEN_FRUIT
+	garden.gardenPool[3] = garden.COLLECTIBLE_DECEPTION
+	garden.gardenPool[4] = garden.COLLECTIBLE_CREATION
+	garden.gardenPool[5] = garden.COLLECTIBLE_GRANTED_DOMAIN
+	garden.gardenPool[6] = garden.COLLECTIBLE_THE_FALL_OF_MAN
+	garden.gardenPool[7] = garden.COLLECTIBLE_REBIRTH
+	garden.gardenPool[8] = garden.COLLECTIBLE_EXILED
+	garden.gardenPool[9] = garden.COLLECTIBLE_THE_FIRST_DAY
+	garden.gardenPool[10] = garden.COLLECTIBLE_MY_BELOVED
+	garden.gardenPool[11] = garden.COLLECTIBLE_THE_HARVEST
+	garden.gardenPool[12] = garden.COLLECTIBLE_CRACK_THE_EARTH
+	garden.gardenPool[13] = garden.COLLECTIBLE_LEGION
 
+	--Item Flags
 	garden.HAS_SHAME = false
 	garden.HAS_FORBIDDEN_FRUIT = false
 	garden.HAS_DECEPTION = false
@@ -832,8 +848,37 @@ function garden:setNewRunFlags()
 	garden.HAS_THE_FIRST_DAY = false
 	garden.HAS_MY_BELOVED = false
 	garden.HAS_THE_HARVEST = false
+	garden.HAS_CRACK_THE_EARTH = false
 	garden.HAS_LEGION = false
 	garden.HAS_DECEIVER = false
+
+	--Storage Variables
+	garden.CURRENT_LEVEL = nil
+	garden.PREVIOUS_POSITION = nil
+	garden.ROOM_FIGHT = false
+	garden.ROOM_DONE = false
+	garden.HAS_CONVERTED_HEARTS = false
+	garden.LEGION_IN_ROOM = false
+	garden.LEGION_SPAWN_POSITION = nil
+	garden.ENEMIES_IN_ROOM = nil
+	garden.BOSS_IN_ROOM = nil
+	TearFlags = {FLAG_POISONING = 1<<4}
+
+	--Room Flags
+	garden.GARDEN_HEARTS_CAN_SPAWN = true
+	garden.FIGHT_CAN_START = true
+	garden.WAVE_NUMBER = 0
+	garden.VISIT_NUMBER = 0
+	garden.ITEM_REWARDED = false	
+
+	--Curses
+	garden.HAS_MORTALITY_CURSE = false
+
+	--Entity Shells
+	garden.TREE_SHELL = nil                                        
+	garden.SERPENT_SHELL = nil                                           
+	garden.GRAIN_SHELL = nil
+	garden.GRASS_SHELL = nil 
 end	 
  
 --------------------
@@ -864,9 +909,11 @@ function garden:itemPickedUp(player, statFromXML)
 	if player:HasCollectible(garden.COLLECTIBLE_CREATION) and not garden.HAS_CREATION then
 		garden.HAS_CREATION = true
 		player:AddNullCostume(garden.COSTUME_ID_CREATION)	
+		
 		player.Damage = player.Damage + 0.51		
 		player.MoveSpeed = player.MoveSpeed + 0.1
 		player.ShotSpeed = player.ShotSpeed + 0.1
+		
 		local white = Color(255, 255, 255, 255, 0, 0, 0)
 		player.TearColor = white		
 	end
