@@ -128,7 +128,7 @@ function garden:gardenRoomUpdate()
 			end
 
 			if not bossAlive then
-				garden.SERPENT_LOCATION = Vector(roomCenter.X+100, roomCenter.Y)		
+				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)		
 				local randomNum = math.random(5,12)
 				for i=1, randomNum do
 					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_TYPE, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
@@ -150,7 +150,7 @@ function garden:gardenRoomUpdate()
 			end
 
 			if not bossAlive then
-				garden.SERPENT_LOCATION = Vector(roomCenter.X-100, roomCenter.Y)		
+				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)		
 				local randomNum = math.random(5,12)
 				for i=1, randomNum do
 					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_LARRY_TYPE, garden.SERPENT_LARRY_VARIANT, 1, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
