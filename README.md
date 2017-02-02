@@ -4,7 +4,7 @@ Features:
 * The Garden Room is now 3 waves of bosses :white_check_mark: 
 * 2 new Serpent variants :white_check_mark:
 * New door aesthetic in the Garden :clock3:
-* New Ladybug enemies in the garden :clock3: (Clone of melee creepers)
+* New Ladybug enemies in the garden (during wave 3) :clock3: (Clone of bats)
 * 2 New items :clock3: (Deisgned below)
 * 1 New transformation :white_check_mark:
 * Debug flag - Test all of the items in room 1 :white_check_mark:
