@@ -14,9 +14,9 @@ garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theFirstDayEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.myBelovedEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.harvestEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.crackTheEarthEffect)
+garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.legionEffect)
 garden:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, garden.deceiverEffect)
 garden:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, garden.itemPickedUp)
-
 --Room Callbacks
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoomUpdate)
 
@@ -30,4 +30,3 @@ garden:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, garden.setNewRunFlags)
 
 --Familiar Callbacks
 garden:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, garden.updateFamiliar, garden.ADAM_FAMILIAR_VARIANT)
-garden:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, garden.updateFamiliar, garden.LEGION_FAMILIAR_VARIANT)

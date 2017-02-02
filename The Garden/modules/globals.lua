@@ -1,5 +1,9 @@
 local garden = RegisterMod("TheGarden", 1) --'1' denotes API v1.0
 
+--------------------
+--Global Variables--
+--------------------
+
 --Debug Flag
 garden.DEBUG_MODE = true
 
@@ -72,6 +76,8 @@ garden.ROOM_DONE = false
 garden.HAS_CONVERTED_HEARTS = false
 garden.LEGION_IN_ROOM = false
 garden.LEGION_SPAWN_POSITION = nil
+garden.ENEMIES_IN_ROOM = nil
+garden.BOSS_IN_ROOM = nil
 TearFlags = {FLAG_POISONING = 1<<4}
 
 --Room Flags

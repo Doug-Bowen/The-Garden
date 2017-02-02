@@ -112,16 +112,14 @@ function garden:itemPickedUp(player, statFromXML)
 
 	if player:HasCollectible(garden.COLLECTIBLE_LEGION) and not garden.HAS_LEGION then			
 		garden.HAS_LEGION = true
-		local player = Isaac.GetPlayer(0)
-		local playerPosition = player.Position			
+		local player = Isaac.GetPlayer(0)						
 		local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
 		local volume = 3
 		local frameDelay = 0
 		local loop = false
 		local pitch = 1
 		soundShell:ToNPC():PlaySound("177", volume, frameDelay, loop, pitch)	--Make it a sound
-		soundShell:Remove()	
-
+		soundShell:Remove()
 	end
 
 	--Deceiver Tansformation

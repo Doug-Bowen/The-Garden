@@ -1,6 +1,10 @@
+---------
+--Debug--
+---------
+
 function garden:debugMode()
 	if garden.DEBUG_MODE then
-		Isaac.RenderText("Debug Mode", 50, 15, 255, 255, 255, 255)
+		Isaac.RenderText("Debug Mode", 50, 15, 255, 255, 255, 255)		
 		--local currentGame = Game()
 		--local currentLevel = currentGame:GetLevel()		
 		--local currentRoom = Game():GetRoom()
