@@ -40,4 +40,13 @@
     <entity anm2path="legion.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0.0" collisionMass="0" collisionRadius="0" friction="1" id="3" name="Legion" numGridCollisionPoints="12" shadowSize="12" stageHP="0" variant="779">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
+
+    <entity anm2path="serpentBaby.anm2" reroll="true" baseHP="10" boss="0" champion="1" collisionDamage="2" collisionMass="10" collisionRadius="13" friction="1" id="31" name="Serpent Baby" numGridCollisionPoints="12" shadowSize="26" stageHP="0" variant="288" portrait="29" bestiary="false">
+        <gibs amount="5" blood="1" bone="0" eye="1" gut="1" large="0" />
+        <preload-snd id="319" /> <!-- SOUND_LITTLE_SPIT -->
+    </entity>
+
+    <entity anm2path="ladyBug.anm2" reroll="true" baseHP="20" boss="0" champion="1" collisionDamage="1" collisionMass="7" collisionRadius="13" friction="1" id="25" name="Lady Bug" numGridCollisionPoints="12" shadowSize="20" stageHP="0" variant="575" portrait="19" gridCollision="walls" bestiary="true" bestiaryTransform="0,0,1" bestiaryAnim="Fly">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
 </entities>

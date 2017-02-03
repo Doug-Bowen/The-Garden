@@ -103,13 +103,17 @@ garden.SERPENT_HOLLOW_TYPE = Isaac.GetEntityTypeByName("Serpent Hollow")
 garden.SERPENT_LARRY_TYPE = Isaac.GetEntityTypeByName("Serpent Larry")                                                 
 garden.GRAIN_TYPE = Isaac.GetEntityTypeByName("Grain")          
 garden.GRASS_TYPE = Isaac.GetEntityTypeByName("Grass")     
-garden.TREE_TYPE = Isaac.GetEntityTypeByName("The Tree")         
+garden.TREE_TYPE = Isaac.GetEntityTypeByName("The Tree")
+garden.SERPENT_BABY_TYPE = Isaac.GetEntityTypeByName("Serpent Baby")
+garden.LADY_BUG_TYPE = Isaac.GetEntityTypeByName("Lady Bug")
 
 --Entity Vairants
 garden.SERPENT_VARIANT = Isaac.GetEntityVariantByName("The Serpent") 
 garden.TREE_VARIANT = Isaac.GetEntityVariantByName("The Tree")     
 garden.SERPENT_HOLLOW_VARIANT = Isaac.GetEntityVariantByName("Serpent Hollow") 
 garden.SERPENT_LARRY_VARIANT = Isaac.GetEntityVariantByName("Serpent Larry")   
+garden.SERPENT_BABY_VARIANT = Isaac.GetEntityVariantByName("Serpent Baby")
+garden.LADY_BUG_VARIANT = Isaac.GetEntityVariantByName("Lady Bug")
 garden.GRAIN_VARIANT = Isaac.GetEntityVariantByName("Grain")  
 garden.GRASS_VARIANT = Isaac.GetEntityVariantByName("Grass")  
 garden.PATCH_VARIANT = Isaac.GetEntityVariantByName("The Patch")   		
@@ -128,7 +132,8 @@ garden.TREE_LOCATION = nil
 garden.SERPENT_VELOCITY = Vector(0,0)
 garden.TREE_VELOCITY = Vector(0,0)
 garden.SERPENT_SPAWN_OWNER = nil	
-garden.TREE_SPAWN_OWNER = nil 
+garden.TREE_SPAWN_OWNER = nil
+ 
  
 ---------
 --Debug--
@@ -697,6 +702,18 @@ function garden:gardenRoomUpdate()
 				end
 			end
 
+			--Spawn Baby Serpents
+			if bossAlive then
+				local entities = Isaac.GetRoomEntities()
+				for i = 1, #entities do
+					local singleEntity = entities[i]
+					if singleEntity.Type == EntityType.ENTITY_POOP then				
+						singleEntity:Remove()					
+						Isaac.Spawn(garden.SERPENT_BABY_TYPE, garden.SERPENT_BABY_VARIANT, 0, singleEntity.Position, Vector(0,0), nil)								
+					end
+				end
+			end
+
 			if not bossAlive then
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)		
 				local randomNum = math.random(5,12)
@@ -716,6 +733,18 @@ function garden:gardenRoomUpdate()
 				local singleEntity = entities[i]
 				if singleEntity.Type == garden.SERPENT_LARRY_TYPE then	
 					bossAlive = true
+				end
+			end
+
+			--Spawn Lady Bugs
+			if bossAlive then
+				local entities = Isaac.GetRoomEntities()
+				for i = 1, #entities do
+					local singleEntity = entities[i]
+					if singleEntity.Type == EntityType.ENTITY_POOP then				
+						singleEntity:Remove()					
+						Isaac.Spawn(garden.LADY_BUG_TYPE, garden.LADY_BUG_VARIANT, 0, singleEntity.Position, Vector(0,0), nil)								
+					end
 				end
 			end
 

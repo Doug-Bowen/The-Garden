@@ -149,6 +149,18 @@ function garden:gardenRoomUpdate()
 				end
 			end
 
+			--Spawn Baby Serpents
+			if bossAlive then
+				local entities = Isaac.GetRoomEntities()
+				for i = 1, #entities do
+					local singleEntity = entities[i]
+					if singleEntity.Type == EntityType.ENTITY_POOP then				
+						singleEntity:Remove()					
+						Isaac.Spawn(garden.SERPENT_BABY_TYPE, garden.SERPENT_BABY_VARIANT, 0, singleEntity.Position, Vector(0,0), nil)								
+					end
+				end
+			end
+
 			if not bossAlive then
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)		
 				local randomNum = math.random(5,12)
@@ -168,6 +180,18 @@ function garden:gardenRoomUpdate()
 				local singleEntity = entities[i]
 				if singleEntity.Type == garden.SERPENT_LARRY_TYPE then	
 					bossAlive = true
+				end
+			end
+
+			--Spawn Lady Bugs
+			if bossAlive then
+				local entities = Isaac.GetRoomEntities()
+				for i = 1, #entities do
+					local singleEntity = entities[i]
+					if singleEntity.Type == EntityType.ENTITY_POOP then				
+						singleEntity:Remove()					
+						Isaac.Spawn(garden.LADY_BUG_TYPE, garden.LADY_BUG_VARIANT, 0, singleEntity.Position, Vector(0,0), nil)								
+					end
 				end
 			end
 
