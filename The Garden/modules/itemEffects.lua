@@ -115,8 +115,8 @@ function garden:harvestEffect()
 				end				
 			end
 		elseif currentRoom:IsClear() and garden.ROOM_FIGHT and not garden.ROOM_DONE then				
-			local randomNum = math.random(100)  --Luck-based chance			
-			if randomNum <= ((player.Luck + 1) * 1.5) then
+			local randomNum = math.random(100)  --Luck-based chance (4% per luck)			
+			if randomNum <= ((player.Luck + 1) * 4) then
 				local roomCenter = currentRoom:GetCenterPos()
 				local initialStep = 0 --Not sure what this does
 				local avoidActiveEnemies = true
@@ -220,17 +220,17 @@ function garden:crackTheEarthEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) then		
 		local currentRoom = Game():GetRoom()	
-		if currentRoom:GetFrameCount() % 100 == 0 then -- Only every 100th frame
+		if currentRoom:GetFrameCount() % 50 == 0 then -- Only every 50th frame
 			local entities = Isaac.GetRoomEntities()
 			for i = 1, #entities do
-				local randomNum = math.random(100) -- 2% chance per luck
-				if randomNum <= ((player.Luck + 1) * 2) then
+				local randomNum = math.random(100) -- 5% chance per luck
+				if randomNum <= ((player.Luck + 1) * 5) then
 					local singleEntity = entities[i]
 					if singleEntity:IsVulnerableEnemy() and not singleEntity:IsFlying() and not singleEntity:IsBoss() then		
 						Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ROCK_EXPLOSION, 0, singleEntity.Position, Vector(0,0), nil)
 						singleEntity:TakeDamage(10.0,0,EntityRef(player),0)
 						local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-						local volume = 30
+						local volume = 3
 						local frameDelay = 0
 						local loop = false
 						local pitch = 1
@@ -279,7 +279,7 @@ function garden:deceiverEffect(target, amount, flags, source, cooldown)
 				if not player:HasFullHearts() then
 					player:AddHearts(1)  --Lifesteal
 					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-					local volume = 100
+					local volume = 5
 					local frameDelay = 0
 					local loop = false
 					local pitch = 1
@@ -336,14 +336,14 @@ function garden:legionEffect()
 				end				
 			end			
 			local randomNum = math.random(100)
-			if randomNum <= 15 and garden.ENEMIES_IN_ROOM and not garden.BOSS_IN_ROOM then --15% chance to spawn Legion
+			if randomNum <= 20 and garden.ENEMIES_IN_ROOM and not garden.BOSS_IN_ROOM then --20% chance to spawn Legion
 				garden.LEGION_IN_ROOM = true
 				garden.LEGION_SPAWN_POSITION = currentRoom:FindFreePickupSpawnPosition(roomCenter, 0, true)
 				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, garden.LEGION_SPAWN_POSITION, Vector(0,0), nil)				
 				Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.LEGION_FAMILIAR_VARIANT, 0, garden.LEGION_SPAWN_POSITION, Vector(0,0), player)
 				
 				local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-				local volume = 5
+				local volume = 3
 				local frameDelay = 0
 				local loop = false
 				local pitch = 1
