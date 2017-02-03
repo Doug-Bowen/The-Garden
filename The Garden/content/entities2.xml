@@ -28,11 +28,11 @@
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />        
     </entity>    
 
-    <entity anm2path="serpentHollow.anm2" baseHP="31" boss="1" bossID="26" champion="0" collisionDamage="1" collisionMass="50" collisionRadius="20" friction="1" id="19" name="Serpent Hollow" numGridCollisionPoints="0" shadowSize="23" stageHP="0" variant="765" portrait="0" bestiary="false">
+    <entity anm2path="serpentHollow.anm2" baseHP="20" boss="1" bossID="26" champion="0" collisionDamage="1" collisionMass="50" collisionRadius="20" friction="1" id="19" name="Serpent Hollow" numGridCollisionPoints="0" shadowSize="23" stageHP="0" variant="765" portrait="0" bestiary="false">
         <gibs amount="6" blood="1" bone="0" eye="0" gut="0" large="0" worm="1" />
     </entity>
 
-    <entity anm2path="serpentLarry.anm2" baseHP="38" boss="1" bossID="2" champion="0" collisionDamage="1" collisionMass="50" collisionRadius="20" friction="1" id="19" name="Serpent Larry" numGridCollisionPoints="0" shadowSize="25" stageHP="0" variant="0" subtype = "1" portrait="0" bestiary="false">
+    <entity anm2path="serpentLarry.anm2" baseHP="30" boss="1" bossID="2" champion="0" collisionDamage="1" collisionMass="50" collisionRadius="20" friction="1" id="19" name="Serpent Larry" numGridCollisionPoints="0" shadowSize="25" stageHP="0" variant="0" subtype = "1" portrait="0" bestiary="false">
         <gibs amount="8" blood="1" bone="1" eye="0" gut="1" large="0" />
         <preload-snd id="115" /> <!-- SOUND_MONSTER_ROAR_0 -->
     </entity>
