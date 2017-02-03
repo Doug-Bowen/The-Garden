@@ -133,6 +133,10 @@ function garden:gardenRoomUpdate()
 				for i=1, randomNum do
 					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_TYPE, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
 				end
+				local babySnakeLeftPosition = Vector(roomCenter.X+100,roomCenter.Y)
+				local babySnakeRightPosition = Vector(roomCenter.X-100,roomCenter.Y)
+				Isaac.Spawn(garden.SERPENT_BABY_TYPE, garden.SERPENT_BABY_VARIANT, 0, babySnakeLeftPosition, Vector(0,0), nil)								
+				Isaac.Spawn(garden.SERPENT_BABY_TYPE, garden.SERPENT_BABY_VARIANT, 0, babySnakeRightPosition, Vector(0,0), nil)								
 				garden.SERPENT_SHELL:ToNPC():PlaySound("172", 100, 0, false, 1)
 				garden.WAVE_NUMBER = 2																	
 			end
@@ -147,19 +151,18 @@ function garden:gardenRoomUpdate()
 				if singleEntity.Type == garden.SERPENT_HOLLOW_TYPE then	
 					bossAlive = true
 				end
-
-				if singleEntity.Type == EntityType.ENTITY_POOP then				
-					singleEntity:Remove()					
-					Isaac.Spawn(garden.SERPENT_BABY_TYPE, garden.SERPENT_BABY_VARIANT, 0, singleEntity.Position, Vector(0,0), nil)	
-				end
 			end
 
 			if not bossAlive then
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)		
 				local randomNum = math.random(5,12)
-				for i=1, randomNum do
+				for i=1, randomNum do					
 					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_LARRY_TYPE, garden.SERPENT_LARRY_VARIANT, 1, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
 				end
+				local ladyBugLeftPosition = Vector(roomCenter.X+100,roomCenter.Y)
+				local ladyBugRightPosition = Vector(roomCenter.X-100,roomCenter.Y)
+				Isaac.Spawn(garden.LADY_BUG_TYPE, garden.LADY_BUG_VARIANT, 0, ladyBugLeftPosition, Vector(0,0), nil)								
+				Isaac.Spawn(garden.LADY_BUG_TYPE, garden.LADY_BUG_VARIANT, 0, ladyBugRightPosition, Vector(0,0), nil)								
 				garden.SERPENT_SHELL:ToNPC():PlaySound("172", 100, 0, false, 1)
 				garden.WAVE_NUMBER = 3																	
 			end
@@ -173,11 +176,6 @@ function garden:gardenRoomUpdate()
 				local singleEntity = entities[i]
 				if singleEntity.Type == garden.SERPENT_LARRY_TYPE then	
 					bossAlive = true
-				end
-				
-				if singleEntity.Type == EntityType.ENTITY_POOP then				
-					singleEntity:Remove()					
-					Isaac.Spawn(garden.LADY_BUG_TYPE, garden.LADY_BUG_VARIANT, 0, singleEntity.Position, Vector(0,0), nil)								
 				end
 			end
 
