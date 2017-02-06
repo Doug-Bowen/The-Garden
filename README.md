@@ -1,38 +1,13 @@
-Do you like my mods? Give this repo a star! ★ or buy me a beer: <a href="https://flattr.com/submit/auto?fid=z72okx&url=http%3A%2F%2Fwww.github.com%2FDoug-Bowen%2FisaacMods" target="_blank"><img src="http://i.imgur.com/Xnq1jGe.png" alt="Flattr this" title="Flattr this" border="0"></a>
+## The Garden Mod
 
-# The Garden Mod
-
-## Coming soon:
-
-Features:
-* 2 new Serpent variants
-* New door aesthetic in the Garden
-* New Ladybug enemies
-* 2 New items
-* Debug flag (set this to true to see and test all of the items)
-
-_____________________
-
-## v1.0:
-* The Garden (New Room) 
-* The Garden Pool (New Item Pool)  
-* 11 new items:  
-  * Shame
-  * Forbidden Fruit
-  * Deception
-  * Creation
-  * Granted Domain
-  * The Harvest
-  * The Fall of Man
-  * Rebirth
-  * The First Day
-  * Exiled
-  * My Beloved (Item)
-* Genisis (New Challenge)
-* Curse of Mortality (Curse)
-* The Serpent (Boss) 
-* 1 New Music Track
-* 1 New SFX 
+* New room: The Garden
+* 13 new passive items!
+* New challenge: Genesis
+* New curse: Curse of Mortality
+* New bosses: The Serpents
+* New transformation: Deceiver!
+* New music
+* New sound effects
 
 |Item Name|Effect|
 |---|---|
@@ -42,11 +17,14 @@ _____________________
 |Creation|All stats up|
 |Granted Domain|Enemies stop moving when Isaac stops moving|
 |The Harvest|Upon clearing a room, the player has a 5% chance to be rewarded with a random item in the center of the room.|
-|The Fall of Man|+2 Black Hearts. Removes all red hearts. For each red heart removed, +1 damage.|
+|The Fall of Man|+2 Black Hearts. Removes all red hearts. For each red heart removed, +.5 damage.|
 |Rebirth|The player gains a familiar that looks like Adam. Adam rotates very fast but deals large damage.|
 |The First Day|100% Angel Precedence.|
-|Exiled|+3 Heart Containers, All heart drops are now black hearts.|
+|Exiled|+2 Heart Containers, All heart drops are now black hearts.|
 |My Beloved|+1 Heart Container, All hearts in the room quickly gravitate towards Isaac until he obtains them.|
+|Creack The Earth|Every 10 frames, has a 5% chance per Luck to create an earth quake under a random enemy in the room, dealing strong damage. Excludes flying enemies and bosses.|
+|Legion|Isaac gains a demonic familiar that, upon room entry, has a chance to spawn in the center of the room and fires brimstone lasers at enemies until the room is clear.|
+|Deceiver! (Costume)|Killing enemies has a %5 chance to life steal (half heart). Poison tears.|
 
 **The Garden Room:** A room that replaces all libraries 
 
