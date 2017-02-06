@@ -501,7 +501,8 @@ function garden:legionEffect()
 				garden.LEGION_SPAWN_POSITION = currentRoom:FindFreePickupSpawnPosition(roomCenter, 0, true)
 				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, garden.LEGION_SPAWN_POSITION, Vector(0,0), nil)				
 				Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.LEGION_FAMILIAR_VARIANT, 0, garden.LEGION_SPAWN_POSITION, Vector(0,0), player)
-				
+				Game():ShakeScreen(12)
+								
 				local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
 				local volume = 3
 				local frameDelay = 0
@@ -1031,6 +1032,7 @@ function garden:itemPickedUp(player, statFromXML)
 
 	if player:HasCollectible(garden.COLLECTIBLE_LEGION) and not garden.HAS_LEGION then			
 		garden.HAS_LEGION = true
+		Game():ShakeScreen(12)
 		local player = Isaac.GetPlayer(0)						
 		local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
 		local volume = 3
