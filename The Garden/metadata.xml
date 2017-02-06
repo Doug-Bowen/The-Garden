@@ -1,50 +1,60 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="2.0" encoding="UTF-8"?>
 <metadata>
     <name>The Garden</name>
     <directory>the garden</directory>
     <id>847639592</id>
-    <description>COMING SOON:
-- 2 new Serpent variants
-- New door aesthetic in the Garden
-- New Ladybug enemies
-- 2 New items
-- Debug flag (set this to true to see and test all of the items)
-- Fix: Curse of Mortality making Donation and Reroll machines disappear
+    <description>
 
-============================================
-Check out where it all started! In The Garden of Eden! Battle The Serpent and receive a reward! If you choose.....
+[img]http://i.imgur.com/bhz2hDS.png[/img] <!-- Features -->
 
-v1.0:
-- 1 new room: The Garden (replaces Libraries) -- See comments as to why this had to occur.
-- 1 new item pool: The Garden Pool 
-- 11 new passive items!
-- 1 new challenge: Genesis 
-- 1 new curse: Curse of Mortality
-- 1 new boss: The Serpent 
-- 1 new music track 
-- 1 new SFX 
+For answers to common questions, please see the FAQs under the Discussion Tab
 
-Item Details:
-While I believe you'll have more fun discovering the items in The Garden, if you'd like to be spoiled, there is a detailed Readme.txt on our GitHub page: https://github.com/Doug-Bowen/isaacMods/blob/master/README.md
+* New room: The Garden
+* 13 new passive items!
+* New challenge: Genesis
+* New curse: Curse of Mortality
+* New bosses: The Serpents
+* New transformation: Deceiver!
+* New music
+* New sound effects
 
-Bugs:
-Please report any issues either here on the Steam Workshop page or on the github page linked below.
+[img]http://i.imgur.com/bhz2hDS.png[/img] <!-- Items -->
 
-Modders:
-Wondering how the heck we did all this?! Feel free to subscribe and pull down my code. I tried to document it as well as possible. You can also view it in the GitHub link below.
+Shame: Enemies that move too close to Isaac have a short fear effect applied to them
+Forbidden Fruit: Tears become apples, shot speed up
+Deception: Shuffle consumable numbers (high risk/high reward)
+Creation: Damage, speed, shot speed up
+Granted Domain: Enemies stop moving when Isaac stops moving
+The Harvest: Upon clearing a room has a small chance to be rewarded with an item
+The Fall of Man: +2 Black Hearts. Removes all heart containers. For each container removed, +.5 damage
+Rebirth: Adam familiar that rotates very fast but deals large damage
+The First Day: Guarantees Angel deals
+Exiled: +2 heart containers, all heart drops are now black hearts
+My Beloved: +1 heart container. Hearts chase Isaac
+Crack The Earth: Randomly creates earthquakes under enemies, dealing damage.
+Legion: Muahahahaha...
 
-============================================
+[img]http://i.imgur.com/bhz2hDS.png[/img] <!-- Credits -->
 
-Credits:
 Lead Developer: Doug Bowen | https://github.com/Doug-Bowen
 Lead Artist: Tyson &quot;Skrumps&quot; Hansen | http://www.instagram.com/skrumps
 
 Special thanks to:
 Backdrop: Azcom | reddit.com/u/Aczom
-Music/SFX: Wertandrew | Sound Cloud: https://soundcloud.com/wertandrew2/
-Costuming: TheFoxyDragon | reddit.com/u/TheFoxyDragon</description>
-    <version>1.4</version>
+Music/SFX: Wertandrew | Sound Cloud: https://soundcloud.com/wertandrew2, reddit.com/u/Wertandrew
+Costuming: TheFoxyDragon | reddit.com/u/TheFoxyDragon
+
+</description>
+    <version>2.0</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
+    <tag id="Familiars"/>
+    <tag id="Rooms"/>
+    <tag id="Enemies"/>
+    <tag id="Bosses"/>
+    <tag id="Removals"/>
+    <tag id="Graphics"/>
+    <tag id="Sound Effects"/>
+    <tag id="Music"/>
 </metadata>
