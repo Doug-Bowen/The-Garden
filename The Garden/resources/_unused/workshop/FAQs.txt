@@ -23,5 +23,5 @@ A: Garden rooms appear in place of Libraries. It just means you neevr ran into a
 Q: Why does this mod say that I need a DLC to play?
 A: The Garden requires The Binding of Isaac Afterbirth+ (released January 2017) to play.
 
-Other quesitons?
+Other questions?
 Maybe our design doc will help: https://github.com/Doug-Bowen/BindingOfIsaacMod-TheGarden/blob/master/README.md
