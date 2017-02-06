@@ -1,0 +1,11 @@
+* If when you leave The Garden, all doors become curse room doors, redownload the mod.  This is an issues on Steam's side of things
+* During testing, often with the debug flag set to true, player cache wouldn't be evaluated properly.  Try to restart the game to fix.
+* During testing, often with the debug flag set to true, cosumtes wouldn't be applied at all.  Try to restart the game to fix.
+* It is possible to see conflicts while using mods that add items and/or rooms.  Enable other mods with caution.
+* When the doors in The Garden Room become barred, any Secret Room attatched to it is revelaed.  Then opened after the fight.
+* Forbidden Fruits' apple tears pop like they are regular tears.
+* Custom item images in the pause menu are incorrect.
+* While fighting delirum, any version of The Serpent can spawn and will have an "incorrect" skin according to the context of the fight.
+* Dad's Key, if used in The Garden room, currently causes issues with The Serpent fight. I recommend not using it.
+* Dying and reviving outside of The Garden room as unknown side effects and can cause issues with The Serpent fight. I recommend not dying :).
+* To begin The Serpent fight using local multiplayer, have player two despawn, start the fight, then respawn player 2. Otherwise, the fight won't start.

@@ -1,0 +1,31 @@
+Features:
+- The Garden room:
+  - Now 3 waves of bosses 
+  - Significantly increased difficulty
+- 2 new Serpent variants
+  - The Hollow
+  - Larry Jr.
+- New enemies added to the garden
+  - New Ladybug enemies
+  - New Baby Snake enemies
+- 2 New items
+ - Crack the Earth
+ - Legion
+- Debug flag
+ - Set this to 'true' to see and test all of the items in the starting room)
+
+Fixes:
+- Corrected Curse of Mortality making Donation and Reroll machines disappear
+- Corrected Apple tears gfx not popping correctly
+- Corrected a rare situation where Harvest would enter a state where it would never proc again
+- Corrected an issue where the player could not get 'My Beloved' from the Garden Room
+- Corrected Serpent gibs
+- Corrected costume overlays
+- Corrected a situation where item that were removed from The Garden Pool would not be added back to the pool on new run
+
+Item Balances:
+- Adam: Damage reduced from 14 to 10
+- Deception: Risk to negatively impact you reduced from 50% to 40%
+- Exiled: Heart containers granted reduced from 3 to 2
+- The Fall of Man: Damage rewarded per heart container removed reduced from 1 to .5
+- Harvest: Chance to reward player iwth an item altered from a hard 5% to 4%/Luck

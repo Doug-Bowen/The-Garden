@@ -1,0 +1,27 @@
+FAQs
+
+Q: Why did you replace all libraries? I liked libraries!
+A: So do I! My original intent was to create a unique library but unfortunately I was unable to due to limitations of the API. Basically I couldn't, on room entry, determine that the player was in my unique room. 
+I sampled a lot of different methods to try to get this to work but eas eventually forced to replace all libraries.  A positive side effect was that this allowed players to run into the garden more often.  If the API opens up, I'll definitely fix this.
+Just FYI, for this to change I'd need Level::GetCurrentRoomDesc() to return a value that I can understand. Currently, it returns RoomDescriptor but there is no documentation on RoomDescriptor.
+
+Q: Why are all doors now Curse Room doors after leaving The Garden?
+A: It's a big bad bug! My current theory is that Steam didn't give you all of my mod's files. Try redownloading the mod.  This is not intended.
+
+Q: Will you be updating this mod?
+A: Tyson and I will be taking a break to make smaller mods in the future.  I will continue to support this mod via big fixes.  That said, if the abiltiy to change music or make unique rooms (see question 1) is added to the API, I'll add those features!
+
+Q: I just want to see the items.  How do I turn Debug mode on?
+A: In main.lus, set debugMode to true.  Like this: 'debugMode = true'. All items will appear in the first room this way. Note: this can be kind of screwy sometimes. See the Known Issues discussion.
+
+Q: Do you think Edmund will be adding this to the game?
+A: Nope! https://twitter.com/edmundmcmillen/status/827004316963610624
+
+Q: I did a whole run and never ran into a garden, what gives? How do I find The Garden?
+A: Garden rooms appear in place of Libraries. It just means you neevr ran into a library. Try again! (Hint: start as Cain and hold 'R' until you see a room with a lock. Chances are high that it's a library.)
+
+Q: Why does this mod say that I need a DLC to play?
+A: The Garden requires The Binding of Isaac Afterbirth+ (released January 2017) to play.
+
+Other quesitons?
+Maybe our design doc will help: https://github.com/Doug-Bowen/BindingOfIsaacMod-TheGarden/blob/master/README.md

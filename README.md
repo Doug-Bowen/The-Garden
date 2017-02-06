@@ -1,3 +1,5 @@
+Do you like The Garden? Give this repo a star! ?
+
 ## The Garden Mod
 
 * New room: The Garden
