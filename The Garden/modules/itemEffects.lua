@@ -386,6 +386,11 @@ function garden:legionEffect()
 				legionData.Laser.RenderZOffset = -5000 --Below characters
 				legionData.Laser.MaxDistance = distance
 				legionData.Laser.OneHit = false  --Greatly strengthens the brimstone shot
+
+				--Update Legion Animation right before firing
+				--local legionSprite = legionFamiliar:GetSprite()
+				--legionSprite:Play("Idle", true)
+
 				legionData.FireDirection = direction --Fires the laser				
 			end
 		end
