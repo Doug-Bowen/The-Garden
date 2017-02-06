@@ -1,8 +1,8 @@
 <AnimatedActor>
-	<Info CreatedBy="robot" CreatedOn="1/20/2017 3:36:34 PM" Version="103" Fps="30"/>
+	<Info CreatedBy="robot" CreatedOn="2/5/2017 7:59:14 PM" Version="103" Fps="30"/>
 	<Content>
 		<Spritesheets>
-			<Spritesheet Path="familiar\adamFamiliar.png" Id="0"/>
+			<Spritesheet Path="familiar\familiar_legion.png" Id="0"/>
 		</Spritesheets>
 		<Layers>
 			<Layer Name="body" Id="0" SpritesheetId="0"/>
