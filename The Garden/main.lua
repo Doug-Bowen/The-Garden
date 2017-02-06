@@ -148,6 +148,7 @@ function garden:debugMode()
 		--local player = Isaac.GetPlayer(0)
 		--local playerPosition = player.Position						
 		--Isaac.RenderText("X:" .. playerPosition.X, 50, 30, 255, 255, 255, 255)
+		--Isaac.RenderText("Y:" .. playerPosition.Y, 50, 45, 255, 255, 255, 255)
 		if Game():GetFrameCount() == 1 then
 			local currentRoom = Game():GetRoom()
 			local roomCenter = currentRoom:GetCenterPos()
@@ -496,7 +497,7 @@ function garden:legionEffect()
 				end				
 			end			
 			local randomNum = math.random(100)
-			if randomNum <= 20 and garden.ENEMIES_IN_ROOM and not garden.BOSS_IN_ROOM then --20% chance to spawn Legion
+			if randomNum <= 100 and garden.ENEMIES_IN_ROOM and not garden.BOSS_IN_ROOM then --20% chance to spawn Legion
 				garden.LEGION_IN_ROOM = true
 				garden.LEGION_SPAWN_POSITION = currentRoom:FindFreePickupSpawnPosition(roomCenter, 0, true)
 				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, garden.LEGION_SPAWN_POSITION, Vector(0,0), nil)				
@@ -543,9 +544,28 @@ function garden:legionEffect()
 				local black = Color(0, 0, 0, 255, 0, 0, 0)
 				legionData.Laser.Color = black
 				legionData.Laser.Timeout = 1
-				legionData.Laser.RenderZOffset = -5000 --Below characters
+				legionData.Laser.RenderZOffset = -59999 --Below characters
 				legionData.Laser.MaxDistance = distance
 				legionData.Laser.OneHit = false  --Greatly strengthens the brimstone shot
+
+				--Update Legion Animation right before firing
+				local legionSprite = legionFamiliar:GetSprite()
+				local xDiff = chosenEnemy.Position.X-legionFamiliar.Position.X
+				local yDiff = chosenEnemy.Position.Y-legionFamiliar.Position.Y				
+				if xDiff > 0 then --Right side of Legion 
+					legionSprite:Play("ShootRight", true)
+				end
+				if xDiff < 0 then --Left side of Legion
+					legionSprite:Play("ShootLeft", true)
+				end
+
+				if xDiff == 0 and yDiff > 0 then --Above Legion 
+					legionSprite:Play("ShootUp", true)
+				end
+				if xDiff == 0 and yDiff < 0 then --Below of Legion
+					legionSprite:Play("ShootDown", true)
+				end
+
 				legionData.FireDirection = direction --Fires the laser				
 			end
 		end
