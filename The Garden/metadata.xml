@@ -5,7 +5,7 @@
     <id>847639592</id>
     <description>== Features ==
 
-For answers to common questions, please see the FAQs under the Discussion Tab
+For answers to common questions, please see the FAQs under the Discussions Tab
 
 * New room: The Garden
 * 13 new passive items!
@@ -31,6 +31,7 @@ Exiled: +2 heart containers, all heart drops are now black hearts
 My Beloved: +1 heart container. Hearts chase Isaac
 Crack The Earth: Randomly creates earthquakes under enemies, dealing damage.
 Legion: Muahahahaha...
+Deceiver! transformation: Killing enemies has a %5 chance to life steal (half heart). Poison tears.
 
 == Credits ==
 
@@ -51,6 +52,7 @@ Costuming: TheFoxyDragon | reddit.com/u/TheFoxyDragon
     <tag id="Rooms"/>
     <tag id="Enemies"/>
     <tag id="Bosses"/>
+    <tag id="Challenges"/>
     <tag id="Removals"/>
     <tag id="Graphics"/>
     <tag id="Sound Effects"/>
