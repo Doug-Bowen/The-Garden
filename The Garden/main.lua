@@ -440,7 +440,7 @@ function garden:deceiverEffect(target, amount, flags, source, cooldown)
 				if not player:HasFullHearts() then
 					player:AddHearts(1)  --Lifesteal
 					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-					local volume = 5
+					local volume = 2
 					local frameDelay = 0
 					local loop = false
 					local pitch = 1
