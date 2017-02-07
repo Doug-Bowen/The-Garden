@@ -26,7 +26,7 @@ Do you like The Garden? Give this repo a star! ?
 |My Beloved|+1 Heart Container, All hearts in the room quickly gravitate towards Isaac until he obtains them.|
 |Creack The Earth|Every 10 frames, has a 5% chance per Luck to create an earth quake under a random enemy in the room, dealing strong damage. Excludes flying enemies and bosses.|
 |Legion|Isaac gains a demonic familiar that, upon room entry, has a chance to spawn in the center of the room and fires brimstone lasers at enemies until the room is clear.|
-|Deceiver! (Costume)|Killing enemies has a %5 chance to life steal (half heart). Poison tears.|
+|Deceiver! (Transformation)|Killing enemies has a %5 chance to life steal (half heart). Poison tears.|
 
 **The Garden Room:** A room that replaces all libraries 
 
