@@ -1,11 +1,9 @@
-<?xml version="2.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
     <name>The Garden</name>
     <directory>the garden</directory>
     <id>847639592</id>
-    <description>
-
-[img]http://i.imgur.com/bhz2hDS.png[/img] <!-- Features -->
+    <description>== Features ==
 
 For answers to common questions, please see the FAQs under the Discussion Tab
 
@@ -18,7 +16,7 @@ For answers to common questions, please see the FAQs under the Discussion Tab
 * New music
 * New sound effects
 
-[img]http://i.imgur.com/bhz2hDS.png[/img] <!-- Items -->
+== Items ==
 
 Shame: Enemies that move too close to Isaac have a short fear effect applied to them
 Forbidden Fruit: Tears become apples, shot speed up
@@ -34,7 +32,7 @@ My Beloved: +1 heart container. Hearts chase Isaac
 Crack The Earth: Randomly creates earthquakes under enemies, dealing damage.
 Legion: Muahahahaha...
 
-[img]http://i.imgur.com/bhz2hDS.png[/img] <!-- Credits -->
+== Credits ==
 
 Lead Developer: Doug Bowen | https://github.com/Doug-Bowen
 Lead Artist: Tyson &quot;Skrumps&quot; Hansen | http://www.instagram.com/skrumps
@@ -45,7 +43,7 @@ Music/SFX: Wertandrew | Sound Cloud: https://soundcloud.com/wertandrew2, reddit.
 Costuming: TheFoxyDragon | reddit.com/u/TheFoxyDragon
 
 </description>
-    <version>2.0</version>
+    <version>2.1</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
