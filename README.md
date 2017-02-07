@@ -1,4 +1,4 @@
-Do you like The Garden? Give this repo a star! ?
+Do you like The Garden? Give this repo a star!
 
 ## The Garden Mod
 
