@@ -7,7 +7,15 @@ function garden:gardenRoomUpdate()
 	local roomDesc = currentLevel:GetCurrentRoomDesc()	
 	local currentRoom = Game():GetRoom()	
 	if roomDesc.Data.Name == "The_Garden" then  --Player is in a Garden
-		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden
+		--[[DEBUG--
+		local backDrop = currentRoom:GetBackdropType()
+		if backDrop ~= nil then
+			Isaac.RenderText(backDrop, 50, 30, 255, 255, 255, 255)
+		else
+			Isaac.RenderText("Nil", 50, 30, 255, 255, 255, 255)
+		end
+		--------]]
+		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden			
 			if garden.VISIT_NUMBER == 0 then      --Player has never been in this Garden			
 				garden.FIGHT_CAN_START = true							
 				garden.GARDEN_HEARTS_CAN_SPAWN = true
