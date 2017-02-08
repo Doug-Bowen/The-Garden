@@ -273,8 +273,8 @@ end
 function garden:deceiverEffect(target, amount, flags, source, cooldown)
 	if garden.HAS_DECEIVER then
 		if target:IsVulnerableEnemy() and target.HitPoints-amount <= 0 then
-			local randomNum = math.random(1) --5% chance
-			if randomNum == 1 then 				
+			local randomNum = math.random(100) --5% chance
+			if randomNum <= 5 then 				
 				local player = Isaac.GetPlayer(0)
 				if not player:HasFullHearts() then
 					player:AddHearts(1)  --Lifesteal
