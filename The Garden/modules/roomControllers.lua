@@ -16,6 +16,8 @@ function garden:gardenRoomUpdate()
 		end
 		--------]]
 		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden			
+			MusicManager():Pause()			
+			MusicManager():Play(42,5.0)
 			if garden.VISIT_NUMBER == 0 then      --Player has never been in this Garden			
 				garden.FIGHT_CAN_START = true							
 				garden.GARDEN_HEARTS_CAN_SPAWN = true
