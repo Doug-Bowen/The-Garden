@@ -366,7 +366,7 @@
 		<sample weight="1" path="Curse_of_Mortality.wav" />
 	</sound>
 	<sound id="173">
-		<sample weight="1" path="FlyBuzz.wav" />
+		<sample weight="1" path="Garden_Ambience.wav" />
 	</sound>
 	<sound id="174">
 		<sample weight="1" path="Demon_Appear.wav" />

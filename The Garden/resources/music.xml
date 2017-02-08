@@ -34,9 +34,10 @@
 	<track id="36" name="Arcade Room" intro="Retro Beats Intro 8-6-14.ogg" path="Retro Beats 8-6-14.ogg" loop="true" />
 	<track id="37" name="Boss Room (empty)" intro="The Calm intro.ogg" path="The Calm.ogg" loop="true" />
 	<track id="38" name="Challenge Room (fight)" path="Ambush.ogg" loop="true" />
-	<!-- CUSTOM MUSIC HERE -->
-	<track id="41" name="Garden Ambience" path="Garden_Ambience.ogg" loop="true" />
+	<!-- CUSTOM MUSIC HERE -->	
 	<track id="42" name="Garden Drone" path="Garden_Drone.ogg" loop="true" />
+	<track id="43" name="Garden Serpent" path="Garden_Serpent.ogg" loop="true" />
+	<track id="44" name="Garden Holy" path="Garden_Holy.ogg" loop="true" />
 
 	<track id="60" name="Credits" path="Credits Roll.ogg" loop="true" />
 	<track id="61" name="Title Screen" intro="Title Screen Intro.ogg" path="Title Screen.ogg" loop="true" />
