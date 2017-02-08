@@ -4,9 +4,9 @@
 
 function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
+	local roomDesc = currentLevel:GetCurrentRoomDesc()	
 	local currentRoom = Game():GetRoom()	
-	local currentRoomType = currentRoom:GetType()	
-	if currentRoomType == RoomType.ROOM_LIBRARY then --Player is in a Garden
+	if roomDesc.Data.Name == "The_Garden" then  --Player is in a Garden
 		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden
 			if garden.VISIT_NUMBER == 0 then      --Player has never been in this Garden			
 				garden.FIGHT_CAN_START = true							
