@@ -157,7 +157,7 @@ function garden:itemPickedUp(player, statFromXML)
             local green = Color(0, 255, 0, 255, 0, 0, 0)
 			player.TearColor = green		            
             player:AddNullCostume(garden.COSTUME_ID_DECEIVER)            
-            local volume = 100
+            local volume = 4
 			local frameDelay = 0
 			local loop = false
 			local pitch = 1
