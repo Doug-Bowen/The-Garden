@@ -5,7 +5,7 @@ local garden = RegisterMod("TheGarden", 1) --'1' denotes API v1.0
 --------------------
 
 --Debug Flag
-garden.DEBUG_MODE = false
+garden.DEBUG_MODE = true
 
 --Items
 garden.COLLECTIBLE_SHAME = Isaac.GetItemIdByName("Shame")
@@ -578,10 +578,18 @@ end
 
 function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
+	local roomDesc = currentLevel:GetCurrentRoomDesc()	
 	local currentRoom = Game():GetRoom()	
-	local currentRoomType = currentRoom:GetType()	
-	if currentRoomType == RoomType.ROOM_LIBRARY then --Player is in a Garden
-		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden
+	if roomDesc.Data.Name == "The_Garden" then  --Player is in a Garden
+		--[[DEBUG--
+		local backDrop = currentRoom:GetBackdropType()
+		if backDrop ~= nil then
+			Isaac.RenderText(backDrop, 50, 30, 255, 255, 255, 255)
+		else
+			Isaac.RenderText("Nil", 50, 30, 255, 255, 255, 255)
+		end
+		--------]]
+		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden			
 			if garden.VISIT_NUMBER == 0 then      --Player has never been in this Garden			
 				garden.FIGHT_CAN_START = true							
 				garden.GARDEN_HEARTS_CAN_SPAWN = true
