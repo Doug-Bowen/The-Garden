@@ -16,8 +16,8 @@ function garden:gardenRoomUpdate()
 		end
 		--------]]
 		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden					
-			MusicManager():Play(42,6.0)  --Play Garden_Drone.ogg
-			SFXManager():Play("173", 1, 0, true, 1) -- loop soft ambience
+			MusicManager():Play(42,0.6)  --Play Garden_Drone.ogg
+			SFXManager():Play("173", 0.4, 0, true, 1) -- loop soft ambience
 			if garden.VISIT_NUMBER == 0 then      --Player has never been in this Garden			
 				garden.FIGHT_CAN_START = true							
 				garden.GARDEN_HEARTS_CAN_SPAWN = true
@@ -99,7 +99,7 @@ function garden:gardenRoomUpdate()
 		if math.abs(positionalDifference.X) < 75 and math.abs(positionalDifference.Y) < 40 then
 			if garden.FIGHT_CAN_START then
 				
-				MusicManager():Play(43,5.0) --Play Garden_Serpent.ogg				
+				MusicManager():Play(43,0.3) --Play Garden_Serpent.ogg				
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)				
 				Game():ShakeScreen(12)
 				
@@ -185,7 +185,7 @@ function garden:gardenRoomUpdate()
 				garden.applyMortalityCurse()
 				
 				SFXManager():Play(SoundEffect.SOUND_HOLY, 8, 0, false, 1) 
-				MusicManager():Play(44,5.0) --Play Garden_Holy.ogg
+				MusicManager():Play(44,0.3) --Play Garden_Holy.ogg
 				
 				local roomCenter = currentRoom:GetCenterPos()
 				local initialStep = 0 --Not sure what this does
