@@ -92,8 +92,7 @@ garden.CURSE_MORTALITY = Isaac.GetCurseIdByName("Curse of Mortality")
 garden.HAS_MORTALITY_CURSE = false
 
 --Entity Shells
-garden.TREE_SHELL = nil                                        
-garden.SERPENT_SHELL = nil                                           
+garden.TREE_SHELL = nil                                                                                  
 garden.GRAIN_SHELL = nil
 garden.GRASS_SHELL = nil 
 

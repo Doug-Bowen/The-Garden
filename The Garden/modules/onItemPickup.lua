@@ -118,14 +118,11 @@ function garden:itemPickedUp(player, statFromXML)
 	if player:HasCollectible(garden.COLLECTIBLE_LEGION) and not garden.HAS_LEGION then			
 		garden.HAS_LEGION = true
 		Game():ShakeScreen(12)
-		local player = Isaac.GetPlayer(0)						
-		local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
 		local volume = 3
 		local frameDelay = 0
 		local loop = false
 		local pitch = 1
-		soundShell:ToNPC():PlaySound("177", volume, frameDelay, loop, pitch)	--Make it a sound
-		soundShell:Remove()
+		SFXManager():Play("177", volume, frameDelay, loop, pitch)
 	end
 
 	--Deceiver Tansformation
@@ -163,10 +160,8 @@ function garden:itemPickedUp(player, statFromXML)
 			local pitch = 1
 			local pillText = Isaac.GetPillEffectByName("Deceiver!")
 			player:UsePill(pillText,PillColor.PILL_BLUE_BLUE)
-			player:StopExtraAnimation()            			
-			local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-			soundShell:ToNPC():PlaySound(SoundEffect.SOUND_POWERUP_SPEWER, volume, frameDelay, loop, pitch)	--Make it a sound
-			soundShell:Remove()									
+			player:StopExtraAnimation() 
+			SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER, volume, frameDelay, loop, pitch)           											
         end
 	end
 end

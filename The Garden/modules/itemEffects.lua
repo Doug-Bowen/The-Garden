@@ -229,13 +229,11 @@ function garden:crackTheEarthEffect()
 					if singleEntity:IsVulnerableEnemy() and not singleEntity:IsFlying() and not singleEntity:IsBoss() then		
 						Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ROCK_EXPLOSION, 0, singleEntity.Position, Vector(0,0), nil)
 						singleEntity:TakeDamage(10.0,0,EntityRef(player),0)
-						local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-						local volume = 3
+						local volume = 2
 						local frameDelay = 0
 						local loop = false
 						local pitch = 1
-						soundShell:ToNPC():PlaySound(SoundEffect.SOUND_ROCK_CRUMBLE, volume, frameDelay, loop, pitch)	--Make it a sound
-						soundShell:Remove()	
+						SFXManager():Play(SoundEffect.SOUND_ROCK_CRUMBLE, volume, frameDelay, loop, pitch)
 					end	
 				end				
 			end
@@ -277,14 +275,12 @@ function garden:deceiverEffect(target, amount, flags, source, cooldown)
 			if randomNum <= 5 then 				
 				local player = Isaac.GetPlayer(0)
 				if not player:HasFullHearts() then
-					player:AddHearts(1)  --Lifesteal
-					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
+					player:AddHearts(1)  --Lifesteal			
 					local volume = 2
 					local frameDelay = 0
 					local loop = false
 					local pitch = 1
-					soundShell:ToNPC():PlaySound(SoundEffect.SOUND_VAMP_GULP, volume, frameDelay, loop, pitch)	--Make it a sound
-					soundShell:Remove()	
+					SFXManager():Play(SoundEffect.SOUND_VAMP_GULP, volume, frameDelay, loop, pitch)
 				end
 			end
 		end
@@ -304,14 +300,12 @@ function garden:legionEffect()
 				if singleEntity.Type == EntityType.ENTITY_FAMILIAR and singleEntity.Variant == garden.LEGION_FAMILIAR_VARIANT and singleEntity.SubType == 0 then
 					singleEntity:Remove()						
 					garden.LEGION_IN_ROOM = false
-					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
 					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, singleEntity.Position, Vector(0,0), nil)				
 					local volume = 3
 					local frameDelay = 0
 					local loop = false
 					local pitch = 1
-					soundShell:ToNPC():PlaySound("174", volume, frameDelay, loop, pitch)	--Make it a sound
-					soundShell:Remove()	
+					SFXManager():Play("174", volume, frameDelay, loop, pitch)
 				end				
 			end				
 		end
@@ -343,13 +337,11 @@ function garden:legionEffect()
 				Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.LEGION_FAMILIAR_VARIANT, 0, garden.LEGION_SPAWN_POSITION, Vector(0,0), player)
 				Game():ShakeScreen(12)
 								
-				local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
 				local volume = 3
 				local frameDelay = 0
 				local loop = false
 				local pitch = 1
-				soundShell:ToNPC():PlaySound("177", volume, frameDelay, loop, pitch)	--Make it a sound
-				soundShell:Remove()	
+				SFXManager():Play("177", volume, frameDelay, loop, pitch)	
 			end
 		end
 		

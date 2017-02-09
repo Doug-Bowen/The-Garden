@@ -92,8 +92,7 @@ garden.CURSE_MORTALITY = Isaac.GetCurseIdByName("Curse of Mortality")
 garden.HAS_MORTALITY_CURSE = false
 
 --Entity Shells
-garden.TREE_SHELL = nil                                        
-garden.SERPENT_SHELL = nil                                           
+garden.TREE_SHELL = nil                                                                                  
 garden.GRAIN_SHELL = nil
 garden.GRASS_SHELL = nil 
 
@@ -390,13 +389,11 @@ function garden:crackTheEarthEffect()
 					if singleEntity:IsVulnerableEnemy() and not singleEntity:IsFlying() and not singleEntity:IsBoss() then		
 						Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ROCK_EXPLOSION, 0, singleEntity.Position, Vector(0,0), nil)
 						singleEntity:TakeDamage(10.0,0,EntityRef(player),0)
-						local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-						local volume = 3
+						local volume = 2
 						local frameDelay = 0
 						local loop = false
 						local pitch = 1
-						soundShell:ToNPC():PlaySound(SoundEffect.SOUND_ROCK_CRUMBLE, volume, frameDelay, loop, pitch)	--Make it a sound
-						soundShell:Remove()	
+						SFXManager():Play(SoundEffect.SOUND_ROCK_CRUMBLE, volume, frameDelay, loop, pitch)
 					end	
 				end				
 			end
@@ -438,14 +435,12 @@ function garden:deceiverEffect(target, amount, flags, source, cooldown)
 			if randomNum <= 5 then 				
 				local player = Isaac.GetPlayer(0)
 				if not player:HasFullHearts() then
-					player:AddHearts(1)  --Lifesteal
-					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
+					player:AddHearts(1)  --Lifesteal			
 					local volume = 2
 					local frameDelay = 0
 					local loop = false
 					local pitch = 1
-					soundShell:ToNPC():PlaySound(SoundEffect.SOUND_VAMP_GULP, volume, frameDelay, loop, pitch)	--Make it a sound
-					soundShell:Remove()	
+					SFXManager():Play(SoundEffect.SOUND_VAMP_GULP, volume, frameDelay, loop, pitch)
 				end
 			end
 		end
@@ -465,14 +460,12 @@ function garden:legionEffect()
 				if singleEntity.Type == EntityType.ENTITY_FAMILIAR and singleEntity.Variant == garden.LEGION_FAMILIAR_VARIANT and singleEntity.SubType == 0 then
 					singleEntity:Remove()						
 					garden.LEGION_IN_ROOM = false
-					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
 					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, singleEntity.Position, Vector(0,0), nil)				
 					local volume = 3
 					local frameDelay = 0
 					local loop = false
 					local pitch = 1
-					soundShell:ToNPC():PlaySound("174", volume, frameDelay, loop, pitch)	--Make it a sound
-					soundShell:Remove()	
+					SFXManager():Play("174", volume, frameDelay, loop, pitch)
 				end				
 			end				
 		end
@@ -504,13 +497,11 @@ function garden:legionEffect()
 				Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.LEGION_FAMILIAR_VARIANT, 0, garden.LEGION_SPAWN_POSITION, Vector(0,0), player)
 				Game():ShakeScreen(12)
 								
-				local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
 				local volume = 3
 				local frameDelay = 0
 				local loop = false
 				local pitch = 1
-				soundShell:ToNPC():PlaySound("177", volume, frameDelay, loop, pitch)	--Make it a sound
-				soundShell:Remove()	
+				SFXManager():Play("177", volume, frameDelay, loop, pitch)	
 			end
 		end
 		
@@ -589,9 +580,8 @@ function garden:gardenRoomUpdate()
 			Isaac.RenderText("Nil", 50, 30, 255, 255, 255, 255)
 		end
 		--------]]
-		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden			
-			MusicManager():Pause()			
-			MusicManager():Play(42,5.0)
+		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden					
+			MusicManager():Play(42,5.0)  --Play Garden_Drone.ogg
 			if garden.VISIT_NUMBER == 0 then      --Player has never been in this Garden			
 				garden.FIGHT_CAN_START = true							
 				garden.GARDEN_HEARTS_CAN_SPAWN = true
@@ -673,20 +663,16 @@ function garden:gardenRoomUpdate()
 		if math.abs(positionalDifference.X) < 75 and math.abs(positionalDifference.Y) < 40 then
 			if garden.FIGHT_CAN_START then
 				
-				--change music here (Garden_Serpent.ogg)				
+				MusicManager():Play(43,5.0) --Play Garden_Serpent.ogg				
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)				
 				Game():ShakeScreen(12)
 				
 				--Spawn Wave 1 (Pin)				
-				garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_TYPE, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
+				Isaac.Spawn(garden.SERPENT_TYPE, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
 
 				--play sfx here (Curse_of_Mortality.wav)
-				local volume = 8
-				local frameDelay = 0
-				local loop = false
-				local pitch = 1
-				garden.SERPENT_SHELL:ToNPC():PlaySound("172", volume, frameDelay, loop, pitch)	
-
+				SFXManager():Play("172", 8, 0, false, 1)  
+				
 				garden.WAVE_NUMBER = 1
 				garden.FIGHT_CAN_START = false												
 				garden.barCurrentRoomDoors()				
@@ -715,13 +701,13 @@ function garden:gardenRoomUpdate()
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)		
 				local randomNum = math.random(5,12)
 				for i=1, randomNum do
-					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_TYPE, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
+					Isaac.Spawn(garden.SERPENT_HOLLOW_TYPE, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
 				end
 				local babySnakeLeftPosition = Vector(roomCenter.X+100,roomCenter.Y)
 				local babySnakeRightPosition = Vector(roomCenter.X-100,roomCenter.Y)
 				Isaac.Spawn(garden.SERPENT_BABY_TYPE, garden.SERPENT_BABY_VARIANT, 0, babySnakeLeftPosition, Vector(0,0), nil)								
 				Isaac.Spawn(garden.SERPENT_BABY_TYPE, garden.SERPENT_BABY_VARIANT, 0, babySnakeRightPosition, Vector(0,0), nil)								
-				garden.SERPENT_SHELL:ToNPC():PlaySound("172", 100, 0, false, 1)
+				SFXManager():Play("172", 8, 0, false, 1)  
 				garden.WAVE_NUMBER = 2																	
 			end
 		end		
@@ -741,13 +727,13 @@ function garden:gardenRoomUpdate()
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)		
 				local randomNum = math.random(5,12)
 				for i=1, randomNum do					
-					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_LARRY_TYPE, garden.SERPENT_LARRY_VARIANT, 1, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
+					Isaac.Spawn(garden.SERPENT_LARRY_TYPE, garden.SERPENT_LARRY_VARIANT, 1, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
 				end
 				local ladyBugLeftPosition = Vector(roomCenter.X+100,roomCenter.Y)
 				local ladyBugRightPosition = Vector(roomCenter.X-100,roomCenter.Y)
 				Isaac.Spawn(garden.LADY_BUG_TYPE, garden.LADY_BUG_VARIANT, 0, ladyBugLeftPosition, Vector(0,0), nil)								
 				Isaac.Spawn(garden.LADY_BUG_TYPE, garden.LADY_BUG_VARIANT, 0, ladyBugRightPosition, Vector(0,0), nil)								
-				garden.SERPENT_SHELL:ToNPC():PlaySound("172", 100, 0, false, 1)
+				SFXManager():Play("172", 8, 0, false, 1) 
 				garden.WAVE_NUMBER = 3																	
 			end
 		end		
@@ -767,14 +753,9 @@ function garden:gardenRoomUpdate()
 				garden.openCurrentRoomDoors()						 
 				garden.applyMortalityCurse()
 				
-				local volume = 8
-				local frameDelay = 0
-				local loop = false
-				local pitch = 1
-				garden.SERPENT_SHELL:ToNPC():PlaySound(SoundEffect.SOUND_HOLY, volume, frameDelay, loop, pitch)	
+				SFXManager():Play(SoundEffect.SOUND_HOLY, 8, 0, false, 1) 
+				MusicManager():Play(44,5.0) --Play Garden_Holy.ogg
 				
-				--currentRoom:PlayMusic() doesnt seem to do anything			
-				--change music here (Garden_Holy.ogg)
 				local roomCenter = currentRoom:GetCenterPos()
 				local initialStep = 0 --Not sure what this does
 				local avoidActiveEnemies = true
@@ -1063,14 +1044,11 @@ function garden:itemPickedUp(player, statFromXML)
 	if player:HasCollectible(garden.COLLECTIBLE_LEGION) and not garden.HAS_LEGION then			
 		garden.HAS_LEGION = true
 		Game():ShakeScreen(12)
-		local player = Isaac.GetPlayer(0)						
-		local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
 		local volume = 3
 		local frameDelay = 0
 		local loop = false
 		local pitch = 1
-		soundShell:ToNPC():PlaySound("177", volume, frameDelay, loop, pitch)	--Make it a sound
-		soundShell:Remove()
+		SFXManager():Play("177", volume, frameDelay, loop, pitch)
 	end
 
 	--Deceiver Tansformation
@@ -1108,10 +1086,8 @@ function garden:itemPickedUp(player, statFromXML)
 			local pitch = 1
 			local pillText = Isaac.GetPillEffectByName("Deceiver!")
 			player:UsePill(pillText,PillColor.PILL_BLUE_BLUE)
-			player:StopExtraAnimation()            			
-			local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-			soundShell:ToNPC():PlaySound(SoundEffect.SOUND_POWERUP_SPEWER, volume, frameDelay, loop, pitch)	--Make it a sound
-			soundShell:Remove()									
+			player:StopExtraAnimation() 
+			SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER, volume, frameDelay, loop, pitch)           											
         end
 	end
 end
