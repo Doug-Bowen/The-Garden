@@ -3,23 +3,15 @@
 ----------------
 
 function garden:itemPickedUp(player, statFromXML)
-	--I'm grabbing this 3 times to ensure cache actually gets updated. Without this, it was inconsistant.
 	local player = Isaac.GetPlayer(0)	
-	local player = Isaac.GetPlayer(0)
-	local player = Isaac.GetPlayer(0)
 	
 	if player:HasCollectible(garden.COLLECTIBLE_CREATION) and not garden.HAS_CREATION then
 		garden.HAS_CREATION = true
 		player:AddNullCostume(garden.COSTUME_ID_CREATION)	
-		
-		player.Damage = player.Damage + 0.51		
-		player.MoveSpeed = player.MoveSpeed + 0.1
-		player.ShotSpeed = player.ShotSpeed + 0.1
-		
-		local white = Color(255, 255, 255, 255, 0, 0, 0)
-		player.TearColor = white		
+	
+		Game().TimeCounter = 0
+		SFXManager():Play(SoundEffect.SOUND_GOLDENKEY, 4, 0, false, 1)           													 
 	end
-
 
 	if player:HasCollectible(garden.COLLECTIBLE_THE_FALL_OF_MAN) and not garden.HAS_THE_FALL_OF_MAN then		
 		garden.HAS_THE_FALL_OF_MAN = true
@@ -59,6 +51,13 @@ function garden:itemPickedUp(player, statFromXML)
 	if player:HasCollectible(garden.COLLECTIBLE_THE_FIRST_DAY) and not garden.HAS_THE_FIRST_DAY then			
 		garden.HAS_THE_FIRST_DAY = true
 		player:AddNullCostume(garden.COSTUME_ID_THE_FIRST_DAY)		  
+
+		player.Damage = player.Damage + 0.51		
+		player.MoveSpeed = player.MoveSpeed + 0.1
+		player.ShotSpeed = player.ShotSpeed + 0.1
+
+		local white = Color(255, 255, 255, 255, 0, 0, 0)
+		player.TearColor = white	
 	end
 
 	if player:HasCollectible(garden.COLLECTIBLE_DECEPTION) and not garden.HAS_DECEPTION then			
@@ -118,11 +117,7 @@ function garden:itemPickedUp(player, statFromXML)
 	if player:HasCollectible(garden.COLLECTIBLE_LEGION) and not garden.HAS_LEGION then			
 		garden.HAS_LEGION = true
 		Game():ShakeScreen(12)
-		local volume = 3
-		local frameDelay = 0
-		local loop = false
-		local pitch = 1
-		SFXManager():Play("177", volume, frameDelay, loop, pitch)
+		SFXManager():Play("177", 3, 0, false, 1)
 	end
 
 	--Deceiver Tansformation
@@ -154,14 +149,10 @@ function garden:itemPickedUp(player, statFromXML)
             local green = Color(0, 255, 0, 255, 0, 0, 0)
 			player.TearColor = green		            
             player:AddNullCostume(garden.COSTUME_ID_DECEIVER)            
-            local volume = 4
-			local frameDelay = 0
-			local loop = false
-			local pitch = 1
 			local pillText = Isaac.GetPillEffectByName("Deceiver!")
 			player:UsePill(pillText,PillColor.PILL_BLUE_BLUE)
 			player:StopExtraAnimation() 
-			SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER, volume, frameDelay, loop, pitch)           											
+			SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER, 4, 0, false, 1)           											
         end
 	end
 end

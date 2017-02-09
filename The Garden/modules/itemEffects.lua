@@ -204,18 +204,6 @@ function garden:harvestEffect()
 	end
 end
 
-function garden:theFirstDayEffect()
-	local player = Isaac.GetPlayer(0)
-	if player:HasCollectible(garden.COLLECTIBLE_THE_FIRST_DAY) then		
-		local currentGame = Game()
-		local currentLevel = currentGame:GetLevel()		
-		local currentRoom = Game():GetRoom()	
-		local currentChance = currentLevel:GetAngelRoomChance()		
-		local difference = 100.00-currentChance
-		currentLevel:AddAngelRoomChance(difference)
-	end		
-end
-
 function garden:crackTheEarthEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) then		
@@ -229,11 +217,7 @@ function garden:crackTheEarthEffect()
 					if singleEntity:IsVulnerableEnemy() and not singleEntity:IsFlying() and not singleEntity:IsBoss() then		
 						Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ROCK_EXPLOSION, 0, singleEntity.Position, Vector(0,0), nil)
 						singleEntity:TakeDamage(10.0,0,EntityRef(player),0)
-						local volume = 2
-						local frameDelay = 0
-						local loop = false
-						local pitch = 1
-						SFXManager():Play(SoundEffect.SOUND_ROCK_CRUMBLE, volume, frameDelay, loop, pitch)
+						SFXManager():Play(SoundEffect.SOUND_ROCK_CRUMBLE, 2, 0, false, 1)
 					end	
 				end				
 			end
@@ -276,11 +260,7 @@ function garden:deceiverEffect(target, amount, flags, source, cooldown)
 				local player = Isaac.GetPlayer(0)
 				if not player:HasFullHearts() then
 					player:AddHearts(1)  --Lifesteal			
-					local volume = 2
-					local frameDelay = 0
-					local loop = false
-					local pitch = 1
-					SFXManager():Play(SoundEffect.SOUND_VAMP_GULP, volume, frameDelay, loop, pitch)
+					SFXManager():Play(SoundEffect.SOUND_VAMP_GULP, 2, 0, false, 1)
 				end
 			end
 		end
@@ -301,11 +281,7 @@ function garden:legionEffect()
 					singleEntity:Remove()						
 					garden.LEGION_IN_ROOM = false
 					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, singleEntity.Position, Vector(0,0), nil)				
-					local volume = 3
-					local frameDelay = 0
-					local loop = false
-					local pitch = 1
-					SFXManager():Play("174", volume, frameDelay, loop, pitch)
+					SFXManager():Play("174", 3, 0, false, 1)
 				end				
 			end				
 		end
@@ -336,12 +312,7 @@ function garden:legionEffect()
 				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, garden.LEGION_SPAWN_POSITION, Vector(0,0), nil)				
 				Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.LEGION_FAMILIAR_VARIANT, 0, garden.LEGION_SPAWN_POSITION, Vector(0,0), player)
 				Game():ShakeScreen(12)
-								
-				local volume = 3
-				local frameDelay = 0
-				local loop = false
-				local pitch = 1
-				SFXManager():Play("177", volume, frameDelay, loop, pitch)	
+				SFXManager():Play("177", 3, 0, false, 1)	
 			end
 		end
 		
