@@ -144,10 +144,12 @@ function garden:debugMode()
 		--local currentGame = Game()
 		--local currentLevel = currentGame:GetLevel()		
 		--local currentRoom = Game():GetRoom()
-		--local player = Isaac.GetPlayer(0)
+		local player = Isaac.GetPlayer(0)
 		--local playerPosition = player.Position						
 		--Isaac.RenderText("X:" .. playerPosition.X, 50, 30, 255, 255, 255, 255)
-		Isaac.RenderText("timer:" .. Game().TimeCounter, 50, 30, 255, 255, 255, 255)
+		Isaac.RenderText("Variant:" .. player.Variant, 50, 30, 255, 255, 255, 255)
+		Isaac.RenderText("SubType:" .. player.SubType, 50, 45, 255, 255, 255, 255)
+
 
 		if Game():GetFrameCount() == 1 then
 			local currentRoom = Game():GetRoom()
@@ -553,8 +555,8 @@ function garden:gardenRoomUpdate()
 		end
 		--------]]
 		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden					
-			MusicManager():Play(42,5.0)  --Play Garden_Drone.ogg
-			SFXManager():Play("173", 2, 0, true, 1) -- loop soft ambience
+			MusicManager():Play(42,0.6)  --Play Garden_Drone.ogg
+			SFXManager():Play("173", 0.4, 0, true, 1) -- loop soft ambience
 			if garden.VISIT_NUMBER == 0 then      --Player has never been in this Garden			
 				garden.FIGHT_CAN_START = true							
 				garden.GARDEN_HEARTS_CAN_SPAWN = true
@@ -636,7 +638,7 @@ function garden:gardenRoomUpdate()
 		if math.abs(positionalDifference.X) < 75 and math.abs(positionalDifference.Y) < 40 then
 			if garden.FIGHT_CAN_START then
 				
-				MusicManager():Play(43,5.0) --Play Garden_Serpent.ogg				
+				MusicManager():Play(43,0.3) --Play Garden_Serpent.ogg				
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)				
 				Game():ShakeScreen(12)
 				
@@ -662,12 +664,6 @@ function garden:gardenRoomUpdate()
 				if singleEntity.Type == garden.SERPENT_TYPE then	
 					bossAlive = true
 				end
-
-				--turn pins tears green
-				--if singleEntity.Type == EntityType.ENTITY_PROJECTILE then
-				--	local green = Color(0, 255, 0, 255, 0, 0, 0)
-				--	singleEntity.Color = green					
-				--end
 			end
 
 			if not bossAlive then
@@ -680,6 +676,7 @@ function garden:gardenRoomUpdate()
 				local babySnakeRightPosition = Vector(roomCenter.X-100,roomCenter.Y)
 				Isaac.Spawn(garden.SERPENT_BABY_TYPE, garden.SERPENT_BABY_VARIANT, 0, babySnakeLeftPosition, Vector(0,0), nil)								
 				Isaac.Spawn(garden.SERPENT_BABY_TYPE, garden.SERPENT_BABY_VARIANT, 0, babySnakeRightPosition, Vector(0,0), nil)								
+				SFXManager():Stop("173") -- Stop jungle sounds
 				SFXManager():Play("172", 8, 0, false, 1)  
 				garden.WAVE_NUMBER = 2																	
 			end
@@ -727,7 +724,7 @@ function garden:gardenRoomUpdate()
 				garden.applyMortalityCurse()
 				
 				SFXManager():Play(SoundEffect.SOUND_HOLY, 8, 0, false, 1) 
-				MusicManager():Play(44,5.0) --Play Garden_Holy.ogg
+				MusicManager():Play(44,0.3) --Play Garden_Holy.ogg
 				
 				local roomCenter = currentRoom:GetCenterPos()
 				local initialStep = 0 --Not sure what this does
@@ -1006,6 +1003,12 @@ function garden:itemPickedUp(player, statFromXML)
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position			
 		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.ADAM_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)		
+
+		local currentPlayerType = player:GetPlayerType()
+		if currentPlayerType ~= eveType then
+			player.Variant = 0
+			player.SubType = PlayerType.PLAYER_EVE
+		end
 	end
 
 	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) and not garden.HAS_CRACK_THE_EARTH then			
@@ -1051,7 +1054,7 @@ function garden:itemPickedUp(player, statFromXML)
 			local pillText = Isaac.GetPillEffectByName("Deceiver!")
 			player:UsePill(pillText,PillColor.PILL_BLUE_BLUE)
 			player:StopExtraAnimation() 
-			SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER, 4, 0, false, 1)           											
+			SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER, 0.5, 0, false, 1)           											
         end
 	end
 end
