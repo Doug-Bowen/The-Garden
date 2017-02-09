@@ -16,8 +16,8 @@ function garden:gardenRoomUpdate()
 		end
 		--------]]
 		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden					
-			MusicManager():Play(42,5.0)  --Play Garden_Drone.ogg
-			SFXManager():Play("173", 2, 0, true, 1) -- loop soft ambience
+			MusicManager():Play(42,6.0)  --Play Garden_Drone.ogg
+			SFXManager():Play("173", 1, 0, true, 1) -- loop soft ambience
 			if garden.VISIT_NUMBER == 0 then      --Player has never been in this Garden			
 				garden.FIGHT_CAN_START = true							
 				garden.GARDEN_HEARTS_CAN_SPAWN = true
@@ -125,12 +125,6 @@ function garden:gardenRoomUpdate()
 				if singleEntity.Type == garden.SERPENT_TYPE then	
 					bossAlive = true
 				end
-
-				--turn pins tears green
-				--if singleEntity.Type == EntityType.ENTITY_PROJECTILE then
-				--	local green = Color(0, 255, 0, 255, 0, 0, 0)
-				--	singleEntity.Color = green					
-				--end
 			end
 
 			if not bossAlive then
@@ -143,6 +137,7 @@ function garden:gardenRoomUpdate()
 				local babySnakeRightPosition = Vector(roomCenter.X-100,roomCenter.Y)
 				Isaac.Spawn(garden.SERPENT_BABY_TYPE, garden.SERPENT_BABY_VARIANT, 0, babySnakeLeftPosition, Vector(0,0), nil)								
 				Isaac.Spawn(garden.SERPENT_BABY_TYPE, garden.SERPENT_BABY_VARIANT, 0, babySnakeRightPosition, Vector(0,0), nil)								
+				SFXManager():Stop("173") -- Stop jungle sounds
 				SFXManager():Play("172", 8, 0, false, 1)  
 				garden.WAVE_NUMBER = 2																	
 			end
