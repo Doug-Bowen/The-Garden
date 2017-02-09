@@ -1,0 +1,11 @@
+Features:
+* Music/Ambience added in the Garden
+
+Fixes:
+* Corrected an issue where the game wouldnt cache properly at times
+* Sound Effects are now controlled through the SFX Manager properly
+* Reduced the volumes of multiple SFX
+
+Balances:
+* Creation now restarts the games timer as originally intended
+* The Frist Day, being a clone of Eucharist, now has Creations original effect
