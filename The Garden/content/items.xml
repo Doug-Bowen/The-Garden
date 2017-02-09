@@ -1,15 +1,15 @@
 <items gfxroot="gfx/items/" version="1">
-	<passive description="Self awareness" gfx="collectibles_shame.png" name="Shame" cache="shame"/>
-	<passive description="Don't believe his lies!" gfx="collectibles_forbidden_fruit.png" name="Forbidden Fruit" cache="none"/>
-	<passive description="The Serpent lies..." gfx="collectibles_deception.png" name="Deception" cache="none"/>
-	<passive description="In the beginning..." gfx="collectibles_creation.png" name="Creation" cache="none" />
-	<passive description="All authority is yours" gfx="collectibles_granted_domain.png" name="Granted Domain" cache="none" />
-	<passive description="Sow! Reap!" gfx="collectibles_the_harvest.png" name="The Harvest" cache="none" />
-	<passive description="You have become corrupted by sin..." gfx="collectibles_the_fall_of_man.png" name="The Fall of Man" cache="none" />
-	<familiar description="Adam was born!" gfx="collectibles_rebirth.png" name="Rebirth" cache="none"/>
-	<passive description="Your heart is black..." gfx="collectibles_exiled.png" name="Exiled" cache="none"/>
-	<passive description="Lover, I'm yours..." gfx="collectibles_my_beloved.png" name="My Beloved" cache="none"/>
-	<passive description="Let there be light!" gfx="collectibles_the_first_day.png" name="The First Day" cache="none"/>
-	<passive description="Sharp Rocky Death" gfx="collectibles_crack_the_earth.png" name="Crack The Earth" cache="none"/>
-	<familiar description="Awaken..." gfx="collectibles_legion.png" name="Legion" cache="none"/>
+	<passive description="Self awareness" gfx="collectibles_shame.png" name="Shame" cache="damage"/>
+	<passive description="Don't believe his lies!" gfx="collectibles_forbidden_fruit.png" name="Forbidden Fruit" cache="damage"/>
+	<passive description="The Serpent lies..." gfx="collectibles_deception.png" name="Deception" cache="damage"/>
+	<passive description="In the beginning..." gfx="collectibles_creation.png" name="Creation" cache="damage"/>
+	<passive description="All authority is yours" gfx="collectibles_granted_domain.png" name="Granted Domain" cache="damage"/>
+	<passive description="Sow! Reap!" gfx="collectibles_the_harvest.png" name="The Harvest" cache="damage"/>
+	<passive description="You have become corrupted by sin..." gfx="collectibles_the_fall_of_man.png" name="The Fall of Man" cache="damage"/>
+	<familiar description="Adam was born!" gfx="collectibles_rebirth.png" name="Rebirth" cache="damage"/>
+	<passive description="Your heart is black..." gfx="collectibles_exiled.png" name="Exiled" cache="damage"/>
+	<passive description="Lover, I'm yours..." gfx="collectibles_my_beloved.png" name="My Beloved" cache="damage"/>
+	<passive description="Let there be light!" gfx="collectibles_the_first_day.png" name="The First Day" cache="damage"/>
+	<passive description="Sharp Rocky Death" gfx="collectibles_crack_the_earth.png" name="Crack The Earth" cache="damage"/>
+	<passive description="Awaken..." gfx="collectibles_legion.png" name="Legion" cache="damage"/>
 </items>
