@@ -130,7 +130,7 @@ function garden:itemPickedUp(player, statFromXML)
 			diff = blackHearts - player:GetBlackHearts()
 			player:AddBlackHearts(diff)
 		end
-		if player:GetHearts() > 1 do --Enter Whore of Babylon state
+		if player:GetHearts() > 1 then --Enter Whore of Babylon state
 			diff = player:GetMaxHearts() - player:GetHearts()
 			diff = diff * -1
 			diff = diff + 1
