@@ -15,9 +15,9 @@ function garden:debugMode()
 		--Isaac.RenderText("SubType:" .. player.SubType, 50, 45, 255, 255, 255, 255)
 		local backDrop = currentRoom:GetBackdropType()
 		if backDrop ~= nil then
-			Isaac.RenderText(backDrop, 50, 30, 255, 255, 255, 255)
+			Isaac.RenderText("Backdrop:" .. backDrop, 50, 30, 255, 255, 255, 255)
 		else
-			Isaac.RenderText("Nil", 50, 30, 255, 255, 255, 255)
+			Isaac.RenderText("Backdrop: nil", 50, 30, 255, 255, 255, 255)
 		end
 		
 		if Game():GetFrameCount() == 1 then
