@@ -108,11 +108,34 @@ function garden:itemPickedUp(player, statFromXML)
 		local playerPosition = player.Position			
 		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.ADAM_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)		
 
-		--[[local currentPlayerType = player:GetPlayerType()
-		if currentPlayerType ~= eveType then
-			player.Variant = 0
-			player.SubType = PlayerType.PLAYER_EVE
-		end--]]
+		local redHearts = player:GetMaxHearts()
+		local soulHearts = player:GetSoulHearts()
+		local blackHearts = player:GetBlackHearts()
+		while player:GetPlayerType() ~= PlayerType.PLAYER_EVE do
+			player:UseActiveItem(CollectibleType.COLLECTIBLE_CLICKER, false, false, false, false) --Change to Eve
+		end			
+
+		player:AddCollectible(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON , 0, true) -- Give Whore of Babylon
+
+		local diff
+		if player:GetMaxHearts() ~= redHearts then --Restore red heart containers
+			diff = redHearts - player:GetMaxHearts()
+			player:AddMaxHearts(diff, false)
+		end
+		if player:GetSoulHearts() ~= soulHearts then --Restore Soul Hearts
+			diff = soulHearts - player:GetSoulHearts()
+			player:AddSoulHearts(diff, false)
+		end
+		if player:GetBlackHearts() ~= blackHearts then --Restore Black Hearts
+			diff = blackHearts - player:GetBlackHearts()
+			player:AddBlackHearts(diff)
+		end
+		if player:GetHearts() > 1 do --Enter Whore of Babylon state
+			diff = player:GetMaxHearts() - player:GetHearts()
+			diff = diff * -1
+			diff = diff + 1
+			player:AddHearts(diff)
+		end		
 	end
 
 	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) and not garden.HAS_CRACK_THE_EARTH then			
