@@ -4,7 +4,7 @@
 
 function garden:updateFamiliar(familiar)
 	if familiar.Variant == garden.ADAM_FAMILIAR_VARIANT then
-		if garden.HAS_REBIRTH then
+		if garden.HAS_MANKIND then
 			local player = Isaac.GetPlayer(0)
 			familiar.OrbitDistance = Vector(35, 35)
 			familiar.OrbitLayer = 98

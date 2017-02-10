@@ -14,7 +14,7 @@ garden.COLLECTIBLE_DECEPTION = Isaac.GetItemIdByName("Deception")
 garden.COLLECTIBLE_CREATION = Isaac.GetItemIdByName("Creation")
 garden.COLLECTIBLE_GRANTED_DOMAIN = Isaac.GetItemIdByName("Granted Domain")
 garden.COLLECTIBLE_THE_FALL_OF_MAN = Isaac.GetItemIdByName("The Fall of Man")
-garden.COLLECTIBLE_REBIRTH = Isaac.GetItemIdByName("Rebirth")
+garden.COLLECTIBLE_MANKIND = Isaac.GetItemIdByName("Mankind")
 garden.COLLECTIBLE_EXILED = Isaac.GetItemIdByName("Exiled")
 garden.COLLECTIBLE_THE_FIRST_DAY = Isaac.GetItemIdByName("The First Day")
 garden.COLLECTIBLE_MY_BELOVED = Isaac.GetItemIdByName("My Beloved")
@@ -30,7 +30,7 @@ garden.gardenPool[3] = garden.COLLECTIBLE_DECEPTION
 garden.gardenPool[4] = garden.COLLECTIBLE_CREATION
 garden.gardenPool[5] = garden.COLLECTIBLE_GRANTED_DOMAIN
 garden.gardenPool[6] = garden.COLLECTIBLE_THE_FALL_OF_MAN
-garden.gardenPool[7] = garden.COLLECTIBLE_REBIRTH
+garden.gardenPool[7] = garden.COLLECTIBLE_MANKIND
 garden.gardenPool[8] = garden.COLLECTIBLE_EXILED
 garden.gardenPool[9] = garden.COLLECTIBLE_THE_FIRST_DAY
 garden.gardenPool[10] = garden.COLLECTIBLE_MY_BELOVED
@@ -45,7 +45,7 @@ garden.HAS_DECEPTION = false
 garden.HAS_CREATION = false
 garden.HAS_GRANTED_DOMAIN = false
 garden.HAS_THE_FALL_OF_MAN = false
-garden.HAS_REBIRTH = false
+garden.HAS_MANKIND = false
 garden.HAS_EXILED = false
 garden.HAS_THE_FIRST_DAY = false
 garden.HAS_MY_BELOVED = false
@@ -821,7 +821,7 @@ function garden:setNewRunFlags()
 	garden.gardenPool[4] = garden.COLLECTIBLE_CREATION
 	garden.gardenPool[5] = garden.COLLECTIBLE_GRANTED_DOMAIN
 	garden.gardenPool[6] = garden.COLLECTIBLE_THE_FALL_OF_MAN
-	garden.gardenPool[7] = garden.COLLECTIBLE_REBIRTH
+	garden.gardenPool[7] = garden.COLLECTIBLE_MANKIND
 	garden.gardenPool[8] = garden.COLLECTIBLE_EXILED
 	garden.gardenPool[9] = garden.COLLECTIBLE_THE_FIRST_DAY
 	garden.gardenPool[10] = garden.COLLECTIBLE_MY_BELOVED
@@ -836,7 +836,7 @@ function garden:setNewRunFlags()
 	garden.HAS_CREATION = false
 	garden.HAS_GRANTED_DOMAIN = false
 	garden.HAS_THE_FALL_OF_MAN = false
-	garden.HAS_REBIRTH = false
+	garden.HAS_MANKIND = false
 	garden.HAS_EXILED = false
 	garden.HAS_THE_FIRST_DAY = false
 	garden.HAS_MY_BELOVED = false
@@ -880,7 +880,7 @@ end
 
 function garden:updateFamiliar(familiar)
 	if familiar.Variant == garden.ADAM_FAMILIAR_VARIANT then
-		if garden.HAS_REBIRTH then
+		if garden.HAS_MANKIND then
 			local player = Isaac.GetPlayer(0)
 			familiar.OrbitDistance = Vector(35, 35)
 			familiar.OrbitLayer = 98
@@ -996,8 +996,8 @@ function garden:itemPickedUp(player, statFromXML)
 		player:AddMaxHearts(4, ignoreKeeper)		
 	end
 
-	if player:HasCollectible(garden.COLLECTIBLE_REBIRTH) and not garden.HAS_REBIRTH then			
-		garden.HAS_REBIRTH = true
+	if player:HasCollectible(garden.COLLECTIBLE_MANKIND) and not garden.HAS_MANKIND then			
+		garden.HAS_MANKIND = true
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position			
 		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.ADAM_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)		
@@ -1049,14 +1049,14 @@ function garden:itemPickedUp(player, statFromXML)
 	    local creation = Isaac.GetItemIdByName("Creation")	    
 	    local grantedDomain = Isaac.GetItemIdByName("Granted Domain")
 	    local fallOfMan = Isaac.GetItemIdByName("The Fall of Man")
-	    local rebirth = Isaac.GetItemIdByName("Rebirth")
+	    local mankind = Isaac.GetItemIdByName("Mankind")
 	    local exiled = Isaac.GetItemIdByName("Exiled")
 	    local firstDay = Isaac.GetItemIdByName("The First Day")
 	    local beloved = Isaac.GetItemIdByName("My Beloved")
 	    local harvest = Isaac.GetItemIdByName("The Harvest")	    
 	    local crackTheEarth = Isaac.GetItemIdByName("Crack The Earth")
 	    local legion = Isaac.GetItemIdByName("Legion")
-		local possibleItems = {shame, forbiddenFruit, deception, creation, grantedDomain, fallOfMan, rebirth, exiled, firstDay, beloved, harvest, crackTheEarth, legion}
+		local possibleItems = {shame, forbiddenFruit, deception, creation, grantedDomain, fallOfMan, mankind, exiled, firstDay, beloved, harvest, crackTheEarth, legion}
         local itemCount = 0        
         for k,v in pairs(possibleItems) do        
           if player:HasCollectible(v) then

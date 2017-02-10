@@ -6,7 +6,7 @@
 	<passive description="All authority is yours" gfx="collectibles_granted_domain.png" name="Granted Domain" cache="damage"/>
 	<passive description="Sow! Reap!" gfx="collectibles_the_harvest.png" name="The Harvest" cache="damage"/>
 	<passive description="You have become corrupted by sin..." gfx="collectibles_the_fall_of_man.png" name="The Fall of Man" cache="damage"/>
-	<familiar description="Adam was born!" gfx="collectibles_rebirth.png" name="Rebirth" cache="damage"/>
+	<familiar description="From one, came two!" gfx="collectibles_mankind.png" name="Mankind" cache="damage"/>
 	<passive description="Your heart is black..." gfx="collectibles_exiled.png" name="Exiled" cache="damage"/>
 	<passive description="Lover, I'm yours..." gfx="collectibles_my_beloved.png" name="My Beloved" cache="damage"/>
 	<passive description="Let there be light!" gfx="collectibles_the_first_day.png" name="The First Day" cache="damage"/>

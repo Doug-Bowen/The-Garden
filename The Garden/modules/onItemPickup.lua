@@ -102,8 +102,8 @@ function garden:itemPickedUp(player, statFromXML)
 		player:AddMaxHearts(4, ignoreKeeper)		
 	end
 
-	if player:HasCollectible(garden.COLLECTIBLE_REBIRTH) and not garden.HAS_REBIRTH then			
-		garden.HAS_REBIRTH = true
+	if player:HasCollectible(garden.COLLECTIBLE_MANKIND) and not garden.HAS_MANKIND then			
+		garden.HAS_MANKIND = true
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position			
 		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.ADAM_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)		
@@ -155,14 +155,14 @@ function garden:itemPickedUp(player, statFromXML)
 	    local creation = Isaac.GetItemIdByName("Creation")	    
 	    local grantedDomain = Isaac.GetItemIdByName("Granted Domain")
 	    local fallOfMan = Isaac.GetItemIdByName("The Fall of Man")
-	    local rebirth = Isaac.GetItemIdByName("Rebirth")
+	    local mankind = Isaac.GetItemIdByName("Mankind")
 	    local exiled = Isaac.GetItemIdByName("Exiled")
 	    local firstDay = Isaac.GetItemIdByName("The First Day")
 	    local beloved = Isaac.GetItemIdByName("My Beloved")
 	    local harvest = Isaac.GetItemIdByName("The Harvest")	    
 	    local crackTheEarth = Isaac.GetItemIdByName("Crack The Earth")
 	    local legion = Isaac.GetItemIdByName("Legion")
-		local possibleItems = {shame, forbiddenFruit, deception, creation, grantedDomain, fallOfMan, rebirth, exiled, firstDay, beloved, harvest, crackTheEarth, legion}
+		local possibleItems = {shame, forbiddenFruit, deception, creation, grantedDomain, fallOfMan, mankind, exiled, firstDay, beloved, harvest, crackTheEarth, legion}
         local itemCount = 0        
         for k,v in pairs(possibleItems) do        
           if player:HasCollectible(v) then

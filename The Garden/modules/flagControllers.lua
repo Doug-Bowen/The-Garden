@@ -28,7 +28,7 @@ function garden:setNewRunFlags()
 	garden.gardenPool[4] = garden.COLLECTIBLE_CREATION
 	garden.gardenPool[5] = garden.COLLECTIBLE_GRANTED_DOMAIN
 	garden.gardenPool[6] = garden.COLLECTIBLE_THE_FALL_OF_MAN
-	garden.gardenPool[7] = garden.COLLECTIBLE_REBIRTH
+	garden.gardenPool[7] = garden.COLLECTIBLE_MANKIND
 	garden.gardenPool[8] = garden.COLLECTIBLE_EXILED
 	garden.gardenPool[9] = garden.COLLECTIBLE_THE_FIRST_DAY
 	garden.gardenPool[10] = garden.COLLECTIBLE_MY_BELOVED
@@ -43,7 +43,7 @@ function garden:setNewRunFlags()
 	garden.HAS_CREATION = false
 	garden.HAS_GRANTED_DOMAIN = false
 	garden.HAS_THE_FALL_OF_MAN = false
-	garden.HAS_REBIRTH = false
+	garden.HAS_MANKIND = false
 	garden.HAS_EXILED = false
 	garden.HAS_THE_FIRST_DAY = false
 	garden.HAS_MY_BELOVED = false
