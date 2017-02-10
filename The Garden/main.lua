@@ -1004,11 +1004,11 @@ function garden:itemPickedUp(player, statFromXML)
 		local playerPosition = player.Position			
 		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.ADAM_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)		
 
-		local currentPlayerType = player:GetPlayerType()
+		--[[local currentPlayerType = player:GetPlayerType()
 		if currentPlayerType ~= eveType then
 			player.Variant = 0
 			player.SubType = PlayerType.PLAYER_EVE
-		end
+		end--]]
 	end
 
 	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) and not garden.HAS_CRACK_THE_EARTH then			
@@ -1054,7 +1054,7 @@ function garden:itemPickedUp(player, statFromXML)
 			local pillText = Isaac.GetPillEffectByName("Deceiver!")
 			player:UsePill(pillText,PillColor.PILL_BLUE_BLUE)
 			player:StopExtraAnimation() 
-			SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER, 0.5, 0, false, 1)           											
+			SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER, 0.9, 0, false, 1)           											
         end
 	end
 end
