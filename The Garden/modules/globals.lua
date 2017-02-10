@@ -5,7 +5,7 @@ local garden = RegisterMod("TheGarden", 1) --'1' denotes API v1.0
 --------------------
 
 --Debug Flag
-garden.DEBUG_MODE = true
+garden.DEBUG_MODE = false
 
 --Items
 garden.COLLECTIBLE_SHAME = Isaac.GetItemIdByName("Shame")
