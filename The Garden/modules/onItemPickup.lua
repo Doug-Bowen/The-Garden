@@ -108,9 +108,10 @@ function garden:itemPickedUp(player, statFromXML)
 		local playerPosition = player.Position			
 		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.ADAM_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)		
 
-		local redHearts = player:GetMaxHearts()
-		local soulHearts = player:GetSoulHearts()
-		local blackHearts = player:GetBlackHearts()
+		local previousHeartContainers = player:GetMaxHearts()
+		local previousSoulHearts = player:GetSoulHearts()
+		local previousBlackHearts = player:GetBlackHearts()
+
 		while player:GetPlayerType() ~= PlayerType.PLAYER_EVE do
 			player:UseActiveItem(CollectibleType.COLLECTIBLE_CLICKER, false, false, false, false) --Change to Eve
 		end			
@@ -118,24 +119,21 @@ function garden:itemPickedUp(player, statFromXML)
 		player:AddCollectible(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON , 0, true) -- Give Whore of Babylon
 
 		local diff
-		if player:GetMaxHearts() ~= redHearts then --Restore red heart containers
-			diff = redHearts - player:GetMaxHearts()
+		if player:GetMaxHearts() ~= previousHeartContainers then --Restore red heart containers
+			diff = previousHeartContainers - player:GetMaxHearts()
 			player:AddMaxHearts(diff, false)
 		end
-		if player:GetSoulHearts() ~= soulHearts then --Restore Soul Hearts
-			diff = soulHearts - player:GetSoulHearts()
+		if player:GetSoulHearts() ~= previousSoulHearts then --Restore Soul Hearts
+			diff = previousSoulHearts - player:GetSoulHearts()
 			player:AddSoulHearts(diff, false)
 		end
-		if player:GetBlackHearts() ~= blackHearts then --Restore Black Hearts
-			diff = blackHearts - player:GetBlackHearts()
-			player:AddBlackHearts(diff)
+		if player:GetBlackHearts() ~= previousBlackHearts then --Restore Black Hearts
+			diff = previousBlackHearts - player:GetBlackHearts()
+			player:AddBlackHearts(diff, false)
 		end
-		if player:GetHearts() > 1 then --Remove health for Whore of Babylon state
-			diff = player:GetMaxHearts() - player:GetHearts()
-			diff = diff * -1			
-			player:AddHearts(diff + 1)
+		if player:GetHearts() < player:GetMaxHearts() then --Restore red hearts
+			player:AddHearts(player:GetMaxHearts(), false)
 		end
-		player:EvaluateItems() --Activate Whore of Babylon		
 	end
 
 	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) and not garden.HAS_CRACK_THE_EARTH then			
