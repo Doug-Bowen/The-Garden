@@ -1,11 +1,12 @@
 Features:
-* Music/Ambience added in the Garden
+* Music/Ambience added into The Garden
 
 Fixes:
-* Corrected an issue where the game wouldnt cache properly at times
-* Sound Effects are now controlled through the SFX Manager properly
-* Reduced the volumes of multiple SFX
+* Corrected an issue where the game wouldn't evaluate cache properly at times
+* Sound Effects are now controlled through the SFX Manager
+* Balanced the volume of multiple SFX's
 
 Balances:
 * Creation now restarts the games timer as originally intended
-* The Frist Day, being a clone of Eucharist, now has Creations original effect
+* The Frist Day, being a clone of Eucharist, now has Creation's original effect
+* Rebirth has been renamed to Mankind and now properly changes your character to Eve.
