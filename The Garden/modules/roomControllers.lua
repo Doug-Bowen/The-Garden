@@ -193,6 +193,8 @@ function garden:gardenRoomUpdate()
 				table.remove(garden.gardenPool,randomNumber) --Remove the item from the pool																				
 			end
 		end
+	else
+		SFXManager():Stop("173") -- Stop jungle sounds
 	end
 end
 
