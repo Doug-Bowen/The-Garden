@@ -7,14 +7,6 @@ function garden:gardenRoomUpdate()
 	local roomDesc = currentLevel:GetCurrentRoomDesc()	
 	local currentRoom = Game():GetRoom()	
 	if roomDesc.Data.Name == "The_Garden" then  --Player is in a Garden
-		--[[DEBUG--
-		local backDrop = currentRoom:GetBackdropType()
-		if backDrop ~= nil then
-			Isaac.RenderText(backDrop, 50, 30, 255, 255, 255, 255)
-		else
-			Isaac.RenderText("Nil", 50, 30, 255, 255, 255, 255)
-		end
-		--------]]
 		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden					
 			MusicManager():Play(42,0.6)  --Play Garden_Drone.ogg
 			SFXManager():Play("173", 0.4, 0, true, 1) -- loop soft ambience
