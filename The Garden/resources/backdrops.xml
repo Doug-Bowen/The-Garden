@@ -27,5 +27,6 @@
 	<backdrop id="26" gfx="effect_error.anm2" walls="0" /> <!-- special handling -->
 	<backdrop id="27" gfx="17_Blue Secret.png" walls="1" wallvariants="6" floors="1" floorvariants="6" />
 	<backdrop id="28" gfx="0B_UltraGreedShop.png" walls="1" wallvariants="5" floors="1" floorvariants="6" />
-	<backdrop id="29" gfx="0a_garden.png" walls="1" wallvariants="3" floors="1" floorvariants="6" />
+	<!-- backdrop id="29" is reserved for itemdungeons -->
+	<backdrop id="30" gfx="0a_garden.png" walls="1" wallvariants="3" floors="1" floorvariants="6" />
 </backdrops>
