@@ -9,4 +9,4 @@ Fixes:
 Balances:
 * Creation now restarts the games timer as originally intended
 * The Frist Day, being a clone of Eucharist, now has Creation's original effect
-* Rebirth has been renamed to Mankind and now properly changes your character to Eve.
+* Rebirth has been renamed to Mankind and now properly changes your character to Eve, giving you the Whore of Babylon a well.
