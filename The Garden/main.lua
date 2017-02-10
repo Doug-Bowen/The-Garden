@@ -5,7 +5,7 @@ local garden = RegisterMod("TheGarden", 1) --'1' denotes API v1.0
 --------------------
 
 --Debug Flag
-garden.DEBUG_MODE = true
+garden.DEBUG_MODE = false
 
 --Items
 garden.COLLECTIBLE_SHAME = Isaac.GetItemIdByName("Shame")
@@ -141,14 +141,21 @@ garden.TREE_SPAWN_OWNER = nil
 function garden:debugMode()
 	if garden.DEBUG_MODE then
 		Isaac.RenderText("Debug Mode", 50, 15, 255, 255, 255, 255)		
-		--local currentGame = Game()
+		local currentGame = Game()
 		--local currentLevel = currentGame:GetLevel()		
-		--local currentRoom = Game():GetRoom()
+		local currentRoom = Game():GetRoom()
 		--local player = Isaac.GetPlayer(0)
 		--local playerPosition = player.Position						
 		--Isaac.RenderText("X:" .. playerPosition.X, 50, 30, 255, 255, 255, 255)
 		--Isaac.RenderText("Variant:" .. player.Variant, 50, 30, 255, 255, 255, 255)
 		--Isaac.RenderText("SubType:" .. player.SubType, 50, 45, 255, 255, 255, 255)
+		local backDrop = currentRoom:GetBackdropType()
+		if backDrop ~= nil then
+			Isaac.RenderText("Backdrop:" .. backDrop, 50, 30, 255, 255, 255, 255)
+		else
+			Isaac.RenderText("Backdrop: nil", 50, 30, 255, 255, 255, 255)
+		end
+		
 		if Game():GetFrameCount() == 1 then
 			local currentRoom = Game():GetRoom()
 			local roomCenter = currentRoom:GetCenterPos()
@@ -544,14 +551,6 @@ function garden:gardenRoomUpdate()
 	local roomDesc = currentLevel:GetCurrentRoomDesc()	
 	local currentRoom = Game():GetRoom()	
 	if roomDesc.Data.Name == "The_Garden" then  --Player is in a Garden
-		--[[DEBUG--
-		local backDrop = currentRoom:GetBackdropType()
-		if backDrop ~= nil then
-			Isaac.RenderText(backDrop, 50, 30, 255, 255, 255, 255)
-		else
-			Isaac.RenderText("Nil", 50, 30, 255, 255, 255, 255)
-		end
-		--------]]
 		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden					
 			MusicManager():Play(42,0.6)  --Play Garden_Drone.ogg
 			SFXManager():Play("173", 0.4, 0, true, 1) -- loop soft ambience
@@ -738,6 +737,8 @@ function garden:gardenRoomUpdate()
 				table.remove(garden.gardenPool,randomNumber) --Remove the item from the pool																				
 			end
 		end
+	else
+		SFXManager():Stop("173") -- Stop jungle sounds
 	end
 end
 
