@@ -1024,12 +1024,12 @@ function garden:itemPickedUp(player, statFromXML)
 			diff = blackHearts - player:GetBlackHearts()
 			player:AddBlackHearts(diff)
 		end
-		if player:GetHearts() > 1 then --Enter Whore of Babylon state
+		if player:GetHearts() > 1 then --Remove health for Whore of Babylon state
 			diff = player:GetMaxHearts() - player:GetHearts()
-			diff = diff * -1
-			diff = diff + 1
-			player:AddHearts(diff)
-		end		
+			diff = diff * -1			
+			player:AddHearts(diff + 1)
+		end
+		player:EvaluateItems() --Activate Whore of Babylon		
 	end
 
 	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) and not garden.HAS_CRACK_THE_EARTH then			
