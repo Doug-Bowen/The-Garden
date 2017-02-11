@@ -15,13 +15,13 @@ Do you like The Garden? Give this repo a star!
 |---|---|
 |Shame|Enemies that move too close to Isaac have a short fear effect applied to them.|
 |Forbidden Fruit|Tears become apples, Shot Speed up.|
-|Deception|Shuffle consumable numbers (High risk/high reward)|
-|Creation|All stats up|
+|Deception|Shuffle consumable numbers (High risk/high reward).|
+|Creation|The game's timer is restarted to 00:00.|
 |Granted Domain|Enemies stop moving when Isaac stops moving|
 |The Harvest|Upon clearing a room, the player has a 5% chance to be rewarded with a random item in the center of the room.|
 |The Fall of Man|+2 Black Hearts. Removes all red hearts. For each red heart removed, +.5 damage.|
-|Rebirth|The player gains a familiar that looks like Adam. Adam rotates very fast but deals large damage.|
-|The First Day|100% Angel Precedence.|
+|Mankind|The player's character is changed to Eve and the player gains a familiar that looks like Adam. Adam rotates very fast but deals large damage.|
+|The First Day|Stats up.|
 |Exiled|+2 Heart Containers, All heart drops are now black hearts.|
 |My Beloved|+1 Heart Container, All hearts in the room quickly gravitate towards Isaac until he obtains them.|
 |Creack The Earth|Every 10 frames, has a 5% chance per Luck to create an earth quake under a random enemy in the room, dealing strong damage. Excludes flying enemies and bosses.|
