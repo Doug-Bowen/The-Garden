@@ -4,10 +4,13 @@
 
 function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
-	local currentRoom = Game():GetRoom()	
+	local roomDesc = currentLevel:GetCurrentRoomDesc()	
+	local currentRoom = Game():GetRoom()
 	local currentRoomType = currentRoom:GetType()	
-	if currentRoomType == RoomType.ROOM_LIBRARY then --Player is in a Garden
-		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden
+	if currentRoomType == RoomType.ROOM_LIBRARY then  --Player is in a Garden
+		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden					
+			MusicManager():Play(42,0.6)  --Play Garden_Drone.ogg
+			SFXManager():Play("173", 0.4, 0, true, 1) -- loop soft ambience
 			if garden.VISIT_NUMBER == 0 then      --Player has never been in this Garden			
 				garden.FIGHT_CAN_START = true							
 				garden.GARDEN_HEARTS_CAN_SPAWN = true
@@ -89,20 +92,16 @@ function garden:gardenRoomUpdate()
 		if math.abs(positionalDifference.X) < 75 and math.abs(positionalDifference.Y) < 40 then
 			if garden.FIGHT_CAN_START then
 				
-				--change music here (Garden_Serpent.ogg)				
+				MusicManager():Play(43,0.3) --Play Garden_Serpent.ogg				
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)				
 				Game():ShakeScreen(12)
 				
 				--Spawn Wave 1 (Pin)				
-				garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_TYPE, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
+				Isaac.Spawn(garden.SERPENT_TYPE, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
 
 				--play sfx here (Curse_of_Mortality.wav)
-				local volume = 8
-				local frameDelay = 0
-				local loop = false
-				local pitch = 1
-				garden.SERPENT_SHELL:ToNPC():PlaySound("172", volume, frameDelay, loop, pitch)	
-
+				SFXManager():Play("172", 8, 0, false, 1)  
+				
 				garden.WAVE_NUMBER = 1
 				garden.FIGHT_CAN_START = false												
 				garden.barCurrentRoomDoors()				
@@ -119,25 +118,20 @@ function garden:gardenRoomUpdate()
 				if singleEntity.Type == garden.SERPENT_TYPE then	
 					bossAlive = true
 				end
-
-				--turn pins tears green
-				--if singleEntity.Type == EntityType.ENTITY_PROJECTILE then
-				--	local green = Color(0, 255, 0, 255, 0, 0, 0)
-				--	singleEntity.Color = green					
-				--end
 			end
 
 			if not bossAlive then
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)		
 				local randomNum = math.random(5,12)
 				for i=1, randomNum do
-					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_TYPE, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
+					Isaac.Spawn(garden.SERPENT_HOLLOW_TYPE, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
 				end
 				local babySnakeLeftPosition = Vector(roomCenter.X+100,roomCenter.Y)
 				local babySnakeRightPosition = Vector(roomCenter.X-100,roomCenter.Y)
 				Isaac.Spawn(garden.SERPENT_BABY_TYPE, garden.SERPENT_BABY_VARIANT, 0, babySnakeLeftPosition, Vector(0,0), nil)								
 				Isaac.Spawn(garden.SERPENT_BABY_TYPE, garden.SERPENT_BABY_VARIANT, 0, babySnakeRightPosition, Vector(0,0), nil)								
-				garden.SERPENT_SHELL:ToNPC():PlaySound("172", 100, 0, false, 1)
+				SFXManager():Stop("173") -- Stop jungle sounds
+				SFXManager():Play("172", 8, 0, false, 1)  
 				garden.WAVE_NUMBER = 2																	
 			end
 		end		
@@ -157,13 +151,13 @@ function garden:gardenRoomUpdate()
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)		
 				local randomNum = math.random(5,12)
 				for i=1, randomNum do					
-					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_LARRY_TYPE, garden.SERPENT_LARRY_VARIANT, 1, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
+					Isaac.Spawn(garden.SERPENT_LARRY_TYPE, garden.SERPENT_LARRY_VARIANT, 1, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
 				end
 				local ladyBugLeftPosition = Vector(roomCenter.X+100,roomCenter.Y)
 				local ladyBugRightPosition = Vector(roomCenter.X-100,roomCenter.Y)
 				Isaac.Spawn(garden.LADY_BUG_TYPE, garden.LADY_BUG_VARIANT, 0, ladyBugLeftPosition, Vector(0,0), nil)								
 				Isaac.Spawn(garden.LADY_BUG_TYPE, garden.LADY_BUG_VARIANT, 0, ladyBugRightPosition, Vector(0,0), nil)								
-				garden.SERPENT_SHELL:ToNPC():PlaySound("172", 100, 0, false, 1)
+				SFXManager():Play("172", 8, 0, false, 1) 
 				garden.WAVE_NUMBER = 3																	
 			end
 		end		
@@ -183,14 +177,9 @@ function garden:gardenRoomUpdate()
 				garden.openCurrentRoomDoors()						 
 				garden.applyMortalityCurse()
 				
-				local volume = 8
-				local frameDelay = 0
-				local loop = false
-				local pitch = 1
-				garden.SERPENT_SHELL:ToNPC():PlaySound(SoundEffect.SOUND_HOLY, volume, frameDelay, loop, pitch)	
+				SFXManager():Play(SoundEffect.SOUND_HOLY, 8, 0, false, 1) 
+				MusicManager():Play(44,0.3) --Play Garden_Holy.ogg
 				
-				--currentRoom:PlayMusic() doesnt seem to do anything			
-				--change music here (Garden_Holy.ogg)
 				local roomCenter = currentRoom:GetCenterPos()
 				local initialStep = 0 --Not sure what this does
 				local avoidActiveEnemies = true
@@ -205,6 +194,8 @@ function garden:gardenRoomUpdate()
 				table.remove(garden.gardenPool,randomNumber) --Remove the item from the pool																				
 			end
 		end
+	else
+		SFXManager():Stop("173") -- Stop jungle sounds
 	end
 end
 

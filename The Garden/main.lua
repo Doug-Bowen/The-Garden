@@ -14,7 +14,7 @@ garden.COLLECTIBLE_DECEPTION = Isaac.GetItemIdByName("Deception")
 garden.COLLECTIBLE_CREATION = Isaac.GetItemIdByName("Creation")
 garden.COLLECTIBLE_GRANTED_DOMAIN = Isaac.GetItemIdByName("Granted Domain")
 garden.COLLECTIBLE_THE_FALL_OF_MAN = Isaac.GetItemIdByName("The Fall of Man")
-garden.COLLECTIBLE_REBIRTH = Isaac.GetItemIdByName("Rebirth")
+garden.COLLECTIBLE_MANKIND = Isaac.GetItemIdByName("Mankind")
 garden.COLLECTIBLE_EXILED = Isaac.GetItemIdByName("Exiled")
 garden.COLLECTIBLE_THE_FIRST_DAY = Isaac.GetItemIdByName("The First Day")
 garden.COLLECTIBLE_MY_BELOVED = Isaac.GetItemIdByName("My Beloved")
@@ -30,7 +30,7 @@ garden.gardenPool[3] = garden.COLLECTIBLE_DECEPTION
 garden.gardenPool[4] = garden.COLLECTIBLE_CREATION
 garden.gardenPool[5] = garden.COLLECTIBLE_GRANTED_DOMAIN
 garden.gardenPool[6] = garden.COLLECTIBLE_THE_FALL_OF_MAN
-garden.gardenPool[7] = garden.COLLECTIBLE_REBIRTH
+garden.gardenPool[7] = garden.COLLECTIBLE_MANKIND
 garden.gardenPool[8] = garden.COLLECTIBLE_EXILED
 garden.gardenPool[9] = garden.COLLECTIBLE_THE_FIRST_DAY
 garden.gardenPool[10] = garden.COLLECTIBLE_MY_BELOVED
@@ -45,7 +45,7 @@ garden.HAS_DECEPTION = false
 garden.HAS_CREATION = false
 garden.HAS_GRANTED_DOMAIN = false
 garden.HAS_THE_FALL_OF_MAN = false
-garden.HAS_REBIRTH = false
+garden.HAS_MANKIND = false
 garden.HAS_EXILED = false
 garden.HAS_THE_FIRST_DAY = false
 garden.HAS_MY_BELOVED = false
@@ -92,8 +92,7 @@ garden.CURSE_MORTALITY = Isaac.GetCurseIdByName("Curse of Mortality")
 garden.HAS_MORTALITY_CURSE = false
 
 --Entity Shells
-garden.TREE_SHELL = nil                                        
-garden.SERPENT_SHELL = nil                                           
+garden.TREE_SHELL = nil                                                                                  
 garden.GRAIN_SHELL = nil
 garden.GRASS_SHELL = nil 
 
@@ -142,13 +141,21 @@ garden.TREE_SPAWN_OWNER = nil
 function garden:debugMode()
 	if garden.DEBUG_MODE then
 		Isaac.RenderText("Debug Mode", 50, 15, 255, 255, 255, 255)		
-		--local currentGame = Game()
+		local currentGame = Game()
 		--local currentLevel = currentGame:GetLevel()		
-		--local currentRoom = Game():GetRoom()
+		local currentRoom = Game():GetRoom()
 		--local player = Isaac.GetPlayer(0)
 		--local playerPosition = player.Position						
 		--Isaac.RenderText("X:" .. playerPosition.X, 50, 30, 255, 255, 255, 255)
-		--Isaac.RenderText("Y:" .. playerPosition.Y, 50, 45, 255, 255, 255, 255)
+		--Isaac.RenderText("Variant:" .. player.Variant, 50, 30, 255, 255, 255, 255)
+		--Isaac.RenderText("SubType:" .. player.SubType, 50, 45, 255, 255, 255, 255)
+		local backDrop = currentRoom:GetBackdropType()
+		if backDrop ~= nil then
+			Isaac.RenderText("Backdrop:" .. backDrop, 50, 30, 255, 255, 255, 255)
+		else
+			Isaac.RenderText("Backdrop: nil", 50, 30, 255, 255, 255, 255)
+		end
+		
 		if Game():GetFrameCount() == 1 then
 			local currentRoom = Game():GetRoom()
 			local roomCenter = currentRoom:GetCenterPos()
@@ -365,18 +372,6 @@ function garden:harvestEffect()
 	end
 end
 
-function garden:theFirstDayEffect()
-	local player = Isaac.GetPlayer(0)
-	if player:HasCollectible(garden.COLLECTIBLE_THE_FIRST_DAY) then		
-		local currentGame = Game()
-		local currentLevel = currentGame:GetLevel()		
-		local currentRoom = Game():GetRoom()	
-		local currentChance = currentLevel:GetAngelRoomChance()		
-		local difference = 100.00-currentChance
-		currentLevel:AddAngelRoomChance(difference)
-	end		
-end
-
 function garden:crackTheEarthEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) then		
@@ -390,13 +385,7 @@ function garden:crackTheEarthEffect()
 					if singleEntity:IsVulnerableEnemy() and not singleEntity:IsFlying() and not singleEntity:IsBoss() then		
 						Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ROCK_EXPLOSION, 0, singleEntity.Position, Vector(0,0), nil)
 						singleEntity:TakeDamage(10.0,0,EntityRef(player),0)
-						local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-						local volume = 3
-						local frameDelay = 0
-						local loop = false
-						local pitch = 1
-						soundShell:ToNPC():PlaySound(SoundEffect.SOUND_ROCK_CRUMBLE, volume, frameDelay, loop, pitch)	--Make it a sound
-						soundShell:Remove()	
+						SFXManager():Play(SoundEffect.SOUND_ROCK_CRUMBLE, 2, 0, false, 1)
 					end	
 				end				
 			end
@@ -434,18 +423,12 @@ end
 function garden:deceiverEffect(target, amount, flags, source, cooldown)
 	if garden.HAS_DECEIVER then
 		if target:IsVulnerableEnemy() and target.HitPoints-amount <= 0 then
-			local randomNum = math.random(1) --5% chance
-			if randomNum == 1 then 				
+			local randomNum = math.random(100) --5% chance
+			if randomNum <= 5 then 				
 				local player = Isaac.GetPlayer(0)
 				if not player:HasFullHearts() then
-					player:AddHearts(1)  --Lifesteal
-					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-					local volume = 5
-					local frameDelay = 0
-					local loop = false
-					local pitch = 1
-					soundShell:ToNPC():PlaySound(SoundEffect.SOUND_VAMP_GULP, volume, frameDelay, loop, pitch)	--Make it a sound
-					soundShell:Remove()	
+					player:AddHearts(1)  --Lifesteal			
+					SFXManager():Play(SoundEffect.SOUND_VAMP_GULP, 2, 0, false, 1)
 				end
 			end
 		end
@@ -465,14 +448,8 @@ function garden:legionEffect()
 				if singleEntity.Type == EntityType.ENTITY_FAMILIAR and singleEntity.Variant == garden.LEGION_FAMILIAR_VARIANT and singleEntity.SubType == 0 then
 					singleEntity:Remove()						
 					garden.LEGION_IN_ROOM = false
-					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
 					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, singleEntity.Position, Vector(0,0), nil)				
-					local volume = 3
-					local frameDelay = 0
-					local loop = false
-					local pitch = 1
-					soundShell:ToNPC():PlaySound("174", volume, frameDelay, loop, pitch)	--Make it a sound
-					soundShell:Remove()	
+					SFXManager():Play("174", 3, 0, false, 1)
 				end				
 			end				
 		end
@@ -503,14 +480,7 @@ function garden:legionEffect()
 				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, garden.LEGION_SPAWN_POSITION, Vector(0,0), nil)				
 				Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.LEGION_FAMILIAR_VARIANT, 0, garden.LEGION_SPAWN_POSITION, Vector(0,0), player)
 				Game():ShakeScreen(12)
-								
-				local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-				local volume = 3
-				local frameDelay = 0
-				local loop = false
-				local pitch = 1
-				soundShell:ToNPC():PlaySound("177", volume, frameDelay, loop, pitch)	--Make it a sound
-				soundShell:Remove()	
+				SFXManager():Play("177", 3, 0, false, 1)	
 			end
 		end
 		
@@ -578,10 +548,13 @@ end
 
 function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
-	local currentRoom = Game():GetRoom()	
+	local roomDesc = currentLevel:GetCurrentRoomDesc()	
+	local currentRoom = Game():GetRoom()
 	local currentRoomType = currentRoom:GetType()	
-	if currentRoomType == RoomType.ROOM_LIBRARY then --Player is in a Garden
-		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden
+	if currentRoomType == RoomType.ROOM_LIBRARY then  --Player is in a Garden
+		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden					
+			MusicManager():Play(42,0.6)  --Play Garden_Drone.ogg
+			SFXManager():Play("173", 0.4, 0, true, 1) -- loop soft ambience
 			if garden.VISIT_NUMBER == 0 then      --Player has never been in this Garden			
 				garden.FIGHT_CAN_START = true							
 				garden.GARDEN_HEARTS_CAN_SPAWN = true
@@ -663,20 +636,16 @@ function garden:gardenRoomUpdate()
 		if math.abs(positionalDifference.X) < 75 and math.abs(positionalDifference.Y) < 40 then
 			if garden.FIGHT_CAN_START then
 				
-				--change music here (Garden_Serpent.ogg)				
+				MusicManager():Play(43,0.3) --Play Garden_Serpent.ogg				
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)				
 				Game():ShakeScreen(12)
 				
 				--Spawn Wave 1 (Pin)				
-				garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_TYPE, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
+				Isaac.Spawn(garden.SERPENT_TYPE, garden.SERPENT_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
 
 				--play sfx here (Curse_of_Mortality.wav)
-				local volume = 8
-				local frameDelay = 0
-				local loop = false
-				local pitch = 1
-				garden.SERPENT_SHELL:ToNPC():PlaySound("172", volume, frameDelay, loop, pitch)	
-
+				SFXManager():Play("172", 8, 0, false, 1)  
+				
 				garden.WAVE_NUMBER = 1
 				garden.FIGHT_CAN_START = false												
 				garden.barCurrentRoomDoors()				
@@ -693,25 +662,20 @@ function garden:gardenRoomUpdate()
 				if singleEntity.Type == garden.SERPENT_TYPE then	
 					bossAlive = true
 				end
-
-				--turn pins tears green
-				--if singleEntity.Type == EntityType.ENTITY_PROJECTILE then
-				--	local green = Color(0, 255, 0, 255, 0, 0, 0)
-				--	singleEntity.Color = green					
-				--end
 			end
 
 			if not bossAlive then
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)		
 				local randomNum = math.random(5,12)
 				for i=1, randomNum do
-					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_HOLLOW_TYPE, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
+					Isaac.Spawn(garden.SERPENT_HOLLOW_TYPE, garden.SERPENT_HOLLOW_VARIANT, garden.SERPENT_SUBTYPE, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
 				end
 				local babySnakeLeftPosition = Vector(roomCenter.X+100,roomCenter.Y)
 				local babySnakeRightPosition = Vector(roomCenter.X-100,roomCenter.Y)
 				Isaac.Spawn(garden.SERPENT_BABY_TYPE, garden.SERPENT_BABY_VARIANT, 0, babySnakeLeftPosition, Vector(0,0), nil)								
 				Isaac.Spawn(garden.SERPENT_BABY_TYPE, garden.SERPENT_BABY_VARIANT, 0, babySnakeRightPosition, Vector(0,0), nil)								
-				garden.SERPENT_SHELL:ToNPC():PlaySound("172", 100, 0, false, 1)
+				SFXManager():Stop("173") -- Stop jungle sounds
+				SFXManager():Play("172", 8, 0, false, 1)  
 				garden.WAVE_NUMBER = 2																	
 			end
 		end		
@@ -731,13 +695,13 @@ function garden:gardenRoomUpdate()
 				garden.SERPENT_LOCATION = Vector(roomCenter.X, roomCenter.Y+100)		
 				local randomNum = math.random(5,12)
 				for i=1, randomNum do					
-					garden.SERPENT_SHELL = Isaac.Spawn(garden.SERPENT_LARRY_TYPE, garden.SERPENT_LARRY_VARIANT, 1, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
+					Isaac.Spawn(garden.SERPENT_LARRY_TYPE, garden.SERPENT_LARRY_VARIANT, 1, garden.SERPENT_LOCATION, garden.SERPENT_VELOCITY, garden.SERPENT_SPAWN_OWNER)								
 				end
 				local ladyBugLeftPosition = Vector(roomCenter.X+100,roomCenter.Y)
 				local ladyBugRightPosition = Vector(roomCenter.X-100,roomCenter.Y)
 				Isaac.Spawn(garden.LADY_BUG_TYPE, garden.LADY_BUG_VARIANT, 0, ladyBugLeftPosition, Vector(0,0), nil)								
 				Isaac.Spawn(garden.LADY_BUG_TYPE, garden.LADY_BUG_VARIANT, 0, ladyBugRightPosition, Vector(0,0), nil)								
-				garden.SERPENT_SHELL:ToNPC():PlaySound("172", 100, 0, false, 1)
+				SFXManager():Play("172", 8, 0, false, 1) 
 				garden.WAVE_NUMBER = 3																	
 			end
 		end		
@@ -757,14 +721,9 @@ function garden:gardenRoomUpdate()
 				garden.openCurrentRoomDoors()						 
 				garden.applyMortalityCurse()
 				
-				local volume = 8
-				local frameDelay = 0
-				local loop = false
-				local pitch = 1
-				garden.SERPENT_SHELL:ToNPC():PlaySound(SoundEffect.SOUND_HOLY, volume, frameDelay, loop, pitch)	
+				SFXManager():Play(SoundEffect.SOUND_HOLY, 8, 0, false, 1) 
+				MusicManager():Play(44,0.3) --Play Garden_Holy.ogg
 				
-				--currentRoom:PlayMusic() doesnt seem to do anything			
-				--change music here (Garden_Holy.ogg)
 				local roomCenter = currentRoom:GetCenterPos()
 				local initialStep = 0 --Not sure what this does
 				local avoidActiveEnemies = true
@@ -779,6 +738,8 @@ function garden:gardenRoomUpdate()
 				table.remove(garden.gardenPool,randomNumber) --Remove the item from the pool																				
 			end
 		end
+	else
+		SFXManager():Stop("173") -- Stop jungle sounds
 	end
 end
 
@@ -862,7 +823,7 @@ function garden:setNewRunFlags()
 	garden.gardenPool[4] = garden.COLLECTIBLE_CREATION
 	garden.gardenPool[5] = garden.COLLECTIBLE_GRANTED_DOMAIN
 	garden.gardenPool[6] = garden.COLLECTIBLE_THE_FALL_OF_MAN
-	garden.gardenPool[7] = garden.COLLECTIBLE_REBIRTH
+	garden.gardenPool[7] = garden.COLLECTIBLE_MANKIND
 	garden.gardenPool[8] = garden.COLLECTIBLE_EXILED
 	garden.gardenPool[9] = garden.COLLECTIBLE_THE_FIRST_DAY
 	garden.gardenPool[10] = garden.COLLECTIBLE_MY_BELOVED
@@ -877,7 +838,7 @@ function garden:setNewRunFlags()
 	garden.HAS_CREATION = false
 	garden.HAS_GRANTED_DOMAIN = false
 	garden.HAS_THE_FALL_OF_MAN = false
-	garden.HAS_REBIRTH = false
+	garden.HAS_MANKIND = false
 	garden.HAS_EXILED = false
 	garden.HAS_THE_FIRST_DAY = false
 	garden.HAS_MY_BELOVED = false
@@ -921,7 +882,7 @@ end
 
 function garden:updateFamiliar(familiar)
 	if familiar.Variant == garden.ADAM_FAMILIAR_VARIANT then
-		if garden.HAS_REBIRTH then
+		if garden.HAS_MANKIND then
 			local player = Isaac.GetPlayer(0)
 			familiar.OrbitDistance = Vector(35, 35)
 			familiar.OrbitLayer = 98
@@ -938,23 +899,15 @@ end
 ----------------
 
 function garden:itemPickedUp(player, statFromXML)
-	--I'm grabbing this 3 times to ensure cache actually gets updated. Without this, it was inconsistant.
 	local player = Isaac.GetPlayer(0)	
-	local player = Isaac.GetPlayer(0)
-	local player = Isaac.GetPlayer(0)
 	
 	if player:HasCollectible(garden.COLLECTIBLE_CREATION) and not garden.HAS_CREATION then
 		garden.HAS_CREATION = true
 		player:AddNullCostume(garden.COSTUME_ID_CREATION)	
-		
-		player.Damage = player.Damage + 0.51		
-		player.MoveSpeed = player.MoveSpeed + 0.1
-		player.ShotSpeed = player.ShotSpeed + 0.1
-		
-		local white = Color(255, 255, 255, 255, 0, 0, 0)
-		player.TearColor = white		
+	
+		Game().TimeCounter = 0
+		SFXManager():Play(SoundEffect.SOUND_GOLDENKEY, 4, 0, false, 1)           													 
 	end
-
 
 	if player:HasCollectible(garden.COLLECTIBLE_THE_FALL_OF_MAN) and not garden.HAS_THE_FALL_OF_MAN then		
 		garden.HAS_THE_FALL_OF_MAN = true
@@ -994,6 +947,13 @@ function garden:itemPickedUp(player, statFromXML)
 	if player:HasCollectible(garden.COLLECTIBLE_THE_FIRST_DAY) and not garden.HAS_THE_FIRST_DAY then			
 		garden.HAS_THE_FIRST_DAY = true
 		player:AddNullCostume(garden.COSTUME_ID_THE_FIRST_DAY)		  
+
+		player.Damage = player.Damage + 0.51		
+		player.MoveSpeed = player.MoveSpeed + 0.1
+		player.ShotSpeed = player.ShotSpeed + 0.1
+
+		local white = Color(255, 255, 255, 255, 0, 0, 0)
+		player.TearColor = white	
 	end
 
 	if player:HasCollectible(garden.COLLECTIBLE_DECEPTION) and not garden.HAS_DECEPTION then			
@@ -1038,11 +998,38 @@ function garden:itemPickedUp(player, statFromXML)
 		player:AddMaxHearts(4, ignoreKeeper)		
 	end
 
-	if player:HasCollectible(garden.COLLECTIBLE_REBIRTH) and not garden.HAS_REBIRTH then			
-		garden.HAS_REBIRTH = true
+	if player:HasCollectible(garden.COLLECTIBLE_MANKIND) and not garden.HAS_MANKIND then			
+		garden.HAS_MANKIND = true
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position			
 		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.ADAM_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)		
+
+		local previousHeartContainers = player:GetMaxHearts()
+		local previousSoulHearts = player:GetSoulHearts()
+		local previousBlackHearts = player:GetBlackHearts()
+
+		while player:GetPlayerType() ~= PlayerType.PLAYER_EVE do
+			player:UseActiveItem(CollectibleType.COLLECTIBLE_CLICKER, false, false, false, false) --Change to Eve
+		end			
+
+		player:AddCollectible(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON , 0, true) -- Give Whore of Babylon
+
+		local diff
+		if player:GetMaxHearts() ~= previousHeartContainers then --Restore red heart containers
+			diff = previousHeartContainers - player:GetMaxHearts()
+			player:AddMaxHearts(diff, false)
+		end
+		if player:GetSoulHearts() ~= previousSoulHearts then --Restore Soul Hearts
+			diff = previousSoulHearts - player:GetSoulHearts()
+			player:AddSoulHearts(diff, false)
+		end
+		if player:GetBlackHearts() ~= previousBlackHearts then --Restore Black Hearts
+			diff = previousBlackHearts - player:GetBlackHearts()
+			player:AddBlackHearts(diff, false)
+		end
+		if player:GetHearts() < player:GetMaxHearts() then --Restore red hearts
+			player:AddHearts(player:GetMaxHearts(), false)
+		end
 	end
 
 	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) and not garden.HAS_CRACK_THE_EARTH then			
@@ -1053,14 +1040,7 @@ function garden:itemPickedUp(player, statFromXML)
 	if player:HasCollectible(garden.COLLECTIBLE_LEGION) and not garden.HAS_LEGION then			
 		garden.HAS_LEGION = true
 		Game():ShakeScreen(12)
-		local player = Isaac.GetPlayer(0)						
-		local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-		local volume = 3
-		local frameDelay = 0
-		local loop = false
-		local pitch = 1
-		soundShell:ToNPC():PlaySound("177", volume, frameDelay, loop, pitch)	--Make it a sound
-		soundShell:Remove()
+		SFXManager():Play("177", 3, 0, false, 1)
 	end
 
 	--Deceiver Tansformation
@@ -1071,14 +1051,14 @@ function garden:itemPickedUp(player, statFromXML)
 	    local creation = Isaac.GetItemIdByName("Creation")	    
 	    local grantedDomain = Isaac.GetItemIdByName("Granted Domain")
 	    local fallOfMan = Isaac.GetItemIdByName("The Fall of Man")
-	    local rebirth = Isaac.GetItemIdByName("Rebirth")
+	    local mankind = Isaac.GetItemIdByName("Mankind")
 	    local exiled = Isaac.GetItemIdByName("Exiled")
 	    local firstDay = Isaac.GetItemIdByName("The First Day")
 	    local beloved = Isaac.GetItemIdByName("My Beloved")
 	    local harvest = Isaac.GetItemIdByName("The Harvest")	    
 	    local crackTheEarth = Isaac.GetItemIdByName("Crack The Earth")
 	    local legion = Isaac.GetItemIdByName("Legion")
-		local possibleItems = {shame, forbiddenFruit, deception, creation, grantedDomain, fallOfMan, rebirth, exiled, firstDay, beloved, harvest, crackTheEarth, legion}
+		local possibleItems = {shame, forbiddenFruit, deception, creation, grantedDomain, fallOfMan, mankind, exiled, firstDay, beloved, harvest, crackTheEarth, legion}
         local itemCount = 0        
         for k,v in pairs(possibleItems) do        
           if player:HasCollectible(v) then
@@ -1092,16 +1072,10 @@ function garden:itemPickedUp(player, statFromXML)
             local green = Color(0, 255, 0, 255, 0, 0, 0)
 			player.TearColor = green		            
             player:AddNullCostume(garden.COSTUME_ID_DECEIVER)            
-            local volume = 100
-			local frameDelay = 0
-			local loop = false
-			local pitch = 1
 			local pillText = Isaac.GetPillEffectByName("Deceiver!")
 			player:UsePill(pillText,PillColor.PILL_BLUE_BLUE)
-			player:StopExtraAnimation()            			
-			local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-			soundShell:ToNPC():PlaySound(SoundEffect.SOUND_POWERUP_SPEWER, volume, frameDelay, loop, pitch)	--Make it a sound
-			soundShell:Remove()									
+			player:StopExtraAnimation() 
+			SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER, 0.9, 0, false, 1)           											
         end
 	end
 end
@@ -1119,13 +1093,13 @@ garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.shameEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.forbiddenFruitEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.grantedDomainEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.exiledEffect)
-garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.theFirstDayEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.myBelovedEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.harvestEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.crackTheEarthEffect)
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.legionEffect)
 garden:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, garden.deceiverEffect)
 garden:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, garden.itemPickedUp)
+
 --Room Callbacks
 garden:AddCallback(ModCallbacks.MC_POST_UPDATE, garden.gardenRoomUpdate)
 

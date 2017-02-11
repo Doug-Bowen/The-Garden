@@ -14,7 +14,7 @@ garden.COLLECTIBLE_DECEPTION = Isaac.GetItemIdByName("Deception")
 garden.COLLECTIBLE_CREATION = Isaac.GetItemIdByName("Creation")
 garden.COLLECTIBLE_GRANTED_DOMAIN = Isaac.GetItemIdByName("Granted Domain")
 garden.COLLECTIBLE_THE_FALL_OF_MAN = Isaac.GetItemIdByName("The Fall of Man")
-garden.COLLECTIBLE_REBIRTH = Isaac.GetItemIdByName("Rebirth")
+garden.COLLECTIBLE_MANKIND = Isaac.GetItemIdByName("Mankind")
 garden.COLLECTIBLE_EXILED = Isaac.GetItemIdByName("Exiled")
 garden.COLLECTIBLE_THE_FIRST_DAY = Isaac.GetItemIdByName("The First Day")
 garden.COLLECTIBLE_MY_BELOVED = Isaac.GetItemIdByName("My Beloved")
@@ -30,7 +30,7 @@ garden.gardenPool[3] = garden.COLLECTIBLE_DECEPTION
 garden.gardenPool[4] = garden.COLLECTIBLE_CREATION
 garden.gardenPool[5] = garden.COLLECTIBLE_GRANTED_DOMAIN
 garden.gardenPool[6] = garden.COLLECTIBLE_THE_FALL_OF_MAN
-garden.gardenPool[7] = garden.COLLECTIBLE_REBIRTH
+garden.gardenPool[7] = garden.COLLECTIBLE_MANKIND
 garden.gardenPool[8] = garden.COLLECTIBLE_EXILED
 garden.gardenPool[9] = garden.COLLECTIBLE_THE_FIRST_DAY
 garden.gardenPool[10] = garden.COLLECTIBLE_MY_BELOVED
@@ -45,7 +45,7 @@ garden.HAS_DECEPTION = false
 garden.HAS_CREATION = false
 garden.HAS_GRANTED_DOMAIN = false
 garden.HAS_THE_FALL_OF_MAN = false
-garden.HAS_REBIRTH = false
+garden.HAS_MANKIND = false
 garden.HAS_EXILED = false
 garden.HAS_THE_FIRST_DAY = false
 garden.HAS_MY_BELOVED = false
@@ -92,8 +92,7 @@ garden.CURSE_MORTALITY = Isaac.GetCurseIdByName("Curse of Mortality")
 garden.HAS_MORTALITY_CURSE = false
 
 --Entity Shells
-garden.TREE_SHELL = nil                                        
-garden.SERPENT_SHELL = nil                                           
+garden.TREE_SHELL = nil                                                                                  
 garden.GRAIN_SHELL = nil
 garden.GRASS_SHELL = nil 
 

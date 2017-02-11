@@ -5,7 +5,6 @@
   <costume anm2path="creation.anm2" priority="100" type="none" />
   <costume anm2path="the_first_day.anm2" priority="99" type="none" />
   <costume anm2path="granted_domain.anm2" priority="100" type="none" />
-  <costume anm2path="rebirth.anm2" priority="99" type="none" />
   <costume anm2path="the_harvest.anm2" priority="99" type="none" />  
   <costume anm2path="the_fall_of_man.anm2" priority="99" type="none" />
   <costume anm2path="my_beloved.anm2" priority="100" type="none" />

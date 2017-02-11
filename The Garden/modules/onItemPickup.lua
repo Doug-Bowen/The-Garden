@@ -3,23 +3,15 @@
 ----------------
 
 function garden:itemPickedUp(player, statFromXML)
-	--I'm grabbing this 3 times to ensure cache actually gets updated. Without this, it was inconsistant.
 	local player = Isaac.GetPlayer(0)	
-	local player = Isaac.GetPlayer(0)
-	local player = Isaac.GetPlayer(0)
 	
 	if player:HasCollectible(garden.COLLECTIBLE_CREATION) and not garden.HAS_CREATION then
 		garden.HAS_CREATION = true
 		player:AddNullCostume(garden.COSTUME_ID_CREATION)	
-		
-		player.Damage = player.Damage + 0.51		
-		player.MoveSpeed = player.MoveSpeed + 0.1
-		player.ShotSpeed = player.ShotSpeed + 0.1
-		
-		local white = Color(255, 255, 255, 255, 0, 0, 0)
-		player.TearColor = white		
+	
+		Game().TimeCounter = 0
+		SFXManager():Play(SoundEffect.SOUND_GOLDENKEY, 4, 0, false, 1)           													 
 	end
-
 
 	if player:HasCollectible(garden.COLLECTIBLE_THE_FALL_OF_MAN) and not garden.HAS_THE_FALL_OF_MAN then		
 		garden.HAS_THE_FALL_OF_MAN = true
@@ -59,6 +51,13 @@ function garden:itemPickedUp(player, statFromXML)
 	if player:HasCollectible(garden.COLLECTIBLE_THE_FIRST_DAY) and not garden.HAS_THE_FIRST_DAY then			
 		garden.HAS_THE_FIRST_DAY = true
 		player:AddNullCostume(garden.COSTUME_ID_THE_FIRST_DAY)		  
+
+		player.Damage = player.Damage + 0.51		
+		player.MoveSpeed = player.MoveSpeed + 0.1
+		player.ShotSpeed = player.ShotSpeed + 0.1
+
+		local white = Color(255, 255, 255, 255, 0, 0, 0)
+		player.TearColor = white	
 	end
 
 	if player:HasCollectible(garden.COLLECTIBLE_DECEPTION) and not garden.HAS_DECEPTION then			
@@ -103,11 +102,38 @@ function garden:itemPickedUp(player, statFromXML)
 		player:AddMaxHearts(4, ignoreKeeper)		
 	end
 
-	if player:HasCollectible(garden.COLLECTIBLE_REBIRTH) and not garden.HAS_REBIRTH then			
-		garden.HAS_REBIRTH = true
+	if player:HasCollectible(garden.COLLECTIBLE_MANKIND) and not garden.HAS_MANKIND then			
+		garden.HAS_MANKIND = true
 		local player = Isaac.GetPlayer(0)
 		local playerPosition = player.Position			
 		Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.ADAM_FAMILIAR_VARIANT, 0, playerPosition, Vector(0,0), player)		
+
+		local previousHeartContainers = player:GetMaxHearts()
+		local previousSoulHearts = player:GetSoulHearts()
+		local previousBlackHearts = player:GetBlackHearts()
+
+		while player:GetPlayerType() ~= PlayerType.PLAYER_EVE do
+			player:UseActiveItem(CollectibleType.COLLECTIBLE_CLICKER, false, false, false, false) --Change to Eve
+		end			
+
+		player:AddCollectible(CollectibleType.COLLECTIBLE_WHORE_OF_BABYLON , 0, true) -- Give Whore of Babylon
+
+		local diff
+		if player:GetMaxHearts() ~= previousHeartContainers then --Restore red heart containers
+			diff = previousHeartContainers - player:GetMaxHearts()
+			player:AddMaxHearts(diff, false)
+		end
+		if player:GetSoulHearts() ~= previousSoulHearts then --Restore Soul Hearts
+			diff = previousSoulHearts - player:GetSoulHearts()
+			player:AddSoulHearts(diff, false)
+		end
+		if player:GetBlackHearts() ~= previousBlackHearts then --Restore Black Hearts
+			diff = previousBlackHearts - player:GetBlackHearts()
+			player:AddBlackHearts(diff, false)
+		end
+		if player:GetHearts() < player:GetMaxHearts() then --Restore red hearts
+			player:AddHearts(player:GetMaxHearts(), false)
+		end
 	end
 
 	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) and not garden.HAS_CRACK_THE_EARTH then			
@@ -118,14 +144,7 @@ function garden:itemPickedUp(player, statFromXML)
 	if player:HasCollectible(garden.COLLECTIBLE_LEGION) and not garden.HAS_LEGION then			
 		garden.HAS_LEGION = true
 		Game():ShakeScreen(12)
-		local player = Isaac.GetPlayer(0)						
-		local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-		local volume = 3
-		local frameDelay = 0
-		local loop = false
-		local pitch = 1
-		soundShell:ToNPC():PlaySound("177", volume, frameDelay, loop, pitch)	--Make it a sound
-		soundShell:Remove()
+		SFXManager():Play("177", 3, 0, false, 1)
 	end
 
 	--Deceiver Tansformation
@@ -136,14 +155,14 @@ function garden:itemPickedUp(player, statFromXML)
 	    local creation = Isaac.GetItemIdByName("Creation")	    
 	    local grantedDomain = Isaac.GetItemIdByName("Granted Domain")
 	    local fallOfMan = Isaac.GetItemIdByName("The Fall of Man")
-	    local rebirth = Isaac.GetItemIdByName("Rebirth")
+	    local mankind = Isaac.GetItemIdByName("Mankind")
 	    local exiled = Isaac.GetItemIdByName("Exiled")
 	    local firstDay = Isaac.GetItemIdByName("The First Day")
 	    local beloved = Isaac.GetItemIdByName("My Beloved")
 	    local harvest = Isaac.GetItemIdByName("The Harvest")	    
 	    local crackTheEarth = Isaac.GetItemIdByName("Crack The Earth")
 	    local legion = Isaac.GetItemIdByName("Legion")
-		local possibleItems = {shame, forbiddenFruit, deception, creation, grantedDomain, fallOfMan, rebirth, exiled, firstDay, beloved, harvest, crackTheEarth, legion}
+		local possibleItems = {shame, forbiddenFruit, deception, creation, grantedDomain, fallOfMan, mankind, exiled, firstDay, beloved, harvest, crackTheEarth, legion}
         local itemCount = 0        
         for k,v in pairs(possibleItems) do        
           if player:HasCollectible(v) then
@@ -157,16 +176,10 @@ function garden:itemPickedUp(player, statFromXML)
             local green = Color(0, 255, 0, 255, 0, 0, 0)
 			player.TearColor = green		            
             player:AddNullCostume(garden.COSTUME_ID_DECEIVER)            
-            local volume = 100
-			local frameDelay = 0
-			local loop = false
-			local pitch = 1
 			local pillText = Isaac.GetPillEffectByName("Deceiver!")
 			player:UsePill(pillText,PillColor.PILL_BLUE_BLUE)
-			player:StopExtraAnimation()            			
-			local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-			soundShell:ToNPC():PlaySound(SoundEffect.SOUND_POWERUP_SPEWER, volume, frameDelay, loop, pitch)	--Make it a sound
-			soundShell:Remove()									
+			player:StopExtraAnimation() 
+			SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER, 0.9, 0, false, 1)           											
         end
 	end
 end

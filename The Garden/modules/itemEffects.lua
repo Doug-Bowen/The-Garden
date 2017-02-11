@@ -204,18 +204,6 @@ function garden:harvestEffect()
 	end
 end
 
-function garden:theFirstDayEffect()
-	local player = Isaac.GetPlayer(0)
-	if player:HasCollectible(garden.COLLECTIBLE_THE_FIRST_DAY) then		
-		local currentGame = Game()
-		local currentLevel = currentGame:GetLevel()		
-		local currentRoom = Game():GetRoom()	
-		local currentChance = currentLevel:GetAngelRoomChance()		
-		local difference = 100.00-currentChance
-		currentLevel:AddAngelRoomChance(difference)
-	end		
-end
-
 function garden:crackTheEarthEffect()
 	local player = Isaac.GetPlayer(0)
 	if player:HasCollectible(garden.COLLECTIBLE_CRACK_THE_EARTH) then		
@@ -229,13 +217,7 @@ function garden:crackTheEarthEffect()
 					if singleEntity:IsVulnerableEnemy() and not singleEntity:IsFlying() and not singleEntity:IsBoss() then		
 						Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ROCK_EXPLOSION, 0, singleEntity.Position, Vector(0,0), nil)
 						singleEntity:TakeDamage(10.0,0,EntityRef(player),0)
-						local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-						local volume = 3
-						local frameDelay = 0
-						local loop = false
-						local pitch = 1
-						soundShell:ToNPC():PlaySound(SoundEffect.SOUND_ROCK_CRUMBLE, volume, frameDelay, loop, pitch)	--Make it a sound
-						soundShell:Remove()	
+						SFXManager():Play(SoundEffect.SOUND_ROCK_CRUMBLE, 2, 0, false, 1)
 					end	
 				end				
 			end
@@ -273,18 +255,12 @@ end
 function garden:deceiverEffect(target, amount, flags, source, cooldown)
 	if garden.HAS_DECEIVER then
 		if target:IsVulnerableEnemy() and target.HitPoints-amount <= 0 then
-			local randomNum = math.random(1) --5% chance
-			if randomNum == 1 then 				
+			local randomNum = math.random(100) --5% chance
+			if randomNum <= 5 then 				
 				local player = Isaac.GetPlayer(0)
 				if not player:HasFullHearts() then
-					player:AddHearts(1)  --Lifesteal
-					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-					local volume = 5
-					local frameDelay = 0
-					local loop = false
-					local pitch = 1
-					soundShell:ToNPC():PlaySound(SoundEffect.SOUND_VAMP_GULP, volume, frameDelay, loop, pitch)	--Make it a sound
-					soundShell:Remove()	
+					player:AddHearts(1)  --Lifesteal			
+					SFXManager():Play(SoundEffect.SOUND_VAMP_GULP, 2, 0, false, 1)
 				end
 			end
 		end
@@ -304,14 +280,8 @@ function garden:legionEffect()
 				if singleEntity.Type == EntityType.ENTITY_FAMILIAR and singleEntity.Variant == garden.LEGION_FAMILIAR_VARIANT and singleEntity.SubType == 0 then
 					singleEntity:Remove()						
 					garden.LEGION_IN_ROOM = false
-					local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
 					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, singleEntity.Position, Vector(0,0), nil)				
-					local volume = 3
-					local frameDelay = 0
-					local loop = false
-					local pitch = 1
-					soundShell:ToNPC():PlaySound("174", volume, frameDelay, loop, pitch)	--Make it a sound
-					soundShell:Remove()	
+					SFXManager():Play("174", 3, 0, false, 1)
 				end				
 			end				
 		end
@@ -342,14 +312,7 @@ function garden:legionEffect()
 				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, garden.LEGION_SPAWN_POSITION, Vector(0,0), nil)				
 				Isaac.Spawn(EntityType.ENTITY_FAMILIAR, garden.LEGION_FAMILIAR_VARIANT, 0, garden.LEGION_SPAWN_POSITION, Vector(0,0), player)
 				Game():ShakeScreen(12)
-								
-				local soundShell = Isaac.Spawn(EntityType.ENTITY_NULL, 0, 0, Vector(0,0), Vector(0,0), player) --Spawn a null entity			
-				local volume = 3
-				local frameDelay = 0
-				local loop = false
-				local pitch = 1
-				soundShell:ToNPC():PlaySound("177", volume, frameDelay, loop, pitch)	--Make it a sound
-				soundShell:Remove()	
+				SFXManager():Play("177", 3, 0, false, 1)	
 			end
 		end
 		
