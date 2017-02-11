@@ -2,6 +2,7 @@ Features:
 * Music/Ambience added into The Garden
 
 Fixes:
+* Corrected a common issue where the game would crash upon floor generation
 * Corrected an issue where the game wouldn't evaluate cache properly at times
 * Sound Effects are now controlled through the SFX Manager
 * Balanced the volume of multiple SFX's
