@@ -6,6 +6,7 @@ function garden:gardenRoomUpdate()
 	local currentLevel = Game():GetLevel()	
 	local roomDesc = currentLevel:GetCurrentRoomDesc()	
 	local currentRoom = Game():GetRoom()
+	local currentRoomType = currentRoom:GetType()	
 	if currentRoomType == RoomType.ROOM_LIBRARY then  --Player is in a Garden
 		if currentRoom:GetFrameCount() == 1 then  --Player just walked into a Garden					
 			MusicManager():Play(42,0.6)  --Play Garden_Drone.ogg
